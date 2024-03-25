@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="{% static 'code-stats-embedded/dist/codestatsembedded.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'landing/MasterStyle.css' %}">
+        
+    </head>
+    
+    <body>
+        <div id="center">
+            <h1>Aedan's Work</h1>
+        </div>
+        <div>
+            <h2>Media Server Controls</h2>
+        </div>
+
+        <div class="container">
+        <h2>Code Stats Info</h2>
+        <div id="mycontainer"></div>
+        <div id="footerDiv">
+            <div id="elementDiv">
+                <p style='padding-right:5px;'>My Links: </p>
+                <a href="https://codestats.net/users/AedanM" style='padding-right:5px;'><img height=25px src="https://codestats.net/assets/frontend/images/Logo-92e1d93256eae2d7dde539f1df59b06c.svg" alt="CodeStats"/></a>
+                <a href="www.twitter.com/AedanM" style='padding-right:5px;'><img height=25px src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/512px-Logo_of_Twitter.svg.png" alt="Twitter"/></a>
+            {% comment %} </div>
+            <div id="elementDiv"> {% endcomment %}
+                <a href="https://github.com/AedanM" style='padding-right:5px;'><img height=25px src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/600px-Octicons-mark-github.svg.png" alt="GitHub"/></a>
+                <a href="https://www.linkedin.com/in/AedanMcHale" style='padding-right:5px;'><img height=25px src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/72px-LinkedIn_icon.svg.png" alt="LinkedIn"/></a>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'code-stats-embedded/dist/codestatsembedded.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>
+        CodeStatsEmbed("#mycontainer", "AedanM");
+    </script>
+    </body>
+    
+</html>
