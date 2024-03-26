@@ -1,20 +1,3 @@
-@font-face {
-    font-family: Newake;
-    src: url("../fonts/Newake-Font-Demo.otf");
-
-}
-
-html {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    /* font-family: Newake; */
-    /* letter-spacing: 0.5px; */
-    color: whitesmoke
-}
-
-div {
-    font-size: 90.5%;
-}
-
 h1 {
     font-family: Newake;
     letter-spacing: 1px;

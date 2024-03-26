@@ -7,5 +7,5 @@ from media.models import Movie, TVShow
 
 # Create your views here.
 def index(request) -> HttpResponse:
-    context = {"Movies": Movie.objects.all(), "TV Shows": TVShow.objects.all()}
+    context = {}
     return render(request, "landing/index.html", context)

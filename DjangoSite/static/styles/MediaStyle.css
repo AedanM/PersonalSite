@@ -1,0 +1,9 @@
+#MediaContentDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#MediaLogo {
+    height: 50px;
+}

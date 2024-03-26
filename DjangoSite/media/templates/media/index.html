@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title></title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.conditional.css"
+		/>
+        <link rel="stylesheet" href="{% static 'styles/MasterStyle.css' %}" />
+		<link rel="stylesheet" href="{% static 'styles/MediaStyle.css' %}" />
+		
+	</head>
+	<body>
+		<div id="center">
+			<div id="contentDiv">
+				<h3>TV Shows</h3>
+				<table id="TVTable" class="sortable">
+                    <thead>
+                        <td>Logo</td>
+                        <td>Title</td>
+                        <td>Seasons</td>
+                        <td>Downloaded</td>
+                        <td>Watched</td>
+                        <td>Genre</td>
+                    </thead>
+					{% for img,show in TVShows.items %}
+					<tr>
+						<td><img id="MediaLogo" height="25" src="{{img}}" alt="{{show}}" /></td>
+						<td>{{show.Title}}</td>
+						<td>{{show.Length}}</td>
+                        {% if show.Downloaded%}
+                            <td align="center" style="text-align:center; font-size:150%; font-weight:bold; color:green;">&#x2714</td>
+                        {% else %}
+                            <td align="center" style="text-align:center; font-size:150%; font-weight:bold; color:red;">&#x2717</td>
+                        {% endif %}
+                        {% if show.Watched%}
+                            <td align="center" style="text-align:center; font-size:150%; font-weight:bold; color:green;">&#x2714</td>
+                        {% else %}
+                            <td align="center" style="text-align:center; font-size:150%; font-weight:bold; color:red;">&#x2717</td>
+                        {% endif %}
+                        <td>
+                            <ul>
+                            {% for genre in show.GenreTagList %}
+                                <a href="/media?genre={{genre}}">{{genre}}</a>
+                            {% endfor %}
+                            </ul>
+                        </td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+			<div id="contentDiv">
+				<h3>Movies</h3>
+				<table id="TVTable" class="striped" class="sortable" >
+                    <thead style="float:center;">
+                        <td>Logo</td>
+                        <td>Title</td>
+                        <td>Year</td>
+                        <td>Downloaded</td>
+                        <td>Watched</td>
+                        <td>Genres</td>
+                    </thead>
+					{% for img,show in Movies.items %}
+					<tr>
+						<td><img id="MediaLogo" height="25" src="{{img}}" alt="{{show}}" /></td>
+						<td>{{show.Title}}</td>
+						<td>{{show.Year}}</td>
+                        {% if show.Downloaded%}
+                            <td align="center" style="text-align:center; font-size:150%; font-weight:bold; color:green;">&#x2714</td>
+                        {% else %}
+                            <td align="center" style="text-align:center; font-size:150%; font-weight:bold; color:red;">&#x2717</td>
+                        {% endif %}
+                        {% if show.Watched%}
+                            <td align="center" style="text-align:center; font-size:150%; font-weight:bold; color:green;">&#x2714</td>
+                        {% else %}
+                            <td align="center" style="text-align:center; font-size:150%; font-weight:bold; color:red;">&#x2717</td>
+                        {% endif %}
+                        <td>
+                            <ul>
+                            {% for genre in show.GenreTagList %}
+                                <a href="/media?genre={{genre}}">{{genre}}</a>
+                            {% endfor %}
+                            </ul>
+                        </td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

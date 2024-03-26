@@ -1,3 +1,4 @@
+import sys
 import urllib.request
 
 from django.db import models
@@ -14,24 +15,35 @@ class WatchableMedia(models.Model):
     Watched = models.BooleanField(default=True)
     ImportDate = models.DateTimeField(default=timezone.now)
     AddedBy = models.CharField(max_length=200)
+    WikiPage = models.CharField(max_length=200)
+
+    def __lt__(self, cmpObj) -> bool:
+        return str(self) < str(cmpObj)
 
     def __str__(self) -> str:
         return f"{self.Title}"
 
-    def GetLogo(self, webTitle: str = "") -> Image.Image:
-        searchTitle = self.Title
-        if webTitle:
-            searchTitle = webTitle
-        m = wikipedia.WikipediaPage(searchTitle)
+    @property
+    def GenreTagList(self) -> list:
+        return [x.strip() for x in sorted(self.GenreTags.split(","))]
 
-        relevantPics = [x for x in m.images if self.Title in x]
-        print(relevantPics[0])
-        urllib.request.urlretrieve(
-            relevantPics[0],
-            "logo.png",
+    def GetLogo(self) -> Image.Image | str:
+        searchTitle = self.WikiPage.split("/wiki/")[-1]
+        m = wikipedia.WikipediaPage(searchTitle)
+        print(m.images, file=sys.stderr)
+        relevantPics = [x for x in m.images if ".svg" not in x]
+        return (
+            relevantPics[0]
+            if relevantPics
+            else "https://upload.wikimedia.org/wikipedia/commons/c/c9/Icon_Video.png"
         )
-        img = Image.open("logo.png")
-        return img
+        # print(relevantPics[0])
+        # urllib.request.urlretrieve(
+        # relevantPics[0],
+        # "logo.png",
+        # )
+        # img = Image.open("logo.png")
+        # return img
 
 
 class TVShow(WatchableMedia):
