@@ -18,6 +18,26 @@
 	</head>
 	<body>
         <main class="container" >
+            <header class="pico">
+				<nav>
+					<ul>
+						<li>
+							<strong>Aedan's Media Server</strong>
+						</li>
+					</ul>
+					<ul>
+                        <li>
+							<a href="/">Home</a>
+						</li>
+						<li>
+							<a href="/about">About</a>
+						</li>
+						<li>
+							<a href="/admin">Admin</a>
+						</li>
+					</ul>
+				</nav>
+			</header>
         <h2>Current Files</h2>
 		<span id="DescriptionSpan">
 			<div id="contentDiv">
@@ -141,6 +161,57 @@
                             <td id="MediaLogo" ><img id = "MediaLogoImg" src="{% static img %}" alt="{{show.Title}}" /></td>
                         {% endif %}
 						<td>{{show.Creator}}</td>
+                        <td>{{show.Title}}</td>
+                        <td>{{show.Duration}}</td>
+                        {% if show.Downloaded%}
+                            <td align="center" style="text-align:center; font-size:150%; font-weight:bold; color:green;">&#x2714</td>
+                        {% else %}
+                            <td align="center" style="text-align:center; font-size:150%; font-weight:bold; color:red;">&#x2717</td>
+                        {% endif %}
+                        {% if show.Watched%}
+                            <td align="center" style="text-align:center; font-size:150%; font-weight:bold; color:green;">&#x2714</td>
+                        {% else %}
+                            <td align="center" style="text-align:center; font-size:150%; font-weight:bold; color:red;">&#x2717</td>
+                        {% endif %}
+                        <td>
+                            <details>
+                                <summary>{{ show.GenreTagList|length|add:"1" }} Tags</summary>
+                                    <a id="GenreTag" href="/media?genre={{show.Creator}}">{{show.Creator}},</a>
+                            {% for genre in show.GenreTagList %}
+                                    {% if forloop.last%}
+                                        <a id="GenreTag" href="/media?genre={{genre}}">{{genre}}</a>
+                                    {% else %}
+                                        <a id="GenreTag" href="/media?genre={{genre}}">{{genre}},</a>
+                                    {% endif %}
+                            {% endfor %}
+                            </details>
+                        </td>
+					</tr>
+					{% endfor %}
+				</table>
+                </details>
+			</div>
+            <div id="contentDiv">
+                <details>
+				<summary>Podcasts ({{Podcasts|length}})</summary>
+				<table id="TVTable" class="striped" class="sortable" >
+                    <thead style="float:center;">
+                        <td>Logo</td>
+                        <td>Show</td>
+                        <td>Title</td>
+                        <td>Duration</td>
+                        <td>Downloaded</td>
+                        <td>Watched</td>
+                        <td>Genres</td>
+                    </thead>
+					{% for img,show in Podcasts.items %}
+					<tr>
+						{% if 'http' in img %}
+                            <td id="MediaLogo"><img id = "MediaLogoImg" src="{{img}}" alt="{{show.Title}}" /></td>
+                        {% else %}
+                            <td id="MediaLogo" ><img id = "MediaLogoImg" src="{% static img %}" alt="{{show.Title}}" /></td>
+                        {% endif %}
+						<td>{{show.Show}}</td>
                         <td>{{show.Title}}</td>
                         <td>{{show.Duration}}</td>
                         {% if show.Downloaded%}

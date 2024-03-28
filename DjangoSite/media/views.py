@@ -20,10 +20,12 @@ def index(request) -> HttpResponse:
     MovieList = ContentFilter(request.GET, Movie.objects.all())
     TVList = ContentFilter(request.GET, TVShow.objects.all())
     YoutubeList = ContentFilter(request.GET, Youtube.objects.all())
+    PodcastList = ContentFilter(request.GET, Podcast.objects.all())
     context = {
         "Movies": dict(zip([x.GetLogo() for x in MovieList], MovieList)),
         "TVShows": dict(zip([x.GetLogo() for x in TVList], TVList)),
         "YoutubeVids": dict(zip([x.GetLogo() for x in YoutubeList], YoutubeList)),
+        "Podcasts": dict(zip([x.GetLogo() for x in PodcastList], PodcastList)),
     }
     if "genre" in request.GET:
         pass

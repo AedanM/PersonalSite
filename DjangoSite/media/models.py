@@ -1,9 +1,7 @@
 import os
-import sys
 import urllib.request
 import datetime
 from django.db import models
-from django.utils import timezone
 from PIL import Image
 from wikipedia import wikipedia  # type:ignore
 
