@@ -4,6 +4,18 @@
     align-items: center;
 }
 
-#MediaLogo {
-    height: 50px;
+#DescriptionSpan {
+    width: 0.5vw;
+}
+
+#MediaLogoImg {
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    object-fit:cover;
+}
+
+#GenreTag{
+    text-decoration: none;
+    color:whitesmoke;
 }

@@ -20,7 +20,7 @@
 	</head>
 
 	<body>
-		<main class="container">
+		<main class="container" height-min="0.75uh">
 			<header class="pico">
 				<nav>
 					<ul>
@@ -42,14 +42,45 @@
 				</nav>
 			</header>
 
-			<details class="pico">
-				<summary>Media Server Controls</summary>
+			<details open>
+				<summary>Programming Experience</summary>
+				<div class="pico"></div>
+				<p>
+					CodeStats is an free tracking service for programmers which logs experience
+					programming in different languages. I started my logging in October of
+					2023. It works by associating each keypress in code editors with the
+					language of the file. While not a perfect representation of ability, it
+					does show experience and usage trends for my developing, both professional
+					and personal.
+				</p>
+				<div id="CS"></div>
+				<p>
+					Using a library from <a href="https://byjokese.com/">@byjokese</a> my
+					experience gained in the last 12 months is shown as a monthly breakdown
+					with my historic top 6 languages by experience. The status bars represent
+					the progress towards the next "level" in the language.
+				</p>
 			</details>
 
-			<details>
-				<summary>Code Stats Info</summary>
-				<div id="CS"></div>
+			<details class="pico">
+				<summary>Media Server Controls</summary>
+				<div role="group">
+					<button>Update Database</button>
+					<button class="secondary">Get Random Movie</button>
+					<button>Get Random Show</button>
+				</div>
 			</details>
+			<script src="{% static 'code-stats-embedded/dist/codestatsembedded.min.js' %}"></script>
+
+			<script
+				src="https://code.jquery.com/jquery-3.4.1.min.js"
+				integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+				crossorigin="anonymous"
+			></script>
+
+			<script>
+				CodeStatsEmbed("#CS", "AedanM");
+			</script>
 
 			<footer class="pico" id="footerDiv">
 				<section>
@@ -75,18 +106,6 @@
 					>
 				</section>
 			</footer>
-
-			<script src="{% static 'code-stats-embedded/dist/codestatsembedded.min.js' %}"></script>
-
-			<script
-				src="https://code.jquery.com/jquery-3.4.1.min.js"
-				integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-				crossorigin="anonymous"
-			></script>
-
-			<script>
-				CodeStatsEmbed("#CS", "AedanM");
-			</script>
 		</main>
 	</body>
 </html>
