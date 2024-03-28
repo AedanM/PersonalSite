@@ -1,11 +1,13 @@
 import os
 import sys
 import urllib.request
-
+import datetime
 from django.db import models
 from django.utils import timezone
 from PIL import Image
 from wikipedia import wikipedia  # type:ignore
+
+from .LoadFromXML import FindElements
 
 
 class Media(models.Model):
@@ -29,19 +31,20 @@ class Media(models.Model):
 
     def GetLogo(self) -> Image.Image | str:
         if not self.Logo or "http" in self.Logo or not os.path.exists(f"static/{self.Logo}"):
-            if "wikipedia" in self.InfoPage:
+            if "http" in self.Logo and "@" not in self.Logo:
+                relevantPics = [self.Logo]
+            elif "wikipedia" in self.InfoPage:
                 searchTitle = self.InfoPage.split("/wiki/")[-1]
-                m = wikipedia.WikipediaPage(searchTitle)
+                m = wikipedia.WikipediaPage(searchTitle)  # type:ignore
                 relevantPics = [
                     x for x in m.images if ".svg" not in x and ("title" in x or "logo" in x)
                 ]
                 if not relevantPics:
                     relevantPics = [x for x in m.images if ".svg" not in x]
-            elif "http" in self.Logo:
-                relevantPics = [self.Logo]
             else:
                 relevantPics = [self.InfoPage]
             if relevantPics:
+                print(relevantPics[0])
                 urllib.request.urlretrieve(
                     relevantPics[0],
                     "temp.png",
@@ -56,6 +59,12 @@ class Media(models.Model):
                 self.save()
 
         return self.Logo
+
+    @classmethod
+    def FindElements(cls, ElementToFind):
+        els = FindElements(r"static/mediaPaths.xml")
+        GenerateTVShows([x[1:] for x in els if x[0] == "TV Shows"])
+        return els
 
 
 class WatchableMedia(Media):
@@ -95,3 +104,30 @@ class Book(WatchableMedia):
 
 class Podcast(WatchableMedia):
     Show = models.CharField(max_length=50)
+
+
+MediaServerNameMap = {
+    Movie: "Movies",
+    TVShow: "TV Shows",
+    Youtube: "Youtube",
+    Podcast: "Podcasts",
+    Book: "Books",
+}
+
+
+def GenerateTVShows(TVList):
+    for s in TVList[0]:
+        if type(s) == list:
+            title = s[0]
+            seasonCount = len(s) - 1
+            if not (TVShow.objects.filter(Title__contains=title)):
+                t = TVShow(
+                    Length=seasonCount,
+                    Title=title,
+                    GenreTags="",
+                    Downloaded=True,
+                    Watched=False,
+                    InfoPage="None",
+                    Duration=datetime.timedelta(hours=1),
+                )
+                t.save()

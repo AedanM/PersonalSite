@@ -1,0 +1,314 @@
+<folder1 name='W'>
+    <folder2 name='Books'>
+        <folder3 name='Comics'>
+            <folder4 name='Batman'/>
+            <folder4 name='Spiderman'>
+                <folder5 name='Annuals'/>
+                <folder5 name='The Amazing Spiderman'/>
+            </folder4>
+        </folder3>
+        <folder3 name='Rick Riordan'>
+            <folder4 name='Heroes of Olympus'/>
+            <folder4 name='Kane Chronicles'/>
+            <folder4 name='Percy Jackson Addendum'/>
+            <folder4 name='Percy Jackson and the Olympians'/>
+            <folder4 name='Trials of Apollo'/>
+        </folder3>
+    </folder2>
+    <folder2 name='Movies'>
+        <folder3 name='Christmas'/>
+        <folder3 name='Ciara'/>
+        <folder3 name='Comedy'>
+            <folder4 name='Cartoons'/>
+            <folder4 name='Mel Brooks'/>
+            <folder4 name='Muppets'/>
+        </folder3>
+        <folder3 name='Fantasy'/>
+        <folder3 name='Sci-Fi'/>
+        <folder3 name='Spies'>
+            <folder4 name='Austin Powers'/>
+            <folder4 name='James Bond'/>
+        </folder3>
+        <folder3 name='Superheroes'>
+            <folder4 name='Batman'/>
+            <folder4 name='DC'/>
+            <folder4 name='Spiderman'/>
+        </folder3>
+    </folder2>
+    <folder2 name='Podcasts'>
+        <folder3 name='NADDPOD'>
+            <folder4 name='Mixed Bags'/>
+            <folder4 name='Short Rests'>
+                <folder5 name='Campaign 2  - Eldermourne'/>
+            </folder4>
+        </folder3>
+        <folder3 name='Worlds Beyond Number'>
+            <folder4 name='Childrens Adventure'/>
+            <folder4 name='County Affair'/>
+            <folder4 name='Fireside Chats'/>
+        </folder3>
+    </folder2>
+    <folder2 name='TV Shows'>
+        <folder3 name='Andor'>
+            <folder4 name='Season 01'/>
+        </folder3>
+        <folder3 name='Arrested Development'>
+            <folder4 name='Season 1'/>
+            <folder4 name='Season 2'/>
+            <folder4 name='Season 3'/>
+            <folder4 name='Season 4'/>
+        </folder3>
+        <folder3 name='Batman'>
+            <folder4 name='Beyond'>
+                <folder5 name='Movie'/>
+                <folder5 name='Season 1'/>
+                <folder5 name='Season 2'/>
+                <folder5 name='Season 3'/>
+                <folder5 name='Short'/>
+            </folder4>
+            <folder4 name='The Animated Series'>
+                <folder5 name='Movies'/>
+                <folder5 name='Season 1'/>
+                <folder5 name='Season 2'/>
+                <folder5 name='Season 3'/>
+                <folder5 name='Season 4'/>
+            </folder4>
+            <folder4 name='The Brave and the Bold'>
+                <folder5 name='Season 1'/>
+                <folder5 name='Season 2'/>
+                <folder5 name='Season 3'/>
+            </folder4>
+            <folder4 name='The New Batman Adventures'>
+                <folder5 name='Season 1'/>
+                <folder5 name='Season 2'/>
+            </folder4>
+        </folder3>
+        <folder3 name='Blackadder'>
+            <folder4 name='Blackadder 1'/>
+            <folder4 name='Blackadder 2'/>
+            <folder4 name='Blackadder 3'/>
+            <folder4 name='Blackadder Goes Fourth'/>
+        </folder3>
+        <folder3 name='Dilbert'>
+            <folder4 name='Season 1'/>
+            <folder4 name='Season 2'/>
+        </folder3>
+        <folder3 name='Firefly'>
+            <folder4 name='Season 01'/>
+            </folder3>
+        <folder3 name='Futurama'>
+            <folder4 name='Season 1'/>
+            <folder4 name='Season 2'/>
+            <folder4 name='Season 3'/>
+            <folder4 name='Season 4'/>
+            <folder4 name='Season 5'/>
+            <folder4 name='Season 5-Specials'/>
+            <folder4 name='Season 6'/>
+            <folder4 name='Season 7'/>
+        </folder3>
+        <folder3 name='Its Always Sunny In Philadelphia'>
+            <folder4 name='Season 01'/>
+            <folder4 name='Season 02'/>
+            <folder4 name='Season 03'/>
+            <folder4 name='Season 04'/>
+            <folder4 name='Season 05'/>
+            <folder4 name='Season 06'/>
+            <folder4 name='Season 07'/>
+            <folder4 name='Season 08'/>
+            <folder4 name='Season 09'/>
+            <folder4 name='Season 10'/>
+            <folder4 name='Season 11'/>
+            <folder4 name='Season 12'/>
+            <folder4 name='Season 13'/>
+            <folder4 name='Season 14'/>
+            <folder4 name='Season 15'/>
+            <folder4 name='Season 16'/>
+        </folder3>
+        <folder3 name='Last Week Tonight'>
+            <folder4 name='Season 01'/>
+            <folder4 name='Season 02'/>
+            <folder4 name='Season 03'/>
+            <folder4 name='Season 04'/>
+            <folder4 name='Season 05'/>
+            <folder4 name='Season 06'/>
+            <folder4 name='Season 07'/>
+            <folder4 name='Season 08'/>
+            <folder4 name='Season 10'/>
+            <folder4 name='Season 11'/>
+        </folder3>
+        <folder3 name='Looney Tunes'>
+            <folder4 name='Golden Collection'>
+                <folder5 name='1930'/>
+                <folder5 name='1931'/>
+                <folder5 name='1932'/>
+                <folder5 name='1933'/>
+                <folder5 name='1934'/>
+                <folder5 name='1935'/>
+                <folder5 name='1936'/>
+                <folder5 name='1937'/>
+                <folder5 name='1938'/>
+                <folder5 name='1939'/>
+                <folder5 name='1940'/>
+                <folder5 name='1941'/>
+                <folder5 name='1942'/>
+                <folder5 name='1943'/>
+                <folder5 name='1944'/>
+                <folder5 name='1945'/>
+                <folder5 name='1946'/>
+                <folder5 name='1947'/>
+                <folder5 name='1948'/>
+                <folder5 name='1949'/>
+                <folder5 name='1950'/>
+                <folder5 name='1951'/>
+                <folder5 name='1952'/>
+                <folder5 name='1953'/>
+                <folder5 name='1954'/>
+                <folder5 name='1955'/>
+                <folder5 name='1956'/>
+                <folder5 name='1957'/>
+                <folder5 name='1958'/>
+                <folder5 name='1959'/>
+                <folder5 name='1960'/>
+                <folder5 name='1961'/>
+                <folder5 name='1962'/>
+                <folder5 name='1963'/>
+                <folder5 name='1964'/>
+                <folder5 name='1966'/>
+                <folder5 name='1968'/>
+                <folder5 name='Extras'/>
+                <folder5 name='_Compilations'/>
+            </folder4>
+            <folder4 name='Looney Tunes Show'>
+                <folder5 name='Season 01'/>
+                <folder5 name='Season 02'/>
+            </folder4>
+        </folder3>
+        <folder3 name='Mythbusters'>
+            <folder4 name='Season 01'/>
+            <folder4 name='Season 02'/>
+            <folder4 name='Season 03'/>
+            <folder4 name='Season 04'/>
+            <folder4 name='Season 05'/>
+            <folder4 name='Season 06'/>
+            <folder4 name='Season 07'/>
+            <folder4 name='Season 08'/>
+            <folder4 name='Season 09'/>
+            <folder4 name='Season 10'/>
+            <folder4 name='Season 11'/>
+            <folder4 name='Season 12'/>
+            <folder4 name='Season 13'/>
+            <folder4 name='Season 14'/>
+        </folder3>
+        <folder3 name='Reacher'>
+            <folder4 name='Season 01'/>
+            </folder3>
+        <folder3 name='Red Dwarf'>
+            <folder4 name='Season 01'/>
+            <folder4 name='Season 02'/>
+            <folder4 name='Season 03'/>
+            <folder4 name='Season 04'/>
+            <folder4 name='Season 05'/>
+            <folder4 name='Season 06'/>
+            <folder4 name='Season 07'/>
+            <folder4 name='Season 08'/>
+            <folder4 name='Season 09'/>
+            <folder4 name='Season 10'/>
+            <folder4 name='Season 11'/>
+            <folder4 name='Season 12'/>
+        </folder3>
+        <folder3 name='South Park'>
+            <folder4 name='Season 00'/>
+            <folder4 name='Season 01'/>
+            <folder4 name='Season 02'/>
+            <folder4 name='Season 03'/>
+            <folder4 name='Season 04'/>
+            <folder4 name='Season 05'/>
+            <folder4 name='Season 06'/>
+            <folder4 name='Season 07'/>
+            <folder4 name='Season 08'/>
+            <folder4 name='Season 09'/>
+            <folder4 name='Season 10'/>
+            <folder4 name='Season 11'/>
+            <folder4 name='Season 12'/>
+            <folder4 name='Season 13'/>
+            <folder4 name='Season 14'/>
+            <folder4 name='Season 15'/>
+            <folder4 name='Season 16'/>
+            <folder4 name='Season 17'/>
+            <folder4 name='Season 18'/>
+            <folder4 name='Season 19'/>
+            <folder4 name='Season 20'/>
+        </folder3>
+        <folder3 name='Star Trek'>
+            <folder4 name='1) TOS'>
+                <folder5 name='Season 1'/>
+                <folder5 name='Season 2'/>
+                <folder5 name='Season 3'/>
+            </folder4>
+            <folder4 name='2) TNG'>
+                <folder5 name='TNG Season 1'/>
+                <folder5 name='TNG Season 2'/>
+                <folder5 name='TNG Season 3'/>
+                <folder5 name='TNG Season 4'/>
+                <folder5 name='TNG Season 5'/>
+                <folder5 name='TNG Season 6'/>
+                <folder5 name='TNG Season 7'/>
+                <folder5 name='z_Extras'/>
+            </folder4>
+            <folder4 name='3) DS9'>
+                <folder5 name='Season 1'/>
+                <folder5 name='Season 2'/>
+                <folder5 name='Season 3'/>
+                <folder5 name='Season 4'/>
+                <folder5 name='Season 5'/>
+                <folder5 name='Season 6'/>
+                <folder5 name='Season 7'/>
+            </folder4>
+            <folder4 name='4) VOY'>
+                <folder5 name='Cover'/>
+                <folder5 name='Season 1'/>
+                <folder5 name='Season 2'/>
+                <folder5 name='Season 3'/>
+                <folder5 name='Season 4'/>
+                <folder5 name='Season 5'/>
+                <folder5 name='Season 6'/>
+                <folder5 name='Season 7'/>
+            </folder4>
+            <folder4 name='5) ENT'>
+                <folder5 name='Season 1'/>
+                <folder5 name='Season 2'/>
+                <folder5 name='Season 3'/>
+                <folder5 name='Season 4'/>
+            </folder4>
+            <folder4 name='7) SNW'>
+                <folder5 name='Season 1'/>
+                <folder5 name='Season 2'/>
+            </folder4>
+            <folder4 name='_Movies'/>
+        </folder3>
+        <folder3 name='The Thick Of It'>
+            <folder4 name='Season 1'/>
+            <folder4 name='Season 3'/>
+        </folder3>
+    </folder2>
+    <folder2 name='Youtube'>
+        <folder3 name='CS Stuff'/>
+        <folder3 name='Caddy'>
+            <folder4 name='The World of'/>
+        </folder3>
+        <folder3 name='Code Bullet'/>
+        <folder3 name='Computerphile'/>
+        <folder3 name='Defunctland'/>
+        <folder3 name='Jay Foreman'>
+            <folder4 name='Map Men'/>
+            <folder4 name='Unfinished London'/>
+        </folder3>
+        <folder3 name='Oversimplified'/>
+        <folder3 name='Red Letter Media'>
+            <folder4 name='Best of the Worst'/>
+            <folder4 name='Half in the Bag'/>
+            <folder4 name='reView'/>
+        </folder3>
+        <folder3 name='xkcd'/>
+    </folder2>
+</folder1>

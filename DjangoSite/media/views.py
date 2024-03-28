@@ -1,5 +1,6 @@
 import sys
 
+from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -27,3 +28,8 @@ def index(request) -> HttpResponse:
     if "genre" in request.GET:
         pass
     return render(request, "media/index.html", context)
+
+
+def update(request) -> HttpResponse:
+    response = Movie.FindElements(TVShow)
+    return HttpResponse(response, content_type="text/plain")
