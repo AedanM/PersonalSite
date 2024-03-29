@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from .models import Book, Movie, Podcast, TVShow, Youtube
+from .forms import BookForm, MovieForm, PodcastForm, TVForm, YoutubeForm
 
 # Create your views here.
 
@@ -35,3 +36,31 @@ def index(request) -> HttpResponse:
 def update(request) -> HttpResponse:
     response = Movie.FindElements(TVShow)
     return HttpResponse(response, content_type="text/plain")
+
+
+def new(request) -> HttpResponse:
+
+    if "type" in request.GET:
+        formType = request.GET["type"]
+        cls = MovieForm
+        if "Movie" in formType:
+            cls = MovieForm
+        elif "TV" in formType:
+            cls = TVForm
+        elif "Book" in formType:
+            cls = BookForm
+        elif "Podcast" in formType:
+            cls = PodcastForm
+        elif "Youtube" in formType:
+            cls = YoutubeForm
+
+        form = cls(request.POST or None, request.FILES or None)
+
+        if form.is_valid():
+            form.save()
+        context = {}
+        context["form"] = form
+        print(request.GET)
+        return render(request, "media/form.html", context)
+    else:
+        return index(request)
