@@ -10,7 +10,7 @@ from .LoadFromXML import FindElements
 
 class Media(models.Model):
     Title = models.CharField(max_length=200)
-    GenreTags = models.TextField()
+    Genre_Tags = models.TextField()
     Downloaded = models.BooleanField(default=False)
     InfoPage = models.CharField(max_length=200)
     Logo = models.CharField(
@@ -25,7 +25,7 @@ class Media(models.Model):
 
     @property
     def GenreTagList(self) -> list:
-        return [x.strip() for x in sorted(self.GenreTags.split(","))]
+        return [x.strip() for x in sorted(self.Genre_Tags.split(","))]
 
     def GetLogo(self) -> Image.Image | str:
         if not self.Logo or "http" in self.Logo or not os.path.exists(f"static/{self.Logo}"):
