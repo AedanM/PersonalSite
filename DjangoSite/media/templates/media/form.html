@@ -14,12 +14,16 @@
 		<link rel="stylesheet" href="{% static 'styles/MasterStyle.css' %}" />
 	</head>
 	<body>
-		<form action="" method="post">
-			{% csrf_token %}
-			<table>
-				{{ form.as_table }}
-			</table>
-			<input type="submit" value="Submit" onclick"document.location /media"/>
-		</form>
+		<h1>Edit Details</h1>
+		<div class="contentDiv">
+			<form action="" method="post">
+				{% csrf_token %}
+				<table>
+					{{ form.as_table }}
+				</table>
+				<input type="submit" value="Save" name="Save Button" />
+			</form>
+		</div>
+		<section></section>
 	</body>
 </html>

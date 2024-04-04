@@ -6,6 +6,7 @@ from PIL import Image
 from wikipedia import wikipedia  # type:ignore
 
 from .LoadFromXML import FindElements
+from django.conf import settings as django_settings
 
 
 class Media(models.Model):
@@ -28,7 +29,11 @@ class Media(models.Model):
         return [x.strip() for x in sorted(self.Genre_Tags.split(","))]
 
     def GetLogo(self) -> Image.Image | str:
-        if not self.Logo or "http" in self.Logo or not os.path.exists(f"static/{self.Logo}"):
+        if (
+            not self.Logo
+            or "http" in self.Logo
+            or not os.path.exists(os.path.join(django_settings.STATIC_ROOT, f"{self.Logo}"))
+        ):
             if "http" in self.Logo and "@" not in self.Logo:
                 relevantPics = [self.Logo]
             elif "wikipedia" in self.InfoPage:
@@ -42,7 +47,6 @@ class Media(models.Model):
             else:
                 relevantPics = [self.InfoPage]
             if relevantPics:
-                print(relevantPics[0])
                 urllib.request.urlretrieve(
                     relevantPics[0],
                     "temp.png",
@@ -52,7 +56,8 @@ class Media(models.Model):
                 newSize = round(img.size[0] * imScale), round(img.size[1] * imScale)
                 img = img.resize(newSize)
                 savePath = f"logos/{self.Title.replace(':','-')}.png"
-                img.save(f"static/{savePath}")
+                localPath = os.path.join(django_settings.STATIC_ROOT, f"{savePath}")
+                img.save(localPath)
                 setattr(self, "Logo", savePath)
                 self.save()
 
@@ -101,7 +106,7 @@ class Book(WatchableMedia):
 
 
 class Podcast(WatchableMedia):
-    Show = models.CharField(max_length=50)
+    Creator = models.CharField(max_length=50)
 
 
 MediaServerNameMap = {

@@ -55,12 +55,16 @@
                     </thead>
 					{% for img,show in TVShows.items %}
 					<tr>
-                        {% if 'http' in img %}
-                            <td id="MediaLogo" ><img id = "MediaLogoImg" src="{{img}}" alt="{{show.Title}}" /></td>
-                        {% else %}
-                            <td id="MediaLogo" ><img id = "MediaLogoImg" src="{% static img %}" alt="{{show.Title}}" /></td>
-                        {% endif %}
-						<td>{{show.Title}}</td>
+                        <td id="MediaLogo" >
+                            <a href={{show.InfoPage}}>
+                                {% if 'http' in img %}
+                                    <img id = "MediaLogoImg" src="{{img}}" alt="{{show.Title}}" />
+                                {% else %}
+                                    <img id = "MediaLogoImg" src="{% static img %}" alt="{{show.Title}}" />
+                                {% endif %}
+                            </a>
+                        </td>
+                        <td><a id = "MediaLink" href="/media/new?type=TVShow&instance={{show.id}}">{{show.Title}}</a></td>
 						<td>{{show.Length}}</td>
 						<td>{{show.Duration}}</td>
                         {% if show.Downloaded %}
@@ -105,12 +109,16 @@
                     </thead>
 					{% for img,show in Movies.items %}
 					<tr>
-						{% if 'http' in img %}
-                            <td id="MediaLogo"><img id = "MediaLogoImg" src="{{img}}" alt="{{show.Title}}" /></td>
-                        {% else %}
-                            <td id="MediaLogo" ><img id = "MediaLogoImg" src="{% static img %}" alt="{{show.Title}}" /></td>
-                        {% endif %}
-						<td>{{show.Title}}</td>
+						<td id="MediaLogo" >
+                            <a href={{show.InfoPage}}>
+                                {% if 'http' in img %}
+                                    <img id = "MediaLogoImg" src="{{img}}" alt="{{show.Title}}" />
+                                {% else %}
+                                    <img id = "MediaLogoImg" src="{% static img %}" alt="{{show.Title}}" />
+                                {% endif %}
+                            </a>
+                        </td>
+                        <td><a id = "MediaLink" href="/media/new?type=Movie&instance={{show.id}}">{{show.Title}}</a></td>
 						<td>{{show.Year}}</td>
 						<td>{{show.Duration}}</td>
                         {% if show.Downloaded%}
@@ -128,9 +136,9 @@
                                 <summary>{{ show.GenreTagList|length }} Tags</summary>
                             {% for genre in show.GenreTagList %}
                                     {% if forloop.last%}
-                                        <a id="GenreTag" href="/media?genre={{genre}}">{{genre}}</a>
+                                        <a id="MediaLink" href="/media?genre={{genre}}">{{genre}}</a>
                                     {% else %}
-                                        <a id="GenreTag" href="/media?genre={{genre}}">{{genre}},</a>
+                                        <a id="MediaLink" href="/media?genre={{genre}}">{{genre}},</a>
                                     {% endif %}
                             {% endfor %}
                             </details>
@@ -155,13 +163,17 @@
                     </thead>
 					{% for img,show in YoutubeVids.items %}
 					<tr>
-						{% if 'http' in img %}
-                            <td id="MediaLogo"><img id = "MediaLogoImg" src="{{img}}" alt="{{show.Title}}" /></td>
-                        {% else %}
-                            <td id="MediaLogo" ><img id = "MediaLogoImg" src="{% static img %}" alt="{{show.Title}}" /></td>
-                        {% endif %}
-						<td>{{show.Creator}}</td>
-                        <td>{{show.Title}}</td>
+						<td id="MediaLogo" >
+                            <a href={{show.InfoPage}}>
+                                {% if 'http' in img %}
+                                    <img id = "MediaLogoImg" src="{{img}}" alt="{{show.Title}}" />
+                                {% else %}
+                                    <img id = "MediaLogoImg" src="{% static img %}" alt="{{show.Title}}" />
+                                {% endif %}
+                            </a>
+                        </td>
+                        <td>{{show.Creator}}</td>
+                        <td><a id = "MediaLink" href="/media/new?type=Youtube&instance={{show.id}}">{{show.Title}}</a></td>
                         <td>{{show.Duration}}</td>
                         {% if show.Downloaded%}
                             <td align="center" style="text-align:center; font-size:150%; font-weight:bold; color:green;">&#x2714</td>
@@ -176,12 +188,12 @@
                         <td>
                             <details>
                                 <summary>{{ show.GenreTagList|length|add:"1" }} Tags</summary>
-                                    <a id="GenreTag" href="/media?genre={{show.Creator}}">{{show.Creator}},</a>
+                                    <a id="MediaLink" href="/media?genre={{show.Creator}}">{{show.Creator}},</a>
                             {% for genre in show.GenreTagList %}
                                     {% if forloop.last%}
-                                        <a id="GenreTag" href="/media?genre={{genre}}">{{genre}}</a>
+                                        <a id="MediaLink" href="/media?genre={{genre}}">{{genre}}</a>
                                     {% else %}
-                                        <a id="GenreTag" href="/media?genre={{genre}}">{{genre}},</a>
+                                        <a id="MediaLink" href="/media?genre={{genre}}">{{genre}},</a>
                                     {% endif %}
                             {% endfor %}
                             </details>
@@ -206,13 +218,17 @@
                     </thead>
 					{% for img,show in Podcasts.items %}
 					<tr>
-						{% if 'http' in img %}
-                            <td id="MediaLogo"><img id = "MediaLogoImg" src="{{img}}" alt="{{show.Title}}" /></td>
-                        {% else %}
-                            <td id="MediaLogo" ><img id = "MediaLogoImg" src="{% static img %}" alt="{{show.Title}}" /></td>
-                        {% endif %}
-						<td>{{show.Show}}</td>
-                        <td>{{show.Title}}</td>
+						<td id="MediaLogo" >
+                            <a href={{show.InfoPage}}>
+                                {% if 'http' in img %}
+                                    <img id = "MediaLogoImg" src="{{img}}" alt="{{show.Title}}" />
+                                {% else %}
+                                    <img id = "MediaLogoImg" src="{% static img %}" alt="{{show.Title}}" />
+                                {% endif %}
+                            </a>
+                        </td>
+                        <td>{{show.Show}}</td>
+                        <td><a id = "MediaLink" href="/media/new?type=Podcast&instance={{show.id}}">{{show.Title}}</a></td>
                         <td>{{show.Duration}}</td>
                         {% if show.Downloaded%}
                             <td align="center" style="text-align:center; font-size:150%; font-weight:bold; color:green;">&#x2714</td>
@@ -227,12 +243,12 @@
                         <td>
                             <details>
                                 <summary>{{ show.GenreTagList|length|add:"1" }} Tags</summary>
-                                    <a id="GenreTag" href="/media?genre={{show.Creator}}">{{show.Creator}},</a>
+                                    <a id="MediaLink" href="/media?genre={{show.Creator}}">{{show.Creator}},</a>
                             {% for genre in show.GenreTagList %}
                                     {% if forloop.last%}
-                                        <a id="GenreTag" href="/media?genre={{genre}}">{{genre}}</a>
+                                        <a id="MediaLink" href="/media?genre={{genre}}">{{genre}}</a>
                                     {% else %}
-                                        <a id="GenreTag" href="/media?genre={{genre}}">{{genre}},</a>
+                                        <a id="MediaLink" href="/media?genre={{genre}}">{{genre}},</a>
                                     {% endif %}
                             {% endfor %}
                             </details>

@@ -1,0 +1,115 @@
+{% load static %}
+{% load DictTags %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title></title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.css"
+		/>
+        <link rel="stylesheet" href="{% static 'styles/MasterStyle.css' %}" />
+		<link rel="stylesheet" href="{% static 'styles/MediaStyle.css' %}" />
+		
+	</head>
+	<body>
+        <main class="container" >
+            <header class="pico">
+				<nav>
+					<ul>
+						<li>
+							<strong>Aedan's Media Server</strong>
+						</li>
+					</ul>
+					<ul>
+                        <li>
+							<a href="/">Home</a>
+						</li>
+						<li>
+							<a href="/about">About</a>
+						</li>
+						<li>
+							<a href="/admin">Admin</a>
+						</li>
+					</ul>
+				</nav>
+			</header>
+        <h2>Current Files</h2>
+		<span id="DescriptionSpan">
+            {% for title, media in MediaTypes.items %}
+                <div id="contentDiv">
+                    <details>
+                        <summary>{{title}} ({{media|length}})</summary>
+                        <table class="striped sortable">
+                        <thead>
+                            <td>Logo</td>
+                            {% if media|HasAttr:"Creator" %}
+                                <td>Creator</td>
+                            {%endif%}
+                            <td>Title</td>
+                            {% if media|HasAttr:"Length" %}
+                                <td>Seasons</td>
+                            {%endif%}
+                            <td>Duration</td>
+                            <td>Downloaded</td>
+                            <td>Watched</td>
+                            <td>Genre</td>
+                        </thead>
+                        {% for img,show in media.items %}
+                        <tr>
+                            <td id="MediaLogo" >
+                                <a href={{show.InfoPage}}>
+                                    {% if 'http' in img %}
+                                        <img id = "MediaLogoImg" src="{{img}}" alt="{{show.Title}}" />
+                                    {% else %}
+                                        <img id = "MediaLogoImg" src="{% static img %}" alt="{{show.Title}}" />
+                                    {% endif %}
+                                </a>
+                            </td>
+                            {% if media|HasAttr:"Creator" %}
+                                <td>{{show.Creator}}</td>
+                            {%endif%}
+                            <td><a id = "MediaLink" href="/media/new?type={{title}}&instance={{show.id}}">{{show.Title}}</a></td>
+                            {% if media|HasAttr:"Length" %}
+                                <td>{{show.Length}}</td>
+                            {%endif%}
+                            <td>{{show.Duration}}</td>
+                            {% if show.Downloaded %}
+                                <td align="center" style="text-align:center; font-size:150%; font-weight:bold; color:green;">&#x2714</td>
+                            {% else %}
+                                <td align="center" style="text-align:center; font-size:150%; font-weight:bold; color:red;">&#x2717</td>
+                            {% endif %}
+                            {% if show.Watched %}
+                                <td align="center" style="text-align:center; font-size:150%; font-weight:bold; color:green;">&#x2714</td>
+                            {% else %}
+                                <td align="center" style="text-align:center; font-size:150%; font-weight:bold; color:red;">&#x2717</td>
+                            {% endif %}
+
+                            <td>
+                                <details>
+                                    <summary>{{ show.GenreTagList|length }} Tags</summary>
+                                        {% for genre in show.GenreTagList %}
+                                            <a id="GenreTag" href="/media?genre={{genre}}">{{genre}}
+                                            {% if forloop.last%}
+                                                ,
+                                            {% endif %}
+                                            </a>
+                                        {% endfor %}
+                                </details>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </table>
+                    </details>
+                </div>
+            {% endfor %}
+		</span>
+        <button onclick="document.location='/media'">Clear Tags</button>
+    </main>
+	</body>
+</html>
