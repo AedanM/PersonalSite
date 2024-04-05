@@ -1,12 +1,6 @@
-import os
-from pprint import pp
-import urllib.request
 import datetime
 from django.db import models
-from PIL import Image
-from wikipedia import wikipedia  # type:ignore
-
-from django.conf import settings as django_settings
+from .modules.DownloadImage import DownloadImage
 
 
 class Media(models.Model):
@@ -28,47 +22,9 @@ class Media(models.Model):
     def GenreTagList(self) -> list:
         return [x.strip() for x in sorted(self.Genre_Tags.split(","))]
 
-    def GetLogo(self) -> Image.Image | str:
-        relevantPics = None
-        if (
-            not self.Logo
-            or "http" in self.Logo
-            or not os.path.exists(os.path.join(django_settings.STATIC_ROOT, f"{self.Logo}"))
-        ):
-            if "http" in self.Logo and "@" not in self.Logo:
-                relevantPics = [self.Logo]
-            elif "wikipedia" in self.InfoPage:
-                try:
-                    searchTitle = self.InfoPage.split("/wiki/")[-1]
-                    m = wikipedia.WikipediaPage(searchTitle)  # type:ignore
-                    relevantPics = [
-                        x for x in m.images if ".svg" not in x and ("title" in x or "logo" in x)
-                    ]
-                    if not relevantPics:
-                        relevantPics = [x for x in m.images if ".svg" not in x]
-                except:
-                    pass
-            else:
-                relevantPics = [self.InfoPage]
-            if relevantPics:
-                try:
-                    urllib.request.urlretrieve(
-                        relevantPics[0],
-                        "temp.png",
-                    )
-                    img = Image.open("temp.png")
-                    imScale = 480 / img.size[0]
-                    newSize = round(img.size[0] * imScale), round(img.size[1] * imScale)
-                    img = img.resize(newSize)
-                    savePath = f"logos/{self.Title.replace(':','-')}.png"
-                    localPath = os.path.join(django_settings.STATICFILES_DIRS[0], f"{savePath}")
-                    img.save(localPath)
-                    os.remove("temp.png")
-                    setattr(self, "Logo", savePath)
-                    self.save()
-                except ConnectionError:
-                    pass
-
+    def GetLogo(self, loadLogo) -> str:
+        if loadLogo:
+            DownloadImage(self)
         return self.Logo
 
 
@@ -103,36 +59,25 @@ class Youtube(WatchableMedia):
         return f"{self.Creator} " + super().__str__()
 
 
-class Book(WatchableMedia):
+class Novel(Media):
     Author = models.CharField(max_length=50)
+    PageLength = models.IntegerField(default=0)
+
+    def __str__(self) -> str:
+        return f"{self.Author} " + super().__str__()
+
+
+class Comic(Media):
+    Company = models.CharField(max_length=50)
+    Character = models.CharField(max_length=50)
+    PageLength = models.IntegerField(default=0)
+
+    def __str__(self) -> str:
+        return f"{self.Character} ({self.Company}) " + super().__str__()
 
 
 class Podcast(WatchableMedia):
     Creator = models.CharField(max_length=50)
 
-
-MediaServerNameMap = {
-    Movie: "Movies",
-    TVShow: "TV Shows",
-    Youtube: "Youtube",
-    Podcast: "Podcasts",
-    Book: "Books",
-}
-
-
-def GenerateTVShows(TVList):
-    for s in TVList[0]:
-        if type(s) == list:
-            title = s[0]
-            seasonCount = len(s) - 1
-            if not (TVShow.objects.filter(Title__contains=title)):
-                t = TVShow(
-                    Length=seasonCount,
-                    Title=title,
-                    GenreTags="",
-                    Downloaded=True,
-                    Watched=False,
-                    InfoPage="None",
-                    Duration=datetime.timedelta(hours=1),
-                )
-                t.save()
+    def __str__(self) -> str:
+        return f"{self.Creator} " + super().__str__()

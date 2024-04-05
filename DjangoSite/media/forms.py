@@ -1,4 +1,4 @@
-from .models import Book, Movie, Podcast, TVShow, Youtube
+from .models import Comic, Novel, Movie, Podcast, TVShow, Youtube
 from django import forms
 
 
@@ -10,9 +10,15 @@ class TVForm(forms.ModelForm):
     field_order = ["title, "]
 
 
-class BookForm(forms.ModelForm):
+class ComicForm(forms.ModelForm):
     class Meta:
-        model = Book
+        model = Comic
+        fields = "__all__"
+
+
+class NovelForm(forms.ModelForm):
+    class Meta:
+        model = Novel
         fields = "__all__"
 
 

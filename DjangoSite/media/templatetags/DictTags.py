@@ -2,6 +2,10 @@ from django import template
 import typing
 import os
 from django.conf import settings as django_settings
+import matplotlib
+
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -10,7 +14,7 @@ register = template.Library()
 
 def ObjFromDict(d) -> typing.Any:
     obj = d
-    if type(d) == dict:
+    if type(d) == dict and d:
         obj = ObjFromDict(list(d.values())[0])
     return obj
 
@@ -31,7 +35,15 @@ def MakeChart(iterDict, chartType) -> str:
         labels.append(label)
         match (chartType):
             case "Duration":
-                sizes.append(sum([x.Duration.total_seconds() for x in [y for y in media.values()]]))
+                sizes.append(
+                    sum(
+                        [
+                            x.Duration.total_seconds()
+                            for x in [y for y in media.values()]
+                            if "Duration" in dir(x)
+                        ]
+                    )
+                )
             case "Count":
                 sizes.append(len(media.values()))
 

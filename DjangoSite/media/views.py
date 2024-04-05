@@ -7,8 +7,9 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .models import Book, Movie, Podcast, TVShow, Youtube
-from .forms import BookForm, MovieForm, PodcastForm, TVForm, YoutubeForm
+from .modules.GetWikiInfo import GetShowInfo
+from .models import Comic, Novel, Movie, Podcast, TVShow, Youtube
+from .forms import ComicForm, NovelForm, MovieForm, PodcastForm, TVForm, YoutubeForm
 
 # Create your views here.
 
@@ -17,6 +18,7 @@ def ContentFilter(getParams: dict, movieList) -> list:
     returnList = movieList
     if "genre" in getParams:
         returnList = [x for x in returnList if getParams["genre"] in x.GenreTagList]
+        print(getParams["genre"])
     return sorted(returnList)
 
 
@@ -25,22 +27,33 @@ def index(request) -> HttpResponse:
     TVList = ContentFilter(request.GET, TVShow.objects.all())
     YoutubeList = ContentFilter(request.GET, Youtube.objects.all())
     PodcastList = ContentFilter(request.GET, Podcast.objects.all())
-    BookList = ContentFilter(request.GET, Book.objects.all())
+    ComicList = ContentFilter(request.GET, Comic.objects.all())
+    NovelList = ContentFilter(request.GET, Novel.objects.all())
+    loadLogo = "loadLogos" in request.GET
     context = {
         "MediaTypes": {
-            "Movies": dict(zip([x.GetLogo() for x in MovieList], MovieList)),
-            "TV Shows": dict(zip([x.GetLogo() for x in TVList], TVList)),
-            "Youtube": dict(zip([x.GetLogo() for x in YoutubeList], YoutubeList)),
-            "Podcasts": dict(zip([x.GetLogo() for x in PodcastList], PodcastList)),
-            "Books": dict(zip([x.GetLogo() for x in BookList], BookList)),
-        }
+            "Movies": dict(zip([x.GetLogo(loadLogo) for x in MovieList], MovieList)),
+            "TV Shows": dict(zip([x.GetLogo(loadLogo) for x in TVList], TVList)),
+            "Youtube": dict(zip([x.GetLogo(loadLogo) for x in YoutubeList], YoutubeList)),
+            "Podcasts": dict(zip([x.GetLogo(loadLogo) for x in PodcastList], PodcastList)),
+            "Books": dict(zip([x.GetLogo(loadLogo) for x in NovelList], NovelList)),
+            "Comics": dict(zip([x.GetLogo(loadLogo) for x in ComicList], ComicList)),
+        },
+        "Graphs": "noGraphs" in request.GET,
     }
     return render(request, "media/newIndex.html", context)
 
 
 def update(request) -> HttpResponse:
-    response = UpdateFromFolder(folder=r"C:\mysources\Aedan\PersonalScripts\Temp\MediaTest")
+    response = UpdateFromFolder(
+        folder=r"W:/", useFile="useFile" in request.GET, save="save" in request.GET
+    )
     return HttpResponse(content=response, content_type="text/plain")
+
+
+def wikiScrape(request) -> HttpResponse:
+    response = GetShowInfo(wikiLink=request.GET["show"] if "show" in request.GET else False)
+    return HttpResponse(content=response, content_type="text/json")
 
 
 def new(request) -> HttpResponse:
@@ -55,9 +68,12 @@ def new(request) -> HttpResponse:
         elif "TV" in formType:
             cls = TVForm
             obj = TVShow
-        elif "Book" in formType:
-            cls = BookForm
-            obj = Book
+        elif "Novel" in formType:
+            cls = NovelForm
+            obj = Novel
+        elif "Comic" in formType:
+            cls = ComicForm
+            obj = Comic
         elif "Podcast" in formType:
             cls = PodcastForm
             obj = Podcast
