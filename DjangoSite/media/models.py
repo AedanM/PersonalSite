@@ -1,11 +1,11 @@
 import os
+from pprint import pp
 import urllib.request
 import datetime
 from django.db import models
 from PIL import Image
 from wikipedia import wikipedia  # type:ignore
 
-from .LoadFromXML import FindElements
 from django.conf import settings as django_settings
 
 
@@ -29,6 +29,7 @@ class Media(models.Model):
         return [x.strip() for x in sorted(self.Genre_Tags.split(","))]
 
     def GetLogo(self) -> Image.Image | str:
+        relevantPics = None
         if (
             not self.Logo
             or "http" in self.Logo
@@ -37,37 +38,38 @@ class Media(models.Model):
             if "http" in self.Logo and "@" not in self.Logo:
                 relevantPics = [self.Logo]
             elif "wikipedia" in self.InfoPage:
-                searchTitle = self.InfoPage.split("/wiki/")[-1]
-                m = wikipedia.WikipediaPage(searchTitle)  # type:ignore
-                relevantPics = [
-                    x for x in m.images if ".svg" not in x and ("title" in x or "logo" in x)
-                ]
-                if not relevantPics:
-                    relevantPics = [x for x in m.images if ".svg" not in x]
+                try:
+                    searchTitle = self.InfoPage.split("/wiki/")[-1]
+                    m = wikipedia.WikipediaPage(searchTitle)  # type:ignore
+                    relevantPics = [
+                        x for x in m.images if ".svg" not in x and ("title" in x or "logo" in x)
+                    ]
+                    if not relevantPics:
+                        relevantPics = [x for x in m.images if ".svg" not in x]
+                except:
+                    pass
             else:
                 relevantPics = [self.InfoPage]
             if relevantPics:
-                urllib.request.urlretrieve(
-                    relevantPics[0],
-                    "temp.png",
-                )
-                img = Image.open("temp.png")
-                imScale = 480 / img.size[0]
-                newSize = round(img.size[0] * imScale), round(img.size[1] * imScale)
-                img = img.resize(newSize)
-                savePath = f"logos/{self.Title.replace(':','-')}.png"
-                localPath = os.path.join(django_settings.STATIC_ROOT, f"{savePath}")
-                img.save(localPath)
-                setattr(self, "Logo", savePath)
-                self.save()
+                try:
+                    urllib.request.urlretrieve(
+                        relevantPics[0],
+                        "temp.png",
+                    )
+                    img = Image.open("temp.png")
+                    imScale = 480 / img.size[0]
+                    newSize = round(img.size[0] * imScale), round(img.size[1] * imScale)
+                    img = img.resize(newSize)
+                    savePath = f"logos/{self.Title.replace(':','-')}.png"
+                    localPath = os.path.join(django_settings.STATICFILES_DIRS[0], f"{savePath}")
+                    img.save(localPath)
+                    os.remove("temp.png")
+                    setattr(self, "Logo", savePath)
+                    self.save()
+                except ConnectionError:
+                    pass
 
         return self.Logo
-
-    @classmethod
-    def FindElements(cls, ElementToFind):
-        els = FindElements(r"static/mediaPaths.xml")
-        GenerateTVShows([x[1:] for x in els if x[0] == "TV Shows"])
-        return els
 
 
 class WatchableMedia(Media):

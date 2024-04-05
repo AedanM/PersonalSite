@@ -40,6 +40,12 @@
 				</nav>
 			</header>
         <h2>Current Files</h2>
+        {% with imgLink=MediaTypes|MakeChart:"Count" %}
+            <img src="{% static imgLink %}"></img>
+        {%endwith%}
+        {% with imgLink=MediaTypes|MakeChart:"Duration" %}
+            <img src="{% static imgLink %}"></img>
+        {%endwith%}
 		<span id="DescriptionSpan">
             {% for title, media in MediaTypes.items %}
                 <div id="contentDiv">

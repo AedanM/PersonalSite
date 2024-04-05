@@ -5,6 +5,8 @@ from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
+
+from .modules.UpdateFromFolder import UpdateFromFolder
 from .models import Book, Movie, Podcast, TVShow, Youtube
 from .forms import BookForm, MovieForm, PodcastForm, TVForm, YoutubeForm
 
@@ -23,34 +25,22 @@ def index(request) -> HttpResponse:
     TVList = ContentFilter(request.GET, TVShow.objects.all())
     YoutubeList = ContentFilter(request.GET, Youtube.objects.all())
     PodcastList = ContentFilter(request.GET, Podcast.objects.all())
-    context = {
-        "Movies": dict(zip([x.GetLogo() for x in MovieList], MovieList)),
-        "TVShows": dict(zip([x.GetLogo() for x in TVList], TVList)),
-        "YoutubeVids": dict(zip([x.GetLogo() for x in YoutubeList], YoutubeList)),
-        "Podcasts": dict(zip([x.GetLogo() for x in PodcastList], PodcastList)),
-    }
-    return render(request, "media/index.html", context)
-
-
-def newIndex(request) -> HttpResponse:
-    MovieList = ContentFilter(request.GET, Movie.objects.all())
-    TVList = ContentFilter(request.GET, TVShow.objects.all())
-    YoutubeList = ContentFilter(request.GET, Youtube.objects.all())
-    PodcastList = ContentFilter(request.GET, Podcast.objects.all())
+    BookList = ContentFilter(request.GET, Book.objects.all())
     context = {
         "MediaTypes": {
             "Movies": dict(zip([x.GetLogo() for x in MovieList], MovieList)),
             "TV Shows": dict(zip([x.GetLogo() for x in TVList], TVList)),
             "Youtube": dict(zip([x.GetLogo() for x in YoutubeList], YoutubeList)),
             "Podcasts": dict(zip([x.GetLogo() for x in PodcastList], PodcastList)),
+            "Books": dict(zip([x.GetLogo() for x in BookList], BookList)),
         }
     }
     return render(request, "media/newIndex.html", context)
 
 
 def update(request) -> HttpResponse:
-    response = Movie.FindElements(TVShow)
-    return HttpResponse(response, content_type="text/plain")
+    response = UpdateFromFolder(folder=r"C:\mysources\Aedan\PersonalScripts\Temp\MediaTest")
+    return HttpResponse(content=response, content_type="text/plain")
 
 
 def new(request) -> HttpResponse:
