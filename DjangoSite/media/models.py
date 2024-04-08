@@ -1,16 +1,16 @@
 import datetime
 from django.db import models
-from .modules.DownloadImage import DownloadImage
+from .modules.DownloadImage import DownloadImage, DEFAULT_IMG
+import os
+from django.conf import settings as django_settings
 
 
 class Media(models.Model):
-    Title = models.CharField(max_length=200)
-    Genre_Tags = models.TextField()
-    Downloaded = models.BooleanField(default=False)
-    InfoPage = models.CharField(max_length=200)
-    Logo = models.CharField(
-        default="https://upload.wikimedia.org/wikipedia/commons/c/c9/Icon_Video.png", max_length=200
-    )
+    Title: models.CharField = models.CharField(max_length=200)
+    Genre_Tags: models.TextField = models.TextField()
+    Downloaded: models.BooleanField = models.BooleanField(default=False)
+    InfoPage: models.CharField = models.CharField(max_length=200)
+    Logo: models.CharField = models.CharField(default=DEFAULT_IMG, max_length=200)
 
     def __lt__(self, cmpObj) -> bool:
         return str(self) < str(cmpObj)
@@ -23,20 +23,28 @@ class Media(models.Model):
         return [x.strip() for x in sorted(self.Genre_Tags.split(","))]
 
     def GetLogo(self, loadLogo) -> str:
-        if loadLogo:
+        if loadLogo or not os.path.exists(
+            os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo)
+        ):
             DownloadImage(self)
+        if self.InfoPage == "http://127.0.0.1:8000/media":
+            self.InfoPage = "http://127.0.0.1:8000/media"
+            self.save()
         return self.Logo
 
 
 class WatchableMedia(Media):
-    Watched = models.BooleanField(default=True)
-    Duration = models.DurationField()
+    Watched: models.BooleanField = models.BooleanField(default=True)
+    Duration: models.DurationField = models.DurationField()
 
 
 class TVShow(WatchableMedia):
-    Length = models.IntegerField()
+    Length: models.IntegerField = models.IntegerField()
 
     def __str__(self) -> str:
+        if not self.Length:
+            self.Length = 999
+            self.save()
         return (
             super().__str__()
             + f" Season{'s' if self.Length > 0 else ''}"
@@ -45,39 +53,57 @@ class TVShow(WatchableMedia):
 
 
 class Movie(WatchableMedia):
-    Year = models.IntegerField()
+    Year: models.IntegerField = models.IntegerField()
 
     def __str__(self) -> str:
+        if not self.Year:
+            self.Year = 1900
+            self.save()
         return super().__str__() + f" ({self.Year})"
 
 
 class Youtube(WatchableMedia):
-    Creator = models.CharField(max_length=50)
-    Link = models.CharField(max_length=200)
+    Creator: models.CharField = models.CharField(max_length=50)
+    Link: models.CharField = models.CharField(max_length=200)
 
     def __str__(self) -> str:
+        if not self.Creator:
+            self.Creator = "undef"
+            self.save()
         return f"{self.Creator} " + super().__str__()
 
 
 class Novel(Media):
-    Author = models.CharField(max_length=50)
-    PageLength = models.IntegerField(default=0)
+    Author: models.CharField = models.CharField(max_length=50)
+    PageLength: models.IntegerField = models.IntegerField(default=0)
 
     def __str__(self) -> str:
+        if not self.Author:
+            self.Author = "undef"
+            self.save()
         return f"{self.Author} " + super().__str__()
 
 
 class Comic(Media):
-    Company = models.CharField(max_length=50)
-    Character = models.CharField(max_length=50)
-    PageLength = models.IntegerField(default=0)
+    Company: models.CharField = models.CharField(max_length=50)
+    Character: models.CharField = models.CharField(max_length=50)
+    PageLength: models.IntegerField = models.IntegerField(default=0)
 
     def __str__(self) -> str:
+        if not self.Company:
+            self.Company = "undef"
+            self.save()
+        if not self.Character:
+            self.Character = "undef"
+            self.save()
         return f"{self.Character} ({self.Company}) " + super().__str__()
 
 
 class Podcast(WatchableMedia):
-    Creator = models.CharField(max_length=50)
+    Creator: models.CharField = models.CharField(max_length=50)
 
     def __str__(self) -> str:
+        if not self.Creator:
+            self.Creator = "undef"
+            self.save()
         return f"{self.Creator} " + super().__str__()

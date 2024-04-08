@@ -30,7 +30,7 @@ def GetAllFiles(className: str, filePath):
         name = item.attrib["name"]
         p = parentDir
         while p.Level != level - 1 and p.Parent != None:
-            p = p.Parent
+            p = p.Parent  # type:ignore
         fList.append(Folder(Name=name, Level=level, Parent=p))
         parentDir = Folder(Name=name, Level=level, Parent=p)
     return fList

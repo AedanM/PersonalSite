@@ -6,7 +6,7 @@ import glob
 from typing import Any
 from ..models import Movie, TVShow, Podcast, Comic, Novel, Youtube
 import re
-import wikipedia  # type:ignore
+from django.db import models
 
 
 @dataclass
@@ -101,7 +101,7 @@ def FindPaths(root) -> bool:
 def PopulateObjs(mediaList) -> list[Any]:
     objList = []
     for media in mediaList:
-        obj = None
+        obj: models.Model = None  # type:ignore
         match (media.MediaType):
             case "Movies":
                 obj = Movie(
@@ -195,14 +195,14 @@ def UpdateFromFolder(folder, useFile, save) -> str:
         print("Loading Paths")
         FindPaths(root=folder)
         print("Paths Found")
-    media = LoadFiles()
+    media: list[Media] = LoadFiles()
     print("Files Loaded")
     media = FilterDupes(mediaList=media)
     print("Objects Filtered")
-    media = PopulateObjs(mediaList=media)
+    mediaObjs: list[models.Model] = PopulateObjs(mediaList=media)
     print("Objects Populated")
-    media = FindWikiPage(mediaList=media)
+    mediaObjs = FindWikiPage(mediaList=mediaObjs)
     if save:
-        for m in media:
+        for m in mediaObjs:
             m.save()
     return "\n".join([str(x) for x in media])

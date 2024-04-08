@@ -15,7 +15,7 @@ register = template.Library()
 def ObjFromDict(d) -> typing.Any:
     obj = d
     if type(d) == dict and d:
-        obj = ObjFromDict(list(d.values())[0])
+        obj = ObjFromDict(list(d.keys())[0])
     return obj
 
 

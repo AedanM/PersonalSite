@@ -4,7 +4,9 @@ from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
-
+from django import forms
+from django.db import models
+from typing import Any
 from .modules.UpdateFromFolder import UpdateFromFolder
 from .modules.GetWikiInfo import GetShowInfo
 from .models import Comic, Novel, Movie, Podcast, TVShow, Youtube
@@ -13,31 +15,39 @@ from .forms import ComicForm, NovelForm, MovieForm, PodcastForm, TVForm, Youtube
 # Create your views here.
 
 
-def ContentFilter(getParams: dict, movieList) -> list:
-    returnList = movieList
+def ContentFilter(getParams: dict, contentList) -> list:
+    returnList = contentList
     if "genre" in getParams:
         returnList = [x for x in returnList if getParams["genre"] in x.GenreTagList]
-        print(getParams["genre"])
     return sorted(returnList)
 
 
-def index(request) -> HttpResponse:
+def GetContents(request) -> dict[str, dict]:
+    loadLogo = "loadLogos" in request.GET
     MovieList = ContentFilter(request.GET, Movie.objects.all())
     TVList = ContentFilter(request.GET, TVShow.objects.all())
     YoutubeList = ContentFilter(request.GET, Youtube.objects.all())
     PodcastList = ContentFilter(request.GET, Podcast.objects.all())
     ComicList = ContentFilter(request.GET, Comic.objects.all())
     NovelList = ContentFilter(request.GET, Novel.objects.all())
-    loadLogo = "loadLogos" in request.GET
+    return {
+        "Movies": dict(zip(MovieList, [x.GetLogo(loadLogo) for x in MovieList])),
+        "TV Shows": dict(zip(TVList, [x.GetLogo(loadLogo) for x in TVList])),
+        "Youtube": dict(zip(YoutubeList, [x.GetLogo(loadLogo) for x in YoutubeList])),
+        "Podcasts": dict(zip(PodcastList, [x.GetLogo(loadLogo) for x in PodcastList])),
+        "Books": dict(zip(NovelList, [x.GetLogo(loadLogo) for x in NovelList])),
+        "Comics": dict(zip(ComicList, [x.GetLogo(loadLogo) for x in ComicList])),
+    }
+
+
+def index(request) -> HttpResponse:
+    soloContent = request.GET["type"] if "type" in request.GET else None
     context = {
-        "MediaTypes": {
-            "Movies": dict(zip([x.GetLogo(loadLogo) for x in MovieList], MovieList)),
-            "TV Shows": dict(zip([x.GetLogo(loadLogo) for x in TVList], TVList)),
-            "Youtube": dict(zip([x.GetLogo(loadLogo) for x in YoutubeList], YoutubeList)),
-            "Podcasts": dict(zip([x.GetLogo(loadLogo) for x in PodcastList], PodcastList)),
-            "Books": dict(zip([x.GetLogo(loadLogo) for x in NovelList], NovelList)),
-            "Comics": dict(zip([x.GetLogo(loadLogo) for x in ComicList], ComicList)),
-        },
+        "MediaTypes": (
+            GetContents(request=request)
+            if soloContent == None
+            else GetContents(request=request)[soloContent]
+        ),
         "Graphs": "noGraphs" in request.GET,
     }
     return render(request, "media/newIndex.html", context)
@@ -56,11 +66,11 @@ def wikiScrape(request) -> HttpResponse:
 
 
 def new(request) -> HttpResponse:
-    response = redirect("/media")
+    response: HttpResponse = redirect("/media")
     if "type" in request.GET:
         formType = request.GET["type"]
-        cls = MovieForm
-        obj = Movie
+        cls: Any = MovieForm
+        obj: Any = Movie
         if "Movie" in formType:
             cls = MovieForm
             obj = Movie
