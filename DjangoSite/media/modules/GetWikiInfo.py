@@ -1,6 +1,5 @@
 from wikipedia import wikipedia  # type:ignore
 import requests
-from bs4 import BeautifulSoup
 from datetime import timedelta
 import re
 from ..models import Movie, TVShow
