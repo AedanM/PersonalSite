@@ -1,0 +1,524 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+
+
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+# db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+# .python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# poetry
+#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+#poetry.lock
+
+# pdm
+#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
+#pdm.lock
+#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
+#   in version control.
+#   https://pdm.fming.dev/#use-with-ide
+.pdm.toml
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
+#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+#  and can be added to the global gitignore or merged into this file.  For a more nuclear
+#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
+#.idea/
+
+.vscode/
+Temp/Movies/Movie 1/1930 Congo Jazz.avi
+Temp/Movies/Movie 1/1930 The Booze Hangs High.avi
+Temp/Movies/Movie 1/1931 Bosko the Doughboy.avi
+Temp/Movies/Movie 1/1931 One More Time.avi
+Temp/Movies/Movie 1/1931 Smile Darn Ya, Smile!.avi
+Temp/Movies/Movie 1/1931 You Don't Know What You're Doin'!.avi
+Temp/Movies/Movie 1/1932 I Love a Parade.avi
+Temp/Movies/Movie 1/1932 Ride Him Bosko.avi
+Temp/Movies/Movie 1/1933 Bosko in Person.avi
+Temp/Movies/Movie 1/1933 Bosko's Picture Show.avi
+Temp/Movies/Movie 1/1933 Buddy's Beer Garden.avi
+Temp/Movies/Movie 1/1933 Buddy's Day Out.avi
+Temp/Movies/Movie 1/1933 I Like Mountain Music.avi
+Temp/Movies/Movie 1/1933 I've Got to Sing a Torch Song.avi
+Temp/Movies/Movie 1/1933 Shuffle Off to Buffalo.avi
+Temp/Movies/Movie 1/1933 Sittin' on a Backyard Fence.avi
+Temp/Movies/Movie 1/1933 The Dish Ran Away with the Spoon.avi
+Temp/Movies/Movie 1/1933 We're in the Money!.avi
+Temp/Movies/Movie 10/1946 Acrobatty Bunny.avi
+Temp/Movies/Movie 10/1946 Baby Bottleneck.avi
+Temp/Movies/Movie 10/1946 Bacall to Arms.avi
+Temp/Movies/Movie 10/1946 Baseball Bugs.avi
+Temp/Movies/Movie 10/1946 Book Revue.avi
+Temp/Movies/Movie 10/1946 Hair-Raising Hare.avi
+Temp/Movies/Movie 10/1946 Hare Remover.avi
+Temp/Movies/Movie 10/1946 Holiday for Shoestrings.avi
+Temp/Movies/Movie 10/1946 Hollywood Canine Canteen.avi
+Temp/Movies/Movie 10/1946 Hollywood Daffy.avi
+Temp/Movies/Movie 10/1946 Kitty Kornered.avi
+Temp/Movies/Movie 10/1946 Rhapsody Rabbit.avi
+Temp/Movies/Movie 10/1946 The Big Snooze.avi
+Temp/Movies/Movie 10/1946 The Great Piggy Bank Robbery.avi
+Temp/Movies/Movie 10/1946 Walky Talky Hawky.avi
+Temp/Movies/Movie 10/1947 A Hare Grows in Manhatten.avi
+Temp/Movies/Movie 10/1947 A Pest in the House.avi
+Temp/Movies/Movie 11/1947 Birth of a Notion.avi
+Temp/Movies/Movie 11/1947 Crowing Pains.avi
+Temp/Movies/Movie 11/1947 Easter Yeggs.avi
+Temp/Movies/Movie 11/1947 Rabbit Transit.avi
+Temp/Movies/Movie 11/1947 Slick Hare.avi
+Temp/Movies/Movie 11/1947 Tweetie Pie.avi
+Temp/Movies/Movie 11/1948 Back Alley Oproar.avi
+Temp/Movies/Movie 11/1948 Buccaneer Bunny.avi
+Temp/Movies/Movie 11/1948 Bugs Bunny Rides Again.avi
+Temp/Movies/Movie 11/1948 Daffy Duck Slept Here.avi
+Temp/Movies/Movie 11/1948 Dough Ray Me-ow.avi
+Temp/Movies/Movie 11/1948 Gorilla My Dreams.avi
+Temp/Movies/Movie 11/1948 Haredevil Hare.avi
+Temp/Movies/Movie 11/1948 Kit for Cat.avi
+Temp/Movies/Movie 11/1948 My Bunny Lies over the Sea.avi
+Temp/Movies/Movie 11/1948 Rabbit Punch.avi
+Temp/Movies/Movie 11/1948 Scaredy Cat.avi
+Temp/Movies/Movie 12/1948 The Bear's Tale.avi
+Temp/Movies/Movie 12/1948 The Foghorn Leghorn.avi
+Temp/Movies/Movie 12/1948 The Stupor Salesman.avi
+Temp/Movies/Movie 12/1948 The Upstanding Sitter.avi
+Temp/Movies/Movie 12/1948 You Were Never Duckier.avi
+Temp/Movies/Movie 12/1949 A Ham in a Role.avi
+Temp/Movies/Movie 12/1949 Bad Ol' Putty Tat.avi
+Temp/Movies/Movie 12/1949 Bear Feat.avi
+Temp/Movies/Movie 12/1949 Bowery Bugs.avi
+Temp/Movies/Movie 12/1949 Bye Bye Bluebeard.avi
+Temp/Movies/Movie 12/1949 Daffy Duck Hunt.avi
+Temp/Movies/Movie 12/1949 Dough for the Do-Do.avi
+Temp/Movies/Movie 12/1949 Fast and Furry-ous.avi
+Temp/Movies/Movie 12/1949 For Scent-imental Reasons.avi
+Temp/Movies/Movie 12/1949 Frigid Hare.avi
+Temp/Movies/Movie 12/1949 Hare Do.avi
+Temp/Movies/Movie 12/1949 High Diving Hare.avi
+Temp/Movies/Movie 13/1949 Hippety Hopper.avi
+Temp/Movies/Movie 13/1949 Long Haired Hare.avi
+Temp/Movies/Movie 13/1949 Mississippi Hare.avi
+Temp/Movies/Movie 13/1949 Mouse Wreckers.avi
+Temp/Movies/Movie 13/1949 Often an Orphan.avi
+Temp/Movies/Movie 13/1949 Paying the Piper.avi
+Temp/Movies/Movie 13/1949 Porky Chops.avi
+Temp/Movies/Movie 13/1949 Rabbit Hood.avi
+Temp/Movies/Movie 13/1949 Rebel Rabbit.avi
+Temp/Movies/Movie 13/1949 Swallow the Leader.avi
+Temp/Movies/Movie 13/1949 The Awful Orphan.avi
+Temp/Movies/Movie 13/1949 The Gret Hounded Hare.avi
+Temp/Movies/Movie 13/1949 The Windblown Hare.avi
+Temp/Movies/Movie 13/1950 8 Ball Bunny.avi
+Temp/Movies/Movie 13/1950 All Abir-r-r-d.avi
+Temp/Movies/Movie 13/1950 An Egg Scramble.avi
+Temp/Movies/Movie 13/1950 Big House Bunny.avi
+Temp/Movies/Movie 14/1950 Boobs in the Woods.avi
+Temp/Movies/Movie 14/1950 Bunker Hill Bunny.avi
+Temp/Movies/Movie 14/1950 Canary Row.avi
+Temp/Movies/Movie 14/1950 Dog Gone South.avi
+Temp/Movies/Movie 14/1950 Golden Yeggs.avi
+Temp/Movies/Movie 14/1950 Hillbilly Hare.avi
+Temp/Movies/Movie 14/1950 Homeless Hare.avi
+Temp/Movies/Movie 14/1950 It's Hummer Time.avi
+Temp/Movies/Movie 14/1950 Nurdy-Gurdy Hare BR.avi
+Temp/Movies/Movie 14/1950 Rabbit of Seville.avi
+Temp/Movies/Movie 14/1950 The Ducksters.avi
+Temp/Movies/Movie 14/1950 The Hypo-Chondri-Cat.avi
+Temp/Movies/Movie 14/1950 The Scarlet Pumpernickel.avi
+Temp/Movies/Movie 14/1950 What's Up Doc.avi
+Temp/Movies/Movie 14/1951 A Bear for Punishment.avi
+Temp/Movies/Movie 14/1951 Ballot Box Bunny.avi
+Temp/Movies/Movie 14/1951 Big Top Bunny.avi
+Temp/Movies/Movie 15/1951 Bunny Hugged.avi
+Temp/Movies/Movie 15/1951 Canned Feud.avi
+Temp/Movies/Movie 15/1951 Cheese Chasers.avi
+Temp/Movies/Movie 15/1951 Chow Hound.avi
+Temp/Movies/Movie 15/1951 Drip-Along Daffy.avi
+Temp/Movies/Movie 15/1951 Early to Bet.avi
+Temp/Movies/Movie 15/1951 French Rarebit.avi
+Temp/Movies/Movie 15/1951 Putty Tat Trouble.avi
+Temp/Movies/Movie 15/1951 Rabbit Fire.avi
+Temp/Movies/Movie 15/1951 Room and Bird.avi
+Temp/Movies/Movie 15/1951 Sleepy Time Possum.avi
+Temp/Movies/Movie 15/1951 Tweet Tweet Tweety.avi
+Temp/Movies/Movie 15/1951 Tweety's S.O.S..avi
+Temp/Movies/Movie 15/1951 Wearing of the Grin.avi
+Temp/Movies/Movie 15/1952 14-Carrot Rabbit.avi
+Temp/Movies/Movie 15/1952 Ain't She Tweet.avi
+Temp/Movies/Movie 15/1952 Beep Beep.avi
+Temp/Movies/Movie 16/1952 Bird in a Guilty Cage.avi
+Temp/Movies/Movie 16/1952 Feed the Kitty.avi
+Temp/Movies/Movie 16/1952 Gift Wrapped.avi
+Temp/Movies/Movie 16/1952 Going! Going! Gosh!.avi
+Temp/Movies/Movie 16/1952 Kiddin' the Kitten.avi
+Temp/Movies/Movie 16/1952 Little Red Rodent Hood.avi
+Temp/Movies/Movie 16/1952 Oily Hare.avi
+Temp/Movies/Movie 16/1952 Operation Rabbit.avi
+Temp/Movies/Movie 16/1952 Rabbit Seasoning.avi
+Temp/Movies/Movie 16/1952 Rabbit's Kin.avi
+Temp/Movies/Movie 16/1952 The Super Snooper.avi
+Temp/Movies/Movie 16/1952 The Turn-Tale Wolf.avi
+Temp/Movies/Movie 16/1952 Water, Water Every Hare.avi
+Temp/Movies/Movie 16/1953 A Peck O' Trouble.avi
+Temp/Movies/Movie 16/1953 Bully for Bugs.avi
+Temp/Movies/Movie 16/1953 Cat-Tales for Two BR.avi
+Temp/Movies/Movie 16/1953 Don't Give Up the Sheep.avi
+Temp/Movies/Movie 17/1953 Duck Amuck.avi
+Temp/Movies/Movie 17/1953 Duck Dodgers in the 24.5 Century.avi
+Temp/Movies/Movie 17/1953 Duck! Rabbit! Duck!.avi
+Temp/Movies/Movie 17/1953 Forward March Hare.avi
+Temp/Movies/Movie 17/1953 Kiss Me Cat.avi
+Temp/Movies/Movie 17/1953 Much Ado About Nutting.avi
+Temp/Movies/Movie 17/1953 Punch Trunk.avi
+Temp/Movies/Movie 17/1953 Snow Business.avi
+Temp/Movies/Movie 17/1953 Southern Fried Rabbit.avi
+Temp/Movies/Movie 17/1953 The Wild Chase.avi
+Temp/Movies/Movie 17/1953 Zipping Along.avi
+Temp/Movies/Movie 17/1954 Baby Buggy Bunny.avi
+Temp/Movies/Movie 17/1954 Bewitched Bunny.avi
+Temp/Movies/Movie 17/1954 Bugs and Thugs.avi
+Temp/Movies/Movie 17/1954 By Word of Mouse.avi
+Temp/Movies/Movie 17/1954 Claws for Alarm.avi
+Temp/Movies/Movie 17/1954 Devil May Hare.avi
+Temp/Movies/Movie 17/1954 Goo Goo Goliath.avi
+Temp/Movies/Movie 18/1954 My Little Duckaroo.avi
+Temp/Movies/Movie 18/1954 No Barking.avi
+Temp/Movies/Movie 18/1954 Satan's Waitin'.avi
+Temp/Movies/Movie 18/1954 Stop! Look! and Hasten!.avi
+Temp/Movies/Movie 18/1954 The Oily American.avi
+Temp/Movies/Movie 18/1954 Wild Wife.avi
+Temp/Movies/Movie 18/1955 Guided Muscle.avi
+Temp/Movies/Movie 18/1955 Heir Conditioned.avi
+Temp/Movies/Movie 18/1955 Hyde and Hare.avi
+Temp/Movies/Movie 18/1955 Jumpin' Jupiter.avi
+Temp/Movies/Movie 18/1955 Knight-mare Hare.avi
+Temp/Movies/Movie 18/1955 Lumber Jerks.avi
+Temp/Movies/Movie 18/1955 One Froggy Evening.avi
+Temp/Movies/Movie 18/1955 Pizzicato Pussy Cat.avi
+Temp/Movies/Movie 18/1955 Rabbit Rampage.avi
+Temp/Movies/Movie 18/1955 Ready, Set, Zoom.avi
+Temp/Movies/Movie 18/1955 Red Riding Hoodwinked.avi
+Temp/Movies/Movie 18/1955 Roman Legion-Hare.avi
+Temp/Movies/Movie 19/1955 Sahara Hare.avi
+Temp/Movies/Movie 19/1955 Speedy Gonzales.avi
+Temp/Movies/Movie 19/1955 The Hole Idea.avi
+Temp/Movies/Movie 19/1956 A Star is Bored.avi
+Temp/Movies/Movie 19/1956 Barbary Coast Bunny.avi
+Temp/Movies/Movie 19/1956 Broomstick Bunny.avi
+Temp/Movies/Movie 19/1956 Bugs' Bonnets.avi
+Temp/Movies/Movie 19/1956 Deduce, You Say.avi
+Temp/Movies/Movie 19/1956 Gee Whiz-z-z.avi
+Temp/Movies/Movie 19/1956 Heaven Scent.avi
+Temp/Movies/Movie 19/1956 Raw! Raw! Rooster!.avi
+Temp/Movies/Movie 19/1956 Rocket Bye Baby.avi
+Temp/Movies/Movie 19/1956 Rocket Squad.avi
+Temp/Movies/Movie 19/1956 Stupor Duck.avi
+Temp/Movies/Movie 19/1956 The Honey-Mousers.avi
+Temp/Movies/Movie 19/1956 The Unexpected Pest.avi
+Temp/Movies/Movie 19/1956 There They Go-Go-Go.avi
+Temp/Movies/Movie 19/1956 To Hare is Human.avi
+Temp/Movies/Movie 2/1934 Buddy's Circus.avi
+Temp/Movies/Movie 2/1934 How Do I Know it's Sunday.avi
+Temp/Movies/Movie 2/1935 A Cartoonist's Nightmare.avi
+Temp/Movies/Movie 2/1935 Gold Diggers of '49.avi
+Temp/Movies/Movie 2/1935 Hollywood Capers.avi
+Temp/Movies/Movie 2/1935 I Haven't Got a Hat.avi
+Temp/Movies/Movie 2/1936 Alpine Antics.avi
+Temp/Movies/Movie 2/1936 I Love to Singa.avi
+Temp/Movies/Movie 2/1936 Little Beau Porky.avi
+Temp/Movies/Movie 2/1936 Milk and Money.avi
+Temp/Movies/Movie 2/1936 Page Miss Glory.avi
+Temp/Movies/Movie 2/1936 Porky in the North Woods.avi
+Temp/Movies/Movie 2/1936 Porky's Poultry Plant.avi
+Temp/Movies/Movie 2/1936 The CooCoo Nut Grove.avi
+Temp/Movies/Movie 2/1937 Little Red Walking Hood.avi
+Temp/Movies/Movie 2/1937 Pigs is Pigs.avi
+Temp/Movies/Movie 20/1956 Wideo Wabbit.avi
+Temp/Movies/Movie 20/1956 Yankee Dood it.avi
+Temp/Movies/Movie 20/1957 Ali Baba Bunny.avi
+Temp/Movies/Movie 20/1957 Birds Anonymous.avi
+Temp/Movies/Movie 20/1957 Boyhood Daze.avi
+Temp/Movies/Movie 20/1957 Go Fly a Kit.avi
+Temp/Movies/Movie 20/1957 Gonzales' Tomales.avi
+Temp/Movies/Movie 20/1957 Rabbit Romeo.avi
+Temp/Movies/Movie 20/1957 Scrambled Arches.avi
+Temp/Movies/Movie 20/1957 Show Biz Bugs.avi
+Temp/Movies/Movie 20/1957 Steal Wool.avi
+Temp/Movies/Movie 20/1957 Tabasco Road.avi
+Temp/Movies/Movie 20/1957 The Three Little Bops.avi
+Temp/Movies/Movie 20/1957 Tweety and the Beanstalk.avi
+Temp/Movies/Movie 20/1957 What's Opera, Doc.avi
+Temp/Movies/Movie 20/1957 Zoom and Bored.avi
+Temp/Movies/Movie 20/1958 Cat Feud.avi
+Temp/Movies/Movie 20/1958 Hook Line and Stinker.avi
+Temp/Movies/Movie 21/1958 Knighty Knight Bugs.avi
+Temp/Movies/Movie 21/1958 Robin Hood Daffy.avi
+Temp/Movies/Movie 21/1958 Tortilla Flaps.avi
+Temp/Movies/Movie 21/1958 Whoa, Be Gone!.avi
+Temp/Movies/Movie 21/1959 Baton Bunny.avi
+Temp/Movies/Movie 21/1959 Broken Leghorn.avi
+Temp/Movies/Movie 21/1959 Here Today, Gone Tamle.avi
+Temp/Movies/Movie 21/1959 Mexicali Shmoes.avi
+Temp/Movies/Movie 21/1959 The Mouse that Jack Built.avi
+Temp/Movies/Movie 21/1960 Goldimouse and the Three Cats.avi
+Temp/Movies/Movie 21/1960 Mouse and Garden.avi
+Temp/Movies/Movie 21/1960 West of the Pesos.avi
+Temp/Movies/Movie 21/1960 Wild Wild World.avi
+Temp/Movies/Movie 21/1961 Cannery Woe.avi
+Temp/Movies/Movie 21/1961 The Abominable Snow Rabbit.avi
+Temp/Movies/Movie 21/1961 The Last Hungry Cat.avi
+Temp/Movies/Movie 21/1961 The Pied Piper of Guadalupe.avi
+Temp/Movies/Movie 21/1962 Mexican Boarders.avi
+Temp/Movies/Movie 21/1963 Chili Weather.avi
+Temp/Movies/Movie 3/1937 Porky's Double Trouble.avi
+Temp/Movies/Movie 3/1937 Porky's Railroad.avi
+Temp/Movies/Movie 3/1937 Porky's Road Race.avi
+Temp/Movies/Movie 3/1937 Porky's Romance.avi
+Temp/Movies/Movie 3/1937 She was an Acrobat's Daughter.avi
+Temp/Movies/Movie 3/1937 Speaking of the Weather.avi
+Temp/Movies/Movie 3/1937 The Case of the Stuttering Pig.avi
+Temp/Movies/Movie 3/1937 The Woods are Full of Cuckoos.avi
+Temp/Movies/Movie 3/1938 Cracked Ice.avi
+Temp/Movies/Movie 3/1938 Daffy Duck in Hollywood.avi
+Temp/Movies/Movie 3/1938 Have You Got Any Castles.avi
+Temp/Movies/Movie 3/1938 Katnip Kollege.avi
+Temp/Movies/Movie 3/1938 Little Pancho Vanilla.avi
+Temp/Movies/Movie 3/1938 Now That Summer Is Gone.avi
+Temp/Movies/Movie 3/1938 Porky at the Crocadero.avi
+Temp/Movies/Movie 3/1938 Porky in Egypt.avi
+Temp/Movies/Movie 3/010138DVD Daffy Duck and Egghead MM.avi
+Temp/Movies/Movie 4/1938 Porky in Wackyland.avi
+Temp/Movies/Movie 4/1938 Porky the Fireman.avi
+Temp/Movies/Movie 4/1938 Porky's Party.avi
+Temp/Movies/Movie 4/1938 Porky's Poppa.avi
+Temp/Movies/Movie 4/1938 The Daffy Doc.avi
+Temp/Movies/Movie 4/1938 The Night Watchman.avi
+Temp/Movies/Movie 4/1938 What Price Porky.avi
+Temp/Movies/Movie 4/1938 Wholly Smoke.avi
+Temp/Movies/Movie 4/1938 You're an Education.avi
+Temp/Movies/Movie 4/1939 Daffy Duck and the Dinosaur.avi
+Temp/Movies/Movie 4/1939 Old Glory.avi
+Temp/Movies/Movie 4/1939 Polar Pals.avi
+Temp/Movies/Movie 4/1939 Porky and Teabiscuit.avi
+Temp/Movies/Movie 4/1939 The Film Fan.avi
+Temp/Movies/Movie 4/1939 Thugs with Dirty Mugs.avi
+Temp/Movies/Movie 4/1939 Wise Quacks.avi
+Temp/Movies/Movie 4/1940 A Gander at Mother Goose.avi
+Temp/Movies/Movie 5/1940 Elmer's Candid Camera.avi
+Temp/Movies/Movie 5/1940 Patient Porky.avi
+Temp/Movies/Movie 5/1940 Pilgrim Porky.avi
+Temp/Movies/Movie 5/1940 Porky's Poor Fish.avi
+Temp/Movies/Movie 5/1940 Prehistoric Porky.avi
+Temp/Movies/Movie 5/1940 Sniffles Takes a Trip.avi
+Temp/Movies/Movie 5/1940 The Sour Puss.avi
+Temp/Movies/Movie 5/1940 Tom Thumb in Trouble.avi
+Temp/Movies/Movie 5/1940 You Ought to be in Pictures.avi
+Temp/Movies/Movie 5/1941 Farm Frolics.avi
+Temp/Movies/Movie 5/1941 Goofy Groceries.avi
+Temp/Movies/Movie 5/1941 Hollywood Steps Out.avi
+Temp/Movies/Movie 5/1941 Meet John Doughboy.avi
+Temp/Movies/Movie 5/1941 Porky's Pooch.avi
+Temp/Movies/Movie 5/1941 Porky's Preview.avi
+Temp/Movies/Movie 5/1941 Rookie Revue.avi
+Temp/Movies/Movie 6/1941 The Fighting 69 1 Halfth.avi
+Temp/Movies/Movie 6/1941 The Heckling Hare.avi
+Temp/Movies/Movie 6/1941 The Trial of Mr. Wolf.avi
+Temp/Movies/Movie 6/1941 Tortoise Beats Hare.avi
+Temp/Movies/Movie 6/1941 Wabbit Twouble.avi
+Temp/Movies/Movie 6/1942 A Tale of Two Kitties.avi
+Temp/Movies/Movie 6/1942 Bugs Bunny Gets the Boid.avi
+Temp/Movies/Movie 6/1942 Case of the Missing Hare.avi
+Temp/Movies/Movie 6/1942 Conrad the Sailor.avi
+Temp/Movies/Movie 6/1942 Crazy Cruise.avi
+Temp/Movies/Movie 6/1942 Eatin' on the Cuff.avi
+Temp/Movies/Movie 6/1942 Foney Fables.avi
+Temp/Movies/Movie 6/1942 Horton Hatches the Egg.avi
+Temp/Movies/Movie 6/1942 Lights Fantastic.avi
+Temp/Movies/Movie 6/1942 My Favorite Duck.avi
+Temp/Movies/Movie 6/1942 The Dover Boys.avi
+Temp/Movies/Movie 7/1942 The Draft Horse.avi
+Temp/Movies/Movie 7/1942 The Ducktators.avi
+Temp/Movies/Movie 7/1942 The Hare-Brained Hypnotist.avi
+Temp/Movies/Movie 7/1942 The Hep Cat.avi
+Temp/Movies/Movie 7/1942 The Wabbit Who Came to Supper.avi
+Temp/Movies/Movie 7/1942 The Wacky Wabbit.avi
+Temp/Movies/Movie 7/1942 Wacky Blackout.avi
+Temp/Movies/Movie 7/1943 A Corny Concerto.avi
+Temp/Movies/Movie 7/1943 An Itch In Time.avi
+Temp/Movies/Movie 7/1943 Confusions of a Nutzy Spy.avi
+Temp/Movies/Movie 7/1943 Daffy the Commando.avi
+Temp/Movies/Movie 7/1943 Falling Hare.avi
+Temp/Movies/Movie 7/1943 Fifth Column Mouse.avi
+Temp/Movies/Movie 7/1943 Hop and Go.avi
+Temp/Movies/Movie 7/1943 Pigs in a Polka.avi
+Temp/Movies/Movie 7/1943 Porky Pig's Feat.avi
+Temp/Movies/Movie 8/1943 Puss N' Booty.avi
+Temp/Movies/Movie 8/1943 Scrap Happy Daffy.avi
+Temp/Movies/Movie 8/1943 Super Rabbit.avi
+Temp/Movies/Movie 8/1943 The Aristo-Cat.avi
+Temp/Movies/Movie 8/1943 The Wise Quacking Duck.avi
+Temp/Movies/Movie 8/1943 To Duck or Not to Duck.avi
+Temp/Movies/Movie 8/1943 Tortoise Wins by a Hare.avi
+Temp/Movies/Movie 8/1943 Wackiki Wabbit.avi
+Temp/Movies/Movie 8/1943 Yankee Doodle Daffy.avi
+Temp/Movies/Movie 8/1944 Booby Hatched.avi
+Temp/Movies/Movie 8/1944 Buckaroo Bugs.avi
+Temp/Movies/Movie 8/1944 Bugs Bunny and the Three Bears.avi
+Temp/Movies/Movie 8/1944 Duck Soup to Nuts.avi
+Temp/Movies/Movie 8/1944 Hare Force.avi
+Temp/Movies/Movie 8/1944 Hare Ribbin'.avi
+Temp/Movies/Movie 8/1944 I Got Plenty of Mutton.avi
+Temp/Movies/Movie 8/1944 Little Red Riding Rabbit.avi
+Temp/Movies/Movie 9/1944 Plane Daffy.avi
+Temp/Movies/Movie 9/1944 Russian Rhapsody.avi
+Temp/Movies/Movie 9/1944 Stage Door Cartoon.avi
+Temp/Movies/Movie 9/1944 Swooner Crooner.avi
+Temp/Movies/Movie 9/1944 The Old Grey Hare.avi
+Temp/Movies/Movie 9/1944 The Stupid Cupid.avi
+Temp/Movies/Movie 9/1944 The Weakly Reporter.avi
+Temp/Movies/Movie 9/1945 A Gruesome Twosome.avi
+Temp/Movies/Movie 9/1945 Draftee Daffy.avi
+Temp/Movies/Movie 9/1945 Fresh Airedale.avi
+Temp/Movies/Movie 9/1945 Hare Conditioned.avi
+Temp/Movies/Movie 9/1945 Hare Tonic.avi
+Temp/Movies/Movie 9/1945 Hare Trigger.avi
+Temp/Movies/Movie 9/1945 Herr Meets Hare.avi
+Temp/Movies/Movie 9/1945 Odor-Able Kitty.avi
+Temp/Movies/Movie 9/1945 The Bashful Buzzard.avi
+Temp/Movies/Movie 9/1945 Wagon Heels.avi
