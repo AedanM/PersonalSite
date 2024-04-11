@@ -1,9 +1,9 @@
 import os
 import urllib.request
-from PIL import Image
-from wikipedia import wikipedia  # type:ignore
 
 from django.conf import settings as django_settings
+from PIL import Image
+from wikipedia import wikipedia  # type:ignore
 
 DEFAULT_IMG = r"https://upload.wikimedia.org/wikipedia/commons/c/c9/Icon_Video.png"
 DEFAULT_IMG_PATH = "logos/DefaultIMG.png"
@@ -18,7 +18,7 @@ def DownloadImage(modelObj):
         or modelObj.Logo
         == r"C:\mysources\Aedan\PersonalSite\DjangoSite\static\logos/DefaultIMG.png"
     )
-    
+
     if ReloadLogo:
         if "http" in modelObj.Logo and "@" not in modelObj.Logo:
             logoIMG = modelObj.Logo

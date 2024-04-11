@@ -1,9 +1,11 @@
-from wikipedia import wikipedia  # type:ignore
-import requests
-from datetime import timedelta
-import re
-from ..models import Movie, TVShow
 import random
+import re
+from datetime import timedelta
+
+import requests
+from wikipedia import wikipedia  # type:ignore
+
+from ..models import Movie, TVShow
 
 apiEndpoint = r"https://en.wikipedia.org/w/api.php?format=json"
 ua = {"User-Agent": "Aedan McHale (aedan.mchale@gmail.com)"}

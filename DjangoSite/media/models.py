@@ -1,8 +1,10 @@
 import datetime
-from django.db import models
-from .modules.DownloadImage import DownloadImage, DEFAULT_IMG
 import os
+
 from django.conf import settings as django_settings
+from django.db import models
+
+from .modules.Model_Tools import DEFAULT_IMG, DownloadImage
 
 
 class Media(models.Model):
@@ -11,9 +13,14 @@ class Media(models.Model):
     Downloaded: models.BooleanField = models.BooleanField(default=False)
     InfoPage: models.CharField = models.CharField(max_length=200)
     Logo: models.CharField = models.CharField(default=DEFAULT_IMG, max_length=200)
+    Rating: models.IntegerField = models.IntegerField(default=0)
 
     def __lt__(self, cmpObj) -> bool:
-        return str(self) < str(cmpObj)
+        return self.sortTitle < cmpObj.sortTitle
+
+    @property
+    def sortTitle(self):
+        return str(self.Title).replace("The", "").replace("A ", "").strip()
 
     def __str__(self) -> str:
         return f"{self.Title}"

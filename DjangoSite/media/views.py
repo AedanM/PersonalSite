@@ -8,7 +8,8 @@ from django import forms
 from django.db import models
 from typing import Any
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.GetWikiInfo import GetShowInfo
+from .modules.Web_Tools import GetShowInfo
+from .modules.DB_Tools import CleanDupes
 from .models import Comic, Novel, Movie, Podcast, TVShow, Youtube
 from .forms import ComicForm, NovelForm, MovieForm, PodcastForm, TVForm, YoutubeForm
 
@@ -54,9 +55,13 @@ def index(request) -> HttpResponse:
 
 
 def update(request) -> HttpResponse:
-    response = UpdateFromFolder(
-        folder=r"W:/", useFile="useFile" in request.GET, save="save" in request.GET
-    )
+    if "clean" not in request.GET:
+        response = UpdateFromFolder(
+            folder=r"W:/", useFile="useFile" in request.GET, save="save" in request.GET
+        )
+    else:
+        _, model = GetFormAndClass(request=request)
+        response = CleanDupes(model=model)  # type:ignore
     return HttpResponse(content=response, content_type="text/plain")
 
 
@@ -68,27 +73,7 @@ def wikiScrape(request) -> HttpResponse:
 def new(request) -> HttpResponse:
     response: HttpResponse = redirect("/media")
     if "type" in request.GET:
-        formType = request.GET["type"]
-        cls: Any = MovieForm
-        obj: Any = Movie
-        if "Movie" in formType:
-            cls = MovieForm
-            obj = Movie
-        elif "TV" in formType:
-            cls = TVForm
-            obj = TVShow
-        elif "Novel" in formType:
-            cls = NovelForm
-            obj = Novel
-        elif "Comic" in formType:
-            cls = ComicForm
-            obj = Comic
-        elif "Podcast" in formType:
-            cls = PodcastForm
-            obj = Podcast
-        elif "Youtube" in formType:
-            cls = YoutubeForm
-            obj = Youtube
+        cls, obj = GetFormAndClass(request)
 
         inst = obj.objects.get(id=request.GET["instance"]) if "instance" in request.GET else None
 
@@ -104,3 +89,28 @@ def new(request) -> HttpResponse:
         )
 
     return response
+
+
+def GetFormAndClass(request) -> tuple:
+    formType = request.GET["type"]
+    cls: Any = MovieForm
+    obj: Any = Movie
+    if "Movie" in formType:
+        cls = MovieForm
+        obj = Movie
+    elif "TV" in formType:
+        cls = TVForm
+        obj = TVShow
+    elif "Novel" in formType:
+        cls = NovelForm
+        obj = Novel
+    elif "Comic" in formType:
+        cls = ComicForm
+        obj = Comic
+    elif "Podcast" in formType:
+        cls = PodcastForm
+        obj = Podcast
+    elif "Youtube" in formType:
+        cls = YoutubeForm
+        obj = Youtube
+    return cls, obj
