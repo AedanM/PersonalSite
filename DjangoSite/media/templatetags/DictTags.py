@@ -1,11 +1,11 @@
-from django import template
-import typing
 import os
-from django.conf import settings as django_settings
+import typing
+
 import matplotlib
+from django import template
+from django.conf import settings as django_settings
 
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -22,6 +22,11 @@ def ObjFromDict(d) -> typing.Any:
 @register.filter
 def HasAttr(iterDict, attrName) -> bool:
     return hasattr(ObjFromDict(iterDict), attrName)
+
+
+@register.filter
+def ModelType(obj) -> str:
+    return type(obj).__name__
 
 
 @register.filter

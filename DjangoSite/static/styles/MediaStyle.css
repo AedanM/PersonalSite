@@ -9,12 +9,19 @@
 }
 
 #MediaLogoImg {
-    border-radius: 50%;
+    border-radius: 45%;
     width: 75px;
     height: 75px;
-    object-fit:cover;
+    object-fit:scale-down;
+    background-color: #03070f;
 }
 
+#MediaImg {
+    border-radius: 45%;
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+}
 
 #MediaLink {
     text-decoration: none;
