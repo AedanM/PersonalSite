@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Aedan's Page</title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="color-scheme" content="light dark" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.css"
+		/>
+		<link rel="stylesheet" href="{% static 'styles/MasterStyle.css' %}" />
+	</head>
+
+	<body>
+		<main class="container" height-min="0.75uh">
+			<header>
+				<strong>Aedan's Work</strong>
+			</header>
+			<footer id="footerDiv">
+				<section>
+					<h2>Contact Me</h2>
+					<a href="mailto:aedan.mchale@gmail.com"
+						><img id="footerImg" src={%static "images/gmail.png" %} alt="Gmail" /></a
+					>
+					<a href="https://codestats.net/users/AedanM"
+						><img id="footerImg" src={%static "images/codestats.svg" %}
+						alt="CodeStats" /></a
+					>
+					<a href="https://www.twitter.com/AedanM"
+						><img id="footerImg" src={%static "images/twitter.png" %} alt="Twitter"
+						/></a
+					>
+					<a href="https://github.com/AedanM"
+						><img id="footerImg" src={%static "images/github.png" %} alt="GitHub"
+						/></a
+					>
+					<a href="https://www.linkedin.com/in/AedanMcHale"
+						><img id="footerImg" src={%static "images/linkedin.png" %} alt="LinkedIn"
+						/></a
+					>
+				</section>
+			</footer>
+		</main>
+	</body>
+</html>
