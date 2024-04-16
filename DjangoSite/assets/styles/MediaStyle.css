@@ -9,10 +9,10 @@
 }
 
 #MediaLogoImg {
-    border-radius: 50%;
+    border-radius: 45%;
     width: 75px;
     height: 75px;
-    object-fit:cover;
+    object-fit:scale-down;
 }
 
 

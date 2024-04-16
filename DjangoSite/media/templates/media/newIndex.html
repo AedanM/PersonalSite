@@ -82,6 +82,8 @@
 
 								{% if media|HasAttr:"Watched" %}
 								<td>Watched</td>
+								{% endif %} {% if media|HasAttr:"Read" %}
+								<td>Read</td>
 								{% endif %}
 								<td>Genre</td>
 							</thead>
@@ -89,8 +91,8 @@
 							<tr>
 								<td id="MediaLogo">
 									<a href="{{show.InfoPage}}">
-										{% if 'http' in img %}
-										<img id="MediaLogoImg" src="{{img}}" alt="{{show.Title}}" />
+										{% if show|ModelType != "TVShow" %}
+										<img id="MediaImg" src="{% static img %}" alt="{{show.Title}}" />
 										{% else %}
 										<img id="MediaLogoImg" src="{% static img %}" alt="{{show.Title}}" />
 										{% endif %}
@@ -185,8 +187,31 @@
 								>
 									&#10007;
 								</td>
+								{% endif %} {% endif %} {% if media|HasAttr:"Read" %} {% if show.Read %}
+								<td
+									align="center"
+									style="
+										text-align: center;
+										font-size: 150%;
+										font-weight: bold;
+										color: green;
+									"
+								>
+									&#10004;
+								</td>
+								{% else %}
+								<td
+									align="center"
+									style="
+										text-align: center;
+										font-size: 150%;
+										font-weight: bold;
+										color: red;
+									"
+								>
+									&#10007;
+								</td>
 								{% endif %} {% endif %}
-
 								<td>
 									<details>
 										<summary>{{ show.GenreTagList|length }} Tags</summary>

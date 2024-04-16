@@ -1,17 +1,17 @@
 import sys
-
-from django.core import serializers
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.shortcuts import redirect
-from django import forms
-from django.db import models
 from typing import Any
+
+from django import forms
+from django.core import serializers
+from django.db import models
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+
+from .forms import ComicForm, MovieForm, NovelForm, PodcastForm, TVForm, YoutubeForm
+from .models import Comic, Movie, Novel, Podcast, TVShow, Youtube
+from .modules.DB_Tools import CleanDupes
 from .modules.UpdateFromFolder import UpdateFromFolder
 from .modules.Web_Tools import GetShowInfo
-from .modules.DB_Tools import CleanDupes
-from .models import Comic, Novel, Movie, Podcast, TVShow, Youtube
-from .forms import ComicForm, NovelForm, MovieForm, PodcastForm, TVForm, YoutubeForm
 
 # Create your views here.
 
@@ -36,7 +36,7 @@ def GetContents(request) -> dict[str, dict]:
         "TV Shows": dict(zip(TVList, [x.GetLogo(loadLogo) for x in TVList])),
         "Youtube": dict(zip(YoutubeList, [x.GetLogo(loadLogo) for x in YoutubeList])),
         "Podcasts": dict(zip(PodcastList, [x.GetLogo(loadLogo) for x in PodcastList])),
-        "Books": dict(zip(NovelList, [x.GetLogo(loadLogo) for x in NovelList])),
+        "Book": dict(zip(NovelList, [x.GetLogo(loadLogo) for x in NovelList])),
         "Comics": dict(zip(ComicList, [x.GetLogo(loadLogo) for x in ComicList])),
     }
 
@@ -66,7 +66,10 @@ def update(request) -> HttpResponse:
 
 
 def wikiScrape(request) -> HttpResponse:
-    response = GetShowInfo(wikiLink=request.GET["show"] if "show" in request.GET else False)
+    _, cls = GetFormAndClass(request=request)
+    response = GetShowInfo(
+        wikiLink=request.GET["show"] if "show" in request.GET else False, mediaType=cls
+    )
     return HttpResponse(content=response, content_type="text/json")
 
 
@@ -101,7 +104,7 @@ def GetFormAndClass(request) -> tuple:
     elif "TV" in formType:
         cls = TVForm
         obj = TVShow
-    elif "Novel" in formType:
+    elif "Book" in formType:
         cls = NovelForm
         obj = Novel
     elif "Comic" in formType:

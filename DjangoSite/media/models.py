@@ -41,7 +41,7 @@ class Media(models.Model):
 
 
 class WatchableMedia(Media):
-    Watched: models.BooleanField = models.BooleanField(default=True)
+    Watched: models.BooleanField = models.BooleanField(default=False)
     Duration: models.DurationField = models.DurationField()
 
 
@@ -83,6 +83,7 @@ class Youtube(WatchableMedia):
 class Novel(Media):
     Author: models.CharField = models.CharField(max_length=50)
     PageLength: models.IntegerField = models.IntegerField(default=0)
+    Read: models.BooleanField = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         if not self.Author:
@@ -95,6 +96,7 @@ class Comic(Media):
     Company: models.CharField = models.CharField(max_length=50)
     Character: models.CharField = models.CharField(max_length=50)
     PageLength: models.IntegerField = models.IntegerField(default=0)
+    Read: models.BooleanField = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         if not self.Company:
