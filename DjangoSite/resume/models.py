@@ -1,6 +1,16 @@
 import datetime
+from enum import Enum
 
 from django.db import models
+
+
+class Proficiency(models.TextChoices):
+    Proficient = "Proficient"
+    Experienced = "Experienced"
+    Comfortable = "Comfortable"
+    Familiar = "Familiar"
+    Beginner = "Beginner"
+    Never_Used = "Never Used"
 
 
 class Education(models.Model):
@@ -24,3 +34,12 @@ class Employment(models.Model):
 
     def __str__(self) -> str:
         return self.Job_Title + " @ " + self.Employer
+
+
+class SkillsAndTools(models.Model):
+    Name: models.TextField = models.TextField()
+    Proficiency: models.TextField = models.TextField(choices=Proficiency)
+    Is_a_Language: models.BooleanField = models.BooleanField()
+
+    def __str__(self) -> str:
+        return self.Name

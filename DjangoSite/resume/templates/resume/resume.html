@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %} {% load resumeTags %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,13 +13,114 @@
 			href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.css"
 		/>
 		<link rel="stylesheet" href="{% static 'styles/MasterStyle.css' %}" />
+		<link rel="stylesheet" href="{% static 'styles/ResumeStyle.css' %}" />
 	</head>
 
 	<body>
-		<main class="container" height-min="0.75uh">
-			<header>
-				<strong>Aedan's Work</strong>
+		<main class="container" height-min="0.5uh" width-max:"50vw">
+			<header class="FlexWide">
+				<div>
+					<h1>Aedan McHale</h1>
+					<p>Electrical Engineer</p>
+				</div>
+				<div>
+					{% comment %}
+					<p><a href="mailto:aedan.mchale@gmail.com">Contact Me</a></p>
+					{% endcomment %}
+					<p>🇬🇧 +44 75199 47712</p>
+					<p>🇺🇸 +1 (848) 220-0420</p>
+				</div>
 			</header>
+			<hr>
+			<section title="work">
+				<details open="true">
+					<summary>Experience</summary>
+					{% for job in Employment %}
+					<section>
+						<h3>{{job.Employer}}</h3>
+
+						<div class="FlexWide">
+							<p>{{job.Job_Title}}</p>
+
+							<p>
+								{{job.Start_Year}} - {% if job.End_Year > 0%} {{job.End_Year}} {% else
+								%} Present {%endif%}
+							</p>
+						</div>
+
+						<div class="FlexWide">
+
+							<div>
+								<ul aria-label="Responsibilities">
+								{% for resp in job.Responsibilities|split:','%}
+									<li>{{resp}}</li>
+								{% endfor %}
+								<ul>
+							</div>
+
+							<div>
+								<ul aria-label="Skills Gained">
+								{% for resp in job.Skills_Gained|split:','%}
+									<li>{{resp}}</li>
+								{% endfor %}
+								<ul>
+							</div>
+
+						</div>
+					</section>
+					<hr />
+					{%endfor%}
+				</details>
+			</section>
+			<section title="lang">
+					<fieldset role="group">
+						<div>
+							<ul aria-label="Proficient">	
+							{% for tool in Tools %}
+								{%if tool.Proficiency == "Proficient"%}	
+									<li>{{tool.Name}}</li>
+								{%endif%}
+							{%endfor%}
+							</ul>
+						</div>
+						<div>
+							<ul aria-label="Experienced">	
+							{% for tool in Tools %}
+								{%if tool.Proficiency == "Experienced"%}	
+									<li>{{tool.Name}}</li>
+								{%endif%}
+							{%endfor%}
+							</ul>
+						</div>
+						<div>
+							<ul aria-label="Comfortable">	
+								{% for tool in Tools %}
+									{%if tool.Proficiency == "Comfortable"%}	
+										<li>{{tool.Name}}</li>
+									{%endif%}
+								{%endfor%}
+							</ul>
+						</div>
+						<div>
+							<ul aria-label="Familiar">	
+								{% for tool in Tools %}
+									{%if tool.Proficiency == "Familiar"%}	
+										<li>{{tool.Name}}</li>
+									{%endif%}
+								{%endfor%}
+							</ul>
+						</div>
+						<div>
+							<ul aria-label="Beginner">	
+								{% for tool in Tools %}
+									{%if tool.Proficiency == "Beginner"%}	
+										<li>{{tool.Name}}</li>
+									{%endif%}
+								{%endfor%}
+							</ul>
+						</div>
+					</fieldset>
+			</section>
 			<footer id="footerDiv">
 				<section>
 					<h2>Contact Me</h2>
