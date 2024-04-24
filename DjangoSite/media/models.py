@@ -4,7 +4,7 @@ import os
 from django.conf import settings as django_settings
 from django.db import models
 
-from .modules.Model_Tools import DEFAULT_IMG, DownloadImage
+from .modules.Model_Tools import DEFAULT_IMG, DEFAULT_IMG_PATH, DownloadImage
 
 
 class Media(models.Model):
@@ -30,14 +30,12 @@ class Media(models.Model):
         return [x.strip() for x in sorted(self.Genre_Tags.split(","))]
 
     def GetLogo(self, loadLogo) -> str:
-        if loadLogo or not os.path.exists(
-            os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo)
-        ):
+        returnVal = DEFAULT_IMG_PATH
+        if loadLogo:
             DownloadImage(self)
-        if self.InfoPage == "http://127.0.0.1:8000/media":
-            self.InfoPage = "http://127.0.0.1:8000/media"
-            self.save()
-        return self.Logo
+        elif os.path.exists(os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo)):
+            returnVal = self.Logo
+        return returnVal
 
 
 class WatchableMedia(Media):

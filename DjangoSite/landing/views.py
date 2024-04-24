@@ -9,3 +9,4 @@ from media.models import Movie, TVShow
 def index(request) -> HttpResponse:
     context: dict = {}
     return render(request, "landing/index.html", context)
+

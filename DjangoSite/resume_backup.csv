@@ -1,0 +1,40 @@
+id,Institution,Qualification,Start_Year,End_Year,Qualification_Level
+1,"University of Nottingham","Masters of Engineering",2019,2023,"First Class"
+2,"Moorestown High School","High School Diploma",2014,2019,""
+id,Employer,Job_Title,Responsibilities,Start_Year,End_Year,Skills_Gained
+1,"Nidec Control Techniques","Graduate Engineer","Customer Bug Resolution, Technical Research of Fieldbus Protocols, Conformance Testing for Fieldbus Protocols, Automated Testing of Hardware and Firmware, Embedded Software Development, UX and UI Development with HMI Keypad",2023,-1,"IronPython Development, Azure Dev Ops, C/C++ Development"
+2,"Garden State Council","Program Area Specialist","",2013,2019,""
+3,"Nidec Control Techniques","E3 Summer Placement Student","",2021,2022,"Embedded Development, C/C++ Programming, C# Development, Azure Dev Ops Training, Xamarin/MAUI App Development, WPF Development,Technical Documentation, Professional Presentations"
+id,Proficiency,Name,Skill_Type
+1,Proficient,CPython,Language
+2,Proficient,C,Language
+3,Experienced,C#,Language
+4,Comfortable,HTML,Tool
+5,Familiar,Javascript,Language
+6,Comfortable,MATLAB,Language
+7,Familiar,Ruby,Language
+8,Newbie,Perl,Language
+9,Comfortable,Batch,Language
+10,Comfortable,SQL,Language
+11,Proficient,C++,Language
+12,Comfortable,CSS,Tool
+13,Familiar,Typescript,Language
+14,Proficient,"Visual Studio Code",Program
+15,Experienced,"Visual Studio",Program
+16,Comfortable,"Keil µVision",Program
+17,Experienced,"Arduino IDE",Program
+18,Experienced,Wireshark,Program
+19,Comfortable,"STM32 Cube",Program
+20,Familiar,Assembly,Language
+21,Familiar,"TIA Portal",Program
+22,Familiar,CMake,Tool
+23,Experienced,Git,Tool
+24,Experienced,"Azure Dev Ops",Program
+25,Proficient,IronPython,Language
+27,Comfortable,Doxygen,Tool
+28,Comfortable,Autohotkey,Language
+29,Proficient,JSON,Tool
+30,Proficient,XML,Tool
+31,Comfortable,TOML,Program
+32,Familiar,Java,Language
+33,Experienced,Markdown,Tool
