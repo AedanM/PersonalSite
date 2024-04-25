@@ -1,4 +1,5 @@
 import concurrent.futures
+import datetime
 import os
 import random
 import re
@@ -46,11 +47,15 @@ def GetCorrectPage(title):
             newPage = page[redirectSearch:redirectEnd]
             continue
         break
+    if attempt >= 5:
+        newPage = None
     return newPage
 
 
 def GetShowInfo(wikiLink, mediaType) -> str:
     details = []
+    with open("output.txt", "w") as fp:
+        fp.write(f"Run at {datetime.datetime.now()}\n\n\n")
     if wikiLink:
         wikiLink = (
             wikiLink.replace("https://en.wikipedia.org/wiki/", "")
@@ -63,7 +68,10 @@ def GetShowInfo(wikiLink, mediaType) -> str:
         with Bar("Submitting...", max_len=(mediaType.objects.all()).count()) as bar:
             # pool = concurrent.futures.ThreadPoolExecutor()
             for selected in mediaType.objects.all():
-                details.append(UpdateDetails(selected, mediaType))
+                if selected.NeedsUpdate:
+                    print()
+                    print(selected.NeedsUpdate)
+                    details.append(UpdateDetails(selected, mediaType))
                 bar.next()
             # pool.shutdown(wait=True)
             print("Finished")
@@ -75,25 +83,76 @@ def GetShowInfo(wikiLink, mediaType) -> str:
 
 def UpdateDetails(selected, mediaType) -> tuple:
     details = None
+    print(selected.Title)
 
-    wikiLink = selected.Title + wikiDescriptionTags[mediaType]
+    wikiLink = (
+        selected.Title + wikiDescriptionTags[mediaType]
+        if selected.InfoPage == "None"
+        else selected.InfoPage.split("/wiki/")[-1]
+    )
 
     wikiLink = GetCorrectPage(title=wikiLink)
     if (
-        selected.InfoPage in ["None", r"http://127.0.0.1:8000/media"]
+        wikiLink
+        and selected.InfoPage in ["None", r"http://127.0.0.1:8000/media"]
         or f"https://en.wikipedia.org/wiki/{wikiLink}" != selected.InfoPage
     ):
         selected.InfoPage = f"https://en.wikipedia.org/wiki/{wikiLink}"
         selected.save()
-    if selected.Logo in ["logos/DefaultIMG.png"]:
-        details = ScrapeWiki(wikiLink=wikiLink)
-        if hasattr(selected, "Year") and details[1]:
-            selected.Year = details[1]
-        if hasattr(selected, "Duration") and details[2]:
-            selected.Duration = details[2]
-        if selected.Logo in ["logos/DefaultIMG.png"] and details[3]:
-            selected.Logo = details[3]
+        print("Info Page Saved")
+
+    if selected.Logo in ["logos/DefaultIMG.png", "None"] and wikiLink:
+        try:
+            editMade = False
+            used = []
+            details = ScrapeWiki(wikiLink=wikiLink)
+            if (
+                hasattr(selected, "Year")
+                and selected.Year != int(details[1])
+                and details[1]
+                and "ng=" not in details[1]
+            ):
+                selected.Year = int(details[1])
+                used.append("year")
+                editMade = True
+            if (
+                hasattr(selected, "Duration")
+                and selected.Duration != details[2]
+                and details[2]
+                and type(details[2]) == timedelta
+            ):
+                selected.Duration = details[2]
+                editMade = True
+                used.append("time")
+            if (
+                selected.Logo in ["logos/DefaultIMG.png", "None"]
+                and details[3]
+                and "http" in details[3]
+                and "https:s=" not in details[3]
+            ):
+                selected.Logo = details[3]
+                used.append("Logo")
+                editMade = True
+
+            if selected.Logo == "None":
+                print("No Image Found")
+                with open("output.txt", "a") as fp:
+                    fp.write(f"LOGO -- {selected}\n")
+
+            if editMade:
+                selected.save()
+                print(f"Details Saved {details} {used}")
+            elif selected.Logo != "None":
+                with open("output.txt", "a") as fp:
+                    fp.write(f"{selected}\n")
+
+        except (TypeError, ValueError) as err:
+            print("Save failed due to " + str(err))
+    if wikiLink == None:
+        selected.InfoPage = "None"
+        print("No Page Found")
         selected.save()
+    print()
 
     return (selected, details)
 
