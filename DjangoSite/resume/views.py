@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from .models import Education, Employment, SkillsAndTools
+from .models import Education, Employment, Proficiency, SkillsAndTools
 
 # Create your views here.
 
@@ -20,8 +20,8 @@ def resume(request) -> HttpResponse:
         ),
         "Tools": sorted(
             SkillsAndTools.objects.all(),
-            key=lambda x: x.Proficiency,
-            reverse=True,
         ),
+        "ProfLevels": Proficiency,
     }
+    print(context["Tools"])
     return render(request, "resume/resume.html", context)

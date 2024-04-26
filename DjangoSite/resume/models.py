@@ -9,8 +9,14 @@ class Proficiency(models.TextChoices):
     Experienced = "Experienced"
     Comfortable = "Comfortable"
     Familiar = "Familiar"
-    Beginner = "Beginner"
+    Beginner = "Newbie"
     Never_Used = "Never Used"
+
+
+class SkillType(models.TextChoices):
+    Program = "Program"
+    Tool = "Tool"
+    Language = "Language"
 
 
 class Education(models.Model):
@@ -39,7 +45,14 @@ class Employment(models.Model):
 class SkillsAndTools(models.Model):
     Name: models.TextField = models.TextField()
     Proficiency: models.TextField = models.TextField(choices=Proficiency)
-    Is_a_Language: models.BooleanField = models.BooleanField()
+    Skill_Type: models.TextField = models.TextField(choices=SkillType)
 
     def __str__(self) -> str:
         return self.Name
+
+    def __lt__(self, obj) -> bool:
+        return (
+            self.Skill_Type < obj.Skill_Type
+            if self.Skill_Type != obj.Skill_Type
+            else self.Name < obj.Name
+        )

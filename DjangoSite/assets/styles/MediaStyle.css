@@ -13,8 +13,15 @@
     width: 75px;
     height: 75px;
     object-fit:scale-down;
+    background-color: #03070f;
 }
 
+#MediaImg {
+    border-radius: 45%;
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+}
 
 #MediaLink {
     text-decoration: none;
@@ -24,4 +31,8 @@
 #GenreTag {
     text-decoration: none;
     color: whitesmoke;
+}
+
+.checked {
+    color: orange;
 }

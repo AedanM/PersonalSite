@@ -29,6 +29,18 @@ def ModelType(obj) -> str:
     return type(obj).__name__
 
 
+@register.filter(name="rating")
+def rating(number):
+    outStr = ""
+    for i in range(number // 2):
+        outStr += "★"
+    for i in range(number % 2):
+        outStr += "\u2beA"
+    for i in range(5 - (number // 2) - number % 2):
+        outStr += "☆"
+    return outStr if number != 0 else ""
+
+
 @register.filter
 def MakeChart(iterDict, chartType) -> str:
     outPath = os.path.join(

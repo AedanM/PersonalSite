@@ -1,5 +1,6 @@
-from .models import Comic, Novel, Movie, Podcast, TVShow, Youtube
 from django import forms
+
+from .models import Comic, Movie, Novel, Podcast, TVShow, Youtube
 
 
 class TVForm(forms.ModelForm):

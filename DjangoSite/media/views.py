@@ -94,6 +94,28 @@ def new(request) -> HttpResponse:
     return response
 
 
+def edit(request) -> HttpResponse:
+    response: HttpResponse = redirect("/media")
+    if "type" in request.GET:
+        cls, obj = GetFormAndClass(request)
+
+        inst = obj.objects.get(id=request.GET["instance"]) if "instance" in request.GET else None
+
+        form = cls(request.POST or None, instance=inst)
+        if form.is_valid():
+            form.save()
+        context = {}
+        context["form"] = form
+        context["inst"] = inst
+        response = (
+            render(request, "media/editform.html", context)
+            if request.method == "GET"
+            else redirect("/media")
+        )
+
+    return response
+
+
 def GetFormAndClass(request) -> tuple:
     formType = request.GET["type"]
     cls: Any = MovieForm

@@ -4,7 +4,7 @@ import os
 from django.conf import settings as django_settings
 from django.db import models
 
-from .modules.Model_Tools import DEFAULT_IMG, DownloadImage
+from .modules.Model_Tools import DEFAULT_IMG, DEFAULT_IMG_PATH, DownloadImage
 
 
 class Media(models.Model):
@@ -30,19 +30,33 @@ class Media(models.Model):
         return [x.strip() for x in sorted(self.Genre_Tags.split(","))]
 
     def GetLogo(self, loadLogo) -> str:
-        if loadLogo or not os.path.exists(
-            os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo)
-        ):
+        returnVal = DEFAULT_IMG_PATH
+        if loadLogo:
             DownloadImage(self)
-        if self.InfoPage == "http://127.0.0.1:8000/media":
-            self.InfoPage = "http://127.0.0.1:8000/media"
-            self.save()
-        return self.Logo
+        elif os.path.exists(os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo)):
+            returnVal = self.Logo
+        return returnVal
+
+    @property
+    def NeedsUpdate(self) -> list:
+        output = []
+        if self.Logo == "None" or not self.Logo:
+            output.append("Logo")
+        if self.InfoPage == "None" or not self.InfoPage:
+            output.append("Info Page")
+        return output
 
 
 class WatchableMedia(Media):
     Watched: models.BooleanField = models.BooleanField(default=False)
     Duration: models.DurationField = models.DurationField()
+
+    @property
+    def NeedsUpdate(self) -> list:
+        output = super().NeedsUpdate
+        if self.Duration == datetime.timedelta(seconds=0) or not self.Duration:
+            output.append("Duration")
+        return output
 
 
 class TVShow(WatchableMedia):
@@ -67,6 +81,13 @@ class Movie(WatchableMedia):
             self.Year = 1900
             self.save()
         return super().__str__() + f" ({self.Year})"
+
+    @property
+    def NeedsUpdate(self) -> list:
+        output = super().NeedsUpdate
+        if self.Year == 0 or not self.Year:
+            output.append("Year")
+        return output
 
 
 class Youtube(WatchableMedia):
