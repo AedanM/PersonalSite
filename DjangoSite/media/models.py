@@ -37,6 +37,15 @@ class Media(models.Model):
             returnVal = self.Logo
         return returnVal
 
+    @property
+    def NeedsUpdate(self) -> list:
+        output = []
+        if self.Logo == "None" or not self.Logo:
+            output.append("Logo")
+        if self.InfoPage == "None" or not self.InfoPage:
+            output.append("Info Page")
+        return output
+
 
 class WatchableMedia(Media):
     Watched: models.BooleanField = models.BooleanField(default=False)
