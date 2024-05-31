@@ -17,7 +17,7 @@ class Media(models.Model):
     Rating: models.IntegerField = models.IntegerField(default=0)
 
     def __lt__(self, cmpObj) -> bool:
-        return self.SortTitle < cmpObj.sortTitle
+        return self.SortTitle < cmpObj.SortTitle
 
     @property
     def SortTitle(self):
