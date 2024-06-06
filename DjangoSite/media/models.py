@@ -1,3 +1,4 @@
+# pylint: disable=C0103
 import datetime
 import os
 
@@ -16,10 +17,10 @@ class Media(models.Model):
     Rating: models.IntegerField = models.IntegerField(default=0)
 
     def __lt__(self, cmpObj) -> bool:
-        return self.sortTitle < cmpObj.sortTitle
+        return self.SortTitle < cmpObj.SortTitle
 
     @property
-    def sortTitle(self):
+    def SortTitle(self):
         return str(self.Title).replace("The", "").replace("A ", "").strip()
 
     def __str__(self) -> str:
@@ -27,7 +28,7 @@ class Media(models.Model):
 
     @property
     def GenreTagList(self) -> list:
-        return [x.strip() for x in sorted(self.Genre_Tags.split(","))]
+        return [x.strip() for x in sorted(str(self.Genre_Tags).split(","))]
 
     def GetLogo(self, loadLogo) -> str:
         returnVal = DEFAULT_IMG_PATH

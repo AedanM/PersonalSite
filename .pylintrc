@@ -114,7 +114,7 @@ unsafe-load-any-extension=no
 [BASIC]
 
 # Naming style matching correct argument names.
-argument-naming-style=snake_case
+argument-naming-style=camelCase
 
 # Regular expression matching correct argument names. Overrides argument-
 # naming-style. If left empty, argument names will be checked with the set
@@ -122,7 +122,7 @@ argument-naming-style=snake_case
 #argument-rgx=
 
 # Naming style matching correct attribute names.
-attr-naming-style=snake_case
+attr-naming-style=PascalCase
 
 # Regular expression matching correct attribute names. Overrides attr-naming-
 # style. If left empty, attribute names will be checked with the set naming
@@ -150,7 +150,7 @@ class-attribute-naming-style=any
 #class-attribute-rgx=
 
 # Naming style matching correct class constant names.
-class-const-naming-style=UPPER_CASE
+class-const-naming-style=PascalCase
 
 # Regular expression matching correct class constant names. Overrides class-
 # const-naming-style. If left empty, class constant names will be checked with
@@ -177,7 +177,7 @@ const-naming-style=UPPER_CASE
 docstring-min-length=-1
 
 # Naming style matching correct function names.
-function-naming-style=snake_case
+function-naming-style=PascalCase
 
 # Regular expression matching correct function names. Overrides function-
 # naming-style. If left empty, function names will be checked with the set
@@ -208,14 +208,14 @@ inlinevar-naming-style=any
 #inlinevar-rgx=
 
 # Naming style matching correct method names.
-method-naming-style=snake_case
+method-naming-style=PascalCase
 
 # Regular expression matching correct method names. Overrides method-naming-
 # style. If left empty, method names will be checked with the set naming style.
 #method-rgx=
 
 # Naming style matching correct module names.
-module-naming-style=snake_case
+module-naming-style=PascalCase
 
 # Regular expression matching correct module names. Overrides module-naming-
 # style. If left empty, module names will be checked with the set naming style.
@@ -243,7 +243,7 @@ property-classes=abc.abstractproperty
 #typevar-rgx=
 
 # Naming style matching correct variable names.
-variable-naming-style=snake_case
+variable-naming-style=camelCase
 
 # Regular expression matching correct variable names. Overrides variable-
 # naming-style. If left empty, variable names will be checked with the set
@@ -430,7 +430,14 @@ disable=raw-checker-failed,
         deprecated-pragma,
         use-symbolic-message-instead,
         use-implicit-booleaness-not-comparison-to-string,
-        use-implicit-booleaness-not-comparison-to-zero
+        use-implicit-booleaness-not-comparison-to-zero,
+        no-name-in-module,
+        import-error,
+        too-few-public-methods,
+        missing-module-docstring,
+        missing-class-docstring,
+        missing-function-docstring,
+        import-outside-toplevel
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
@@ -518,8 +525,13 @@ min-similarity-lines=4
 # Limits count of emitted suggestions for spelling mistakes.
 max-spelling-suggestions=4
 
-# Spelling dictionary name. No available dictionaries : You need to install
-# both the python package and the system dependency for enchant to work.
+# Spelling dictionary name. Available dictionaries: en_BW (hunspell), en_AU
+# (hunspell), en_BZ (hunspell), en_GB (hunspell), en_JM (hunspell), en_DK
+# (hunspell), en_HK (hunspell), en_GH (hunspell), en_US (hunspell), en_ZA
+# (hunspell), en_ZW (hunspell), en_SG (hunspell), en_NZ (hunspell), en_BS
+# (hunspell), en_AG (hunspell), en_PH (hunspell), en_IE (hunspell), en_NA
+# (hunspell), en_TT (hunspell), en_IN (hunspell), en_NG (hunspell), en_CA
+# (hunspell).
 spelling-dict=
 
 # List of comma separated words that should be considered directives if they
@@ -632,4 +644,3 @@ init-import=no
 # List of qualified module names which can have objects that can redefine
 # builtins.
 redefining-builtins-modules=six.moves,past.builtins,future.builtins,builtins,io
-

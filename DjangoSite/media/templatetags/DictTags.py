@@ -6,15 +6,15 @@ from django import template
 from django.conf import settings as django_settings
 
 matplotlib.use("Agg")
+# pylint:disable=C0413
 import matplotlib.pyplot as plt
-import numpy as np
 
 register = template.Library()
 
 
 def ObjFromDict(d) -> typing.Any:
     obj = d
-    if type(d) == dict and d:
+    if isinstance(d, dict) and d:
         obj = ObjFromDict(list(d.keys())[0])
     return obj
 
@@ -30,13 +30,13 @@ def ModelType(obj) -> str:
 
 
 @register.filter(name="rating")
-def rating(number):
+def Rating(number):
     outStr = ""
-    for i in range(number // 2):
+    for _ in range(number // 2):
         outStr += "★"
-    for i in range(number % 2):
-        outStr += "\u2beA"
-    for i in range(5 - (number // 2) - number % 2):
+    for _ in range(number % 2):
+        outStr += "½"
+    for _ in range(5 - (number // 2) - number % 2):
         outStr += "☆"
     return outStr if number != 0 else ""
 

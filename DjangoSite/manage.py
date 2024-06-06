@@ -1,10 +1,11 @@
 #!/usr/bin/env python
+# pylint: disable=C0103
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
 
 
-def main():
+def Main():
     """Run administrative tasks."""
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "DjangoSite.settings")
     try:
@@ -19,4 +20,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    Main()

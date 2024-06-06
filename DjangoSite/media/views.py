@@ -1,13 +1,11 @@
-import sys
+# pylint: disable=C0103
 from typing import Any
 
-from django import forms
-from django.core import serializers
-from django.db import models
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
-from .forms import ComicForm, MovieForm, NovelForm, PodcastForm, TVForm, YoutubeForm
+from .forms import (ComicForm, MovieForm, NovelForm, PodcastForm, TVForm,
+                    YoutubeForm)
 from .models import Comic, Movie, Novel, Podcast, TVShow, Youtube
 from .modules.DB_Tools import CleanDupes
 from .modules.UpdateFromFolder import UpdateFromFolder
@@ -24,6 +22,7 @@ def ContentFilter(getParams: dict, contentList) -> list:
 
 
 def GetContents(request) -> dict[str, dict]:
+    # pylint: disable=E1101
     loadLogo = "loadLogos" in request.GET
     MovieList = ContentFilter(request.GET, Movie.objects.all())
     TVList = ContentFilter(request.GET, TVShow.objects.all())
@@ -46,7 +45,7 @@ def index(request) -> HttpResponse:
     context = {
         "MediaTypes": (
             GetContents(request=request)
-            if soloContent == None
+            if soloContent is None
             else GetContents(request=request)[soloContent]
         ),
         "Graphs": "noGraphs" in request.GET,
@@ -78,6 +77,7 @@ def new(request) -> HttpResponse:
     if "type" in request.GET:
         cls, obj = GetFormAndClass(request)
 
+        # pylint: disable=E1101
         inst = obj.objects.get(id=request.GET["instance"]) if "instance" in request.GET else None
 
         form = cls(request.POST or None, instance=inst)
@@ -99,6 +99,7 @@ def edit(request) -> HttpResponse:
     if "type" in request.GET:
         cls, obj = GetFormAndClass(request)
 
+        # pylint: disable=E1101
         inst = obj.objects.get(id=request.GET["instance"]) if "instance" in request.GET else None
 
         form = cls(request.POST or None, instance=inst)
