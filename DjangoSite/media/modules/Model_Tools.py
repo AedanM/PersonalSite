@@ -2,8 +2,7 @@ import os
 import urllib.request
 
 from django.conf import settings as django_settings
-from PIL import Image
-from wikipedia import wikipedia  # type:ignore
+from PIL import Image, UnidentifiedImageError
 
 DEFAULT_IMG = r"https://upload.wikimedia.org/wikipedia/commons/c/c9/Icon_Video.png"
 DEFAULT_IMG_PATH = "logos/DefaultIMG.png"
@@ -11,7 +10,7 @@ DEFAULT_IMG_PATH = "logos/DefaultIMG.png"
 
 def DownloadImage(modelObj):
     logoIMG = None
-    ReloadLogo = (
+    reloadLogo = (
         not modelObj.Logo
         or "http" in modelObj.Logo
         or not os.path.exists(os.path.join(django_settings.STATIC_ROOT, f"{modelObj.Logo}"))
@@ -19,7 +18,7 @@ def DownloadImage(modelObj):
         == r"C:\mysources\Aedan\PersonalSite\DjangoSite\static\logos/DefaultIMG.png"
     )
 
-    if ReloadLogo:
+    if reloadLogo:
         if "http" in modelObj.Logo and "@" not in modelObj.Logo:
             logoIMG = modelObj.Logo
         elif modelObj.InfoPage and modelObj.InfoPage != "None":
@@ -46,14 +45,18 @@ def DownloadImage(modelObj):
 
 def GetImageFromLink(savePath, requestImg):
     tempPath = os.path.join(django_settings.STATICFILES_DIRS[0], "temp.png")
+    print(requestImg)
     urllib.request.urlretrieve(
         requestImg,
         tempPath,
     )
-    img = Image.open(tempPath)
-    imScale = 480 / img.size[0]
-    newSize = round(img.size[0] * imScale), round(img.size[1] * imScale)
-    img = img.resize(newSize)
-    localPath = os.path.join(django_settings.STATICFILES_DIRS[0], f"{savePath}")
-    img.save(localPath)
-    os.remove(tempPath)
+    try:
+        img = Image.open(tempPath)
+        imScale = 480 / img.size[0]
+        newSize = round(img.size[0] * imScale), round(img.size[1] * imScale)
+        img = img.resize(newSize)
+        localPath = os.path.join(django_settings.STATICFILES_DIRS[0], f"{savePath}")
+        img.save(localPath)
+        os.remove(tempPath)
+    except UnidentifiedImageError:
+        pass

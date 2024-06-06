@@ -1,12 +1,14 @@
+import glob
+import os
+import re
 from dataclasses import dataclass
 from datetime import timedelta
-from django.conf import settings as django_settings
-import os
-import glob
 from typing import Any
-from ..models import Movie, TVShow, Podcast, Comic, Novel, Youtube
-import re
+
+from django.conf import settings as django_settings
 from django.db import models
+
+from ..models import Comic, Movie, Novel, Podcast, TVShow, Youtube
 
 
 @dataclass
