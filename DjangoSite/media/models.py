@@ -5,7 +5,7 @@ import os
 from django.conf import settings as django_settings
 from django.db import models
 
-from .modules.Model_Tools import DEFAULT_IMG_PATH, DownloadImage
+from .modules.Model_Tools import DEFAULT_IMG, DEFAULT_IMG_PATH, DownloadImage
 
 
 class Media(models.Model):
@@ -13,7 +13,7 @@ class Media(models.Model):
     Genre_Tags: models.TextField = models.TextField()
     Downloaded: models.BooleanField = models.BooleanField(default=False)
     InfoPage: models.CharField = models.CharField(max_length=200)
-    Logo: models.CharField = models.CharField(default="None", max_length=200)
+    Logo: models.CharField = models.CharField(default=DEFAULT_IMG, max_length=200)
     Rating: models.IntegerField = models.IntegerField(default=0)
 
     def __lt__(self, cmpObj) -> bool:
@@ -31,15 +31,12 @@ class Media(models.Model):
         return [x.strip() for x in sorted(str(self.Genre_Tags).split(","))]
 
     def GetLogo(self, loadLogo) -> str:
-        if loadLogo or (
-            not os.path.exists(os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo))
-            and self.Logo != "None"
-        ):
+        returnVal = DEFAULT_IMG_PATH
+        if loadLogo:
             DownloadImage(self)
-        if self.Logo == DEFAULT_IMG_PATH:
-            self.Logo = "None"
-            self.save()
-        return self.Logo if self.Logo != "None" else DEFAULT_IMG_PATH
+        elif os.path.exists(os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo)):
+            returnVal = self.Logo
+        return returnVal
 
     @property
     def NeedsUpdate(self) -> list:

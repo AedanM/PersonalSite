@@ -33,6 +33,8 @@ ALLOWED_HOSTS: list = []
 
 INSTALLED_APPS = [
     "media.apps.MediaConfig",
+    "landing.apps.LandingConfig",
+    "resume.apps.ResumeConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

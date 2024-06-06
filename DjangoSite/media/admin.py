@@ -1,13 +1,18 @@
 # pylint: disable=C0103
 from django.contrib import admin
 
-from .models import Comic, Novel, Movie, Podcast, TVShow, Youtube
+from .models import Comic, Movie, Novel, Podcast, TVShow, Youtube
 
-admin.site.register(TVShow)
-admin.site.register(Movie)
-admin.site.register(Youtube)
-admin.site.register(Comic)
-admin.site.register(Novel)
-admin.site.register(Podcast)
+
+class MediaAdmin(admin.ModelAdmin):
+    empty_value_display = "-Not Set-"
+
+
+admin.site.register(TVShow, MediaAdmin)
+admin.site.register(Movie, MediaAdmin)
+admin.site.register(Youtube, MediaAdmin)
+admin.site.register(Comic, MediaAdmin)
+admin.site.register(Novel, MediaAdmin)
+admin.site.register(Podcast, MediaAdmin)
 
 # Register your models here.
