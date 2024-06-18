@@ -5,7 +5,7 @@ import os
 from django.conf import settings as django_settings
 from django.db import models
 
-from .modules.Model_Tools import DEFAULT_IMG, DEFAULT_IMG_PATH, DownloadImage
+from .modules.ModelTools import DEFAULT_IMG, DEFAULT_IMG_PATH, DownloadImage
 
 
 class Media(models.Model):
@@ -32,9 +32,10 @@ class Media(models.Model):
 
     def GetLogo(self, loadLogo) -> str:
         returnVal = DEFAULT_IMG_PATH
-        if loadLogo:
+        logoExists = os.path.exists(os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo))
+        if loadLogo and not logoExists:
             DownloadImage(self)
-        elif os.path.exists(os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo)):
+        elif logoExists:
             returnVal = self.Logo
         return returnVal
 

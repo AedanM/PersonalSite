@@ -1,43 +1,14 @@
 # pylint: disable=C0103
-from typing import Any
 
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
-from .forms import (ComicForm, MovieForm, NovelForm, PodcastForm, TVForm,
-                    YoutubeForm)
-from .models import Comic, Movie, Novel, Podcast, TVShow, Youtube
 from .modules.DB_Tools import CleanDupes
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.Web_Tools import GetShowInfo
+from .modules.Utils import FindID, GetContents, GetFormAndClass
+from .modules.WebTools import GetShowInfo
 
 # Create your views here.
-
-
-def ContentFilter(getParams: dict, contentList) -> list:
-    returnList = contentList
-    if "genre" in getParams:
-        returnList = [x for x in returnList if getParams["genre"] in x.GenreTagList]
-    return sorted(returnList)
-
-
-def GetContents(request) -> dict[str, dict]:
-    # pylint: disable=E1101
-    loadLogo = "loadLogos" in request.GET
-    MovieList = ContentFilter(request.GET, Movie.objects.all())
-    TVList = ContentFilter(request.GET, TVShow.objects.all())
-    YoutubeList = ContentFilter(request.GET, Youtube.objects.all())
-    PodcastList = ContentFilter(request.GET, Podcast.objects.all())
-    ComicList = ContentFilter(request.GET, Comic.objects.all())
-    NovelList = ContentFilter(request.GET, Novel.objects.all())
-    return {
-        "Movies": dict(zip(MovieList, [x.GetLogo(loadLogo) for x in MovieList])),
-        "TV Shows": dict(zip(TVList, [x.GetLogo(loadLogo) for x in TVList])),
-        "Youtube": dict(zip(YoutubeList, [x.GetLogo(loadLogo) for x in YoutubeList])),
-        "Podcasts": dict(zip(PodcastList, [x.GetLogo(loadLogo) for x in PodcastList])),
-        "Book": dict(zip(NovelList, [x.GetLogo(loadLogo) for x in NovelList])),
-        "Comics": dict(zip(ComicList, [x.GetLogo(loadLogo) for x in ComicList])),
-    }
 
 
 def index(request) -> HttpResponse:
@@ -50,7 +21,7 @@ def index(request) -> HttpResponse:
         ),
         "Graphs": "noGraphs" in request.GET,
     }
-    return render(request, "media/newIndex.html", context)
+    return render(request, "media/index.html", context)
 
 
 def update(request) -> HttpResponse:
@@ -109,7 +80,7 @@ def edit(request) -> HttpResponse:
         context["form"] = form
         context["inst"] = inst
         response = (
-            render(request, "media/editform.html", context)
+            render(request, "media/editForm.html", context)
             if request.method == "GET"
             else redirect("/media")
         )
@@ -117,26 +88,27 @@ def edit(request) -> HttpResponse:
     return response
 
 
-def GetFormAndClass(request) -> tuple:
-    formType = request.GET["type"]
-    cls: Any = MovieForm
-    obj: Any = Movie
-    if "Movie" in formType:
-        cls = MovieForm
-        obj = Movie
-    elif "TV" in formType:
-        cls = TVForm
-        obj = TVShow
-    elif "Book" in formType:
-        cls = NovelForm
-        obj = Novel
-    elif "Comic" in formType:
-        cls = ComicForm
-        obj = Comic
-    elif "Podcast" in formType:
-        cls = PodcastForm
-        obj = Podcast
-    elif "Youtube" in formType:
-        cls = YoutubeForm
-        obj = Youtube
-    return cls, obj
+def SetDownloaded(request) -> HttpResponse:
+    response: HttpResponse = redirect("/media")
+    if "contentId" in request.GET:
+        if contentObj := FindID(request.GET["contentId"]):
+            newValue = (
+                request.GET["value"] == "True"
+                if "value" in request.GET
+                else not contentObj.Downloaded
+            )
+            contentObj.Downloaded = newValue
+            contentObj.save()
+    return response
+
+
+def SetWatched(request) -> HttpResponse:
+    response: HttpResponse = redirect("/media")
+    if "contentId" in request.GET:
+        if contentObj := FindID(request.GET["contentId"]):
+            newValue = (
+                request.GET["value"] == "True" if "value" in request.GET else not contentObj.Watched
+            )
+            contentObj.Watched = newValue
+            contentObj.save()
+    return response

@@ -50,7 +50,7 @@
 				
 				<div id="contentDiv">
 					<details>
-						<summary>Movies (158)</summary>
+						<summary>Movies (161)</summary>
 						<button onclick="document.location='/media/new?type=Movies'">
 							Add New
 						</button>
@@ -2272,6 +2272,69 @@
 										
 										<a id="GenreTag" href="/media?genre=Kubrick">
 											 Kubrick 
+										</a>
+										
+									</details>
+								</td>
+							</tr>
+							
+							<tr>
+								<td id="MediaLogo">
+									<a href="https://en.wikipedia.org/wiki/The_Dark_Crystal">
+										
+										<img id="MediaImg" src="/static/logos/The%20Dark%20Crystal.png" alt="The Dark Crystal" />
+										
+									</a>
+								</td>
+								   
+								<td>
+									<a
+										id="MediaLink"
+										href="/media/edit?type=Movies&instance=2616"
+									>
+										The Dark Crystal
+									</a>
+								</td>
+								<td></td>
+								
+								<td>1982</td>
+								  
+								<td>1:33:00</td>
+								 
+								<td
+									align="center"
+									style="
+										text-align: center;
+										font-size: 150%;
+										font-weight: bold;
+										color: green;
+									"
+								>
+									&#10004;
+								</td>
+								  
+								<td
+									align="center"
+									style="
+										text-align: center;
+										font-size: 150%;
+										font-weight: bold;
+										color: red;
+									"
+								>
+									&#10007;
+								</td>
+								  
+								<td>
+									<details>
+										<summary>2 Tags</summary>
+										
+										<a id="GenreTag" href="/media?genre=Muppets">
+											 Muppets, 
+										</a>
+										
+										<a id="GenreTag" href="/media?genre=Fantasy">
+											 Fantasy 
 										</a>
 										
 									</details>
@@ -7183,6 +7246,65 @@
 							
 							<tr>
 								<td id="MediaLogo">
+									<a href="https://en.wikipedia.org/wiki/The_Princess_Bride_(film)">
+										
+										<img id="MediaImg" src="/static/logos/The%20Princess%20Bride.png" alt="The Princess Bride" />
+										
+									</a>
+								</td>
+								   
+								<td>
+									<a
+										id="MediaLink"
+										href="/media/edit?type=Movies&instance=2615"
+									>
+										The Princess Bride
+									</a>
+								</td>
+								<td>★★★★★</td>
+								
+								<td>1987</td>
+								  
+								<td>1:38:00</td>
+								 
+								<td
+									align="center"
+									style="
+										text-align: center;
+										font-size: 150%;
+										font-weight: bold;
+										color: green;
+									"
+								>
+									&#10004;
+								</td>
+								  
+								<td
+									align="center"
+									style="
+										text-align: center;
+										font-size: 150%;
+										font-weight: bold;
+										color: green;
+									"
+								>
+									&#10004;
+								</td>
+								  
+								<td>
+									<details>
+										<summary>1 Tags</summary>
+										
+										<a id="GenreTag" href="/media?genre=Fantasy">
+											 Fantasy 
+										</a>
+										
+									</details>
+								</td>
+							</tr>
+							
+							<tr>
+								<td id="MediaLogo">
 									<a href="https://en.wikipedia.org/wiki/The_Producers_(1967_film)">
 										
 										<img id="MediaImg" src="/static/logos/The%20Producers.png" alt="The Producers" />
@@ -9207,6 +9329,65 @@
 							
 							<tr>
 								<td id="MediaLogo">
+									<a href="https://en.wikipedia.org/wiki/Stardust_(2007_film)">
+										
+										<img id="MediaImg" src="/static/logos/Stardust.png" alt="Stardust" />
+										
+									</a>
+								</td>
+								   
+								<td>
+									<a
+										id="MediaLink"
+										href="/media/edit?type=Movies&instance=2614"
+									>
+										Stardust
+									</a>
+								</td>
+								<td></td>
+								
+								<td>2007</td>
+								  
+								<td>2:08:00</td>
+								 
+								<td
+									align="center"
+									style="
+										text-align: center;
+										font-size: 150%;
+										font-weight: bold;
+										color: green;
+									"
+								>
+									&#10004;
+								</td>
+								  
+								<td
+									align="center"
+									style="
+										text-align: center;
+										font-size: 150%;
+										font-weight: bold;
+										color: red;
+									"
+								>
+									&#10007;
+								</td>
+								  
+								<td>
+									<details>
+										<summary>1 Tags</summary>
+										
+										<a id="GenreTag" href="/media?genre=Fantasy">
+											 Fantasy 
+										</a>
+										
+									</details>
+								</td>
+							</tr>
+							
+							<tr>
+								<td id="MediaLogo">
 									<a href="https://en.wikipedia.org/wiki/Starship_Troopers_(film)">
 										
 										<img id="MediaImg" src="/static/logos/Starship%20Troopers.png" alt="Starship Troopers" />
@@ -10160,7 +10341,7 @@
 				
 				<div id="contentDiv">
 					<details>
-						<summary>TV Shows (35)</summary>
+						<summary>TV Shows (36)</summary>
 						<button onclick="document.location='/media/new?type=TV Shows'">
 							Add New
 						</button>
@@ -11705,6 +11886,73 @@
 							
 							<tr>
 								<td id="MediaLogo">
+									<a href="https://en.wikipedia.org/wiki/The_Sopranos">
+										
+										<img id="MediaLogoImg" src="/static/logos/The%20Sopranos.png" alt="The Sopranos" />
+										
+									</a>
+								</td>
+								   
+								<td>
+									<a
+										id="MediaLink"
+										href="/media/edit?type=TV Shows&instance=2613"
+									>
+										The Sopranos
+									</a>
+								</td>
+								<td></td>
+								 
+								<td>6</td>
+								 
+								<td>0:44:00</td>
+								 
+								<td
+									align="center"
+									style="
+										text-align: center;
+										font-size: 150%;
+										font-weight: bold;
+										color: red;
+									"
+								>
+									&#10007;
+								</td>
+								  
+								<td
+									align="center"
+									style="
+										text-align: center;
+										font-size: 150%;
+										font-weight: bold;
+										color: red;
+									"
+								>
+									&#10007;
+								</td>
+								  
+								<td>
+									<details>
+										<summary>3 Tags</summary>
+										
+										<a id="GenreTag" href="/media?genre=American">
+											 American, 
+										</a>
+										
+										<a id="GenreTag" href="/media?genre=Drama">
+											 Drama, 
+										</a>
+										
+										<a id="GenreTag" href="/media?genre=Mafia">
+											 Mafia 
+										</a>
+										
+									</details>
+								</td>
+							</tr>
+							
+							<tr>
+								<td id="MediaLogo">
 									<a href="https://en.wikipedia.org/wiki/South_Park">
 										
 										<img id="MediaLogoImg" src="/static/logos/South%20Park.png" alt="South Park" />
@@ -12161,10 +12409,10 @@
 										text-align: center;
 										font-size: 150%;
 										font-weight: bold;
-										color: red;
+										color: green;
 									"
 								>
-									&#10007;
+									&#10004;
 								</td>
 								  
 								<td
@@ -12291,10 +12539,10 @@
 										text-align: center;
 										font-size: 150%;
 										font-weight: bold;
-										color: red;
+										color: green;
 									"
 								>
-									&#10007;
+									&#10004;
 								</td>
 								  
 								<td
@@ -12417,10 +12665,10 @@
 										text-align: center;
 										font-size: 150%;
 										font-weight: bold;
-										color: red;
+										color: green;
 									"
 								>
-									&#10007;
+									&#10004;
 								</td>
 								  
 								<td
