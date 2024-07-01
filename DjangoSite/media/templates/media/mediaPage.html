@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="iso-8859-15" />
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>{{object.Title}}</title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<link rel="stylesheet" href="{% static 'styles/MasterStyle.css' %}" />
+		<link rel="stylesheet" href="{% static 'styles/MediaStyle.css' %}" />
+	</head>
+	<body>
+		<main class="container">
+			<header class="pico">
+				<nav>
+					<ul>
+						<li>
+							<strong>Aedan's Media Server</strong>
+						</li>
+					</ul>
+					<ul>
+						<li>
+							<a href="/">Home</a>
+						</li>
+						<li>
+							<a href="/about">About</a>
+						</li>
+						<li>
+							<a href="/admin">Admin</a>
+						</li>
+					</ul>
+				</nav>
+			</header>
+		</main>
+		<div class="Centered">
+			<div>
+				<h1>{{object.Title}}</h1>
+				<a href="{{object.InfoPage}}">
+					<img
+						class="ViewImage"
+						src="{% static object.Logo%}"
+						alt="{{object.Title}}"
+					/>
+				</a>
+				<table>
+					<thead>
+						<td class="ViewHeader">Year</td>
+						<td class="ViewHeader">Length</td>
+					</thead>
+					<td class="ViewHeader">{{object.Year}}</td>
+					<td class="ViewHeader">{{object.Length}}</td>
+				</table>
+				<table>
+					<thead>
+						<td class="ViewHeader">Downloaded</td>
+						<td class="ViewHeader">Watched</td>
+					</thead>
+					{% if object.Downloaded %}
+					<td
+						align="center"
+						style="text-align: center; font-size: 150%; font-weight: bold"
+					>
+						<a
+							href="/media/setDownloaded?contentId={{object.id}}"
+							style="color: green; text-decoration: none"
+						>
+							&#10004;
+						</a>
+					</td>
+					{% else %}
+					<td
+						align="center"
+						style="text-align: center; font-size: 150%; font-weight: bold"
+					>
+						<a
+							href="/media/setDownloaded?contentId={{object.id}}"
+							style="color: red; text-decoration: none"
+						>
+							&#10007;
+						</a>
+					</td>
+					{% endif %} {% if object.Watched %}
+					<td
+						align="center"
+						style="text-align: center; font-size: 150%; font-weight: bold"
+					>
+						<a
+							href="/media/setWatched?contentId={{object.id}}"
+							style="color: green; text-decoration: none"
+						>
+							&#10004;
+						</a>
+					</td>
+					{% else %}
+					<td
+						align="center"
+						style="text-align: center; font-size: 150%; font-weight: bold"
+					>
+						<a
+							href="/media/setWatched?contentId={{object.id}}"
+							style="color: red; text-decoration: none"
+						>
+							&#10007;
+						</a>
+					</td>
+					{% endif %}
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

@@ -39,3 +39,12 @@ small{
     justify-content:start;
     align-items: center;
 }
+
+
+.Centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+

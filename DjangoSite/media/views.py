@@ -11,6 +11,11 @@ from .modules.WebTools import GetShowInfo
 # Create your views here.
 
 
+def viewMedia(request) -> HttpResponse:
+    context = {"object": FindID(request.GET["id"])}
+    return render(request, "media/mediaPage.html", context)
+
+
 def index(request) -> HttpResponse:
     soloContent = request.GET["type"] if "type" in request.GET else None
     context = {
