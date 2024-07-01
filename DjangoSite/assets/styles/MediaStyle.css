@@ -38,4 +38,9 @@
 }
 
 .ViewImage{
+    max-width: 50%;
+}
+
+.ViewHeader{
+    text-align: center;
 }
