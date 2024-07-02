@@ -5566,7 +5566,7 @@
 								<td id="MediaLogo">
 									<a href="https://en.wikipedia.org/wiki/Mean_Girls">
 										
-										<img id="MediaImg" src="/static/logos/Mean%20Girls%202004.png" alt="Mean Girls" />
+										<img id="MediaImg" src="/static/logos/DefaultIMG.png" alt="Mean Girls" />
 										
 									</a>
 								</td>
@@ -10090,7 +10090,7 @@
 				
 				<div id="contentDiv">
 					<details>
-						<summary>TV Shows (36)</summary>
+						<summary>TV Shows (37)</summary>
 						<div>
 							<button onclick="document.location='/media/new?type=TV Shows'">
 								Add New
@@ -11208,6 +11208,71 @@
 										
 										<a id="GenreTag" href="/media?genre=Comedy">
 											 Comedy 
+										</a>
+										
+									</details>
+								</td>
+							</tr>
+
+							
+							<tr>
+								<td id="MediaLogo">
+									<a href="https://en.wikipedia.org/wiki/My_Adventures_with_Superman">
+										
+										<img id="MediaLogoImg" src="/static/logos/My%20Adventures%20With%20Superman.png" alt="My Adventures With Superman" />
+										
+									</a>
+								</td>
+								   
+								<td>
+									<a id="MediaLink" href="/media/view?id=2631">
+										My Adventures With Superman
+									</a>
+								</td>
+								<td></td>
+								 
+								<td>2</td>
+								 
+								<td>0:22:00</td>
+								 
+								<td
+									align="center"
+									style="text-align: center; font-size: 150%; font-weight: bold"
+								>
+									<a
+										href="/media/setDownloaded?contentId=2631"
+										style="color: green; text-decoration: none"
+									>
+										&#10004;
+									</a>
+								</td>
+								  
+								<td
+									align="center"
+									style="text-align: center; font-size: 150%; font-weight: bold"
+								>
+									<a
+										href="/media/setWatched?contentId=2631"
+										style="color: red; text-decoration: none"
+									>
+										&#10007;
+									</a>
+								</td>
+								  
+								<td>
+									<details>
+										<summary>3 Tags</summary>
+										
+										<a id="GenreTag" href="/media?genre=DC">
+											 DC, 
+										</a>
+										
+										<a id="GenreTag" href="/media?genre=Superman">
+											 Superman, 
+										</a>
+										
+										<a id="GenreTag" href="/media?genre=Superheroes">
+											 Superheroes 
 										</a>
 										
 									</details>
