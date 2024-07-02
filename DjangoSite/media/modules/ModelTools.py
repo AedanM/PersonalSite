@@ -37,7 +37,10 @@ def DownloadImage(modelObj):
                 )
                 if savePath != DEFAULT_IMG_PATH:
                     GetImageFromLink(savePath, logoIMG)
-                setattr(modelObj, "Logo", savePath)
+                if os.path.exists(os.path.join(django_settings.STATICFILES_DIRS[0], f"{savePath}")):
+                    setattr(modelObj, "Logo", savePath)
+                else:
+                    print(f"Cant find {savePath}")
                 modelObj.save()
             except ConnectionError:
                 pass
@@ -45,7 +48,6 @@ def DownloadImage(modelObj):
 
 def GetImageFromLink(savePath, requestImg):
     tempPath = os.path.join(django_settings.STATICFILES_DIRS[0], "temp.png")
-    print(requestImg)
     urllib.request.urlretrieve(
         requestImg,
         tempPath,
@@ -59,4 +61,4 @@ def GetImageFromLink(savePath, requestImg):
         img.save(localPath)
         os.remove(tempPath)
     except UnidentifiedImageError:
-        pass
+        print("IMG Failed", savePath)

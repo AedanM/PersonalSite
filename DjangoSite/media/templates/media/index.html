@@ -55,9 +55,11 @@
 				<div id="contentDiv">
 					<details>
 						<summary>{{title}} ({{media|length}})</summary>
-						<button onclick="document.location='/media/new?type={{title}}'">
-							Add New
-						</button>
+						<div>
+							<button onclick="document.location='/media/new?type={{title}}'">
+								Add New
+							</button>
+						</div>
 						<table class="striped sortable">
 							<thead>
 								<td>Logo</td>
@@ -227,6 +229,7 @@
 									</details>
 								</td>
 							</tr>
+
 							{% endfor %}
 						</table>
 					</details>

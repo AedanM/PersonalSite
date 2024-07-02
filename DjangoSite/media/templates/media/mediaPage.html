@@ -58,8 +58,10 @@
 						<td class="ViewHeader">Year</td>
 						<td class="ViewHeader">Length</td>
 					</thead>
-					<td class="ViewHeader">{{object.Year}}</td>
-					<td class="ViewHeader">{{object.Length}}</td>
+					<td align="center" style="text-align: center">{{object.Year}}</td>
+					<td align="center" style="text-align: center">
+						{{object.Length}}{{object.Duration}}
+					</td>
 				</table>
 				<table>
 					<thead>
@@ -116,6 +118,9 @@
 					</td>
 					{% endif %}
 				</table>
+				<div role="group">
+					<button onclick="document.location='/media'">Return</button>
+				</div>
 			</div>
 		</div>
 	</body>
