@@ -9,14 +9,8 @@
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.css"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-		/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 		<link rel="stylesheet" href="{% static 'styles/MasterStyle.css' %}" />
 		<link rel="stylesheet" href="{% static 'styles/MediaStyle.css' %}" />
 	</head>
@@ -34,7 +28,7 @@
 							<a href="/">Home</a>
 						</li>
 						<li>
-							<a href="/about">About</a>
+							<a href="/resume">About</a>
 						</li>
 						<li>
 							<a href="/admin">Admin</a>
@@ -47,11 +41,7 @@
 			<div>
 				<h1>{{object.Title}}</h1>
 				<a href="{{object.InfoPage}}">
-					<img
-						class="ViewImage"
-						src="{% static object.Logo%}"
-						alt="{{object.Title}}"
-					/>
+					<img class="ViewImage" src="{% static object.Logo%}" alt="{{object.Title}}" />
 				</a>
 				<table>
 					<thead>
@@ -59,9 +49,7 @@
 						<td class="ViewHeader">Length</td>
 					</thead>
 					<td align="center" style="text-align: center">{{object.Year}}</td>
-					<td align="center" style="text-align: center">
-						{{object.Length}}{{object.Duration}}
-					</td>
+					<td align="center" style="text-align: center">{{object.Length}}{{object.Duration}}</td>
 				</table>
 				<table>
 					<thead>
@@ -69,56 +57,25 @@
 						<td class="ViewHeader">Watched</td>
 					</thead>
 					{% if object.Downloaded %}
-					<td
-						align="center"
-						style="text-align: center; font-size: 150%; font-weight: bold"
-					>
-						<a
-							href="/media/setDownloaded?contentId={{object.id}}"
-							style="color: green; text-decoration: none"
-						>
-							&#10004;
-						</a>
+					<td align="center" style="text-align: center; font-size: 150%; font-weight: bold">
+						<a href="/media/setBool?field=Downloaded&contentId={{object.id}}" style="color: green; text-decoration: none"> &#10004; </a>
 					</td>
 					{% else %}
-					<td
-						align="center"
-						style="text-align: center; font-size: 150%; font-weight: bold"
-					>
-						<a
-							href="/media/setDownloaded?contentId={{object.id}}"
-							style="color: red; text-decoration: none"
-						>
-							&#10007;
-						</a>
+					<td align="center" style="text-align: center; font-size: 150%; font-weight: bold">
+						<a href="/media/setBool?field=Downloaded&contentId={{object.id}}" style="color: red; text-decoration: none"> &#10007; </a>
 					</td>
 					{% endif %} {% if object.Watched %}
-					<td
-						align="center"
-						style="text-align: center; font-size: 150%; font-weight: bold"
-					>
-						<a
-							href="/media/setWatched?contentId={{object.id}}"
-							style="color: green; text-decoration: none"
-						>
-							&#10004;
-						</a>
+					<td align="center" style="text-align: center; font-size: 150%; font-weight: bold">
+						<a href="/media/setBool?field=Watched&contentId={{object.id}}" style="color: green; text-decoration: none"> &#10004; </a>
 					</td>
 					{% else %}
-					<td
-						align="center"
-						style="text-align: center; font-size: 150%; font-weight: bold"
-					>
-						<a
-							href="/media/setWatched?contentId={{object.id}}"
-							style="color: red; text-decoration: none"
-						>
-							&#10007;
-						</a>
+					<td align="center" style="text-align: center; font-size: 150%; font-weight: bold">
+						<a href="/media/setBool?field=Watched&contentId={{object.id}}" style="color: red; text-decoration: none"> &#10007; </a>
 					</td>
 					{% endif %}
 				</table>
 				<div role="group">
+					<button onclick="document.location='/media/edit?id={{object.id}}'" class="secondary">Edit</button>
 					<button onclick="document.location='/media'">Return</button>
 				</div>
 			</div>

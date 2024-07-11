@@ -5,7 +5,7 @@ from django.shortcuts import redirect, render
 
 from .modules.DB_Tools import CleanDupes
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.Utils import FindID, GetContents, GetFormAndClass
+from .modules.Utils import FindID, FormMatch, GetContents, GetFormAndClass
 from .modules.WebTools import GetShowInfo
 
 # Create your views here.
@@ -72,18 +72,15 @@ def new(request) -> HttpResponse:
 
 def edit(request) -> HttpResponse:
     response: HttpResponse = redirect("/media")
-    if "type" in request.GET:
-        cls, obj = GetFormAndClass(request)
+    if contentObj := FindID(request.GET["id"]):
+        cls = FormMatch(contentObj)
 
-        # pylint: disable=E1101
-        inst = obj.objects.get(id=request.GET["instance"]) if "instance" in request.GET else None
-
-        form = cls(request.POST or None, instance=inst)
+        form = cls(request.POST or None, instance=contentObj)
         if form.is_valid():
             form.save()
         context = {}
         context["form"] = form
-        context["inst"] = inst
+        context["inst"] = contentObj
         response = (
             render(request, "media/editForm.html", context)
             if request.method == "GET"
@@ -93,27 +90,16 @@ def edit(request) -> HttpResponse:
     return response
 
 
-def SetDownloaded(request) -> HttpResponse:
+def SetBool(request) -> HttpResponse:
     response: HttpResponse = redirect("/media")
-    if "contentId" in request.GET:
+    if "contentId" in request.GET and "field" in request.GET:
         if contentObj := FindID(request.GET["contentId"]):
+            field = request.GET["field"]
             newValue = (
                 request.GET["value"] == "True"
                 if "value" in request.GET
-                else not contentObj.Downloaded
+                else not getattr(contentObj, field)
             )
-            contentObj.Downloaded = newValue
-            contentObj.save()
-    return response
-
-
-def SetWatched(request) -> HttpResponse:
-    response: HttpResponse = redirect("/media")
-    if "contentId" in request.GET:
-        if contentObj := FindID(request.GET["contentId"]):
-            newValue = (
-                request.GET["value"] == "True" if "value" in request.GET else not contentObj.Watched
-            )
-            contentObj.Watched = newValue
+            setattr(contentObj, field, newValue)
             contentObj.save()
     return response

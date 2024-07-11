@@ -17,6 +17,23 @@ def ModelDisplayName(model):
     return CamelToSentence(model.__name__ + "s")
 
 
+def FormMatch(obj):
+    form = MovieForm
+    if isinstance(obj, Movie):
+        form = MovieForm
+    elif isinstance(obj, TVShow):
+        form = TVForm
+    elif isinstance(obj, Novel):
+        form = NovelForm
+    elif isinstance(obj, Comic):
+        form = ComicForm
+    elif isinstance(obj, Podcast):
+        form = PodcastForm
+    elif isinstance(obj, Youtube):
+        form = YoutubeForm
+    return form
+
+
 def GetFormAndClass(request) -> tuple:
     formType = request.GET["type"]
     cls: Any = MovieForm
