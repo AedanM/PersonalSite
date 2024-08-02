@@ -31,14 +31,14 @@ def ModelType(obj) -> str:
 
 @register.filter(name="rating")
 def Rating(number):
-    outStr = ""
+    outStr = "\u200c" * number
     for _ in range(number // 2):
         outStr += "★"
     for _ in range(number % 2):
         outStr += "½"
     for _ in range(5 - (number // 2) - number % 2):
         outStr += "☆"
-    return outStr if number != 0 else ""
+    return outStr if number != 0 else "\u200c"
 
 
 @register.filter
