@@ -8,7 +8,7 @@ urlpatterns = [
     path(route="new", view=views.new, name="new"),
     path(route="edit", view=views.edit, name="edit"),
     path(route="", view=views.index, name="index"),
-    path(route="wiki", view=views.wikiScrape, name="wikiScrape"),
+    path(route="wiki", view=views.wikiLoad, name="wikiLoad"),
     path(route="setBool", view=views.SetBool, name="setBool"),
     path(route="view", view=views.viewMedia, name="view"),
 ]

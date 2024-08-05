@@ -3,10 +3,11 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
+from .forms import MovieForm
 from .modules.DB_Tools import CleanDupes
 from .modules.UpdateFromFolder import UpdateFromFolder
 from .modules.Utils import FindID, FormMatch, GetContents, GetFormAndClass
-from .modules.WebTools import GetShowInfo
+from .modules.WebTools import ScrapeWiki
 
 # Create your views here.
 
@@ -40,12 +41,22 @@ def update(request) -> HttpResponse:
     return HttpResponse(content=response, content_type="text/plain")
 
 
-def wikiScrape(request) -> HttpResponse:
-    _, cls = GetFormAndClass(request=request)
-    response = GetShowInfo(
-        wikiLink=request.GET["show"] if "show" in request.GET else False, mediaType=cls
-    )
-    return HttpResponse(content=response, content_type="text/json")
+def wikiLoad(request) -> HttpResponse:
+    context = {}
+    returnRender = render(request, "media/wikiLoad.html")
+    if request.method == "POST":
+        print(request)
+        input_value = request.POST.get("Wiki Link")
+        if input_value:
+            contentDetails = ScrapeWiki(wikiLink=input_value)
+            context["form"] = MovieForm(initial=contentDetails)
+            returnRender = render(request, "media/form.html", context=context)
+        else:
+            form = MovieForm(request.POST)
+            if form.is_valid():
+                form.save()
+            returnRender = redirect("/media")
+    return returnRender
 
 
 def new(request) -> HttpResponse:
@@ -56,7 +67,10 @@ def new(request) -> HttpResponse:
         # pylint: disable=E1101
         inst = obj.objects.get(id=request.GET["instance"]) if "instance" in request.GET else None
 
-        form = cls(request.POST or None, instance=inst)
+        form = cls(
+            request.POST or None,
+            instance=inst,
+        )
         if form.is_valid():
             form.save()
         context = {}
