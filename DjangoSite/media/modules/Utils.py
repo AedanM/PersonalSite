@@ -91,3 +91,15 @@ def FindID(contentID: str) -> Any:
         if obj:
             return obj
     return None
+
+
+def GetAllTags() -> dict[str, int]:
+    genres = []
+    genreFreq = {}
+    _ = [
+        [[genres.append(y) for y in x.GenreTagList] for x in modelType.objects.all()]
+        for modelType in MODEL_LIST
+    ]
+    for i in set(genres):
+        genreFreq[i] = genres.count(i)
+    return dict(sorted(genreFreq.items(), key=lambda x: x[1], reverse=True))

@@ -23,6 +23,10 @@
     object-fit: cover;
 }
 
+.tag {
+    margin: 2px;
+}
+
 #MediaLink {
     text-decoration: none;
     color: whitesmoke;

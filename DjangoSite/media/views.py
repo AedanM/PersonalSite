@@ -6,7 +6,7 @@ from django.shortcuts import redirect, render
 from .forms import MovieForm
 from .modules.DB_Tools import CleanDupes
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.Utils import FindID, FormMatch, GetContents, GetFormAndClass
+from .modules.Utils import FindID, FormMatch, GetAllTags, GetContents, GetFormAndClass
 from .modules.WebTools import ScrapeWiki
 
 # Create your views here.
@@ -26,6 +26,7 @@ def index(request) -> HttpResponse:
             else GetContents(request=request)[soloContent]
         ),
         "Graphs": "noGraphs" in request.GET,
+        "Tags": GetAllTags() if "genre" not in request.GET else {},
     }
     return render(request, "media/index.html", context)
 
