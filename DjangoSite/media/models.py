@@ -28,7 +28,7 @@ class Media(models.Model):
 
     @property
     def GenreTagList(self) -> list:
-        return [x.strip() for x in sorted(str(self.Genre_Tags).split(","))]
+        return sorted([x.strip() for x in str(self.Genre_Tags).split(",")])
 
     def GetLogo(self, loadLogo) -> str:
         returnVal = DEFAULT_IMG_PATH
@@ -38,6 +38,8 @@ class Media(models.Model):
         logoExists = os.path.exists(os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo))
         if logoExists:
             returnVal = self.Logo
+        else:
+            print("No Logo")
         return returnVal
 
     @property

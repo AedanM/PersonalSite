@@ -11,4 +11,5 @@ urlpatterns = [
     path(route="wiki", view=views.wikiLoad, name="wikiLoad"),
     path(route="setBool", view=views.SetBool, name="setBool"),
     path(route="view", view=views.viewMedia, name="view"),
+    path(route="fullView", view=views.fullView, name="pagedView"),
 ]

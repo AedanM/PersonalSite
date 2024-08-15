@@ -23,7 +23,10 @@ def GetImageLink(pageLink) -> str:
     }
     r = requests.get(url, params=params, headers=UA, timeout=1000)
     if r.status_code == 200 and "query" in r.json():
-        outStr = list(r.json()["query"]["pages"].values())[0]["imageinfo"][0]["url"]
+        try:
+            outStr = list(r.json()["query"]["pages"].values())[0]["imageinfo"][0]["url"]
+        except KeyError:
+            outStr = "None Found"
     return outStr
 
 
@@ -73,7 +76,6 @@ def ScrapeWiki(wikiLink) -> dict:
         imgSearch = '<a href="/wiki/'
         imageStart = j.find(imgSearch, infoBoxStart) + len(imgSearch)
         imageEnd = j.find('"', imageStart)
-        print(imageStart, imageEnd)
         imageLink = GetImageLink(j[imageStart:imageEnd])
 
     return {
@@ -81,5 +83,5 @@ def ScrapeWiki(wikiLink) -> dict:
         "Year": year,
         "Duration": runTime,
         "Logo": imageLink,
-        "InfoPage": f"https://en.wikipedia.org/wiki/{title}",
+        "InfoPage": wikiLink,
     }

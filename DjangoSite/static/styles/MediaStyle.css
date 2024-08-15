@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 #DescriptionSpan {
@@ -47,4 +48,49 @@
 
 .ViewHeader{
     text-align: center;
+}
+
+.tableHeading {
+    text-decoration: None;
+    color: hsl(219, 7%, 82%);
+    
+}
+
+.tv-logo {
+    max-height: 15vh;
+    border-radius: 45%;
+    object-fit: scale-down;
+    background-color: #03070f;
+}
+
+.movie-logo {
+    max-height: 15vh;
+    object-fit: cover;
+    background-color: #03070f;
+}
+
+.card {
+    width: 10vw;
+    min-height: 30vh;
+}
+
+.genre-badge{
+    margin: 0.05rem;
+}
+
+.clean-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.clean-button {
+    outline:none;
+    background-color: inherit;
+    color: inherit;
+    border: none;
+    border-radius: 0%;
+    padding: 0;
+    margin: 0;
+    font-size: inherit;
+    font:inherit;
 }

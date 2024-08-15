@@ -50,7 +50,7 @@
 						<td>Major Tags</td>
 						<td>
 							{% for item, freq in Tags.items %} {% if freq > 15 %}
-							<button onclick="document.location='/media?genre={{item}}'" class="tag">{{item}} ({{freq}})</button>
+							<button onclick="document.location='/media?genre={{item}}'" class="tag">{{item}} ({{freq}}) {{count}}</button>
 							{%endif%} {% endfor %}
 						</td>
 					</tr>
@@ -58,7 +58,7 @@
 						<td>Minor Tags</td>
 						<td>
 							{% for item, freq in Tags.items %} {% if freq <= 15 and freq > 5 %}
-							<button onclick="document.location='/media?genre={{item}}'" class="tag">{{item}} ({{freq}})</button>
+							<button onclick="document.location='/media?genre={{item}}'" class="secondary tag">{{item}} ({{freq}})</button>
 							{%endif%} {% endfor %}
 						</td>
 					</tr>
@@ -66,7 +66,7 @@
 						<td>Specific Tags</td>
 						<td>
 							{% for item, freq in Tags.items %} {% if freq < 5 %}
-							<button onclick="document.location='/media?genre={{item}}'" class="tag">{{item}} ({{freq}})</button>
+							<button onclick="document.location='/media?genre={{item}}'" class="contrast tag">{{item}} ({{freq}})</button>
 							{%endif%} {% endfor %}
 						</td>
 					</tr>

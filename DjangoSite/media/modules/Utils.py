@@ -35,7 +35,7 @@ def FormMatch(obj):
 
 
 def GetFormAndClass(request) -> tuple:
-    formType = request.GET["type"]
+    formType = request.GET.get("type", "Movie")
     cls: Any = MovieForm
     obj: Any = Movie
     if "Movie" in formType:

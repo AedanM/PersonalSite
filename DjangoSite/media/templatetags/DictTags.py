@@ -4,6 +4,7 @@ import typing
 import matplotlib
 from django import template
 from django.conf import settings as django_settings
+from django.core.paginator import Paginator
 
 matplotlib.use("Agg")
 # pylint:disable=C0413
@@ -54,11 +55,9 @@ def MakeChart(iterDict, chartType) -> str:
             case "Duration":
                 sizes.append(
                     sum(
-                        [
-                            x.Duration.total_seconds()
-                            for x in [y for y in media.values()]
-                            if "Duration" in dir(x)
-                        ]
+                        x.Duration.total_seconds()
+                        for x in [y for y in media.values()]
+                        if "Duration" in dir(x)
                     )
                 )
             case "Count":
@@ -68,3 +67,11 @@ def MakeChart(iterDict, chartType) -> str:
     plt.savefig(outPath, transparent=True)
     plt.close()
     return f"images/charts/mediaChart-{chartType}.png"
+
+
+@register.simple_tag
+def DottedPageRange(p, number, eachSide=1, onEnds=1):
+    paginator = Paginator(p.object_list, p.per_page)
+    return paginator.get_elided_page_range(  # type: ignore
+        number=number, on_each_side=eachSide, on_ends=onEnds
+    )
