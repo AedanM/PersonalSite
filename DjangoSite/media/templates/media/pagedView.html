@@ -36,7 +36,19 @@
 	<script>
 		function SetUrlParam(key, value) {
 			const urlParams = new URLSearchParams(window.location.search);
-			urlParams.set(key, String(value));
+			if (typeof key == "string") {
+				key = [key];
+			}
+			if (typeof value == "string") {
+				value = [value];
+			}
+			for (let i = 0; i < key.length; i++) {
+				if (value[i] != "") {
+					urlParams.set(key[i], String(value[i]));
+				} else {
+					urlParams.delete(key[i]);
+				}
+			}
 			window.location.search = urlParams;
 		}
 	</script>
@@ -64,11 +76,12 @@
 					</ul>
 				</nav>
 			</header>
+
 			<div class="d-flex justify-content-center">
 				<a
 					class="clean-link flex-grow-1"
-					href="?"
-					><i class="bi bi-x-diamond-fill"></i
+					onclick="SetUrlParam(['page', 'genre', 'query'], ['','',''])">
+					<i class="bi bi-x-diamond-fill"></i
 				></a>
 				<div class="flex-grow-1">
 					<button
@@ -108,11 +121,60 @@
 					<i class="mx-3 bi bi-wikipedia"></i>
 				</button>
 			</div>
+			{% if Tags %}
+			<div class="d-flex justify-content-center">
+				<details class="flex-grow-1">
+					<summary><i class="bi bi-tag-fill"></i></summary>
+					<input
+						type="Search"
+						placeholder="Search"
+						onkeydown="if (event.key =='Enter') {SetUrlParam('query', this.value)}" />
+					<table>
+						<tr>
+							<td>Major Tags</td>
+							<td>
+								{% for item, freq in Tags.items %} {% if freq > 15 %}
+								<button
+									onclick="SetUrlParam(['genre', 'page'],['{{item}}', ''])"
+									class="btn btn-outline-primary m-1">
+									{{item}} ({{freq}}) {{count}}
+								</button>
+								{%endif%} {% endfor %}
+							</td>
+						</tr>
+						<tr>
+							<td>Minor Tags</td>
+							<td>
+								{% for item, freq in Tags.items %} {% if freq <= 15 and freq > 5 %}
+								<button
+									onclick="SetUrlParam(['genre', 'page'],['{{item}}', ''])"
+									class="btn btn-outline-info m-1">
+									{{item}} ({{freq}})
+								</button>
+								{%endif%} {% endfor %}
+							</td>
+						</tr>
+						<tr>
+							<td>Specific Tags</td>
+							<td>
+								{% for item, freq in Tags.items %} {% if freq < 5 %}
+								<button
+									onclick="SetUrlParam(['genre', 'page'],['{{item}}', ''])"
+									class="btn btn-outline-light m-1">
+									{{item}} ({{freq}})
+								</button>
+								{%endif%} {% endfor %}
+							</td>
+						</tr>
+					</table>
+				</details>
+			</div>
+			{%endif%}
 			<div class="d-flex flex-column">
 				<div>
 					<div class="d-flex flex-wrap justify-content-center gap-3">
 						{% for show in page_obj %}
-						<div class="mt-4 card">
+						<div class="my-1 card">
 							<a href="{{show.InfoPage}}"
 								><img
 									class="card-img-top movie-logo"
@@ -145,7 +207,7 @@
 									{% for genre in show.GenreTagList %}
 									<span class="genre-badge badge rounded-pill bg-secondary"
 										><button
-											onclick="SetUrlParam('genre', '{{genre}}')"
+											onclick="SetUrlParam(['genre', 'page'],['{{genre}}', ''])"
 											style="text-decoration: none"
 											class="text-white clean-button">
 											{{genre}}

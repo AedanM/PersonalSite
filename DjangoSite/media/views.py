@@ -4,11 +4,13 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from thefuzz import fuzz
 
 from .forms import MovieForm
 from .modules.DB_Tools import CleanDupes
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.Utils import FindID, FormMatch, GetAllTags, GetContents, GetFormAndClass
+from .modules.Utils import (FindID, FormMatch, GetAllTags, GetContents,
+                            GetFormAndClass)
 from .modules.WebTools import ScrapeWiki
 
 # Create your views here.
@@ -70,7 +72,7 @@ def wikiLoad(request) -> HttpResponse:
 
 @login_required
 def new(request) -> HttpResponse:
-    response: HttpResponse = redirect("/media")
+    response: HttpResponse = redirect(request.META.get("HTTP_REFERER", "/media"))
     if request.GET.get("type", None):
         cls, obj = GetFormAndClass(request)
 
@@ -97,7 +99,7 @@ def new(request) -> HttpResponse:
 
 @login_required
 def edit(request) -> HttpResponse:
-    response: HttpResponse = redirect("/media")
+    response: HttpResponse = redirect(request.META.get("HTTP_REFERER", "/media"))
     if contentObj := FindID(request.GET.get("id", -1)):
         cls = FormMatch(contentObj)
 
@@ -119,7 +121,7 @@ def edit(request) -> HttpResponse:
 
 @login_required
 def SetBool(request) -> HttpResponse:
-    response: HttpResponse = redirect("/media")
+    response: HttpResponse = redirect(request.META.get("HTTP_REFERER", "/media"))
     if request.GET.get("contentId", None) and request.GET.get("field", None):
         if contentObj := FindID(request.GET.get("contentId", -1)):
             field = request.GET.get("field")
@@ -133,24 +135,47 @@ def SetBool(request) -> HttpResponse:
     return response
 
 
+def SortFunction(obj, key: str):
+    outObj = None
+    match (key):
+        case "Title":
+            outObj = getattr(obj, key).replace("The ", "").replace("A ", "")
+        case "None":
+            outObj = obj
+        case "TagLen":
+            outObj = len(obj.GenreTagList)
+        case _others:
+            outObj = getattr(obj, key)
+
+    return outObj
+
+
 def index(request) -> HttpResponse:
-    pageSize = request.GET.get("pageSize", 36)
-    pageNumber = request.GET.get("page", 1)
-    sortKey = request.GET.get("sort", "Title")
-    genre = request.GET.get("genre", "")
-    reverseSort = request.GET.get("reverse", "False") == "True"
+    pageSize: int = int(request.GET.get("pageSize", 36))
+    pageNumber: int = int(request.GET.get("page", 1))
+    sortKey: str = request.GET.get("sort", "Title")
+    genre: str = request.GET.get("genre", "")
+    exclude: str = request.GET.get("exclude", "")
+    query: str = request.GET.get("query", "")
+    reverseSort: bool = request.GET.get("reverse", "False") == "True"
     _formType, objType = GetFormAndClass(request)
 
     # pylint: disable=E1101
     objList = objType.objects.all()
+    if query:
+        objList = [x for x in objList if SearchFunction(subStr=x, tagStr=query)]
+        objList = sorted(objList, key=lambda x: FuzzStr(x, query))
     if genre:
-        objList = [x for x in objList if genre in x.Genre_Tags]
-    objList = sorted(
-        objList, key=lambda x: str(getattr(x, sortKey)).replace("The ", ""), reverse=reverseSort
-    )
+        objList = [x for x in objList if all(tag in str(x.Genre_Tags) for tag in genre.split(","))]
+    if exclude:
+        objList = [x for x in objList if not any(tag in str(x.Genre_Tags) for tag in exclude.split(","))]
+
+    if sortKey == "Rating":
+        reverseSort = not reverseSort
+        objList = [x for x in objList if x.Rating > 0]
+    objList = sorted(objList, key=lambda x: SortFunction(obj=x, key=sortKey), reverse=reverseSort)
     paginator = Paginator(objList, pageSize)
     page_obj = paginator.get_page(pageNumber)
-
     return render(
         request,
         "media/pagedView.html",
@@ -159,5 +184,14 @@ def index(request) -> HttpResponse:
             "type": request.GET.get("type", "Movie"),
             "sort": sortKey,
             "reverse": reverseSort,
+            "Tags": GetAllTags() if genre == "" else {},
         },
     )
+
+
+def SearchFunction(subStr, tagStr):
+    return all(FuzzStr(subStr, tagStr) > 75 for tag in tagStr.split(","))
+
+
+def FuzzStr(obj, query):
+    return fuzz.partial_ratio(query.lower(), f"{obj.Genre_Tags} {obj.Title}".lower())
