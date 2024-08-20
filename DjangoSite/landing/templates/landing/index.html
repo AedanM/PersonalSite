@@ -3,24 +3,34 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta
+			http-equiv="X-UA-Compatible"
+			content="IE=edge" />
 		<title>Aedan's Page</title>
-		<meta name="description" content="" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="color-scheme" content="light dark" />
+		<meta
+			name="description"
+			content="" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1" />
+		<meta
+			name="color-scheme"
+			content="light dark" />
 		<link
 			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.conditional.css"
-		/>
+			href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.conditional.css" />
 		<link
 			rel="stylesheet"
-			href="{% static 'code-stats-embedded/dist/codestatsembedded.min.css' %}"
-		/>
-		<link rel="stylesheet" href="{% static 'styles/MasterStyle.css' %}" />
+			href="{% static 'code-stats-embedded/dist/codestatsembedded.min.css' %}" />
+		<link
+			rel="stylesheet"
+			href="{% static 'styles/MasterStyle.css' %}" />
 	</head>
 
 	<body>
-		<main class="container" height-min="0.75uh">
+		<main
+			class="container"
+			height-min="0.75uh">
 			<header class="pico">
 				<nav>
 					<ul>
@@ -46,28 +56,23 @@
 				<summary>Programming Experience</summary>
 				<div class="pico"></div>
 				<p>
-					CodeStats is an free tracking service for programmers which logs experience
-					programming in different languages. I started my logging in October of
-					2023. It works by associating each keypress in code editors with the
-					language of the file. While not a perfect representation of ability, it
-					does show experience and usage trends for my developing, both professional
-					and personal.
+					CodeStats is an free tracking service for programmers which logs experience programming in different
+					languages. I started my logging in October of 2023. It works by associating each keypress in code editors
+					with the language of the file. While not a perfect representation of ability, it does show experience and
+					usage trends for my developing, both professional and personal.
 				</p>
 				<div id="CS"></div>
 				<p>
-					Using a library from <a href="https://byjokese.com/">@byjokese</a> my
-					experience gained in the last 12 months is shown as a monthly breakdown
-					with my historic top 6 languages by experience. The status bars represent
-					the progress towards the next "level" in the language.
+					Using a library from <a href="https://byjokese.com/">@byjokese</a> my experience gained in the last 12
+					months is shown as a monthly breakdown with my historic top 6 languages by experience. The status bars
+					represent the progress towards the next "level" in the language.
 				</p>
 			</details>
 
 			<details class="pico">
 				<summary>Media Server Controls</summary>
 				<div role="group">
-					<button onclick="document.location='/media/update'">
-						Update Database
-					</button>
+					<button onclick="document.location='/media/update'">Update Database</button>
 					<button class="secondary">Get Random Movie</button>
 					<button>Get Random Show</button>
 				</div>
@@ -77,34 +82,31 @@
 			<script
 				src="https://code.jquery.com/jquery-3.4.1.min.js"
 				integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-				crossorigin="anonymous"
-			></script>
+				crossorigin="anonymous"></script>
 
 			<script>
 				CodeStatsEmbed("#CS", "AedanM");
 			</script>
 
-			<footer class="pico" id="footerDiv">
+			<footer
+				class="pico"
+				id="footerDiv">
 				<section>
 					<h2>Contact Me</h2>
 					<a href="mailto:aedan.mchale@gmail.com"
 						><img id="footerImg" src={%static "images/gmail.png" %} alt="Gmail" /></a
 					>
 					<a href="https://codestats.net/users/AedanM"
-						><img id="footerImg" src={%static "images/codestats.svg" %}
-						alt="CodeStats" /></a
+						><img id="footerImg" src={%static "images/codestats.svg" %} alt="CodeStats" /></a
 					>
 					<a href="https://www.twitter.com/AedanMcHale"
-						><img id="footerImg" src={%static "images/twitter.png" %} alt="Twitter"
-						/></a
+						><img id="footerImg" src={%static "images/twitter.png" %} alt="Twitter" /></a
 					>
 					<a href="https://github.com/AedanM"
-						><img id="footerImg" src={%static "images/github.png" %} alt="GitHub"
-						/></a
+						><img id="footerImg" src={%static "images/github.png" %} alt="GitHub" /></a
 					>
 					<a href="https://www.linkedin.com/in/AedanMcHale"
-						><img id="footerImg" src={%static "images/linkedin.png" %} alt="LinkedIn"
-						/></a
+						><img id="footerImg" src={%static "images/linkedin.png" %} alt="LinkedIn" /></a
 					>
 				</section>
 			</footer>

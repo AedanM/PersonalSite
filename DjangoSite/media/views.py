@@ -9,8 +9,7 @@ from thefuzz import fuzz
 from .forms import MovieForm
 from .modules.DB_Tools import CleanDupes
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.Utils import (FindID, FormMatch, GetAllTags, GetContents,
-                            GetFormAndClass)
+from .modules.Utils import FindID, FormMatch, GetAllTags, GetContents, GetFormAndClass
 from .modules.WebTools import ScrapeWiki
 
 # Create your views here.
@@ -18,6 +17,8 @@ from .modules.WebTools import ScrapeWiki
 
 def viewMedia(request) -> HttpResponse:
     context = {"object": FindID(request.GET.get("id", -1))}
+    context["colorMode"] = request.COOKIES.get("colorMode", "light")
+
     return render(request, "media/mediaPage.html", context)
 
 
@@ -32,6 +33,8 @@ def fullView(request) -> HttpResponse:
         "Graphs": "noGraphs" in request.GET,
         "Tags": GetAllTags() if "genre" not in request.GET else {},
     }
+    context["colorMode"] = request.COOKIES.get("colorMode", "light")
+
     return render(request, "media/index.html", context)
 
 
@@ -57,6 +60,8 @@ def wikiLoad(request) -> HttpResponse:
         if input_value:
             contentDetails = ScrapeWiki(wikiLink=input_value)
             context["form"] = MovieForm(initial=contentDetails)
+            context["colorMode"] = request.COOKIES.get("colorMode", "light")
+
             returnRender = render(request, "media/form.html", context=context)
         else:
             activeForm = form(request.POST)
@@ -87,6 +92,7 @@ def new(request) -> HttpResponse:
             form.save()
         context = {}
         context["form"] = form
+        context["colorMode"] = request.COOKIES.get("colorMode", "light")
         response = (
             render(request, "media/form.html", context)
             if request.method == "GET"
@@ -109,6 +115,8 @@ def edit(request) -> HttpResponse:
         context = {}
         context["form"] = form
         context["inst"] = contentObj
+        context["colorMode"] = request.COOKIES.get("colorMode", "light")
+
         contentObj.GetLogo(True)
         response = (
             render(request, "media/editForm.html", context)
@@ -139,7 +147,7 @@ def SortFunction(obj, key: str):
     outObj = None
     match (key):
         case "Title":
-            outObj = getattr(obj, key).replace("The ", "").replace("A ", "")
+            outObj = obj.SortTitle
         case "None":
             outObj = obj
         case "TagLen":
@@ -151,6 +159,7 @@ def SortFunction(obj, key: str):
 
 
 def index(request) -> HttpResponse:
+    colorMode = request.COOKIES.get("colorMode", "dark")
     pageSize: int = int(request.GET.get("pageSize", 36))
     pageNumber: int = int(request.GET.get("page", 1))
     sortKey: str = request.GET.get("sort", "Title")
@@ -168,7 +177,9 @@ def index(request) -> HttpResponse:
     if genre:
         objList = [x for x in objList if all(tag in str(x.Genre_Tags) for tag in genre.split(","))]
     if exclude:
-        objList = [x for x in objList if not any(tag in str(x.Genre_Tags) for tag in exclude.split(","))]
+        objList = [
+            x for x in objList if not any(tag in str(x.Genre_Tags) for tag in exclude.split(","))
+        ]
 
     if sortKey == "Rating":
         reverseSort = not reverseSort
@@ -185,12 +196,13 @@ def index(request) -> HttpResponse:
             "sort": sortKey,
             "reverse": reverseSort,
             "Tags": GetAllTags() if genre == "" else {},
+            "colorMode": colorMode,
         },
     )
 
 
 def SearchFunction(subStr, tagStr):
-    return all(FuzzStr(subStr, tagStr) > 75 for tag in tagStr.split(","))
+    return all(FuzzStr(subStr, tag) > 75 for tag in tagStr.split(","))
 
 
 def FuzzStr(obj, query):

@@ -1,6 +1,8 @@
 {% load static %} {% load DictTags %}
 <!DOCTYPE html>
-<html data-bs-theme="dark">
+<html
+	data-bs-theme="{{colorMode}}"
+	data-theme="{{colorMode}}">
 	<head>
 		<meta charset="iso-8859-15" />
 
@@ -50,6 +52,15 @@
 				}
 			}
 			window.location.search = urlParams;
+		}
+		function ToggleMode() {
+			let newMode = "dark";
+			if ("{{colorMode}}" == "dark") {
+				newMode = "light";
+			}
+			document.cookie = "colorMode=" + newMode;
+			console.log("Toggled?");
+			document.location.reload();
 		}
 	</script>
 	<body>
@@ -119,6 +130,12 @@
 					class="clean-button"
 					onclick="document.location = '/media/wiki'">
 					<i class="mx-3 bi bi-wikipedia"></i>
+				</button>
+				<button
+					class="btn"
+					onclick="ToggleMode()">
+					{% if colorMode == "light" %}<i class="bi bi-moon-stars-fill"></i>{%else%}<i class="bi bi-sun-fill"></i
+					>{%endif%}
 				</button>
 			</div>
 			{% if Tags %}
