@@ -9,7 +9,8 @@ from thefuzz import fuzz
 from .forms import MovieForm
 from .modules.DB_Tools import CleanDupes
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.Utils import FindID, FormMatch, GetAllTags, GetContents, GetFormAndClass
+from .modules.Utils import (FindID, FormMatch, GetAllTags, GetContents,
+                            GetFormAndClass)
 from .modules.WebTools import ScrapeWiki
 
 # Create your views here.
@@ -17,7 +18,7 @@ from .modules.WebTools import ScrapeWiki
 
 def viewMedia(request) -> HttpResponse:
     context = {"object": FindID(request.GET.get("id", -1))}
-    context["colorMode"] = request.COOKIES.get("colorMode", "light")
+    context["colorMode"] = request.COOKIES.get("colorMode", "dark")
 
     return render(request, "media/mediaPage.html", context)
 
@@ -33,7 +34,7 @@ def fullView(request) -> HttpResponse:
         "Graphs": "noGraphs" in request.GET,
         "Tags": GetAllTags() if "genre" not in request.GET else {},
     }
-    context["colorMode"] = request.COOKIES.get("colorMode", "light")
+    context["colorMode"] = request.COOKIES.get("colorMode", "dark")
 
     return render(request, "media/index.html", context)
 
@@ -60,7 +61,7 @@ def wikiLoad(request) -> HttpResponse:
         if input_value:
             contentDetails = ScrapeWiki(wikiLink=input_value)
             context["form"] = MovieForm(initial=contentDetails)
-            context["colorMode"] = request.COOKIES.get("colorMode", "light")
+            context["colorMode"] = request.COOKIES.get("colorMode", "dark")
 
             returnRender = render(request, "media/form.html", context=context)
         else:
@@ -92,7 +93,7 @@ def new(request) -> HttpResponse:
             form.save()
         context = {}
         context["form"] = form
-        context["colorMode"] = request.COOKIES.get("colorMode", "light")
+        context["colorMode"] = request.COOKIES.get("colorMode", "dark")
         response = (
             render(request, "media/form.html", context)
             if request.method == "GET"
@@ -115,7 +116,7 @@ def edit(request) -> HttpResponse:
         context = {}
         context["form"] = form
         context["inst"] = contentObj
-        context["colorMode"] = request.COOKIES.get("colorMode", "light")
+        context["colorMode"] = request.COOKIES.get("colorMode", "dark")
 
         contentObj.GetLogo(True)
         response = (
@@ -195,8 +196,12 @@ def index(request) -> HttpResponse:
             "type": request.GET.get("type", "Movie"),
             "sort": sortKey,
             "reverse": reverseSort,
-            "Tags": GetAllTags() if genre == "" else {},
+            "Tags": GetAllTags(),
             "colorMode": colorMode,
+            "filters" : {
+                "include":genre,
+                "exclude":exclude,
+            }
         },
     )
 

@@ -26,6 +26,11 @@ def HasAttr(iterDict, attrName) -> bool:
 
 
 @register.filter
+def Get(dictionary, key):
+    return dictionary.get(key)
+
+
+@register.filter
 def ModelType(obj) -> str:
     return type(obj).__name__
 
