@@ -91,8 +91,12 @@ def GetAttrs(obj):
         "Logo",
         "Watched",
     ]
-    return [
-        str(x).replace("_", " ")
-        for x in obj[0].__dict__
-        if str(x[0]).isupper() and x not in ExcludeList
-    ]
+    return (
+        [
+            str(x).replace("_", " ")
+            for x in obj[0].__dict__
+            if str(x[0]).isupper() and x not in ExcludeList
+        ]
+        if obj
+        else []
+    )

@@ -1,5 +1,6 @@
 import os
 import urllib.request
+from pathlib import Path
 
 from django.conf import settings as django_settings
 from PIL import Image, UnidentifiedImageError
@@ -19,7 +20,7 @@ def DownloadImage(modelObj):
     )
 
     if reloadLogo:
-        if "http" in modelObj.Logo and "@" not in modelObj.Logo:
+        if "http" in modelObj.Logo or "www" in modelObj.Logo:
             logoIMG = modelObj.Logo
         elif modelObj.InfoPage and modelObj.InfoPage != "None":
             logoIMG = modelObj.InfoPage
@@ -27,7 +28,6 @@ def DownloadImage(modelObj):
             logoIMG = DEFAULT_IMG
         else:
             logoIMG = DEFAULT_IMG
-
         if logoIMG:
             try:
                 savePath = (
@@ -37,7 +37,7 @@ def DownloadImage(modelObj):
                 )
                 if savePath != DEFAULT_IMG_PATH:
                     GetImageFromLink(savePath, logoIMG)
-                if os.path.exists(os.path.join(django_settings.STATICFILES_DIRS[0], f"{savePath}")):
+                if os.path.exists(Path(django_settings.STATICFILES_DIRS[0]) / f"{savePath}"):
                     setattr(modelObj, "Logo", savePath)
                 else:
                     print(f"Cant find {savePath}")
@@ -48,6 +48,7 @@ def DownloadImage(modelObj):
 
 def GetImageFromLink(savePath, requestImg):
     tempPath = os.path.join(django_settings.STATICFILES_DIRS[0], "temp.png")
+
     urllib.request.urlretrieve(
         requestImg,
         tempPath,

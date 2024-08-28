@@ -71,7 +71,7 @@ def wikiLoad(request) -> HttpResponse:
             # pylint: disable=E1101
             obj = [x for x in model.objects.all() if x.Title == request.POST.get("Title")]
             if obj:
-                DownloadImage(obj)
+                DownloadImage(obj[0])
                 obj[0].GetLogo(True)
             returnRender = redirect("/media")
     return returnRender
@@ -152,7 +152,7 @@ def SortFunction(obj, key: str):
             outObj = obj.SortTitle
         case "None":
             outObj = obj
-        case "TagLen":
+        case "Genre Tags":
             outObj = len(obj.GenreTagList)
         case _others:
             outObj = getattr(obj, key)
@@ -183,7 +183,7 @@ def index(request) -> HttpResponse:
             x for x in objList if not any(tag in str(x.Genre_Tags) for tag in exclude.split(","))
         ]
 
-    if sortKey == "Rating":
+    if sortKey in ["Rating", "Genre Tags"]:
         reverseSort = not reverseSort
         objList = [x for x in objList if x.Rating > 0]
     objList = sorted(objList, key=lambda x: SortFunction(obj=x, key=sortKey), reverse=reverseSort)

@@ -21,7 +21,7 @@ class Media(models.Model):
 
     @property
     def SortTitle(self):
-        return str(self.Title).replace("The", "").replace("A ", "").strip()
+        return str(self.Title).replace("The ", "").replace("A ", "").strip()
 
     def __str__(self) -> str:
         return f"{self.Title}"
