@@ -102,38 +102,38 @@
 			<div class="d-flex justify-content-center">
 				<a
 					class="clean-link flex-grow-1"
-					onclick="SetUrlParam(['page', 'genre', 'exclude', 'query'], ['','','',''])">
+					onclick="SetUrlParam(['page', 'genre', 'exclude', 'query', 'sort'], ['','','','',''])">
 					<i class="bi bi-x-diamond-fill"></i
 				></a>
 				<div class="flex-grow-1">
 					<button
 						class="clean-button"
-						onclick="SetUrlParam('type', 'Movie')">
+						onclick="SetUrlParam(['type', 'sort', 'page'], ['Movie','',''])">
 						<i class="mx-3 bi bi-film"></i>
 					</button>
 					<button
 						class="clean-button"
-						onclick="SetUrlParam('type', 'TV Show')">
+						onclick="SetUrlParam(['type', 'sort', 'page'], ['TV Show','',''])">
 						<i class="mx-3 bi bi-tv"></i>
 					</button>
 					<button
 						class="clean-button"
-						onclick="SetUrlParam('type', 'Comic')">
+						onclick="SetUrlParam(['type', 'sort', 'page'], ['Comic','',''])">
 						<i class="mx-3 bi bi-book"></i>
 					</button>
 					<button
 						class="clean-button"
-						onclick="SetUrlParam('type', 'Book')">
+						onclick="SetUrlParam(['type', 'sort', 'page'], ['Book','',''])">
 						<i class="mx-3 bi bi-journal-bookmark"></i>
 					</button>
 					<button
 						class="clean-button"
-						onclick="SetUrlParam('type', 'Podcast')">
+						onclick="SetUrlParam(['type', 'sort', 'page'], ['Podcast','',''])">
 						<i class="mx-3 bi bi-mic"></i>
 					</button>
 					<button
 						class="clean-button"
-						onclick="SetUrlParam('type', 'Youtube')">
+						onclick="SetUrlParam(['type', 'sort', 'page'], ['Youtube','',''])">
 						<i class="mx-3 bi bi-youtube"></i>
 					</button>
 				</div>
@@ -162,10 +162,9 @@
 							value="">
 							Sort Value
 						</option>
-						<option value="Duration">Duration</option>
-						<option value="Rating">Rating</option>
-						<option value="Title">Title</option>
-						<option value="Year">Year</option>
+						{% for tag in page_obj|GetAttrs %}
+						<option value="{{tag}}">{{tag}}</option>
+						{%endfor%}
 					</select>
 					<details>
 						<summary>Include</summary>
@@ -211,7 +210,7 @@
 								<td>Specific Tags</td>
 								<td>
 									<!-- prettier-ignore -->
-									{% for item, freq in Tags.items %} {% if freq < 5 %} {% if item not in filters|Get:"include"%}
+									{% for item, freq in Tags.items %} {% if freq <= 5 %} {% if item not in filters|Get:"include"%}
 									<button
 										onclick="SetUrlParam(['genre', 'page'],['{{item}}', ''], true)"
 										class="btn btn-outline-light m-1">
@@ -235,7 +234,7 @@
 								<td>Major Tags</td>
 								<td>
 									<!-- prettier-ignore -->
-									{% for item, freq in Tags.items %} {% if freq > 15 %} {% if item not in filters|Get:"include"%}
+									{% for item, freq in Tags.items %} {% if freq > 15 %} {% if item not in filters|Get:"exclude"%}
 									<button
 										onclick="SetUrlParam(['exclude', 'page'],['{{item}}', ''], true)"
 										class="btn btn-outline-primary m-1">
@@ -254,7 +253,7 @@
 								<td>Minor Tags</td>
 								<td>
 									<!-- prettier-ignore -->
-									{% for item, freq in Tags.items %} {% if freq <= 15 and freq > 5 %} {% if item not in filters|Get:"include"%}
+									{% for item, freq in Tags.items %} {% if freq <= 15 and freq > 5 %} {% if item not in filters|Get:"exclude"%}
 									<button
 										onclick="SetUrlParam(['exclude', 'page'],['{{item}}', ''], true)"
 										class="btn btn-outline-info m-1">
@@ -272,7 +271,7 @@
 							<tr>
 								<td>Specific Tags</td>
 								<td>
-									{% for item, freq in Tags.items %} {% if freq < 5 %} {% if item not in filters|Get:"include"%}
+									{% for item, freq in Tags.items %} {% if freq <= 5 %} {% if item not in filters|Get:"exclude"%}
 									<button
 										onclick="SetUrlParam(['exclude', 'page'],['{{item}}', ''], true)"
 										class="btn btn-outline-light m-1">

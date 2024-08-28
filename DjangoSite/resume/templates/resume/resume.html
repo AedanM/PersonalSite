@@ -17,7 +17,7 @@
 	</head>
 
 	<body>
-		<main class="container" >
+		<main class="container">
 			<header class="FlexWide">
 				<div>
 					<h1>Aedan McHale</h1>
@@ -29,97 +29,94 @@
 				</div>
 			</header>
 			<hr>
-			<section title="Body" class="MainBody">
-				
-				<section title="Work History">
-					<details open>
-						<summary>Experience</summary>
-						{% for job in Employment %}
-						<section>
-							<h3>{{job.Employer}}</h3>
-							
-							<div class="FlexWide">
-								<div>
-
-									<p>{{job.Job_Title}}</p>
-
-									<p>
-										{{job.Start_Year}} - {% if job.End_Year > 0%} {{job.End_Year}} {% else %} Present {%endif%}
-									</p>
-								</div>
-
-								<div class="HorzAlign">
-
-									<div>
-										<ul class="Label"  aria-label="Responsibilities">
-										{% for resp in job.Responsibilities|split:','%}
-											<li>{{resp}}</li>
-										{% endfor %}
-										<ul>
-									</div>
-
-									<div>
-										<ul class="Label" aria-label="Skills Gained">
-										{% for resp in job.Skills_Gained|split:','%}
-											<li>{{resp}}</li>
-										{% endfor %}
-										<ul>
-									</div>
-
-								</div>
-							</div>
-						</section>
-						<hr />
-						{%endfor%}
-					</details>
-				</section>
-				<hr>
-				<section title="Skills">
-					<details open>
-						<summary>Languages and Skills</summary>
-						<fieldset role="group">
-							{% for p in ProfLevels reversed %}
-								{% if p != "Never Used"%}
-									<div class ="VertAlign">
-										<h3>{{p}}</h3>
-										<div class="ProfLevel">	
-											{% for tool in Tools %}
-												{%if tool.Proficiency == p%}	
-													{%if tool.Skill_Type == "Language"%}	
-														<p class="skill lang">{{tool.Name}}</p>
-													{%elif tool.Skill_Type == "Program"%}
-														<p class="skill program">{{tool.Name}}</p>
-													{%else%}
-														<p class="skill tool">{{tool.Name}}</p>
-													{%endif%}
+			<section title="Skills">
+				<details>
+					<summary>Languages and Skills</summary>
+					<fieldset role="group">
+						{% for p in ProfLevels reversed %}
+							{% if p != "Never Used"%}
+								<div class ="VertAlign">
+									<h3>{{p}}</h3>
+									<div class="ProfLevel">	
+										{% for tool in Tools %}
+											{%if tool.Proficiency == p%}	
+												{%if tool.Skill_Type == "Language"%}	
+													<p class="skill lang">{{tool.Name}}</p>
+												{%elif tool.Skill_Type == "Program"%}
+													<p class="skill program">{{tool.Name}}</p>
+												{%else%}
+													<p class="skill tool">{{tool.Name}}</p>
 												{%endif%}
-											{%endfor%}
-										</div>
+											{%endif%}
+										{%endfor%}
 									</div>
-								{%endif%}
-							{%endfor%}
-						</fieldset>
-				</section>
-				<hr>
-				<section title="Education History">
-					<details>
-						<summary>Qualifications</summary>
-						{% for edu in Education %}
-						<section>
-							<h3>{{edu.Qualification}}</h3>
-							<p>{{edu.Qualification_Level}}</p>
-							<div class="FlexWide">
-								<p>{{edu.Institution}}</p>
+								</div>
+							{%endif%}
+						{%endfor%}
+					</fieldset>
+			</section>
+			<hr>
+			<section title="Work History">
+				<details open>
+					<summary>Experience</summary>
+					{% for job in Employment %}
+					<section>
+						<h3>{{job.Employer}}</h3>
+						
+						<div class="FlexWide">
+							<div>
+
+								<p>{{job.Job_Title}}</p>
 
 								<p>
-									{{edu.Start_Year}} - {% if edu.End_Year > 0 %} {{edu.End_Year}} {% else %} Present {%endif%}
+									{{job.Start_Year}} - {% if job.End_Year > 0%} {{job.End_Year}} {% else %} Present {%endif%}
 								</p>
 							</div>
-						</section>
-						<hr />
-						{%endfor%}
-					</details>
-				</section>
+
+							<div class="HorzAlign">
+
+								<div>
+									<ul class="Label"  aria-label="Responsibilities">
+									{% for resp in job.Responsibilities|split:','%}
+										<li>{{resp}}</li>
+									{% endfor %}
+									<ul>
+								</div>
+
+								<div>
+									<ul class="Label" aria-label="Skills Gained">
+									{% for resp in job.Skills_Gained|split:','%}
+										<li>{{resp}}</li>
+									{% endfor %}
+									<ul>
+								</div>
+
+							</div>
+						</div>
+					</section>
+					<hr />
+					{%endfor%}
+				</details>
+			</section>
+			<hr>
+			<section title="Education History">
+				<details>
+					<summary>Qualifications</summary>
+					{% for edu in Education %}
+					<section>
+						<h3>{{edu.Qualification}}</h3>
+						<p>{{edu.Qualification_Level}}</p>
+						<div class="FlexWide">
+							<p>{{edu.Institution}}</p>
+
+							<p>
+								{{edu.Start_Year}} - {% if edu.End_Year > 0 %} {{edu.End_Year}} {% else %} Present {%endif%}
+							</p>
+						</div>
+					</section>
+					<hr />
+					{%endfor%}
+				</details>
 			</section>
 			<hr>
 			<footer id="footerDiv">
@@ -132,7 +129,7 @@
 						><img id="footerImg" src={%static "images/codestats.svg" %}
 						alt="CodeStats" /></a
 					>
-					<a href="https://www.twitter.com/AedanMcHale"
+					<a href="https://www.twitter.com/AedanM"
 						><img id="footerImg" src={%static "images/twitter.png" %} alt="Twitter"
 						/></a
 					>

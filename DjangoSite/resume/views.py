@@ -20,8 +20,9 @@ def resume(request) -> HttpResponse:
         ),
         "Tools": sorted(
             SkillsAndTools.objects.all(),
+            key=lambda x: x.Name,
+            reverse=False,
         ),
         "ProfLevels": Proficiency,
     }
-    print(context["Tools"])
     return render(request, "resume/resume.html", context)

@@ -8,9 +8,9 @@ from thefuzz import fuzz
 
 from .forms import MovieForm
 from .modules.DB_Tools import CleanDupes
+from .modules.ModelTools import DownloadImage
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.Utils import (FindID, FormMatch, GetAllTags, GetContents,
-                            GetFormAndClass)
+from .modules.Utils import FindID, FormMatch, GetAllTags, GetContents, GetFormAndClass
 from .modules.WebTools import ScrapeWiki
 
 # Create your views here.
@@ -71,6 +71,7 @@ def wikiLoad(request) -> HttpResponse:
             # pylint: disable=E1101
             obj = [x for x in model.objects.all() if x.Title == request.POST.get("Title")]
             if obj:
+                DownloadImage(obj)
                 obj[0].GetLogo(True)
             returnRender = redirect("/media")
     return returnRender
@@ -198,10 +199,10 @@ def index(request) -> HttpResponse:
             "reverse": reverseSort,
             "Tags": GetAllTags(),
             "colorMode": colorMode,
-            "filters" : {
-                "include":genre,
-                "exclude":exclude,
-            }
+            "filters": {
+                "include": genre,
+                "exclude": exclude,
+            },
         },
     )
 

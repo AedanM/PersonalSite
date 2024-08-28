@@ -1,5 +1,4 @@
 import datetime
-from enum import Enum
 
 from django.db import models
 
@@ -44,15 +43,8 @@ class Employment(models.Model):
 
 class SkillsAndTools(models.Model):
     Name: models.TextField = models.TextField()
-    Proficiency: models.TextField = models.TextField(choices=Proficiency)  # type:ignore
-    Skill_Type: models.TextField = models.TextField(choices=SkillType)  # type:ignore
+    Proficiency: models.TextField = models.TextField(choices=Proficiency)
+    Skill_Type: models.TextField = models.TextField(choices=SkillType)
 
     def __str__(self) -> str:
         return self.Name
-
-    def __lt__(self, obj) -> bool:
-        return (
-            self.Skill_Type < obj.Skill_Type
-            if self.Skill_Type != obj.Skill_Type
-            else self.Name < obj.Name
-        )

@@ -80,3 +80,19 @@ def DottedPageRange(p, number, eachSide=1, onEnds=1):
     return paginator.get_elided_page_range(  # type: ignore
         number=number, on_each_side=eachSide, on_ends=onEnds
     )
+
+
+@register.filter
+def GetAttrs(obj):
+    ExcludeList = [
+        "Downloaded",
+        "InfoPage",
+        "Link",
+        "Logo",
+        "Watched",
+    ]
+    return [
+        str(x).replace("_", " ")
+        for x in obj[0].__dict__
+        if str(x[0]).isupper() and x not in ExcludeList
+    ]
