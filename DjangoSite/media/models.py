@@ -1,6 +1,7 @@
 # pylint: disable=C0103
 import datetime
 import os
+from re import A
 
 from django.conf import settings as django_settings
 from django.db import models
@@ -67,6 +68,10 @@ class WatchableMedia(Media):
 class TVShow(WatchableMedia):
     Length: models.IntegerField = models.IntegerField()
 
+    @property
+    def Total_Length(self):
+        return self.Duration * self.Length
+
     def __str__(self) -> str:
         if not self.Length:
             self.Length = 999
@@ -110,6 +115,13 @@ class Novel(Media):
     Author: models.CharField = models.CharField(max_length=50)
     PageLength: models.IntegerField = models.IntegerField(default=0)
     Read: models.BooleanField = models.BooleanField(default=False)
+
+    @property
+    def GenreTagList(self) -> list:
+        tagList = super().GenreTagList
+        if self.Author not in tagList:
+            tagList.append(self.Author)
+        return tagList
 
     def __str__(self) -> str:
         if not self.Author:

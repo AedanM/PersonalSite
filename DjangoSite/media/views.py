@@ -10,7 +10,8 @@ from .forms import MovieForm
 from .modules.DB_Tools import CleanDupes
 from .modules.ModelTools import DownloadImage
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.Utils import FindID, FormMatch, GetAllTags, GetContents, GetFormAndClass
+from .modules.Utils import (FindID, FormMatch, GetAllTags, GetContents,
+                            GetFormAndClass)
 from .modules.WebTools import ScrapeWiki
 
 # Create your views here.
@@ -46,7 +47,7 @@ def update(request) -> HttpResponse:
             folder=r"W:/", useFile="useFile" in request.GET, save="save" in request.GET
         )
     else:
-        _, model = GetFormAndClass(request=request)
+        _, model = GetFormAndClass(request.GET.get("type", "Movie"))
         response = CleanDupes(model=model)  # type:ignore
     return HttpResponse(content=response, content_type="text/plain")
 
@@ -55,12 +56,12 @@ def update(request) -> HttpResponse:
 def wikiLoad(request) -> HttpResponse:
     context = {}
     returnRender = render(request, "media/wikiLoad.html")
-    form, model = GetFormAndClass(request)
+    form, model = GetFormAndClass(request.POST.get("Type", "Movie"))
     if request.method == "POST":
         input_value = request.POST.get("Wiki Link", None)
         if input_value:
             contentDetails = ScrapeWiki(wikiLink=input_value)
-            context["form"] = MovieForm(initial=contentDetails)
+            context["form"] = form(initial=contentDetails)
             context["colorMode"] = request.COOKIES.get("colorMode", "dark")
 
             returnRender = render(request, "media/form.html", context=context)
@@ -68,6 +69,8 @@ def wikiLoad(request) -> HttpResponse:
             activeForm = form(request.POST)
             if activeForm.is_valid():
                 activeForm.save()
+            else:
+                print("Invalid Form")
             # pylint: disable=E1101
             obj = [x for x in model.objects.all() if x.Title == request.POST.get("Title")]
             if obj:
@@ -81,7 +84,7 @@ def wikiLoad(request) -> HttpResponse:
 def new(request) -> HttpResponse:
     response: HttpResponse = redirect(request.META.get("HTTP_REFERER", "/media"))
     if request.GET.get("type", None):
-        cls, obj = GetFormAndClass(request)
+        cls, obj = GetFormAndClass(request.GET.get("type", "Movie"))
 
         # pylint: disable=E1101
         inst = obj.objects.get(id=request.GET["instance"]) if "instance" in request.GET else None
@@ -169,19 +172,16 @@ def index(request) -> HttpResponse:
     exclude: str = request.GET.get("exclude", "")
     query: str = request.GET.get("query", "")
     reverseSort: bool = request.GET.get("reverse", "False") == "True"
-    _formType, objType = GetFormAndClass(request)
+    _formType, objType = GetFormAndClass(request.GET.get("type", "Movie"))
 
     # pylint: disable=E1101
     objList = objType.objects.all()
     if query:
         objList = [x for x in objList if SearchFunction(subStr=x, tagStr=query)]
         objList = sorted(objList, key=lambda x: FuzzStr(x, query))
-    if genre:
-        objList = [x for x in objList if all(tag in str(x.Genre_Tags) for tag in genre.split(","))]
-    if exclude:
-        objList = [
-            x for x in objList if not any(tag in str(x.Genre_Tags) for tag in exclude.split(","))
-        ]
+
+    genre, objList = FilterTags(genre, objList, include=True)
+    exclude, objList = FilterTags(exclude, objList, include=False)
 
     if sortKey in ["Rating", "Genre Tags"]:
         reverseSort = not reverseSort
@@ -205,6 +205,36 @@ def index(request) -> HttpResponse:
             },
         },
     )
+
+
+def FilterTags(tagList, objList, include):
+    if tagList:
+        if "watched" in tagList:
+            objList = [
+                x for x in objList if (include and x.Watched) or (not include and not x.Watched)
+            ]
+            tagList = tagList.replace("watched", "").strip()
+
+        if "downloaded" in tagList:
+            objList = [
+                x
+                for x in objList
+                if (include and x.Downloaded) or (not include and not x.Downloaded)
+            ]
+            tagList = tagList.replace("downloaded", "").strip()
+        if tagList:
+            objList = [
+                x
+                for x in objList
+                if (include and CheckTags(x, tagList))
+                or (not include and not CheckTags(x, tagList))
+            ]
+
+    return tagList, objList
+
+
+def CheckTags(x, tagList):
+    return all(tag in " ".join(x.GenreTagList) for tag in tagList.split(","))
 
 
 def SearchFunction(subStr, tagStr):

@@ -78,10 +78,17 @@ def ScrapeWiki(wikiLink) -> dict:
         imageEnd = j.find('"', imageStart)
         imageLink = GetImageLink(j[imageStart:imageEnd])
 
+        epStart = j.find("of episodes", infoBoxStart)
+        epStart = j.find('">', epStart) + len('">')
+        epEnd = j.find("</", epStart)
+
+        epLength = int(j[epStart:epEnd]) if j[epStart:epEnd].isnumeric() else -1
+
     return {
         "Title": title,
         "Year": year,
         "Duration": runTime,
         "Logo": imageLink,
         "InfoPage": wikiLink,
+        "Length": epLength,
     }

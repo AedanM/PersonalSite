@@ -164,10 +164,22 @@
 						</option>
 						{% for tag in page_obj|GetAttrs %}
 						<option value="{{tag}}">{{tag}}</option>
-						{%endfor%}
+						{%endfor%} {% if page_obj.0.Total_Length %}
+						<option value="Total_Length">Total Length</option>
+						{%endif%}
 					</select>
 					<details>
 						<summary>Include</summary>
+						<button
+							onclick="SetUrlParam(['genre', 'page'],['watched', ''], true)"
+							class="btn btn-outline-success m-1">
+							Watched
+						</button>
+						<button
+							onclick="SetUrlParam(['genre', 'page'],['downloaded', ''], true)"
+							class="btn btn-outline-success m-1">
+							Downloaded
+						</button>
 						<table>
 							<tr>
 								<td>Major Tags</td>
@@ -229,6 +241,16 @@
 					</details>
 					<details>
 						<summary>Exclude</summary>
+						<button
+							onclick="SetUrlParam(['exclude', 'page'],['watched', ''], true)"
+							class="btn btn-outline-success m-1">
+							Watched
+						</button>
+						<button
+							onclick="SetUrlParam(['exclude', 'page'],['downloaded', ''], true)"
+							class="btn btn-outline-success m-1">
+							Downloaded
+						</button>
 						<table>
 							<tr>
 								<td>Major Tags</td>
@@ -310,9 +332,7 @@
 									>
 								</div>
 								<div class="d-flex">
-									<p class="flex-grow-1">
-										{{show.Year}}{{show.Length}}{% if show|HasAttr:"Length"%} Seasons{% endif %}
-									</p>
+									<p class="flex-grow-1">{{show.Year}}{{show.Length}}{% if show|HasAttr:"Length"%} Eps{% endif %}</p>
 									{% if show.Rating != 0 %}
 									<p
 										id="rating"

@@ -16,7 +16,7 @@
 			<form method="post" action="{% url 'wikiLoad' %}">
 				{% csrf_token %}
 				<input type="text" name="Wiki Link" placeholder="Enter something..." />
-				<select class="form-select" name="type">
+				<select class="form-select" name="Type">
 					<option>Movie</option>
 					<option>TV Show</option>
 					<option>Book</option>
