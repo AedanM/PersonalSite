@@ -43,8 +43,8 @@ class Employment(models.Model):
 
 class SkillsAndTools(models.Model):
     Name: models.TextField = models.TextField()
-    Proficiency: models.TextField = models.TextField(choices=Proficiency)
-    Skill_Type: models.TextField = models.TextField(choices=SkillType)
+    Proficiency: models.TextField = models.TextField(choices=Proficiency)  # type: ignore
+    Skill_Type: models.TextField = models.TextField(choices=SkillType)  # type:ignore
 
     def __str__(self) -> str:
-        return self.Name
+        return str(self.Name)

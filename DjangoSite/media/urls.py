@@ -12,4 +12,5 @@ urlpatterns = [
     path(route="setBool", view=views.SetBool, name="setBool"),
     path(route="view", view=views.viewMedia, name="view"),
     path(route="fullView", view=views.fullView, name="pagedView"),
+    path(route="backup.json", view=views.backup, name="backup"),
 ]

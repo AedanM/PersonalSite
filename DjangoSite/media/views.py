@@ -2,16 +2,22 @@
 
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from thefuzz import fuzz
 
-from .forms import MovieForm
 from .modules.DB_Tools import CleanDupes
 from .modules.ModelTools import DownloadImage
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.Utils import (FindID, FormMatch, GetAllTags, GetContents,
-                            GetFormAndClass)
+from .modules.Utils import (
+    MODEL_LIST,
+    DetermineForm,
+    FindID,
+    FormMatch,
+    GetAllTags,
+    GetContents,
+    GetFormAndClass,
+)
 from .modules.WebTools import ScrapeWiki
 
 # Create your views here.
@@ -56,7 +62,7 @@ def update(request) -> HttpResponse:
 def wikiLoad(request) -> HttpResponse:
     context = {}
     returnRender = render(request, "media/wikiLoad.html")
-    form, model = GetFormAndClass(request.POST.get("Type", "Movie"))
+    form, _model = GetFormAndClass(request.POST.get("Type", "Movie"))
     if request.method == "POST":
         input_value = request.POST.get("Wiki Link", None)
         if input_value:
@@ -66,18 +72,29 @@ def wikiLoad(request) -> HttpResponse:
 
             returnRender = render(request, "media/form.html", context=context)
         else:
+            form, model = DetermineForm(request)
             activeForm = form(request.POST)
             if activeForm.is_valid():
                 activeForm.save()
+                # pylint: disable=E1101
+                obj = model.objects.filter(Title=request.POST.get("Title")).first()
+                if obj:
+                    DownloadImage(obj)
+                    obj.GetLogo(True)
             else:
-                print("Invalid Form")
-            # pylint: disable=E1101
-            obj = [x for x in model.objects.all() if x.Title == request.POST.get("Title")]
-            if obj:
-                DownloadImage(obj[0])
-                obj[0].GetLogo(True)
+                print(f"Invalid Form {activeForm.errors}")
+
             returnRender = redirect("/media")
     return returnRender
+
+
+@login_required
+def backup(_request) -> HttpResponse:
+    backupDict = {}
+    for model in MODEL_LIST:
+        # pylint: disable=E1101
+        backupDict[model.__name__] = [x.JsonRepr for x in model.objects.all()]
+    return JsonResponse(data=backupDict)
 
 
 @login_required

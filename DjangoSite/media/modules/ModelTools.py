@@ -5,6 +5,7 @@ from pathlib import Path
 from django.conf import settings as django_settings
 from PIL import Image, UnidentifiedImageError
 
+
 DEFAULT_IMG = r"https://upload.wikimedia.org/wikipedia/commons/c/c9/Icon_Video.png"
 DEFAULT_IMG_PATH = "logos/DefaultIMG.png"
 
@@ -63,3 +64,4 @@ def GetImageFromLink(savePath, requestImg):
         os.remove(tempPath)
     except UnidentifiedImageError:
         print("IMG Failed", savePath)
+

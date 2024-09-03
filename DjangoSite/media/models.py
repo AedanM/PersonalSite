@@ -1,7 +1,6 @@
 # pylint: disable=C0103
 import datetime
 import os
-from re import A
 
 from django.conf import settings as django_settings
 from django.db import models
@@ -44,25 +43,19 @@ class Media(models.Model):
         return returnVal
 
     @property
-    def NeedsUpdate(self) -> list:
-        output = []
-        if self.Logo == "None" or not self.Logo:
-            output.append("Logo")
-        if self.InfoPage == "None" or not self.InfoPage:
-            output.append("Info Page")
-        return output
+    def JsonRepr(self):
+        outDict = {}
+        for key, item in self.__dict__.items():
+            if str(key[0]).isupper():
+                if isinstance(item, datetime.timedelta):
+                    item = int(item.seconds / 60)
+                outDict[key.replace('"', "")] = item
+        return outDict
 
 
 class WatchableMedia(Media):
     Watched: models.BooleanField = models.BooleanField(default=False)
     Duration: models.DurationField = models.DurationField()
-
-    @property
-    def NeedsUpdate(self) -> list:
-        output = super().NeedsUpdate
-        if self.Duration == datetime.timedelta(seconds=0) or not self.Duration:
-            output.append("Duration")
-        return output
 
 
 class TVShow(WatchableMedia):
@@ -91,13 +84,6 @@ class Movie(WatchableMedia):
             self.Year = 1900
             self.save()
         return super().__str__() + f" ({self.Year})"
-
-    @property
-    def NeedsUpdate(self) -> list:
-        output = super().NeedsUpdate
-        if self.Year == 0 or not self.Year:
-            output.append("Year")
-        return output
 
 
 class Youtube(WatchableMedia):

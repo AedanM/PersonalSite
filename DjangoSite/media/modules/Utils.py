@@ -1,3 +1,4 @@
+import json
 import re
 from typing import Any
 
@@ -34,6 +35,24 @@ def FormMatch(obj):
     return form
 
 
+def DetermineForm(request):
+    contentType = "Movie"
+    if "Year" in request.POST:
+        pass
+    elif "Length" in request.POST:
+        contentType = "TV"
+    elif "Creator" in request.POST:
+        if "Link" in request.POST:
+            contentType = "Youtube"
+        else:
+            contentType = "Podcast"
+    elif "Author" in request.POST:
+        contentType = "Book"
+    elif "Character" in request.POST:
+        contentType = "Comic"
+    return GetFormAndClass(contentType)
+
+
 def GetFormAndClass(formType) -> tuple:
     cls: Any = MovieForm
     obj: Any = Movie
@@ -59,6 +78,7 @@ def GetFormAndClass(formType) -> tuple:
 
 
 MODEL_LIST = [Movie, TVShow, Novel, Comic, Podcast, Youtube]
+
 
 
 def ContentFilter(getParams: dict, contentList) -> list:
