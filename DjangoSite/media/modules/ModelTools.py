@@ -5,7 +5,6 @@ from pathlib import Path
 from django.conf import settings as django_settings
 from PIL import Image, UnidentifiedImageError
 
-
 DEFAULT_IMG = r"https://upload.wikimedia.org/wikipedia/commons/c/c9/Icon_Video.png"
 DEFAULT_IMG_PATH = "logos/DefaultIMG.png"
 
@@ -16,8 +15,7 @@ def DownloadImage(modelObj):
         not modelObj.Logo
         or "http" in modelObj.Logo
         or not os.path.exists(os.path.join(django_settings.STATIC_ROOT, f"{modelObj.Logo}"))
-        or modelObj.Logo
-        == r"C:\mysources\Aedan\PersonalSite\DjangoSite\static\logos/DefaultIMG.png"
+        or "DefaultIMG.png" in modelObj.Logo
     )
 
     if reloadLogo:
@@ -32,14 +30,14 @@ def DownloadImage(modelObj):
         if logoIMG:
             try:
                 savePath = (
-                    f"logos/{modelObj.Title.replace(':','-')}.png"
+                    f"logos/{type(modelObj).__name__.lower()}s/{modelObj.Title.replace(':','-')}.png"
                     if logoIMG != DEFAULT_IMG
                     else DEFAULT_IMG_PATH
                 )
                 if savePath != DEFAULT_IMG_PATH:
                     GetImageFromLink(savePath, logoIMG)
-                if os.path.exists(Path(django_settings.STATICFILES_DIRS[0]) / f"{savePath}"):
-                    setattr(modelObj, "Logo", savePath)
+                if (Path(django_settings.STATICFILES_DIRS[0]) / f"{savePath}").exists():
+                    modelObj.Logo = savePath
                 else:
                     print(f"Cant find {savePath}")
                 modelObj.save()
@@ -64,4 +62,3 @@ def GetImageFromLink(savePath, requestImg):
         os.remove(tempPath)
     except UnidentifiedImageError:
         print("IMG Failed", savePath)
-

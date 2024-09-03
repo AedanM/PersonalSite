@@ -347,7 +347,7 @@
 									{% for genre in show.GenreTagList %}
 									<span class="genre-badge badge rounded-pill bg-secondary"
 										><button
-											onclick="SetUrlParam(['genre', 'page'],['{{genre}}', ''], true)"
+											onclick="SetUrlParam(['genre', 'page', 'query'],['{{genre}}', '',''], true)"
 											style="text-decoration: none"
 											class="text-white clean-button">
 											{{genre}}
