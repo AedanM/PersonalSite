@@ -97,6 +97,14 @@ def backup(_request) -> HttpResponse:
     return JsonResponse(data=backupDict)
 
 
+def stats(request):
+    context = {}
+    for media in MODEL_LIST:
+        # pylint: disable=E1101
+        context[media.__name__] = media.objects.all()
+    return render(request, "media/stats.html", context=context)
+
+
 @login_required
 def new(request) -> HttpResponse:
     response: HttpResponse = redirect(request.META.get("HTTP_REFERER", "/media"))
