@@ -113,9 +113,14 @@
 
 			<div class="d-flex justify-content-center">
 				<a
-					class="clean-link flex-grow-1"
+					class="clean-link me-3"
 					onclick="SetUrlParam(['page', 'genre', 'exclude', 'query', 'sort'], ['','','','',''])">
 					<i class="bi bi-house-fill"></i
+				></a>
+				<a
+					class="clean-link flex-grow-1"
+					onclick="document.location = '/media/stats'">
+					<i class="bi bi-bar-chart-line"></i
 				></a>
 				<div class="flex-grow-1">
 					<button
@@ -137,6 +142,11 @@
 						class="clean-button"
 						onclick="SetUrlParam(['type', 'sort', 'page'], ['Book','',''])">
 						<i class="mx-3 bi bi-journal-bookmark"></i>
+					</button>
+					<button
+						class="clean-button"
+						onclick="SetUrlParam(['type', 'sort', 'page'], ['Album','',''])">
+						<i class="mx-3 bi bi-vinyl"></i>
 					</button>
 					<button
 						class="clean-button"

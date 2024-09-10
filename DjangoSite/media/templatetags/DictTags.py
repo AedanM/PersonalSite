@@ -37,6 +37,7 @@ def ModelType(obj) -> str:
 
 @register.filter(name="rating")
 def Rating(number):
+    number = int(round(number))
     outStr = "\u200c" * number
     for _ in range(number // 2):
         outStr += "★"
@@ -100,3 +101,18 @@ def GetAttrs(obj):
         if obj
         else []
     )
+
+
+@register.filter(name="times")
+def Times(number):
+    return range(number)
+
+
+@register.filter(name="StarRating")
+def StarRatings(number):
+    return f"{number//2} {'1/2 ' if number % 2 != 0 else ''}stars"
+
+
+@register.filter(name="IsHalf")
+def IsHalf(number):
+    return "half" if number % 2 != 0 else "full"

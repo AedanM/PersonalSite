@@ -5,8 +5,8 @@ from typing import Any
 from django.core.exceptions import ObjectDoesNotExist
 
 # pylint: disable=E0402
-from ..forms import ComicForm, MovieForm, NovelForm, PodcastForm, TVForm, YoutubeForm
-from ..models import Comic, Movie, Novel, Podcast, TVShow, Youtube
+from ..forms import AlbumForm, ComicForm, MovieForm, NovelForm, PodcastForm, TVForm, YoutubeForm
+from ..models import Album, Comic, Movie, Novel, Podcast, TVShow, Youtube
 
 
 def CamelToSentence(text: str) -> str:
@@ -32,6 +32,8 @@ def FormMatch(obj):
         form = PodcastForm
     elif isinstance(obj, Youtube):
         form = YoutubeForm
+    elif isinstance(obj, Album):
+        form = AlbumForm
     return form
 
 
@@ -50,6 +52,8 @@ def DetermineForm(request):
         contentType = "Book"
     elif "Character" in request.POST:
         contentType = "Comic"
+    elif "Artist" in request.POST:
+        contentType = "Album"
     return GetFormAndClass(contentType)
 
 
@@ -74,11 +78,13 @@ def GetFormAndClass(formType) -> tuple:
     elif "Youtube" in formType:
         cls = YoutubeForm
         obj = Youtube
+    elif "Album" in formType:
+        cls = AlbumForm
+        obj = Album
     return cls, obj
 
 
-MODEL_LIST = [Movie, TVShow, Novel, Comic, Podcast, Youtube]
-
+MODEL_LIST = [Movie, TVShow, Novel, Comic, Podcast, Youtube, Album]
 
 
 def ContentFilter(getParams: dict, contentList) -> list:

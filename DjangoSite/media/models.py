@@ -14,7 +14,7 @@ class Media(models.Model):
     Downloaded: models.BooleanField = models.BooleanField(default=False)
     InfoPage: models.CharField = models.CharField(max_length=200)
     Logo: models.CharField = models.CharField(default=DEFAULT_IMG, max_length=200)
-    Rating: models.IntegerField = models.IntegerField(default=0)
+    Rating: models.DecimalField = models.DecimalField(default=0)
 
     def __lt__(self, cmpObj) -> bool:
         return self.SortTitle < cmpObj.SortTitle
@@ -60,6 +60,12 @@ class WatchableMedia(Media):
 
 class TVShow(WatchableMedia):
     Length: models.IntegerField = models.IntegerField()
+    Series_Start: models.DateField = models.DateField()
+    Series_End: models.DateField = models.DateField()
+
+    @property
+    def Year(self):
+        return self.Series_Start.year
 
     @property
     def Total_Length(self):
@@ -69,10 +75,11 @@ class TVShow(WatchableMedia):
         if not self.Length:
             self.Length = 999
             self.save()
+        end_year = self.Series_End.year if self.Series_End else 1900
+
         return (
             super().__str__()
-            + f" Season{'s' if self.Length > 0 else ''}"
-            + f" 1{'-' if self.Length > 0 else ''}{self.Length if self.Length > 0 else ''}"
+            + f" ({self.Series_Start.year if self.Series_Start else -1}) - ({end_year if end_year > 1900 else 'now'})"  # type: ignore
         )
 
 
@@ -140,3 +147,11 @@ class Podcast(WatchableMedia):
             self.Creator = "undef"
             self.save()
         return f"{self.Creator} " + super().__str__()
+
+
+class Album(WatchableMedia):
+    Artist: models.CharField = models.CharField(max_length=75)
+    Year: models.IntegerField = models.IntegerField(default=-1)
+
+    def __str__(self) -> str:
+        return f"{self.Artist}'s {self.Title} {self.Year}"

@@ -1,7 +1,7 @@
 # pylint: disable=C0103
 from django import forms
 
-from .models import Comic, Movie, Novel, Podcast, TVShow, Youtube
+from .models import Album, Comic, Movie, Novel, Podcast, TVShow, Youtube
 
 
 class TVForm(forms.ModelForm):
@@ -39,4 +39,10 @@ class PodcastForm(forms.ModelForm):
 class YoutubeForm(forms.ModelForm):
     class Meta:
         model = Youtube
+        fields = "__all__"
+
+
+class AlbumForm(forms.ModelForm):
+    class Meta:
+        model = Album
         fields = "__all__"
