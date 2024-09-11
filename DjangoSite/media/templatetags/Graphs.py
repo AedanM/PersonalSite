@@ -1,10 +1,7 @@
 import datetime
-from calendar import day_abbr
-from cProfile import label
 
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
 import statsmodels.api as sm
 from django import template
 
@@ -20,7 +17,7 @@ def RatingOverTime(objList):
             {
                 "Title": [x.Title for x in objList if x.Watched],
                 "Release Year": [x.Year for x in objList if x.Watched],
-                "Rating": [x.Rating / 2 for x in objList if x.Watched],
+                "Rating": [x.Rating for x in objList if x.Watched],
             }
         )
     elif getattr(objList[0], "Series_Start", None):
@@ -28,7 +25,7 @@ def RatingOverTime(objList):
             {
                 "Title": [x.Title for x in objList if x.Watched],
                 "Release Year": [x.Series_Start.year for x in objList if x.Watched],
-                "Rating": [x.Rating / 2 for x in objList if x.Watched],
+                "Rating": [x.Rating for x in objList if x.Watched],
             }
         )
     if df is not None:
@@ -36,7 +33,7 @@ def RatingOverTime(objList):
             df,
             x="Release Year",
             y="Rating",
-            range_y=(0, 5.5),
+            range_y=(0, 10.5),
             title="Rating Over Time",
             hover_name="Title",
         )
@@ -49,7 +46,7 @@ def RatingOverTime(objList):
         )
         fig.update_layout(showlegend=False)
 
-        outputDiv = fig.to_html(full_html=False)
+        outputDiv = GetHTML(fig)
     return outputDiv
 
 
@@ -107,7 +104,7 @@ def DurationOverTime(objList):
                 x=0.5,
             )
         )
-        outputDiv = fig.to_html(full_html=False)
+        outputDiv = GetHTML(fig)
     return outputDiv
 
 
@@ -134,7 +131,7 @@ def DecadeBreakdown(objList):
             title="Release Decade Breakdown by Year",
             values=values,
         )
-        outputDiv = fig.to_html(full_html=False)
+        outputDiv = GetHTML(fig)
     return outputDiv
 
 
@@ -171,7 +168,7 @@ def RuntimeBreakdown(objList):
         )
         fig.update_traces(hoverinfo="label+percent", textinfo="value")
 
-        outputDiv = fig.to_html(full_html=False)
+        outputDiv = GetHTML(fig)
     return outputDiv
 
 
@@ -249,7 +246,7 @@ def WatchOverYears(objList):
             ),
         )
         fig.update_xaxes(dtick=5)
-        outputDiv = fig.to_html(full_html=False)
+        outputDiv = GetHTML(fig)
     return outputDiv
 
 
@@ -281,7 +278,7 @@ def TimeLine(objList):
         hover_name="Title",
         title="Watching Trends over Time",
     )
-    outputDiv = fig.to_html(full_html=False)
+    outputDiv = GetHTML(fig)
     return outputDiv
 
 
@@ -305,7 +302,7 @@ def FancyRatings(objList):
         ]
         if showsActive:
             years.append(i)
-            ratings.append(sum(x.Rating / 2 for x in showsActive) / len(showsActive))
+            ratings.append(sum(x.Rating for x in showsActive) / len(showsActive))
             sizes.append(len(showsActive))
             shows.append("<br>".join(sorted([x.Title for x in showsActive])))
     df = pd.DataFrame(
@@ -334,7 +331,7 @@ def FancyRatings(objList):
     )
     fig.update_layout(showlegend=False)
 
-    outputDiv = fig.to_html(full_html=False)
+    outputDiv = GetHTML(fig)
     return outputDiv
 
 
@@ -344,11 +341,12 @@ def DurationVsRating(objList):
     trimmedList = sorted(trimmedList, key=lambda x: x.Year)
 
     duration = [
-        x.Duration.seconds / 60 if "Length" not in dir(x) else x.Length for x in trimmedList
+        x.Duration.seconds / 60 if "Length" not in dir(x) else x.Total_Length.seconds / 60
+        for x in trimmedList
     ]
     df = pd.DataFrame(
         {
-            "Ratings": [x.Rating / 2 for x in trimmedList],
+            "Ratings": [x.Rating for x in trimmedList],
             "Duration": duration,
             "Title": [x.Title for x in trimmedList],
             "Decade": [str(x.Year // 10 * 10) for x in trimmedList],
@@ -359,7 +357,7 @@ def DurationVsRating(objList):
         x="Duration",
         y="Ratings",
         title="Duration vs Rating",
-        range_y=(0, 5.5),
+        range_y=(0, 10.5),
         color="Decade",
         labels={"Duration": "Media Length", "Ratings": "Star Ratings"},
         hover_name="Title",
@@ -367,24 +365,24 @@ def DurationVsRating(objList):
     rollingTrend = sm.nonparametric.lowess(df["Ratings"], df["Duration"], frac=0.3)
     fig.add_scatter(x=rollingTrend[:, 0], y=rollingTrend[:, 1], mode="lines", name="Average")
 
-    outputDiv = fig.to_html(full_html=False)
+    outputDiv = GetHTML(fig)
     return outputDiv
 
 
 @register.filter
-def CompletionPercentage(objList):
+def CompletionPercentage(objList, field):
     df = pd.DataFrame(
         {
-            "label": ["Watched", "Unwatched"],
+            "label": [field, f"Not {field}"],
             "values": (
                 [
-                    sum(x.Duration.seconds // 60 for x in objList if x.Watched),
-                    sum(x.Duration.seconds // 60 for x in objList if not x.Watched),
+                    sum(x.Duration.seconds // 60 for x in objList if getattr(x, field)),
+                    sum(x.Duration.seconds // 60 for x in objList if not getattr(x, field)),
                 ]
-                if "Length" not in dir(objList[0])
+                if "Total_Length" not in dir(objList[0])
                 else [
-                    sum(x.Duration.seconds // 60 * x.Length for x in objList if x.Watched),
-                    sum(x.Duration.seconds // 60 * x.Length for x in objList if not x.Watched),
+                    sum(x.Total_Length.seconds // 60 for x in objList if getattr(x, field)),
+                    sum(x.Total_Length.seconds // 60 for x in objList if not getattr(x, field)),
                 ]
             ),
         }
@@ -393,10 +391,20 @@ def CompletionPercentage(objList):
         df,
         hole=0.25,
         names="label",
-        category_orders={"names": "label"},
-        title="Completion Percentage",
+        category_orders={"label": [field, f"Not {field}"]},
+        title=f"Completion Percentage for {field} Material",
         values="values",
     )
 
-    outputDiv = fig.to_html(full_html=False)
+    outputDiv = GetHTML(fig)
     return outputDiv
+
+
+def GetHTML(figure):
+
+    figure.update_layout(
+        paper_bgcolor="rgb(33, 37, 41)",
+        plot_bgcolor="rgba(100,100,100,255)",
+        font_color="whitesmoke",
+    )
+    return figure.to_html(full_html=False)

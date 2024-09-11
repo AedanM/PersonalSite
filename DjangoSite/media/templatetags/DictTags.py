@@ -116,3 +116,13 @@ def StarRatings(number):
 @register.filter(name="IsHalf")
 def IsHalf(number):
     return "half" if number % 2 != 0 else "full"
+
+
+@register.filter
+def MinYear(objList):
+    return min(x.Year for x in objList)
+
+
+@register.filter
+def MaxYear(objList):
+    return max(x.Year for x in objList)

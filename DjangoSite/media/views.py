@@ -1,5 +1,7 @@
 # pylint: disable=C0103
 
+from turtle import colormode
+
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse, JsonResponse
@@ -10,8 +12,15 @@ from thefuzz import fuzz
 from .modules.DB_Tools import CleanDupes
 from .modules.ModelTools import DownloadImage
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.Utils import (MODEL_LIST, DetermineForm, FindID, FormMatch,
-                            GetAllTags, GetContents, GetFormAndClass)
+from .modules.Utils import (
+    MODEL_LIST,
+    DetermineForm,
+    FindID,
+    FormMatch,
+    GetAllTags,
+    GetContents,
+    GetFormAndClass,
+)
 from .modules.WebTools import ScrapeWiki
 
 # Create your views here.
@@ -73,7 +82,7 @@ def wikiLoad(request) -> HttpResponse:
                 # pylint: disable=E1101
                 obj = model.objects.filter(Title=request.POST.get("Title")).first()
                 if obj:
-                    obj.Genre_Tags = ', '.join(sorted(obj.GenreTagList))
+                    obj.Genre_Tags = ", ".join(sorted(obj.GenreTagList))
                     DownloadImage(obj)
                     obj.GetLogo(True)
             else:
@@ -97,6 +106,7 @@ def stats(request):
     for media in MODEL_LIST:
         # pylint: disable=E1101
         context[media.__name__] = media.objects.all()
+    context["colorMode"] = request.COOKIES.get("colorMode", "dark")
     return render(request, "media/stats.html", context=context)
 
 
@@ -156,9 +166,10 @@ def edit(request) -> HttpResponse:
 def SetBool(request) -> HttpResponse:
     response: HttpResponse = redirect(request.META.get("HTTP_REFERER", "/media"))
     if contentObj := FindID(request.GET.get("contentId", -1)):
+        print(request.POST)
 
         if request.POST.get("rating", None):
-            contentObj.Rating = int(request.POST.get("rating", contentObj.Rating))
+            contentObj.Rating = float(request.POST.get("rating", contentObj.Rating))
             contentObj.Genre_Tags = request.POST.get("Genre_Tags", contentObj.Genre_Tags)
             contentObj.Watched = True
             contentObj.save()

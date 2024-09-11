@@ -63,7 +63,10 @@
 				<div class="d-flex flex-row flex-wrap">
 					{{ Movie|DecadeBreakdown|safe }}{{ Movie|RuntimeBreakdown|safe }}
 				</div>
-				<div>{{ Movie|CompletionPercentage|safe }}</div>
+				<div class="d-flex flex-row flex-wrap">
+					<div>{{ Movie|CompletionPercentage:"Downloaded"|safe }}</div>
+					<div>{{ Movie|CompletionPercentage:"Watched"|safe }}</div>
+				</div>
 				<div>{{ Movie|RatingOverTime|safe }}</div>
 				<div>{{ Movie|DurationOverTime|safe }}</div>
 				<div>{{ Movie|WatchOverYears|safe }}</div>
@@ -74,7 +77,10 @@
 				<div class="d-flex flex-row flex-wrap">
 					{{ TVShow|DecadeBreakdown|safe }}{{ TVShow|RuntimeBreakdown|safe }}
 				</div>
-				<div>{{ TVShow|CompletionPercentage|safe }}</div>
+				<div class="d-flex flex-row flex-wrap">
+					<div>{{ TVShow|CompletionPercentage:"Downloaded"|safe }}</div>
+					<div>{{ TVShow|CompletionPercentage:"Watched"|safe }}</div>
+				</div>
 				<div>{{ TVShow|TimeLine|safe }}</div>
 				<div>{{ TVShow|FancyRatings|safe }}</div>
 				<div>{{ TVShow|DurationVsRating|safe }}</div>

@@ -14,7 +14,7 @@ class Media(models.Model):
     Downloaded: models.BooleanField = models.BooleanField(default=False)
     InfoPage: models.CharField = models.CharField(max_length=200)
     Logo: models.CharField = models.CharField(default=DEFAULT_IMG, max_length=200)
-    Rating: models.DecimalField = models.DecimalField(default=0)
+    Rating: models.DecimalField = models.DecimalField(default=0, decimal_places=1, max_digits=3)  # type: ignore
 
     def __lt__(self, cmpObj) -> bool:
         return self.SortTitle < cmpObj.SortTitle

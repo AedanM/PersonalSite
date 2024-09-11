@@ -19,6 +19,7 @@ def ResizeImages(parentDir):
     parentDir = Path(parentDir)
     if parentDir.exists():
         for img in parentDir.glob("*.png"):
+            print(img)
             SingleResize(img)
 
 
@@ -36,5 +37,5 @@ def SingleResize(img):
 
 
 ResizeImages(
-    r"C:\mysources\Aedan\PersonalScripts\Projects\PersonalSite\DjangoSite\static\logos\youtubes"
+    r"C:\mysources\Aedan\PersonalScripts\Projects\PersonalSite\DjangoSite\static\logos\tvshows\ToReshape"
 )
