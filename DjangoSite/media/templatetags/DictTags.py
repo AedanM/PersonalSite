@@ -6,6 +6,8 @@ from django import template
 from django.conf import settings as django_settings
 from django.core.paginator import Paginator
 
+from ..models import Movie, TVShow
+
 matplotlib.use("Agg")
 # pylint:disable=C0413
 import matplotlib.pyplot as plt
@@ -120,9 +122,21 @@ def IsHalf(number):
 
 @register.filter
 def MinYear(objList):
-    return min(x.Year for x in objList)
+    minVal = 1900
+    if isinstance(objList[0], Movie):
+        minVal = min(x.Year for x in Movie.objects.all())
+    elif isinstance(objList[0], TVShow):
+        minVal = min(x.Year for x in TVShow.objects.all())
+
+    return minVal
 
 
 @register.filter
 def MaxYear(objList):
-    return max(x.Year for x in objList)
+    maxVal = 1900
+    if isinstance(objList[0], Movie):
+        maxVal = max(x.Year for x in Movie.objects.all())
+    elif isinstance(objList[0], TVShow):
+        maxVal = max(x.Year for x in TVShow.objects.all())
+
+    return maxVal

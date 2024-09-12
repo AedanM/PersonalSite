@@ -1,12 +1,12 @@
 # pylint: disable=C0103
 
-from turtle import colormode
+
+import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
-from sympy import content
 from thefuzz import fuzz
 
 from .modules.DB_Tools import CleanDupes
@@ -216,6 +216,8 @@ def SortFunction(obj, key: str):
 
 
 def index(request) -> HttpResponse:
+    # pylint: disable=E1101
+
     colorMode = request.COOKIES.get("colorMode", "dark")
     pageSize: int = int(request.GET.get("pageSize", 36))
     pageNumber: int = int(request.GET.get("page", 1))
@@ -225,9 +227,12 @@ def index(request) -> HttpResponse:
     query: str = request.GET.get("query", "")
     reverseSort: bool = request.GET.get("reverse", "False") == "True"
     _formType, objType = GetFormAndClass(request.GET.get("type", "Movie"))
+    yearRange = range(
+        int(request.GET.get("minYear", min(x.Year for x in objType.objects.all()))),
+        int(request.GET.get("maxYear", datetime.datetime.now().year)) + 1,
+    )
+    objList = [x for x in objType.objects.all() if x.Year in yearRange]
 
-    # pylint: disable=E1101
-    objList = objType.objects.all()
     if query:
         objList = [x for x in objList if SearchFunction(subStr=x, tagStr=query)]
         objList = sorted(objList, key=lambda x: FuzzStr(x, query))
@@ -254,6 +259,8 @@ def index(request) -> HttpResponse:
             "filters": {
                 "include": genre,
                 "exclude": exclude,
+                "minYear": yearRange.start,
+                "maxYear": yearRange.stop,
             },
         },
     )

@@ -371,6 +371,9 @@ def DurationVsRating(objList):
 
 @register.filter
 def CompletionPercentage(objList, field):
+
+    if field == "Watched":
+        objList = [x for x in objList if x.Watched or x.Downloaded]
     df = pd.DataFrame(
         {
             "label": [field, f"Not {field}"],
@@ -404,7 +407,9 @@ def GetHTML(figure):
 
     figure.update_layout(
         paper_bgcolor="rgb(33, 37, 41)",
-        plot_bgcolor="rgba(100,100,100,255)",
-        font_color="whitesmoke",
+        plot_bgcolor="rgb(33, 37, 41)",
+        # plot_bgcolor="rgba(100,100,100,255)",
+        # font_color="whitesmoke",
+        template="plotly_dark",
     )
     return figure.to_html(full_html=False)

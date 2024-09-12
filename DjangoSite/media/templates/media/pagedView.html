@@ -41,45 +41,49 @@
 			href="{% static 'styles/MediaStyle.css' %}" />
 	</head>
 	<script>
-		function SetUrlParam(key, value, append = false) {
+		function SetUrlParam(key, value, append = false, clear = false) {
 			const urlParams = new URLSearchParams(window.location.search);
-			if (typeof key == "string") {
-				key = [key];
-			}
-			if (typeof value == "string") {
-				value = [value];
-			}
-			for (let i = 0; i < key.length; i++) {
-				if (value[i] != "") {
-					let newVal = String(value[i]);
-					if (append) {
-						oldTags = urlParams.get(key[i]);
-						if (oldTags != undefined) {
-							if (oldTags.includes(newVal)) {
-								newVal = oldTags.replace(newVal, "");
-							} else {
-								newVal = oldTags + "," + newVal;
+			if (!clear) {
+				if (typeof key == "string") {
+					key = [key];
+				}
+				if (typeof value == "string") {
+					value = [value];
+				}
+				for (let i = 0; i < key.length; i++) {
+					if (value[i] != "") {
+						let newVal = String(value[i]);
+						if (append) {
+							oldTags = urlParams.get(key[i]);
+							if (oldTags != undefined) {
+								if (oldTags.includes(newVal)) {
+									newVal = oldTags.replace(newVal, "");
+								} else {
+									newVal = oldTags + "," + newVal;
+								}
+								console.log(newVal);
 							}
-							console.log(newVal);
+							if (newVal.slice(0, 1) == ",") {
+								newVal = newVal.substring(1);
+							}
+							if (newVal.slice(-1) == ",") {
+								newVal = newVal.substring(-1);
+							}
+							console.log(newVal, newVal.slice(0, 1), newVal.slice(-1));
 						}
-						if (newVal.slice(0, 1) == ",") {
-							newVal = newVal.substring(1);
+						if (newVal != "") {
+							urlParams.set(key[i], newVal);
+						} else {
+							urlParams.delete(key[i]);
 						}
-						if (newVal.slice(-1) == ",") {
-							newVal = newVal.substring(-1);
-						}
-						console.log(newVal, newVal.slice(0, 1), newVal.slice(-1));
-					}
-					if (newVal != "") {
-						urlParams.set(key[i], newVal);
 					} else {
 						urlParams.delete(key[i]);
 					}
-				} else {
-					urlParams.delete(key[i]);
 				}
+				window.location.search = urlParams;
+			} else {
+				window.location.search = '';
 			}
-			window.location.search = urlParams;
 		}
 		function ToggleMode() {
 			let newMode = "dark";
@@ -95,10 +99,13 @@
 				range: true,
 				min: {{page_obj|MinYear}},
 				max: {{page_obj|MaxYear}},
-				values: [{{page_obj|MinYear}}, {{page_obj|MaxYear}}],
+				values: [{{filters|Get:"minYear"}}, {{filters|Get:"maxYear"}}],
 				slide: function (event, ui) {
 					$("#amount").text("Year Range: " + ui.values[0] + " - " + ui.values[1]);
 				},
+				stop: function (event, ui) {
+					SetUrlParam(["minYear","maxYear"],[ui.values[0], ui.values[1]]);
+				}
 			});
 			$("#amount").text(
 				"Year Range: " + $("#slider-range").slider("values", 0) + " - " + $("#slider-range").slider("values", 1)
@@ -133,7 +140,7 @@
 			<div class="d-flex justify-content-center">
 				<a
 					class="clean-link me-3"
-					onclick="SetUrlParam(['page', 'genre', 'exclude', 'query', 'sort'], ['','','','',''])">
+					onclick="SetUrlParam([], [], false, true)">
 					<i class="bi bi-house-fill"></i
 				></a>
 				<a

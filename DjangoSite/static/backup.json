@@ -178,7 +178,7 @@
 		},
 		{
 			"Title": "Batman and Mr. Freeze Sub-Zero",
-			"Genre_Tags": "Batman, DC, Superheroes",
+			"Genre_Tags": "Batman, DC, Superheroes, Timmverse",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_%26_Mr._Freeze:_SubZero",
 			"Logo": "logos/movies/Batman and Mr. Freeze Sub-Zero.png",
@@ -200,7 +200,7 @@
 		},
 		{
 			"Title": "Batman Beyond: Return of The Joker",
-			"Genre_Tags": "Batman, DC, Superheroes",
+			"Genre_Tags": "Batman, DC, Superheroes, Timmverse",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_Beyond:_Return_of_the_Joker",
 			"Logo": "logos/movies/Batman Beyond- Return of The Joker.png",
@@ -519,7 +519,7 @@
 		},
 		{
 			"Title": "Batman: Mask of The Phantasm",
-			"Genre_Tags": "Batman, DC, Superheroes",
+			"Genre_Tags": "Batman, DC, Superheroes, Timmverse",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_Mask_of_the_Phantasm",
 			"Logo": "logos/movies/Batman- Mask of The Phantasm.png",
@@ -2246,7 +2246,7 @@
 		},
 		{
 			"Title": "Re-Animator",
-			"Genre_Tags": "B-Movie, Black Comedy, H.P. Lovecraft, Horror",
+			"Genre_Tags": "B-Movie, Black Comedy, H.P. Lovecraft, Horror, Comedy",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Re-Animator",
 			"Logo": "logos/movies/Re-Animator.png",
@@ -3009,8 +3009,8 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Witches_(1990_film)",
 			"Logo": "logos/movies/The Witches.png",
-			"Rating": "0.0",
-			"Watched": false,
+			"Rating": "6.9",
+			"Watched": true,
 			"Duration": 91,
 			"Year": 1990
 		},
@@ -3060,7 +3060,7 @@
 		},
 		{
 			"Title": "Beetlejuice",
-			"Genre_Tags": "Black Comedy, Burton, Comedy, Horror",
+			"Genre_Tags": "Black Comedy, Burton, Horror",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Beetlejuice",
 			"Logo": "logos/movies/Beetlejuice.png",
@@ -3466,17 +3466,6 @@
 			"Year": 2015
 		},
 		{
-			"Title": "Bewitched",
-			"Genre_Tags": "Rom-Com",
-			"Downloaded": false,
-			"InfoPage": "https://en.wikipedia.org/wiki/Bewitched_(2005_film)",
-			"Logo": "logos/movies/Bewitched.png",
-			"Rating": "0.0",
-			"Watched": false,
-			"Duration": 102,
-			"Year": 2005
-		},
-		{
 			"Title": "Jurassic Park",
 			"Genre_Tags": "Action, Adventure, Dinosaur",
 			"Downloaded": true,
@@ -3706,6 +3695,94 @@
 			"Watched": false,
 			"Duration": 106,
 			"Year": 2003
+		},
+		{
+			"Title": "Oppenheimer",
+			"Genre_Tags": "Drama, History",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Oppenheimer_(film)",
+			"Logo": "logos/movies/Oppenheimer.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 180,
+			"Year": 2023
+		},
+		{
+			"Title": "Zoolander",
+			"Genre_Tags": "Comedy",
+			"Downloaded": false,
+			"InfoPage": "Zoolander",
+			"Logo": "logos/movies/Zoolander.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 89,
+			"Year": 2001
+		},
+		{
+			"Title": "Tropic Thunder",
+			"Genre_Tags": "Comedy",
+			"Downloaded": false,
+			"InfoPage": "Tropic_Thunder",
+			"Logo": "logos/movies/Tropic Thunder.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 107,
+			"Year": 2008
+		},
+		{
+			"Title": "Batman and Harley Quinn",
+			"Genre_Tags": "Batman, DC, Superheroes, Timmverse",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Batman_and_Harley_Quinn",
+			"Logo": "logos/movies/Batman and Harley Quinn.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 74,
+			"Year": 2017
+		},
+		{
+			"Title": "Batman: Mystery of the Batwoman",
+			"Genre_Tags": "Batman, DC, Superheroes, Timmverse",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_Mystery_of_the_Batwoman",
+			"Logo": "logos/movies/Batman- Mystery of the Batwoman.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 74,
+			"Year": 2003
+		},
+		{
+			"Title": "Dr. Who and the Daleks",
+			"Genre_Tags": "Doctor Who, Sci-Fi",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Dr._Who_and_the_Daleks",
+			"Logo": "logos/movies/Dr. Who and the Daleks.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 82,
+			"Year": 1965
+		},
+		{
+			"Title": "Some Like It Hot",
+			"Genre_Tags": "Comedy, Girlboss, Musical, Marilyn Monroe",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Some_Like_It_Hot",
+			"Logo": "logos/movies/Some Like It Hot.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 121,
+			"Year": 1959
+		},
+		{
+			"Title": "Gentlemen Prefer Blondes",
+			"Genre_Tags": "Comedy, Girlboss, Marilyn Monroe, Musical",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Gentlemen_Prefer_Blondes_(1953_film)",
+			"Logo": "logos/movies/Gentlemen Prefer Blondes.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 91,
+			"Year": 1953
 		}
 	],
 	"TVShow": [
@@ -4023,7 +4100,7 @@
 		},
 		{
 			"Title": "Batman Beyond",
-			"Genre_Tags": "Batman, Cartoon, DC, Superheroes",
+			"Genre_Tags": "Batman, Cartoon, DC, Superheroes, Timmverse",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_Beyond",
 			"Logo": "logos/tvshows/Batman Beyond.png",
@@ -4035,8 +4112,8 @@
 			"Series_End": "2001-12-18"
 		},
 		{
-			"Title": "Batman The Animated Series",
-			"Genre_Tags": "Batman, Cartoon, DC, Superheroes",
+			"Title": "Batman: The Animated Series",
+			"Genre_Tags": "Batman, Cartoon, DC, Superheroes, Timmverse",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_The_Animated_Series",
 			"Logo": "logos/tvshows/Batman The Animated Series.png",
@@ -4048,7 +4125,7 @@
 			"Series_End": "1995-09-15"
 		},
 		{
-			"Title": "Batman The Brave and the Bold",
+			"Title": "Batman: The Brave and the Bold",
 			"Genre_Tags": "Batman, Cartoon, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_The_Brave_and_the_Bold",
@@ -4062,7 +4139,7 @@
 		},
 		{
 			"Title": "The New Batman Adventures",
-			"Genre_Tags": "Batman, Cartoon, DC, Superheroes",
+			"Genre_Tags": "Batman, Cartoon, DC, Superheroes, Timmverse",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_New_Batman_Adventures",
 			"Logo": "logos/tvshows/The New Batman Adventures.png",
@@ -4218,7 +4295,7 @@
 		},
 		{
 			"Title": "Justice League",
-			"Genre_Tags": "Cartoon, DC, Superheroes",
+			"Genre_Tags": "Cartoon, DC, Superheroes, Timmverse",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Justice_League_(TV_series)",
 			"Logo": "logos/tvshows/Justice Leagure.png",
@@ -4231,7 +4308,7 @@
 		},
 		{
 			"Title": "Justice League Unlimited",
-			"Genre_Tags": "Cartoon, DC, Superheroes",
+			"Genre_Tags": "Cartoon, DC, Superheroes, Timmverse",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Justice_League_Unlimited",
 			"Logo": "logos/tvshows/Justice League Unlimited.png",
@@ -4505,7 +4582,7 @@
 		{
 			"Title": "Totally Spies",
 			"Genre_Tags": "Comedy, Spies",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Totally_Spies!",
 			"Logo": "logos/tvshows/Totally Spies.png",
 			"Rating": "0.0",
@@ -4596,7 +4673,7 @@
 		{
 			"Title": "Twenty Twelve",
 			"Genre_Tags": "Comedy, Mockumentary, Politics, British",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Twenty_Twelve",
 			"Logo": "logos/tvshows/Twenty Twelve.png",
 			"Rating": "0.0",
@@ -4609,7 +4686,7 @@
 		{
 			"Title": "W1A",
 			"Genre_Tags": "Comedy, Mockumentary, Politics, British",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/W1A_(TV_series)",
 			"Logo": "logos/tvshows/W1A.png",
 			"Rating": "0.0",
@@ -4631,6 +4708,58 @@
 			"Length": 6,
 			"Series_Start": "2004-01-29",
 			"Series_End": "2004-03-04"
+		},
+		{
+			"Title": "Batman: Caped Crusader",
+			"Genre_Tags": "Batman, DC, Noir, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_Caped_Crusader",
+			"Logo": "logos/tvshows/Batman Caped Crusader.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 24,
+			"Length": 10,
+			"Series_Start": "2024-08-01",
+			"Series_End": "1900-01-01"
+		},
+		{
+			"Title": "24",
+			"Genre_Tags": "Action, Drama",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/24_(TV_series)",
+			"Logo": "logos/tvshows/24.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 45,
+			"Length": 192,
+			"Series_Start": "2001-11-06",
+			"Series_End": "2010-05-24"
+		},
+		{
+			"Title": "The Batman",
+			"Genre_Tags": "Batman, DC, Superheroes, Cartoon",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Batman_(TV_series)",
+			"Logo": "logos/tvshows/The Batman.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 23,
+			"Length": 65,
+			"Series_Start": "2004-09-11",
+			"Series_End": "2008-08-03"
+		},
+		{
+			"Title": "Superman: The Animated Series",
+			"Genre_Tags": "Cartoon, DC, Superheroes, Superman, Timmverse",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Superman:_The_Animated_Series",
+			"Logo": "logos/tvshows/Superman - The Animated Series.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 22,
+			"Length": 54,
+			"Series_Start": "1996-09-06",
+			"Series_End": "2000-02-12"
 		}
 	],
 	"Novel": [
@@ -5200,11 +5329,11 @@
 		{
 			"Title": "2112",
 			"Genre_Tags": "Prog, Rock",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/2112_(album)",
 			"Logo": "logos/albums/2112.png",
-			"Rating": "8.0",
-			"Watched": false,
+			"Rating": "8.2",
+			"Watched": true,
 			"Duration": 38,
 			"Artist": "Rush",
 			"Year": 1976
