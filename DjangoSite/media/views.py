@@ -225,7 +225,7 @@ def index(request) -> HttpResponse:
     genre: str = request.GET.get("genre", "")
     exclude: str = request.GET.get("exclude", "")
     query: str = request.GET.get("query", "")
-    reverseSort: bool = request.GET.get("reverse", "False") == "True"
+    reverseSort: bool = request.GET.get("reverse", "false") == "true"
     _formType, objType = GetFormAndClass(request.GET.get("type", "Movie"))
     yearRange = range(
         int(request.GET.get("minYear", min(x.Year for x in objType.objects.all()))),

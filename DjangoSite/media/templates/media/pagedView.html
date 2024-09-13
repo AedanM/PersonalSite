@@ -204,20 +204,40 @@
 						type="Search"
 						placeholder="Search"
 						onkeydown="if (event.key =='Enter') {SetUrlParam('query', this.value)}" />
-					<select onchange="SetUrlParam('sort', this.value)">
-						<option
-							selected
-							value="">
-							Sort Value
-						</option>
-						{% for tag in page_obj|GetAttrs %}
-						<option value="{{tag}}">{{tag}}</option>
-						{%endfor%} {% if page_obj.0.Total_Length %}
-						<option value="Total_Length">Total Length</option>
-						{%endif%}
-					</select>
 					<details>
-						<summary>Year Slider</summary>
+						<summary>Sorting</summary>
+						<select onchange="SetUrlParam('sort', this.value)">
+							<option
+								selected
+								value="">
+								Sort Value
+							</option>
+							{% for tag in page_obj|GetAttrs %}
+							<option value="{{tag}}">{{tag}}</option>
+							{%endfor%} {% if page_obj.0.Total_Length %}
+							<option value="Total_Length">Total Length</option>
+							{%endif%}
+						</select>
+						<div class="form-check form-switch">
+							{%if reverse%}
+							<input
+								class="form-check-input"
+								type="checkbox"
+								id="switch"
+								onchange="SetUrlParam('reverse', this.checked.toString())" />
+							{%else%}
+							<input
+								class="form-check-input"
+								type="checkbox"
+								id="switch"
+								checked
+								onchange="SetUrlParam('reverse', this.checked.toString())" />
+							{%endif%}
+							<label class="form-check-label">Reverse Sort Direction</label>
+						</div>
+					</details>
+					<details>
+						<summary>Year Filter</summary>
 						<label id="amount"></label>
 						<div id="slider-range"></div>
 					</details>

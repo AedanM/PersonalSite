@@ -1,3 +1,4 @@
+import datetime
 import os
 import typing
 
@@ -123,20 +124,22 @@ def IsHalf(number):
 @register.filter
 def MinYear(objList):
     minVal = 1900
-    if isinstance(objList[0], Movie):
-        minVal = min(x.Year for x in Movie.objects.all())
-    elif isinstance(objList[0], TVShow):
-        minVal = min(x.Year for x in TVShow.objects.all())
+    if objList:
+        if isinstance(objList[0], Movie):
+            minVal = min(x.Year for x in Movie.objects.all())
+        elif isinstance(objList[0], TVShow):
+            minVal = min(x.Year for x in TVShow.objects.all())
 
     return minVal
 
 
 @register.filter
 def MaxYear(objList):
-    maxVal = 1900
-    if isinstance(objList[0], Movie):
-        maxVal = max(x.Year for x in Movie.objects.all())
-    elif isinstance(objList[0], TVShow):
-        maxVal = max(x.Year for x in TVShow.objects.all())
+    maxVal = datetime.datetime.now().year
+    if objList:
+        if isinstance(objList[0], Movie):
+            maxVal = max(x.Year for x in Movie.objects.all())
+        elif isinstance(objList[0], TVShow):
+            maxVal = max(x.Year for x in TVShow.objects.all())
 
     return maxVal
