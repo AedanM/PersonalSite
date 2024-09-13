@@ -1,3 +1,4 @@
+import datetime
 import os
 import typing
 
@@ -5,6 +6,8 @@ import matplotlib
 from django import template
 from django.conf import settings as django_settings
 from django.core.paginator import Paginator
+
+from ..models import Movie, TVShow
 
 matplotlib.use("Agg")
 # pylint:disable=C0413
@@ -37,6 +40,7 @@ def ModelType(obj) -> str:
 
 @register.filter(name="rating")
 def Rating(number):
+    number = int(round(number))
     outStr = "\u200c" * number
     for _ in range(number // 2):
         outStr += "★"
@@ -100,3 +104,42 @@ def GetAttrs(obj):
         if obj
         else []
     )
+
+
+@register.filter(name="times")
+def Times(number):
+    return range(number)
+
+
+@register.filter(name="StarRating")
+def StarRatings(number):
+    return f"{number//2} {'1/2 ' if number % 2 != 0 else ''}stars"
+
+
+@register.filter(name="IsHalf")
+def IsHalf(number):
+    return "half" if number % 2 != 0 else "full"
+
+
+@register.filter
+def MinYear(objList):
+    minVal = 1900
+    if objList:
+        if isinstance(objList[0], Movie):
+            minVal = min(x.Year for x in Movie.objects.all())
+        elif isinstance(objList[0], TVShow):
+            minVal = min(x.Year for x in TVShow.objects.all())
+
+    return minVal
+
+
+@register.filter
+def MaxYear(objList):
+    maxVal = datetime.datetime.now().year
+    if objList:
+        if isinstance(objList[0], Movie):
+            maxVal = max(x.Year for x in Movie.objects.all())
+        elif isinstance(objList[0], TVShow):
+            maxVal = max(x.Year for x in TVShow.objects.all())
+
+    return maxVal
