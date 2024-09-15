@@ -227,12 +227,18 @@ def index(request) -> HttpResponse:
     query: str = request.GET.get("query", "")
     reverseSort: bool = request.GET.get("reverse", "false") == "true"
     _formType, objType = GetFormAndClass(request.GET.get("type", "Movie"))
+    try:
+        minYear = min(x.Year for x in objType.objects.all())
+    except:
+        minYear = 1900
     yearRange = range(
-        int(request.GET.get("minYear", min(x.Year for x in objType.objects.all()))),
+        int(request.GET.get("minYear", minYear)),
         int(request.GET.get("maxYear", datetime.datetime.now().year)) + 1,
     )
-    objList = [x for x in objType.objects.all() if x.Year in yearRange]
-
+    try:
+        objList = [x for x in objType.objects.all() if x.Year in yearRange]
+    except:
+        objList = [x for x in objType.objects.all()]
     if query:
         objList = [x for x in objList if SearchFunction(subStr=x, tagStr=query)]
         objList = sorted(objList, key=lambda x: FuzzStr(x, query))
