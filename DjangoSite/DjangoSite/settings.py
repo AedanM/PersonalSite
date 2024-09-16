@@ -28,11 +28,7 @@ SECRET_KEY = os.environ.get(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  # os.environ.get("DJANGO_DEBUG", "") == "True"
 
-ALLOWED_HOSTS: list = [
-    "aedanmchale.duckdns.org",
-    "aedanmchale.uk.to",
-    "127.0.0.1",
-]
+ALLOWED_HOSTS: list = ["aedanmchale.duckdns.org", "aedanmchale.uk.to", "127.0.0.1", "*"]
 
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG

@@ -81,7 +81,9 @@
 					<div>{{ TVShow|CompletionPercentage:"Downloaded"|safe }}</div>
 					<div>{{ TVShow|CompletionPercentage:"Watched"|safe }}</div>
 				</div>
+				{% comment %}
 				<div>{{ TVShow|TimeLine|safe }}</div>
+				{% endcomment %}
 				<div>{{ TVShow|FancyRatings|safe }}</div>
 				<div>{{ TVShow|DurationVsRating|safe }}</div>
 			</details>

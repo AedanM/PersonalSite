@@ -36,6 +36,4 @@ def SingleResize(img):
     background.save(str(img))
 
 
-ResizeImages(
-    r"C:\mysources\Aedan\PersonalScripts\Projects\PersonalSite\DjangoSite\static\logos\tvshows\ToReshape"
-)
+ResizeImages(r"D:\PersonalSite\DjangoSite\static\logos\tvshows\toReshape")
