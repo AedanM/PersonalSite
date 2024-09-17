@@ -7,6 +7,8 @@ from django import template
 from django.conf import settings as django_settings
 from django.core.paginator import Paginator
 
+from ..utils import MINIMUM_YEAR
+
 from ..models import Movie, TVShow
 
 matplotlib.use("Agg")
@@ -123,7 +125,7 @@ def IsHalf(number):
 
 @register.filter
 def MinYear(objList):
-    minVal = 1900
+    minVal = MINIMUM_YEAR
     if objList:
         if isinstance(objList[0], Movie):
             minVal = min(x.Year for x in Movie.objects.all())

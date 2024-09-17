@@ -6,6 +6,7 @@ from django.conf import settings as django_settings
 from django.db import models
 
 from .modules.ModelTools import DEFAULT_IMG, DEFAULT_IMG_PATH, DownloadImage
+from .utils import MINIMUM_YEAR
 
 
 class Media(models.Model):
@@ -65,6 +66,7 @@ class TVShow(WatchableMedia):
 
     @property
     def Year(self):
+        # pylint: disable=E1101
         return self.Series_Start.year
 
     @property
@@ -72,14 +74,11 @@ class TVShow(WatchableMedia):
         return self.Duration * self.Length
 
     def __str__(self) -> str:
-        if not self.Length:
-            self.Length = 999
-            self.save()
-        end_year = self.Series_End.year if self.Series_End else 1900
-
+        # pylint: disable=E1101
+        end_year = self.Series_End.year if self.Series_End else MINIMUM_YEAR
         return (
             super().__str__()
-            + f" ({self.Series_Start.year if self.Series_Start else -1}) - ({end_year if end_year > 1900 else 'now'})"  # type: ignore
+            + f" ({self.Series_Start.year if self.Series_Start else -1}) - ({end_year if end_year > MINIMUM_YEAR else 'now'})"
         )
 
 
@@ -88,7 +87,7 @@ class Movie(WatchableMedia):
 
     def __str__(self) -> str:
         if not self.Year:
-            self.Year = 1900
+            self.Year = MINIMUM_YEAR
             self.save()
         return super().__str__() + f" ({self.Year})"
 
@@ -98,9 +97,6 @@ class Youtube(WatchableMedia):
     Link: models.CharField = models.CharField(max_length=200)
 
     def __str__(self) -> str:
-        if not self.Creator:
-            self.Creator = "undef"
-            self.save()
         return f"{self.Creator} " + super().__str__()
 
 
@@ -117,9 +113,6 @@ class Novel(Media):
         return tagList
 
     def __str__(self) -> str:
-        if not self.Author:
-            self.Author = "undef"
-            self.save()
         return f"{self.Author} " + super().__str__()
 
 
@@ -130,12 +123,6 @@ class Comic(Media):
     Read: models.BooleanField = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        if not self.Company:
-            self.Company = "undef"
-            self.save()
-        if not self.Character:
-            self.Character = "undef"
-            self.save()
         return f"{self.Character} ({self.Company}) " + super().__str__()
 
 
@@ -143,9 +130,6 @@ class Podcast(WatchableMedia):
     Creator: models.CharField = models.CharField(max_length=50)
 
     def __str__(self) -> str:
-        if not self.Creator:
-            self.Creator = "undef"
-            self.save()
         return f"{self.Creator} " + super().__str__()
 
 

@@ -1,13 +1,10 @@
 # pylint: disable=C0103
 
 
-import datetime
-
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
-from thefuzz import fuzz
 
 from .modules.DB_Tools import CleanDupes
 from .modules.ModelTools import DownloadImage
@@ -22,6 +19,7 @@ from .modules.Utils import (
     GetFormAndClass,
 )
 from .modules.WebTools import ScrapeWiki
+from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFunction
 
 # Create your views here.
 
@@ -103,9 +101,14 @@ def backup(_request) -> HttpResponse:
 
 def stats(request):
     context = {}
+    genre: str = request.GET.get("genre", "")
+    exclude: str = request.GET.get("exclude", "")
     for media in MODEL_LIST:
         # pylint: disable=E1101
-        context[media.__name__] = media.objects.all()
+        objList = media.objects.all()
+        genre, objList = FilterTags(genre, objList, include=True)
+        exclude, objList = FilterTags(exclude, objList, include=False)
+        context[media.__name__] = objList
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
     return render(request, "media/stats.html", context=context)
 
@@ -199,22 +202,6 @@ def SetBool(request) -> HttpResponse:
     return response
 
 
-def SortFunction(obj, key: str):
-    outObj = None
-    key = key.replace(" ", "_")
-    match (key):
-        case "Title":
-            outObj = obj.SortTitle
-        case "None":
-            outObj = obj
-        case "Genre_Tags":
-            outObj = len(obj.GenreTagList)
-        case _others:
-            outObj = getattr(obj, key)
-
-    return outObj
-
-
 def index(request) -> HttpResponse:
     # pylint: disable=E1101
 
@@ -227,18 +214,9 @@ def index(request) -> HttpResponse:
     query: str = request.GET.get("query", "")
     reverseSort: bool = request.GET.get("reverse", "false") == "true"
     _formType, objType = GetFormAndClass(request.GET.get("type", "Movie"))
-    try:
-        minYear = min(x.Year for x in objType.objects.all())
-    except:
-        minYear = 1900
-    yearRange = range(
-        int(request.GET.get("minYear", minYear)),
-        int(request.GET.get("maxYear", datetime.datetime.now().year)) + 1,
-    )
-    try:
-        objList = [x for x in objType.objects.all() if x.Year in yearRange]
-    except:
-        objList = [x for x in objType.objects.all()]
+    objList = list(objType.objects.all())
+    yearRange, objList = ExtractYearRange(request, objList)
+
     if query:
         objList = [x for x in objList if SearchFunction(subStr=x, tagStr=query)]
         objList = sorted(objList, key=lambda x: FuzzStr(x, query))
@@ -249,7 +227,9 @@ def index(request) -> HttpResponse:
     if sortKey in ["Rating", "Genre Tags"]:
         reverseSort = not reverseSort
         objList = [x for x in objList if x.Rating > 0]
+
     objList = sorted(objList, key=lambda x: SortFunction(obj=x, key=sortKey), reverse=reverseSort)
+
     paginator = Paginator(objList, pageSize)
     page_obj = paginator.get_page(pageNumber)
     return render(
@@ -270,46 +250,3 @@ def index(request) -> HttpResponse:
             },
         },
     )
-
-
-def FilterTags(tagList, objList, include):
-    if tagList:
-        if "watched" in tagList:
-            objList = [
-                x for x in objList if (include and x.Watched) or (not include and not x.Watched)
-            ]
-            tagList = tagList.replace("watched", "").strip()
-
-        if "downloaded" in tagList:
-            objList = [
-                x
-                for x in objList
-                if (include and x.Downloaded) or (not include and not x.Downloaded)
-            ]
-            tagList = tagList.replace("downloaded,", "").strip()
-            tagList = tagList.replace("downloaded", "").strip()
-        if tagList:
-            objList = [
-                x
-                for x in objList
-                if (include and CheckTags(x, tagList))
-                or (not include and not ExcludeTags(x, tagList))
-            ]
-
-    return tagList, objList
-
-
-def CheckTags(x, tagList):
-    return all(tag in " ".join(x.GenreTagList) for tag in tagList.split(",") if tag)
-
-
-def ExcludeTags(x, tagList):
-    return any(tag in " ".join(x.GenreTagList) for tag in tagList.split(",") if tag)
-
-
-def SearchFunction(subStr, tagStr):
-    return all(FuzzStr(subStr, tag) > 75 for tag in tagStr.split(","))
-
-
-def FuzzStr(obj, query):
-    return fuzz.partial_ratio(query.lower(), f"{obj.Genre_Tags} {obj.Title}".lower())

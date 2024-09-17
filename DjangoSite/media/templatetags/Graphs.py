@@ -1,9 +1,12 @@
 import datetime
+from math import ceil
 
 import pandas as pd
 import plotly.express as px
 import statsmodels.api as sm
 from django import template
+
+from ..utils import MINIMUM_YEAR
 
 register = template.Library()
 
@@ -140,23 +143,38 @@ def RuntimeBreakdown(objList):
     outputDiv = ""
     labels = []
     values = []
-    if getattr(objList[0], "Year", None):
+
+    if getattr(objList[0], "Series_Start", None):
+        startDecade = (min(x.Series_Start.year for x in objList) // 10) * 10
+        print(f"Start {startDecade}")
+        for year in range(startDecade, 2030, 10):
+            labels.append(f"{year}")
+            values.append(
+                sum(
+                    ceil(
+                        (x.Duration.seconds / 60)
+                        * x.Length
+                        * len(
+                            [
+                                y
+                                for y in range(x.Series_Start.year, x.Series_End.year + 1)
+                                if y in range(year, year + 11)
+                            ]
+                        )
+                        / len(range(x.Series_Start.year, x.Series_End.year + 1))
+                    )
+                    for x in objList
+                    if set(range(year, year + 10)).intersection(
+                        set(range(x.Series_Start.year, x.Series_End.year + 1))
+                    )
+                )
+            )
+    elif getattr(objList[0], "Year", None):
         startDecade = (min(x.Year for x in objList) // 10) * 10
         for year in range(startDecade, 2030, 10):
             labels.append(f"{year}s")
             values.append(
                 sum(x.Duration.seconds / 60 for x in objList if year <= x.Year < year + 10)
-            )
-    elif getattr(objList[0], "Series_Start", None):
-        startDecade = (min(x.Series_Start.year for x in objList) // 10) * 10
-        for year in range(startDecade, 2030, 10):
-            labels.append(f"{year}s")
-            values.append(
-                sum(
-                    (x.Duration.seconds / 60) * x.Length
-                    for x in objList
-                    if year <= x.Series_Start.year < year + 10
-                )
             )
     if labels and values:
         fig = px.pie(
@@ -250,18 +268,32 @@ def WatchOverYears(objList):
     return outputDiv
 
 
+def calcIdx(obj, yLevels):
+    endYear = (
+        obj.Series_End.year if obj.Series_End.year > MINIMUM_YEAR else datetime.date.today().year
+    )
+    for idx, slot in enumerate(yLevels):
+        if not any(x in slot for x in range(obj.Series_Start.year, endYear + 1)):
+            slot += list(range(obj.Series_Start.year, endYear + 1))
+            return idx
+    yLevels.append(list(range(obj.Series_Start.year, endYear + 1)))
+    return len(yLevels) - 1
+
+
 @register.filter
 def TimeLine(objList):
-    objList = sorted(list(objList), key=lambda x: x.Series_Start)
+    objList = sorted(list(objList), key=lambda x: (x.Series_Start))
     data = []
+    freeList = []
     for idx, obj in enumerate(objList):
+        yLevel = calcIdx(obj, freeList)
         data.append(
             {
                 "Title": obj.Title,
                 "Series_Start": f"{obj.Series_Start}",
-                "Series_End": f"{obj.Series_End if obj.Series_End.year > 1900 else 'now'}",
+                "Series_End": f"{obj.Series_End if obj.Series_End.year > MINIMUM_YEAR else 'now'}",
                 "Watched": obj.Watched,
-                "Idx": idx,
+                "Idx": yLevel,
             }
         )
     df = pd.DataFrame(data)
@@ -290,14 +322,18 @@ def FancyRatings(objList):
     years = []
     sizes = []
     shows = []
-    for i in range(startDecade, datetime.datetime.now().year):
+    for i in range(startDecade, datetime.datetime.now().year + 1):
         showsActive = [
             x
             for x in trimmedObj
             if i
             in range(
                 x.Series_Start.year,
-                (x.Series_End.year if x.Series_End.year > 1900 else datetime.datetime.now().year),
+                (
+                    x.Series_End.year + 1
+                    if x.Series_End.year > MINIMUM_YEAR
+                    else datetime.datetime.now().year + 1
+                ),
             )
         ]
         if showsActive:
@@ -322,7 +358,7 @@ def FancyRatings(objList):
         size="Number of Shows",
         hover_name="Shows Active",
     )
-    rollingTrend = sm.nonparametric.lowess(df["Ratings"], df["Year"], frac=0.3)
+    rollingTrend = sm.nonparametric.lowess(df["Ratings"], df["Year"], frac=0.15)
 
     fig.add_scatter(
         x=rollingTrend[:, 0],

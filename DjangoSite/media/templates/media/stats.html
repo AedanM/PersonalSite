@@ -58,6 +58,7 @@
 					</ul>
 				</nav>
 			</header>
+			{% if Movie %}
 			<details open>
 				<summary>Movie</summary>
 				<div class="d-flex flex-row flex-wrap">
@@ -72,6 +73,7 @@
 				<div>{{ Movie|WatchOverYears|safe }}</div>
 				<div>{{ Movie|DurationVsRating|safe }}</div>
 			</details>
+			{%endif%} {% if TVShow %}
 			<details open>
 				<summary>TV</summary>
 				<div class="d-flex flex-row flex-wrap">
@@ -81,12 +83,11 @@
 					<div>{{ TVShow|CompletionPercentage:"Downloaded"|safe }}</div>
 					<div>{{ TVShow|CompletionPercentage:"Watched"|safe }}</div>
 				</div>
-				{% comment %}
 				<div>{{ TVShow|TimeLine|safe }}</div>
-				{% endcomment %}
 				<div>{{ TVShow|FancyRatings|safe }}</div>
 				<div>{{ TVShow|DurationVsRating|safe }}</div>
 			</details>
+			{%endif%}
 		</main>
 	</body>
 </html>

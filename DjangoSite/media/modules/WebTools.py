@@ -39,7 +39,7 @@ def ScrapeWiki(wikiLink) -> dict:
         "section": "0",
         "format": "json",
     }
-    r = requests.get(API_ENDPOINT, params, headers=UA, timeout=1000)
+    r = requests.get(API_ENDPOINT, params, headers=UA, timeout=1000) # type: ignore
     title, year, runTime, imageLink, epLength = None, None, None, None, None
     if r.status_code == 200 and "parse" in r.json():
         j = str(r.json()["parse"]["text"]["*"])

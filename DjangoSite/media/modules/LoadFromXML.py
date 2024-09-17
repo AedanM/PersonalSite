@@ -43,6 +43,7 @@ def GenDepends(fileList):
             file.ParentList.append(p.Name)
             p = p.Parent
         file.ParentList = [x for x in file.ParentList if x != "W"]
+    return fileList
 
 
 def FormatDir(d, depth):
