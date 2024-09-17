@@ -21,6 +21,8 @@ def ResizeImages(parentDir):
         for img in parentDir.glob("*.png"):
             print(img)
             SingleResize(img)
+    else:
+        print("No such dir")
 
 
 def SingleResize(img):
@@ -36,4 +38,6 @@ def SingleResize(img):
     background.save(str(img))
 
 
-ResizeImages(r"D:\PersonalSite\DjangoSite\static\logos\tvshows\toReshape")
+ResizeImages(
+    r"C:\mysources\Aedan\PersonalScripts\Projects\PersonalSite\DjangoSite\static\logos\tvshows\ToReshape"
+)

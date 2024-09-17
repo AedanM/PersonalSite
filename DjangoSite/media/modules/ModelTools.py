@@ -30,7 +30,7 @@ def DownloadImage(modelObj):
         if logoIMG:
             try:
                 savePath = (
-                    f"logos/{type(modelObj).__name__.lower()}s/{modelObj.Title.replace(':','-')}.png"
+                    f"logos/{type(modelObj).__name__.lower()}s/{modelObj.Title.replace(':','')}.png"
                     if logoIMG != DEFAULT_IMG
                     else DEFAULT_IMG_PATH
                 )

@@ -62,7 +62,8 @@ def update(request) -> HttpResponse:
 @login_required
 def wikiLoad(request) -> HttpResponse:
     context = {}
-    returnRender = render(request, "media/wikiLoad.html")
+    context["link"] = request.GET.get("link", None)
+    returnRender = render(request, "media/wikiLoad.html", context=context)
     form, _model = GetFormAndClass(request.POST.get("Type", "Movie"))
     if request.method == "POST":
         input_value = request.POST.get("Wiki Link", None)
@@ -70,7 +71,6 @@ def wikiLoad(request) -> HttpResponse:
             contentDetails = ScrapeWiki(wikiLink=input_value)
             context["form"] = form(initial=contentDetails)
             context["colorMode"] = request.COOKIES.get("colorMode", "dark")
-
             returnRender = render(request, "media/form.html", context=context)
         else:
             form, model = DetermineForm(request)

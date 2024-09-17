@@ -26,11 +26,17 @@
 			<form
 				method="post"
 				action="{% url 'wikiLoad' %}">
-				{% csrf_token %}
+				{% csrf_token %} {% if link%}
+				<input
+					type="text"
+					name="Wiki Link"
+					value="{{link}}" />
+				{%else%}
 				<input
 					type="text"
 					name="Wiki Link"
 					placeholder="Enter something..." />
+				{%endif%}
 				<select
 					class="form-select"
 					name="Type">
