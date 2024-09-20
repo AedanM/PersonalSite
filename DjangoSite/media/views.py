@@ -136,8 +136,6 @@ def new(request) -> HttpResponse:
             if request.method == "GET"
             else redirect("/media")
         )
-    else:
-        print(request.POST.get("Title"))
     return response
 
 
@@ -169,8 +167,6 @@ def edit(request) -> HttpResponse:
 def SetBool(request) -> HttpResponse:
     response: HttpResponse = redirect(request.META.get("HTTP_REFERER", "/media"))
     if contentObj := FindID(request.GET.get("contentId", -1)):
-        print(request.POST)
-
         if request.POST.get("rating", None):
             contentObj.Rating = float(request.POST.get("rating", contentObj.Rating))
             contentObj.Genre_Tags = request.POST.get("Genre_Tags", contentObj.Genre_Tags)
@@ -224,9 +220,10 @@ def index(request) -> HttpResponse:
     genre, objList = FilterTags(genre, objList, include=True)
     exclude, objList = FilterTags(exclude, objList, include=False)
 
-    if sortKey in ["Rating", "Genre Tags"]:
+    if sortKey in ["Rating", "Genre Tags", "Date Added"]:
         reverseSort = not reverseSort
-        objList = [x for x in objList if x.Rating > 0]
+        if sortKey == "Rating":
+            objList = [x for x in objList if x.Rating > 0]
 
     objList = sorted(objList, key=lambda x: SortFunction(obj=x, key=sortKey), reverse=reverseSort)
 

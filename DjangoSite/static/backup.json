@@ -116,7 +116,7 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Barbie_(film)",
 			"Logo": "logos/movies/Barbie.png",
-			"Rating": "9.4",
+			"Rating": "8.3",
 			"Watched": true,
 			"Duration": 114,
 			"Year": 2023
@@ -408,7 +408,7 @@
 			"Year": 1997
 		},
 		{
-			"Title": "Justice League Crisis On Two Earths",
+			"Title": "Justice League: Crisis On Two Earths",
 			"Genre_Tags": "DC, Superheroes, Animation",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Justice_League:_Crisis_on_Two_Earths",
@@ -430,7 +430,7 @@
 			"Year": 2017
 		},
 		{
-			"Title": "Justice League Dark Apokolips War",
+			"Title": "Justice League Dark: Apokolips War",
 			"Genre_Tags": "DC, Superheroes, Animation",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Justice_League_Dark:_Apokolips_War",
@@ -441,7 +441,7 @@
 			"Year": 2020
 		},
 		{
-			"Title": "Justice League Doom",
+			"Title": "Justice League: Doom",
 			"Genre_Tags": "DC, Superheroes, Animation",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Justice_League:_Doom",
@@ -452,7 +452,7 @@
 			"Year": 2012
 		},
 		{
-			"Title": "Justice League War",
+			"Title": "Justice League: War",
 			"Genre_Tags": "DC, Superheroes, Animation",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Justice_League:_War",
@@ -485,7 +485,7 @@
 			"Year": 1973
 		},
 		{
-			"Title": "Looney Tunes Back In Action",
+			"Title": "Looney Tunes: Back In Action",
 			"Genre_Tags": "Animation, Comedy, Looney Tunes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Looney_Tunes:_Back_in_Action",
@@ -552,7 +552,7 @@
 		},
 		{
 			"Title": "Muppet Treasure Island",
-			"Genre_Tags": "Comedy, Henson, Muppets, Puppetry",
+			"Genre_Tags": "Comedy, Muppets, Puppetry",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Muppet_Treasure_Island",
 			"Logo": "logos/movies/Muppet Treasure Island.png",
@@ -563,7 +563,7 @@
 		},
 		{
 			"Title": "Muppets From Space",
-			"Genre_Tags": "Comedy, Henson, Muppets, Sci-Fi, Puppetry",
+			"Genre_Tags": "Comedy, Muppets, Sci-Fi, Puppetry",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Muppets_from_Space",
 			"Logo": "logos/movies/Muppets From Space.png",
@@ -661,7 +661,7 @@
 			"Year": 2020
 		},
 		{
-			"Title": "Robin Hood Men In Tights",
+			"Title": "Robin Hood: Men In Tights",
 			"Genre_Tags": "Comedy, Mel Brooks",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Robin_Hood:_Men_in_Tights",
@@ -683,7 +683,7 @@
 			"Year": 2002
 		},
 		{
-			"Title": "Scooby-Doo 2 Monsters Unleashed",
+			"Title": "Scooby-Doo 2: Monsters Unleashed",
 			"Genre_Tags": "Comedy, Girlboss, Mystery",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Scooby-Doo_2:_Monsters_Unleashed",
@@ -727,7 +727,7 @@
 			"Year": 2015
 		},
 		{
-			"Title": "Spiderman - Across the Spider-Verse",
+			"Title": "Spiderman: Across the Spider-Verse",
 			"Genre_Tags": "Marvel, Spiderman, Superheroes, Animation",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Spider-Man:_Across_the_Spider-Verse",
@@ -738,7 +738,7 @@
 			"Year": 2023
 		},
 		{
-			"Title": "Spiderman - Into the Spiderverse",
+			"Title": "Spiderman: Into the Spiderverse",
 			"Genre_Tags": "Marvel, Spiderman, Superheroes, Animation",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Spider-Man:_Into_the_Spider-Verse",
@@ -793,7 +793,7 @@
 			"Year": 2022
 		},
 		{
-			"Title": "Star Trek I The Motion Picture",
+			"Title": "Star Trek I: The Motion Picture",
 			"Genre_Tags": "Sci-Fi, Star Trek",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek:_The_Motion_Picture",
@@ -804,7 +804,7 @@
 			"Year": 1979
 		},
 		{
-			"Title": "Star Trek II The Wrath Of Khan",
+			"Title": "Star Trek II: The Wrath Of Khan",
 			"Genre_Tags": "Sci-Fi, Star Trek",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek_II:_The_Wrath_of_Khan",
@@ -815,7 +815,7 @@
 			"Year": 1982
 		},
 		{
-			"Title": "Star Trek III The Search For Spock",
+			"Title": "Star Trek III: The Search For Spock",
 			"Genre_Tags": "Sci-Fi, Star Trek",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek_III:_The_Search_for_Spock",
@@ -826,7 +826,7 @@
 			"Year": 1984
 		},
 		{
-			"Title": "Star Trek IV The Voyage Home",
+			"Title": "Star Trek IV: The Voyage Home",
 			"Genre_Tags": "Sci-Fi, Star Trek",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek_IV:_The_Voyage_Home",
@@ -837,7 +837,7 @@
 			"Year": 1986
 		},
 		{
-			"Title": "Star Trek V The Final Frontier",
+			"Title": "Star Trek V: The Final Frontier",
 			"Genre_Tags": "Sci-Fi, Star Trek",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek_V:_The_Final_Frontier",
@@ -848,7 +848,7 @@
 			"Year": 1989
 		},
 		{
-			"Title": "Star Trek VI The Undiscovered Country",
+			"Title": "Star Trek VI: The Undiscovered Country",
 			"Genre_Tags": "Sci-Fi, Star Trek",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek_VI:_The_Undiscovered_Country",
@@ -859,7 +859,7 @@
 			"Year": 1991
 		},
 		{
-			"Title": "Star Trek Generations",
+			"Title": "Star Trek: Generations",
 			"Genre_Tags": "Sci-Fi, Star Trek",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek_Generations",
@@ -881,7 +881,7 @@
 			"Year": 1996
 		},
 		{
-			"Title": "Star Trek Insurrection",
+			"Title": "Star Trek: Insurrection",
 			"Genre_Tags": "Sci-Fi, Star Trek",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek:_Insurrection",
@@ -969,7 +969,7 @@
 			"Year": 1983
 		},
 		{
-			"Title": "Superman IV The Quest for Peace",
+			"Title": "Superman IV: The Quest for Peace",
 			"Genre_Tags": "DC, Superheroes, Superman",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Superman_IV:_The_Quest_for_Peace",
@@ -1113,7 +1113,7 @@
 		},
 		{
 			"Title": "The Muppets Christmas Carol",
-			"Genre_Tags": "Christmas, Comedy, Henson, Muppets, Puppetry",
+			"Genre_Tags": "Christmas, Comedy, Muppets, Puppetry",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Muppet_Christmas_Carol",
 			"Logo": "logos/movies/The Muppets Christmas Carol.png",
@@ -1156,7 +1156,7 @@
 			"Year": 1977
 		},
 		{
-			"Title": "Austin Powers: The Spy Who Shagged Me",
+			"Title": "The Spy Who Shagged Me",
 			"Genre_Tags": "Austin Powers, Spies",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Austin_Powers:_The_Spy_Who_Shagged_Me",
@@ -1332,7 +1332,7 @@
 			"Year": 1964
 		},
 		{
-			"Title": "The Producers (Musical)",
+			"Title": "The Producers",
 			"Genre_Tags": "Comedy, Mel Brooks, Musical",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Producers_(2005_film)",
@@ -1707,7 +1707,7 @@
 		},
 		{
 			"Title": "The Princess Bride",
-			"Genre_Tags": "Fantasy, Rom-Com",
+			"Genre_Tags": "Fantasy, Rom-Com, Pirates",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Princess_Bride_(film)",
 			"Logo": "logos/movies/The Princess Bride.png",
@@ -1931,8 +1931,8 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Jason_and_the_Argonauts_(1963_film)",
 			"Logo": "logos/movies/Jason and the Argonauts.png",
-			"Rating": "0.0",
-			"Watched": false,
+			"Rating": "6.8",
+			"Watched": true,
 			"Duration": 104,
 			"Year": 1963
 		},
@@ -2202,7 +2202,7 @@
 		},
 		{
 			"Title": "Pink Flamingos",
-			"Genre_Tags": "Black Comedy, Comedy",
+			"Genre_Tags": "Black Comedy",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Pink Flamingos",
 			"Logo": "logos/movies/Pink Flamingos.png",
@@ -2269,7 +2269,7 @@
 		{
 			"Title": "Batman",
 			"Genre_Tags": "Batman, DC, Superheroes",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_(1966_film)",
 			"Logo": "logos/movies/Batman 66.png",
 			"Rating": "0.0",
@@ -2379,11 +2379,11 @@
 		{
 			"Title": "What We Do in the Shadows",
 			"Genre_Tags": "Comedy, Horror, Kiwi, Mockumentary",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/What We Do in the Shadows",
 			"Logo": "logos/movies/What We Do in the Shadows.png",
-			"Rating": "0.0",
-			"Watched": false,
+			"Rating": "6.9",
+			"Watched": true,
 			"Duration": 85,
 			"Year": 2014
 		},
@@ -2566,7 +2566,7 @@
 		{
 			"Title": "The Italian Job",
 			"Genre_Tags": "Action, Crime",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Italian_Job",
 			"Logo": "logos/movies/The Italian Job.png",
 			"Rating": "0.0",
@@ -2577,7 +2577,7 @@
 		{
 			"Title": "The Italian Job",
 			"Genre_Tags": "Action, Crime",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Italian_Job_(2003_film)",
 			"Logo": "logos/movies/The Italian Job 2003.png",
 			"Rating": "0.0",
@@ -2642,8 +2642,8 @@
 		},
 		{
 			"Title": "The Pink Panther",
-			"Genre_Tags": "Comedy, Crime",
-			"Downloaded": false,
+			"Genre_Tags": "Comedy, Crime, Pink Panther",
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Pink_Panther_(1963_film)",
 			"Logo": "logos/movies/The Pink Panther.png",
 			"Rating": "0.0",
@@ -2653,8 +2653,8 @@
 		},
 		{
 			"Title": "The Return of the Pink Panther",
-			"Genre_Tags": "Comedy, Crime",
-			"Downloaded": false,
+			"Genre_Tags": "Comedy, Crime, Pink Panther",
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Return_of_the_Pink_Panther",
 			"Logo": "logos/movies/The Return of the Pink Panther.png",
 			"Rating": "0.0",
@@ -3411,7 +3411,7 @@
 			"Year": 1984
 		},
 		{
-			"Title": "Mad Max Beyond Thunderdome",
+			"Title": "Mad Max: Beyond Thunderdome",
 			"Genre_Tags": "Action, Mad Max",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Mad_Max_Beyond_Thunderdome",
@@ -3468,7 +3468,7 @@
 		{
 			"Title": "An American Tail",
 			"Genre_Tags": "Animation, Comedy, Musical, Spielberg",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/An_American_Tail",
 			"Logo": "logos/movies/An American Tail.png",
 			"Rating": "0.0",
@@ -4544,8 +4544,8 @@
 			"Year": 1997
 		},
 		{
-			"Title": "Pirates of the Caribbean: Dead Men Tell No Tales",
-			"Genre_Tags": "Adventure, Fantasy, Pirates",
+			"Title": " Dead Men Tell No Tales",
+			"Genre_Tags": "Adventure, Fantasy,  Pirates of the Caribbean",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_Dead_Men_Tell_No_Tales",
 			"Logo": "logos/movies/Pirates of the Caribbean Dead Men Tell No Tales.png",
@@ -4555,8 +4555,8 @@
 			"Year": 2017
 		},
 		{
-			"Title": "Pirates of the Caribbean: On Stranger Tides",
-			"Genre_Tags": "Adventure, Fantasy, Pirates",
+			"Title": " On Stranger Tides",
+			"Genre_Tags": "Adventure, Fantasy,  Pirates of the Caribbean",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_On_Stranger_Tides",
 			"Logo": "logos/movies/Pirates of the Caribbean On Stranger Tides.png",
@@ -4566,8 +4566,8 @@
 			"Year": 2011
 		},
 		{
-			"Title": "Pirates of the Caribbean: At World's End",
-			"Genre_Tags": "Adventure, Fantasy, Pirates",
+			"Title": " At World's End",
+			"Genre_Tags": "Adventure, Fantasy,  Pirates of the Caribbean",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_At_World's_End",
 			"Logo": "logos/movies/Pirates of the Caribbean At World's End.png",
@@ -4577,8 +4577,8 @@
 			"Year": 2007
 		},
 		{
-			"Title": "Pirates of the Caribbean: Dead Man's Chest",
-			"Genre_Tags": "Adventure, Fantasy, Pirates",
+			"Title": " Dead Man's Chest",
+			"Genre_Tags": "Adventure, Fantasy,  Pirates of the Caribbean",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_Dead_Man's_Chest",
 			"Logo": "logos/movies/Pirates of the Caribbean Dead Man's Chest.png",
@@ -4588,8 +4588,8 @@
 			"Year": 2006
 		},
 		{
-			"Title": "Pirates of the Caribbean: The Curse of the Black Pearl",
-			"Genre_Tags": "Adventure, Fantasy, Pirates",
+			"Title": " The Curse of the Black Pearl",
+			"Genre_Tags": "Adventure, Fantasy,  Pirates of the Caribbean",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_The_Curse_of_the_Black_Pearl",
 			"Logo": "logos/movies/Pirates of the Caribbean The Curse of the Black Pearl.png",
@@ -4677,7 +4677,7 @@
 		},
 		{
 			"Title": "Hook",
-			"Genre_Tags": "Comedy, Fantasy, Spielberg",
+			"Genre_Tags": "Comedy, Fantasy, Spielberg, Pirates",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Hook_(film)",
 			"Logo": "logos/movies/Hook.png",
@@ -4751,6 +4751,402 @@
 			"Watched": false,
 			"Duration": 105,
 			"Year": 1990
+		},
+		{
+			"Title": "Silent Night, Deadly Night",
+			"Genre_Tags": "Christmas, Horror",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Silent_Night,_Deadly_Night",
+			"Logo": "logos/movies/Silent Night, Deadly Night.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 82,
+			"Year": 1984
+		},
+		{
+			"Title": "Deck the Halls",
+			"Genre_Tags": "Christmas, Comedy",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Deck_the_Halls_(2006_film)",
+			"Logo": "logos/movies/Deck the Halls.png",
+			"Rating": "7.2",
+			"Watched": true,
+			"Duration": 93,
+			"Year": 2006
+		},
+		{
+			"Title": "Space Cop",
+			"Genre_Tags": "Comedy, Sci-Fi",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Space_Cop",
+			"Logo": "logos/movies/Space Cop.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 102,
+			"Year": 2016
+		},
+		{
+			"Title": "The Terminator",
+			"Genre_Tags": "Sci-Fi, Thriller",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Terminator",
+			"Logo": "logos/movies/The Terminator.png",
+			"Rating": "8.5",
+			"Watched": true,
+			"Duration": 107,
+			"Year": 1984
+		},
+		{
+			"Title": "Terminator 2: Judgment Day",
+			"Genre_Tags": "Action, Sci-Fi",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Terminator_2:_Judgment_Day",
+			"Logo": "logos/movies/Terminator 2 Judgment Day.png",
+			"Rating": "8.8",
+			"Watched": true,
+			"Duration": 137,
+			"Year": 1991
+		},
+		{
+			"Title": "Terminator 3: Rise of the Machines",
+			"Genre_Tags": "Action, Sci-Fi",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Terminator_3:_Rise_of_the_Machines",
+			"Logo": "logos/movies/Terminator 3 Rise of the Machines.png",
+			"Rating": "7.4",
+			"Watched": true,
+			"Duration": 109,
+			"Year": 2003
+		},
+		{
+			"Title": "Godzilla Minus One",
+			"Genre_Tags": "Disaster, Kaiju",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Godzilla_Minus_One",
+			"Logo": "logos/movies/Godzilla Minus One.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 125,
+			"Year": 2023
+		},
+		{
+			"Title": "Shin Godzilla",
+			"Genre_Tags": "Disaster, Kaiju",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Shin_Godzilla",
+			"Logo": "logos/movies/Shin Godzilla.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 120,
+			"Year": 2016
+		},
+		{
+			"Title": "The Matrix Reloaded",
+			"Genre_Tags": "Action, Sci-Fi",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Matrix_Reloaded",
+			"Logo": "logos/movies/The Matrix Reloaded.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 138,
+			"Year": 2003
+		},
+		{
+			"Title": "The Matrix Revolutions",
+			"Genre_Tags": "Action, Sci-Fi",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Matrix_Revolutions",
+			"Logo": "logos/movies/The Matrix Revolutions.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 129,
+			"Year": 2003
+		},
+		{
+			"Title": "The Matrix",
+			"Genre_Tags": "Action, Sci-Fi",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Matrix",
+			"Logo": "logos/movies/The Matrix.png",
+			"Rating": "8.1",
+			"Watched": true,
+			"Duration": 136,
+			"Year": 1999
+		},
+		{
+			"Title": "The Fast and the Furious",
+			"Genre_Tags": "Action, Crime, Motoring",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Fast_and_the_Furious_(2001_film)",
+			"Logo": "logos/movies/The Fast and the Furious.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 106,
+			"Year": 2001
+		},
+		{
+			"Title": "2 Fast 2 Furious",
+			"Genre_Tags": "Action, Crime, Motoring",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/2_Fast_2_Furious",
+			"Logo": "logos/movies/2 Fast 2 Furious.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 108,
+			"Year": 2003
+		},
+		{
+			"Title": "The Fast and the Furious: Tokyo Drift",
+			"Genre_Tags": "Action, Crime, Motoring",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Fast_and_the_Furious:_Tokyo_Drift",
+			"Logo": "logos/movies/The Fast and the Furious Tokyo Drift.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 104,
+			"Year": 2006
+		},
+		{
+			"Title": "The Return of the King",
+			"Genre_Tags": "Adventure, Fantasy, Lord of The Rings",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Return_of_the_King",
+			"Logo": "logos/movies/The Return of the King.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 201,
+			"Year": 2003
+		},
+		{
+			"Title": "The Two Towers",
+			"Genre_Tags": "Adventure, Fantasy, Lord of The Rings",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Two_Towers",
+			"Logo": "logos/movies/The Two Towers.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 179,
+			"Year": 2002
+		},
+		{
+			"Title": "The Fellowship of the Ring",
+			"Genre_Tags": "Adventure, Fantasy, Lord of The Rings",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Fellowship_of_the_Ring",
+			"Logo": "logos/movies/The Fellowship of the Ring.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 178,
+			"Year": 2001
+		},
+		{
+			"Title": "Akira",
+			"Genre_Tags": "Action, Animation, Sci-Fi",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Akira_(1988_film)",
+			"Logo": "logos/movies/Akira.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 124,
+			"Year": 1988
+		},
+		{
+			"Title": "Ghost in the Shell",
+			"Genre_Tags": "Animation, Noir, Sci-Fi, Thriller",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Ghost_in_the_Shell_(1995_film)",
+			"Logo": "logos/movies/Ghost in the Shell.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 83,
+			"Year": 1995
+		},
+		{
+			"Title": "Wallace and Gromit: The Curse of the Were-Rabbit",
+			"Genre_Tags": "Animation, British, Comedy, Wallace and Gromit, Aardman",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Wallace_&_Gromit:_The_Curse_of_the_Were-Rabbit",
+			"Logo": "logos/movies/Wallace and Gromit The Curse of the Were-Rabbit.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 85,
+			"Year": 2005
+		},
+		{
+			"Title": "The Wrong Trousers",
+			"Genre_Tags": "Animation, British, Comedy, Short Film, Wallace and Gromit, Aardman",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Wrong_Trousers",
+			"Logo": "logos/movies/The Wrong Trousers.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 29,
+			"Year": 1993
+		},
+		{
+			"Title": "A Close Shave",
+			"Genre_Tags": "Animation, British, Comedy, Short Film, Wallace and Gromit, Aardman",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/A_Close_Shave",
+			"Logo": "logos/movies/Wallace and Gromit A Close Shave.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 30,
+			"Year": 1995
+		},
+		{
+			"Title": "A Matter of Loaf and Death",
+			"Genre_Tags": "Animation, British, Comedy, Short Film, Wallace and Gromit, Aardman",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/A_Matter_of_Loaf_and_Death",
+			"Logo": "logos/movies/A Matter of Loaf and Death.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 29,
+			"Year": 2008
+		},
+		{
+			"Title": "A Grand Day Out",
+			"Genre_Tags": "Animation, British, Comedy, Short Film, Wallace and Gromit, Aardman",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/A_Grand_Day_Out",
+			"Logo": "logos/movies/A Grand Day Out.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 23,
+			"Year": 1989
+		},
+		{
+			"Title": "Chicken Run",
+			"Genre_Tags": "Aardman, Animation, Comedy, British",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Chicken_Run",
+			"Logo": "logos/movies/Chicken Run.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 84,
+			"Year": 2000
+		},
+		{
+			"Title": "Flushed Away",
+			"Genre_Tags": "Aardman, Animation, Comedy, British",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Flushed_Away",
+			"Logo": "logos/movies/Flushed Away.png",
+			"Rating": "5.5",
+			"Watched": true,
+			"Duration": 85,
+			"Year": 2006
+		},
+		{
+			"Title": "Arthur Christmas",
+			"Genre_Tags": "Aardman, Animation, Christmas, Comedy",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Arthur_Christmas",
+			"Logo": "logos/movies/Arthur Christmas.png",
+			"Rating": "5.8",
+			"Watched": true,
+			"Duration": 97,
+			"Year": 2011
+		},
+		{
+			"Title": "Prep and Landing",
+			"Genre_Tags": "Animation, Chrismas, Comedy",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Prep_&_Landing",
+			"Logo": "logos/movies/Prep and Landing.png",
+			"Rating": "6.7",
+			"Watched": true,
+			"Duration": 22,
+			"Year": 2009
+		},
+		{
+			"Title": "Independence Day",
+			"Genre_Tags": "Action, Disaster, Sci-Fi",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Independence_Day_(1996_film)",
+			"Logo": "logos/movies/Independence Day.png",
+			"Rating": "5.9",
+			"Watched": true,
+			"Duration": 145,
+			"Year": 1996
+		},
+		{
+			"Title": "The Nightmare Before Christmas",
+			"Genre_Tags": "Christmas, Puppetry, Tim Burton, Musical",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Nightmare_Before_Christmas",
+			"Logo": "logos/movies/The Nightmare Before Christmas.png",
+			"Rating": "8.6",
+			"Watched": true,
+			"Duration": 76,
+			"Year": 1993
+		},
+		{
+			"Title": "A Shot in the Dark",
+			"Genre_Tags": "Comedy, Crime, Pink Panther",
+			"Downloaded": true,
+			"InfoPage": "https://en.wikipedia.org/wiki/A_Shot_in_the_Dark_(1964_film)",
+			"Logo": "logos/movies/A Shot in the Dark.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 102,
+			"Year": 1964
+		},
+		{
+			"Title": "The Pink Panther Strikes Again",
+			"Genre_Tags": "Comedy, Crime, Pink Panther",
+			"Downloaded": true,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Pink_Panther_Strikes_Again",
+			"Logo": "logos/movies/The Pink Panther Strikes Again.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 103,
+			"Year": 1976
+		},
+		{
+			"Title": "The Muppets",
+			"Genre_Tags": "Comedy, Muppets, Puppetry",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Muppets_(2011_film)",
+			"Logo": "logos/movies/The Muppets.png",
+			"Rating": "8.5",
+			"Watched": true,
+			"Duration": 103,
+			"Year": 2011
+		},
+		{
+			"Title": "Muppets Most Wanted",
+			"Genre_Tags": "Comedy, Crime, Muppets, Puppetry",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Muppets_Most_Wanted",
+			"Logo": "logos/movies/Muppets Most Wanted.png",
+			"Rating": "7.1",
+			"Watched": true,
+			"Duration": 106,
+			"Year": 2014
+		},
+		{
+			"Title": "Masters of the Universe",
+			"Genre_Tags": "Action, Fantasy",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Masters_of_the_Universe_(film)",
+			"Logo": "logos/movies/Masters of the Universe.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 106,
+			"Year": 1987
+		},
+		{
+			"Title": "A Christmas Story",
+			"Genre_Tags": "Christmas, Comedy",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/A_Christmas_Story",
+			"Logo": "logos/movies/A Christmas Story.png",
+			"Rating": "7.2",
+			"Watched": true,
+			"Duration": 94,
+			"Year": 1983
 		}
 	],
 	"TVShow": [
@@ -4795,7 +5191,7 @@
 		},
 		{
 			"Title": "Andor",
-			"Genre_Tags": "Action, Sci-Fi, Star Wars",
+			"Genre_Tags": "Action, Sci-Fi, Star Wars, Drama",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Andor_(TV_series)",
 			"Logo": "logos/tvshows/Andor.png",
@@ -4838,7 +5234,7 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Dilbert_(TV_series)",
 			"Logo": "logos/tvshows/Dilbert.png",
-			"Rating": "6.8",
+			"Rating": "6.1",
 			"Watched": true,
 			"Duration": 22,
 			"Length": 30,
@@ -4916,7 +5312,7 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/MythBusters",
 			"Logo": "logos/tvshows/Mythbusters.png",
-			"Rating": "6.9",
+			"Rating": "7.4",
 			"Watched": true,
 			"Duration": 44,
 			"Length": 296,
@@ -4977,7 +5373,7 @@
 		},
 		{
 			"Title": "Yonderland",
-			"Genre_Tags": "6 Idiots, British, Comedy, Puppetry",
+			"Genre_Tags": "6 Idiots, British, Comedy, Puppetry, Fantasy",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Yonderland",
 			"Logo": "logos/tvshows/Yonderland.png",
@@ -5185,7 +5581,7 @@
 		},
 		{
 			"Title": "Death In Paradise",
-			"Genre_Tags": "British, Drama, Mystery",
+			"Genre_Tags": "British, Drama, Mystery, Comedy",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Death_in_Paradise_(TV_series)",
 			"Logo": "logos/tvshows/Death In Paradise.png",
@@ -5267,8 +5663,8 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Justice_League_(TV_series)",
 			"Logo": "logos/tvshows/Justice Leagure.png",
-			"Rating": "0.0",
-			"Watched": false,
+			"Rating": "6.5",
+			"Watched": true,
 			"Duration": 22,
 			"Length": 52,
 			"Series_Start": "2001-11-17",
@@ -5732,7 +6128,7 @@
 		{
 			"Title": "Ted",
 			"Genre_Tags": "Comedy",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Ted_(TV_series)",
 			"Logo": "logos/tvshows/ted.png",
 			"Rating": "0.0",
@@ -5783,7 +6179,7 @@
 		},
 		{
 			"Title": "Top Gear",
-			"Genre_Tags": "Comedy, Educational, Motoring",
+			"Genre_Tags": "Comedy, Educational, Motoring, British",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Top_Gear_(2002_TV_series)",
 			"Logo": "logos/tvshows/Top Gear.png",
@@ -5809,7 +6205,7 @@
 		},
 		{
 			"Title": "Clarkson's Farm",
-			"Genre_Tags": "Comedy",
+			"Genre_Tags": "Comedy, British",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Clarkson%27s_Farm",
 			"Logo": "logos/tvshows/Clarkson's Farm.png",
@@ -5818,6 +6214,97 @@
 			"Duration": 45,
 			"Length": 24,
 			"Series_Start": "2021-06-11",
+			"Series_End": "1900-01-01"
+		},
+		{
+			"Title": "Chernobyl",
+			"Genre_Tags": "Drama, History",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Chernobyl_(miniseries)",
+			"Logo": "logos/tvshows/Chernobyl.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 71,
+			"Length": 5,
+			"Series_Start": "2019-05-06",
+			"Series_End": "2019-06-03"
+		},
+		{
+			"Title": "The Wire",
+			"Genre_Tags": "Crime, Drama",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Wire",
+			"Logo": "logos/tvshows/The Wire.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 60,
+			"Length": 60,
+			"Series_Start": "2002-06-02",
+			"Series_End": "2008-03-09"
+		},
+		{
+			"Title": "Boardwalk Empire",
+			"Genre_Tags": "Crime, Drama",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Boardwalk_Empire",
+			"Logo": "logos/tvshows/Boardwalk Empire.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 60,
+			"Length": 56,
+			"Series_Start": "2010-09-19",
+			"Series_End": "2014-10-26"
+		},
+		{
+			"Title": "The Newsroom",
+			"Genre_Tags": "Drama, Politics",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Newsroom_(American_TV_series)",
+			"Logo": "logos/tvshows/The Newsroom.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 60,
+			"Length": 25,
+			"Series_Start": "2012-06-24",
+			"Series_End": "2014-12-14"
+		},
+		{
+			"Title": "Tenacious D",
+			"Genre_Tags": "Comedy, Musical",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Tenacious_D_(TV_series)",
+			"Logo": "logos/tvshows/Tenacious D.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 26,
+			"Length": 3,
+			"Series_Start": "1997-11-28",
+			"Series_End": "2000-03-15"
+		},
+		{
+			"Title": "Doom Patrol",
+			"Genre_Tags": "Black Comedy, DC, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Doom_Patrol_(TV_series)",
+			"Logo": "logos/tvshows/Doom Patrol.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 58,
+			"Length": 46,
+			"Series_Start": "2019-02-15",
+			"Series_End": "2023-10-12"
+		},
+		{
+			"Title": "The Orville",
+			"Genre_Tags": "Sci-Fi, Star Trek",
+			"Downloaded": true,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Orville",
+			"Logo": "logos/tvshows/The Orville.png",
+			"Rating": "7.8",
+			"Watched": true,
+			"Duration": 45,
+			"Length": 36,
+			"Series_Start": "2019-09-10",
 			"Series_End": "1900-01-01"
 		}
 	],

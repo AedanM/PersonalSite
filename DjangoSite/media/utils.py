@@ -62,6 +62,8 @@ def SortFunction(obj, key: str):
             outObj = len(obj.GenreTagList)
         case "Random":
             outObj = random.random()
+        case "Date_Added":
+            outObj = obj.id
         case _others:
             outObj = getattr(obj, key)
 

@@ -111,6 +111,13 @@
 				"Year Range: " + $("#slider-range").slider("values", 0) + " - " + $("#slider-range").slider("values", 1)
 			);
 		});
+
+		function CopyLink() {
+			var copyText = window.location.href + "wiki?link=";
+			navigator.clipboard.writeText(copyText);
+
+			alert("Copied the Wiki Source Link!");
+		}
 	</script>
 	<body>
 		<main
@@ -140,51 +147,56 @@
 			<div class="d-flex justify-content-center">
 				<a
 					class="clean-link me-3"
-					onclick="SetUrlParam([], [], false, true)">
+					href="/media">
 					<i class="bi bi-house-fill"></i
 				></a>
 				<a
 					class="clean-link flex-grow-1"
-					onclick="document.location = '/media/stats'">
+					href="/media/stats">
 					<i class="bi bi-bar-chart-line"></i
 				></a>
 				<div class="flex-grow-1">
 					<button
 						class="clean-button"
-						onclick="SetUrlParam(['type', 'sort', 'page'], ['Movie','',''])">
+						onclick="SetUrlParam(['type', 'page'], ['Movie',''])">
 						<i class="mx-3 bi bi-film"></i>
 					</button>
 					<button
 						class="clean-button"
-						onclick="SetUrlParam(['type', 'sort', 'page'], ['TV Show','',''])">
+						onclick="SetUrlParam(['type', 'page'], ['TV Show',''])">
 						<i class="mx-3 bi bi-tv"></i>
 					</button>
 					<button
 						class="clean-button"
-						onclick="SetUrlParam(['type', 'sort', 'page'], ['Comic','',''])">
+						onclick="SetUrlParam(['type','page'], ['Comic',''])">
 						<i class="mx-3 bi bi-book"></i>
 					</button>
 					<button
 						class="clean-button"
-						onclick="SetUrlParam(['type', 'sort', 'page'], ['Book','',''])">
+						onclick="SetUrlParam(['type', 'page'], ['Book',''])">
 						<i class="mx-3 bi bi-journal-bookmark"></i>
 					</button>
 					<button
 						class="clean-button"
-						onclick="SetUrlParam(['type', 'sort', 'page'], ['Album','',''])">
+						onclick="SetUrlParam(['type', 'page'], ['Album',''])">
 						<i class="mx-3 bi bi-vinyl"></i>
 					</button>
 					<button
 						class="clean-button"
-						onclick="SetUrlParam(['type', 'sort', 'page'], ['Podcast','',''])">
+						onclick="SetUrlParam(['type', 'page'], ['Podcast',''])">
 						<i class="mx-3 bi bi-mic"></i>
 					</button>
 					<button
 						class="clean-button"
-						onclick="SetUrlParam(['type', 'sort', 'page'], ['Youtube','',''])">
+						onclick="SetUrlParam(['type', 'page'], ['Youtube',''])">
 						<i class="mx-3 bi bi-youtube"></i>
 					</button>
 				</div>
+				<button
+					class="clean-button"
+					onclick="CopyLink()">
+					<i class="bi bi-link-45deg"></i>
+				</button>
 				<button
 					class="clean-button"
 					onclick="document.location = '/media/wiki'">
@@ -213,6 +225,7 @@
 								Sort Value
 							</option>
 							<option value="Random">Random Shuffle</option>
+							<option value="Date Added">Date Added</option>
 							{% for tag in page_obj|GetAttrs %}
 							<option value="{{tag}}">{{tag}}</option>
 							{%endfor%} {% if page_obj.0.Total_Length %}
@@ -404,7 +417,7 @@
 							<div class="card-body">
 								<div class="d-flex">
 									<a
-										href="view?id={{show.id}}"
+										href="edit?id={{show.id}}"
 										class="clean-link"
 										><strong class="card-title flex-grow-1">{{show.Title}}</strong>
 									</a>

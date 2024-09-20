@@ -20,6 +20,14 @@
 			rel="stylesheet"
 			href="{% static 'styles/MasterStyle.css' %}" />
 	</head>
+	<script>
+		function CopyLink() {
+			var copyText = window.location.href + "?link=";
+			navigator.clipboard.writeText(copyText);
+
+			alert("Copied the Link!");
+		}
+	</script>
 	<body>
 		<h1>Load Content from Wikipedia</h1>
 		<main class="contentDiv">
@@ -51,6 +59,8 @@
 				<button type="submit">Load Details</button>
 			</form>
 		</main>
-		<section></section>
+		<section>
+			<button onclick="CopyLink()">Copy Link Prefix</button>
+		</section>
 	</body>
 </html>

@@ -12,7 +12,7 @@ register = template.Library()
 
 
 @register.filter
-def RatingOverTime(objList):
+def RatingOverTime(objList: list) -> str:
     outputDiv = ""
     df = None
     if getattr(objList[0], "Year", None):
@@ -54,16 +54,17 @@ def RatingOverTime(objList):
 
 
 @register.filter
-def DurationOverTime(objList):
+def DurationOverTime(objList: list) -> str:
     outputDiv = ""
     df = None
 
-    if getattr(objList[0], "Year", None):
+    useTotal = getattr(objList[0], "Total_Length", None) is not None
+    if useTotal:
         df = pd.DataFrame(
             {
                 "Title": [x.Title for x in objList],
-                "Year": [x.Year for x in objList],
-                "Duration": [x.Duration.seconds / 60 for x in objList],
+                "Year": [x.Series_Start.year for x in objList],
+                "Duration": [x.Total_Length for x in objList],
                 "Watched": [x.Watched for x in objList],
             }
         )
@@ -71,7 +72,7 @@ def DurationOverTime(objList):
         df = pd.DataFrame(
             {
                 "Title": [x.Title for x in objList],
-                "Year": [x.Series_Start.year for x in objList],
+                "Year": [x.Year for x in objList],
                 "Duration": [x.Duration.seconds / 60 for x in objList],
                 "Watched": [x.Watched for x in objList],
             }
@@ -89,6 +90,7 @@ def DurationOverTime(objList):
             labels={"x": "Release Year", "y": "Duration (minutes)"},
             title="Duration Over Time",
             hover_name="Title",
+            log_y=useTotal,
         )
         rollingTrend = sm.nonparametric.lowess(df["Duration"], df["Year"], frac=0.2)
 
@@ -112,7 +114,7 @@ def DurationOverTime(objList):
 
 
 @register.filter
-def DecadeBreakdown(objList):
+def DecadeBreakdown(objList: list) -> str:
     outputDiv = ""
     labels = []
     values = []
@@ -139,14 +141,13 @@ def DecadeBreakdown(objList):
 
 
 @register.filter
-def RuntimeBreakdown(objList):
+def RuntimeBreakdown(objList: list) -> str:
     outputDiv = ""
     labels = []
     values = []
 
     if getattr(objList[0], "Series_Start", None):
         startDecade = (min(x.Series_Start.year for x in objList) // 10) * 10
-        print(f"Start {startDecade}")
         for year in range(startDecade, 2030, 10):
             labels.append(f"{year}")
             values.append(
@@ -184,14 +185,13 @@ def RuntimeBreakdown(objList):
             title="Runtime Breakdown by Year",
             values=values,
         )
-        fig.update_traces(hoverinfo="label+percent", textinfo="value")
 
         outputDiv = GetHTML(fig)
     return outputDiv
 
 
 @register.filter
-def WatchOverYears(objList):
+def WatchOverYears(objList: list) -> str:
     outputDiv = ""
     currentYear = datetime.datetime.now().year + 1
     years = []
@@ -268,25 +268,13 @@ def WatchOverYears(objList):
     return outputDiv
 
 
-def calcIdx(obj, yLevels):
-    endYear = (
-        obj.Series_End.year if obj.Series_End.year > MINIMUM_YEAR else datetime.date.today().year
-    )
-    for idx, slot in enumerate(yLevels):
-        if not any(x in slot for x in range(obj.Series_Start.year, endYear + 1)):
-            slot += list(range(obj.Series_Start.year, endYear + 1))
-            return idx
-    yLevels.append(list(range(obj.Series_Start.year, endYear + 1)))
-    return len(yLevels) - 1
-
-
 @register.filter
-def TimeLine(objList):
+def TimeLine(objList: list) -> str:
     objList = sorted(list(objList), key=lambda x: (x.Series_Start))
     data = []
     freeList = []
-    for idx, obj in enumerate(objList):
-        yLevel = calcIdx(obj, freeList)
+    for _idx, obj in enumerate(objList):
+        yLevel = CalcIdx(obj, freeList)
         data.append(
             {
                 "Title": obj.Title,
@@ -315,7 +303,7 @@ def TimeLine(objList):
 
 
 @register.filter
-def FancyRatings(objList):
+def FancyRatings(objList: list) -> str:
     startDecade = min(x.Series_Start.year for x in objList)
     trimmedObj = [x for x in objList if x.Watched]
     ratings = []
@@ -358,7 +346,7 @@ def FancyRatings(objList):
         size="Number of Shows",
         hover_name="Shows Active",
     )
-    rollingTrend = sm.nonparametric.lowess(df["Ratings"], df["Year"], frac=0.15)
+    rollingTrend = sm.nonparametric.lowess(df["Ratings"], df["Year"], frac=0.12)
 
     fig.add_scatter(
         x=rollingTrend[:, 0],
@@ -372,14 +360,11 @@ def FancyRatings(objList):
 
 
 @register.filter
-def DurationVsRating(objList):
+def DurationVsRating(objList: list) -> str:
     trimmedList = [x for x in objList if x.Watched]
     trimmedList = sorted(trimmedList, key=lambda x: x.Year)
-
-    duration = [
-        x.Duration.seconds / 60 if "Length" not in dir(x) else x.Total_Length.seconds / 60
-        for x in trimmedList
-    ]
+    useTotal = "Length" in dir(objList[0])
+    duration = [x.Duration.seconds / 60 if not useTotal else x.Total_Length for x in trimmedList]
     df = pd.DataFrame(
         {
             "Ratings": [x.Rating for x in trimmedList],
@@ -395,18 +380,18 @@ def DurationVsRating(objList):
         title="Duration vs Rating",
         range_y=(0, 10.5),
         color="Decade",
+        log_x=useTotal,
         labels={"Duration": "Media Length", "Ratings": "Star Ratings"},
         hover_name="Title",
     )
     rollingTrend = sm.nonparametric.lowess(df["Ratings"], df["Duration"], frac=0.3)
     fig.add_scatter(x=rollingTrend[:, 0], y=rollingTrend[:, 1], mode="lines", name="Average")
-
     outputDiv = GetHTML(fig)
     return outputDiv
 
 
 @register.filter
-def CompletionPercentage(objList, field):
+def CompletionPercentage(objList: list, field: str) -> str:
 
     if field == "Watched":
         objList = [x for x in objList if x.Watched or x.Downloaded]
@@ -420,8 +405,8 @@ def CompletionPercentage(objList, field):
                 ]
                 if "Total_Length" not in dir(objList[0])
                 else [
-                    sum(x.Total_Length.seconds // 60 for x in objList if getattr(x, field)),
-                    sum(x.Total_Length.seconds // 60 for x in objList if not getattr(x, field)),
+                    sum(x.Total_Length for x in objList if getattr(x, field)),
+                    sum(x.Total_Length for x in objList if not getattr(x, field)),
                 ]
             ),
         }
@@ -439,13 +424,23 @@ def CompletionPercentage(objList, field):
     return outputDiv
 
 
-def GetHTML(figure):
+def GetHTML(figure) -> str:
 
     figure.update_layout(
         paper_bgcolor="rgb(33, 37, 41)",
         plot_bgcolor="rgb(33, 37, 41)",
-        # plot_bgcolor="rgba(100,100,100,255)",
-        # font_color="whitesmoke",
         template="plotly_dark",
     )
     return figure.to_html(full_html=False)
+
+
+def CalcIdx(obj, yLevels: list) -> int:
+    endYear = (
+        obj.Series_End.year if obj.Series_End.year > MINIMUM_YEAR else datetime.date.today().year
+    )
+    for idx, slot in enumerate(yLevels):
+        if not any(x in slot for x in range(obj.Series_Start.year, endYear + 1)):
+            slot += list(range(obj.Series_Start.year, endYear + 1))
+            return idx
+    yLevels.append(list(range(obj.Series_Start.year, endYear + 1)))
+    return len(yLevels) - 1

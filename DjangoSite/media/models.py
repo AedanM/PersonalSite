@@ -15,7 +15,11 @@ class Media(models.Model):
     Downloaded: models.BooleanField = models.BooleanField(default=False)
     InfoPage: models.CharField = models.CharField(max_length=200)
     Logo: models.CharField = models.CharField(default=DEFAULT_IMG, max_length=200)
-    Rating: models.DecimalField = models.DecimalField(default=0, decimal_places=1, max_digits=3)  # type: ignore
+    Rating: models.DecimalField = models.DecimalField(
+        default=0,  # type: ignore
+        decimal_places=1,
+        max_digits=3,
+    )  # type: ignore
 
     def __lt__(self, cmpObj) -> bool:
         return self.SortTitle < cmpObj.SortTitle
@@ -71,15 +75,15 @@ class TVShow(WatchableMedia):
 
     @property
     def Total_Length(self):
-        return self.Duration * self.Length
+        # pylint: disable=E1101
+        return (self.Duration.seconds * self.Length) / 3600
 
     def __str__(self) -> str:
         # pylint: disable=E1101
         end_year = self.Series_End.year if self.Series_End else MINIMUM_YEAR
-        return (
-            super().__str__()
-            + f" ({self.Series_Start.year if self.Series_Start else -1}) - ({end_year if end_year > MINIMUM_YEAR else 'now'})"
-        )
+        endValue = end_year if end_year > MINIMUM_YEAR else "now"
+        startValue = self.Series_Start.year if self.Series_Start else -1
+        return super().__str__() + f" ({startValue}) - ({endValue})"
 
 
 class Movie(WatchableMedia):
