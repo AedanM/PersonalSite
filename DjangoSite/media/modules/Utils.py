@@ -1,4 +1,3 @@
-import json
 import re
 from typing import Any
 
@@ -118,12 +117,13 @@ def FindID(contentID: str) -> Any:
     return None
 
 
-def GetAllTags() -> dict[str, int]:
+def GetAllTags(objType=None) -> dict[str, int]:
     genres = []
     genreFreq = {}
+    modelTypes = [objType] if objType else MODEL_LIST
     _ = [
         [[genres.append(y) for y in x.GenreTagList] for x in modelType.objects.all()]
-        for modelType in MODEL_LIST
+        for modelType in modelTypes
     ]
     for i in set(genres):
         genreFreq[i] = genres.count(i)

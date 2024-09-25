@@ -75,7 +75,14 @@ def wikiLoad(request) -> HttpResponse:
         else:
             form, model = DetermineForm(request)
             activeForm = form(request.POST)
-            if activeForm.is_valid():
+            # pylint: disable=E1101
+            matchingObjs = [
+                x
+                for x in model.objects.all()
+                if x.InfoPage == activeForm.data["InfoPage"] and x.Title == activeForm.data["Title"]
+            ]
+            if activeForm.is_valid() and len(matchingObjs) == 0:
+
                 activeForm.save()
                 # pylint: disable=E1101
                 obj = model.objects.filter(Title=request.POST.get("Title")).first()
@@ -84,10 +91,18 @@ def wikiLoad(request) -> HttpResponse:
                     DownloadImage(obj)
                     obj.GetLogo(True)
             else:
-                print(f"Invalid Form {activeForm.errors}")
+                print(
+                    f"Invalid Form {activeForm.errors}"
+                    if not activeForm.valid()
+                    else "Already existing Item"
+                )
 
             returnRender = redirect("/media")
     return returnRender
+
+
+def poll(_request) -> HttpResponse:
+    return redirect("https://www.youtube.com/watch?v=sVjk5nrb_lI")
 
 
 @login_required
@@ -99,7 +114,7 @@ def backup(_request) -> HttpResponse:
     return JsonResponse(data=backupDict)
 
 
-def stats(request):
+def stats(request) -> HttpResponse:
     context = {}
     genre: str = request.GET.get("genre", "")
     exclude: str = request.GET.get("exclude", "")
@@ -126,7 +141,11 @@ def new(request) -> HttpResponse:
             request.POST or None,
             instance=inst,
         )
-        if form.is_valid():
+        matchingObjs = [
+            x for x in obj.objects.all() if x.InfoPage == form.InfoPage and x.Title == form.Title
+        ]
+        print(matchingObjs)
+        if form.is_valid() and len(matchingObjs) == 1:
             form.save()
         context = {}
         context["form"] = form
@@ -134,7 +153,7 @@ def new(request) -> HttpResponse:
         response = (
             render(request, "media/form.html", context)
             if request.method == "GET"
-            else redirect("/media")
+            else redirect(request.META.get("HTTP_REFERER", "/media"))
         )
     return response
 
@@ -237,7 +256,7 @@ def index(request) -> HttpResponse:
             "type": request.GET.get("type", "Movie"),
             "sort": sortKey,
             "reverse": reverseSort,
-            "Tags": GetAllTags(),
+            "Tags": GetAllTags(objType=objType),
             "colorMode": colorMode,
             "filters": {
                 "include": genre,

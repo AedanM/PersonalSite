@@ -1,4 +1,5 @@
 {
+	"_comment": "cSpell:disable",
 	"Movie": [
 		{
 			"Title": "Superman: Red Son",
@@ -105,8 +106,8 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Superman/Batman:_Apocalypse",
 			"Logo": "logos/movies/Justice League- Apocalypse.png",
-			"Rating": "0.0",
-			"Watched": false,
+			"Rating": "5.0",
+			"Watched": true,
 			"Duration": 78,
 			"Year": 2010
 		},
@@ -123,7 +124,7 @@
 		},
 		{
 			"Title": "Batman",
-			"Genre_Tags": "Batman, Burton, DC, Superheroes",
+			"Genre_Tags": "Batman, Tim Burton, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_(1989_film)",
 			"Logo": "logos/movies/Batman 89.png",
@@ -156,7 +157,7 @@
 		},
 		{
 			"Title": "Batman Returns",
-			"Genre_Tags": "Batman, Burton, DC, Superheroes",
+			"Genre_Tags": "Batman, Tim Burton, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_Returns",
 			"Logo": "logos/movies/Batman Returns.png",
@@ -178,7 +179,7 @@
 		},
 		{
 			"Title": "Batman and Mr. Freeze Sub-Zero",
-			"Genre_Tags": "Batman, DC, Superheroes, Timmverse, Animation",
+			"Genre_Tags": "Batman, DC, Superheroes, Bruce Timm, Animation",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_%26_Mr._Freeze:_SubZero",
 			"Logo": "logos/movies/Batman and Mr. Freeze Sub-Zero.png",
@@ -200,7 +201,7 @@
 		},
 		{
 			"Title": "Batman Beyond: Return of The Joker",
-			"Genre_Tags": "Batman, DC, Superheroes, Timmverse, Animation",
+			"Genre_Tags": "Batman, DC, Superheroes, Bruce Timm, Animation",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_Beyond:_Return_of_the_Joker",
 			"Logo": "logos/movies/Batman Beyond- Return of The Joker.png",
@@ -519,7 +520,7 @@
 		},
 		{
 			"Title": "Batman: Mask of The Phantasm",
-			"Genre_Tags": "Batman, DC, Superheroes, Timmverse, Animation",
+			"Genre_Tags": "Batman, DC, Superheroes, Bruce Timm, Animation",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_Mask_of_the_Phantasm",
 			"Logo": "logos/movies/Batman- Mask of The Phantasm.png",
@@ -666,7 +667,7 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Robin_Hood:_Men_in_Tights",
 			"Logo": "logos/movies/Robin Hood Men In Tights.png",
-			"Rating": "6.1",
+			"Rating": "6.5",
 			"Watched": true,
 			"Duration": 104,
 			"Year": 1993
@@ -1124,7 +1125,7 @@
 		},
 		{
 			"Title": "The Muppets Take Manhattan",
-			"Genre_Tags": "Comedy, Henson, Muppets, Puppetry",
+			"Genre_Tags": "Comedy, Muppets, Puppetry",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Muppets_Take_Manhattan",
 			"Logo": "logos/movies/The Muppets Take Manhattan.png",
@@ -1135,7 +1136,7 @@
 		},
 		{
 			"Title": "The Producers",
-			"Genre_Tags": "Black Comedy, Comedy, Mel Brooks",
+			"Genre_Tags": "Black Comedy, Mel Brooks",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Producers_(1967_film)",
 			"Logo": "logos/movies/The Producers.png",
@@ -1256,7 +1257,7 @@
 		},
 		{
 			"Title": "All The President's Men",
-			"Genre_Tags": "Drama, History",
+			"Genre_Tags": "Drama, History, Politics",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/All_the_President%27s_Men_(film)",
 			"Logo": "logos/movies/All The President's Men.png",
@@ -1322,7 +1323,7 @@
 		},
 		{
 			"Title": "Dr Strangelove",
-			"Genre_Tags": "Black Comedy, Comedy, History, Kubrick",
+			"Genre_Tags": "Black Comedy, Politics, History, Kubrick",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Dr._Strangelove",
 			"Logo": "logos/movies/Dr. Strangelove.png",
@@ -1355,7 +1356,7 @@
 		},
 		{
 			"Title": "Little Shop of Horrors",
-			"Genre_Tags": "Black Comedy, Comedy, Horror, Musical",
+			"Genre_Tags": "Black Comedy, Horror, Musical",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Little_Shop_of_Horrors_(1986_film)",
 			"Logo": "logos/movies/Little Shop of Horrors.png",
@@ -1366,7 +1367,7 @@
 		},
 		{
 			"Title": "The Little Shop of Horrors",
-			"Genre_Tags": "B-Movie, Black Comedy, Comedy, Horror",
+			"Genre_Tags": "B-Movie, Black Comedy, Horror",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Little_Shop_of_Horrors",
 			"Logo": "logos/movies/The Little Shop of Horrors.png",
@@ -1465,7 +1466,7 @@
 		},
 		{
 			"Title": "Pee-wee's Big Adventure",
-			"Genre_Tags": "Burton, Comedy",
+			"Genre_Tags": "Tim Burton, Comedy",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Pee-wee%27s_Big_Adventure",
 			"Logo": "logos/movies/Pee-wee's Big Adventure.png",
@@ -1960,7 +1961,7 @@
 		},
 		{
 			"Title": "Mars Attacks!",
-			"Genre_Tags": "Action, Black Comedy, Burton, Comedy, Sci-Fi",
+			"Genre_Tags": "Action, Black Comedy, Tim Burton, Sci-Fi",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Mars_Attacks!",
 			"Logo": "logos/movies/Mars Attacks!.png",
@@ -2026,7 +2027,7 @@
 		},
 		{
 			"Title": "Gremlins 2: The New Batch",
-			"Genre_Tags": "Comedy, Fantasy, Puppetry",
+			"Genre_Tags": "Comedy, Fantasy, Puppetry, Horror",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Gremlins_2:_The_New_Batch",
 			"Logo": "logos/movies/Gremlins 2- The New Batch.png",
@@ -2092,7 +2093,7 @@
 		},
 		{
 			"Title": "Ed Wood",
-			"Genre_Tags": "Burton, Comedy, History",
+			"Genre_Tags": "Tim Burton, Comedy, History",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Ed_Wood_(film)",
 			"Logo": "logos/movies/Ed Wood.png",
@@ -2151,8 +2152,8 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Help!_(film)",
 			"Logo": "logos/movies/Help!.png",
-			"Rating": "0.0",
-			"Watched": false,
+			"Rating": "7.0",
+			"Watched": true,
 			"Duration": 92,
 			"Year": 1965
 		},
@@ -2191,7 +2192,7 @@
 		},
 		{
 			"Title": "The Death of Stalin",
-			"Genre_Tags": "Black Comedy, British, Comedy, History",
+			"Genre_Tags": "Black Comedy, British, History, Politics",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Death_of_Stalin",
 			"Logo": "logos/movies/The Death of Stalin.png",
@@ -2213,7 +2214,7 @@
 		},
 		{
 			"Title": "The King of Comedy",
-			"Genre_Tags": "Black Comedy, Comedy, Scorsese",
+			"Genre_Tags": "Black Comedy, Scorsese",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The King of Comedy (film)",
 			"Logo": "logos/movies/The King of Comedy.png",
@@ -2235,7 +2236,7 @@
 		},
 		{
 			"Title": "Re-Animator",
-			"Genre_Tags": "B-Movie, Black Comedy, H.P. Lovecraft, Horror, Comedy",
+			"Genre_Tags": "B-Movie, Black Comedy, H.P. Lovecraft, Horror",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Re-Animator",
 			"Logo": "logos/movies/Re-Animator.png",
@@ -2272,8 +2273,8 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_(1966_film)",
 			"Logo": "logos/movies/Batman 66.png",
-			"Rating": "0.0",
-			"Watched": false,
+			"Rating": "6.9",
+			"Watched": true,
 			"Duration": 104,
 			"Year": 1966
 		},
@@ -2346,7 +2347,7 @@
 		{
 			"Title": "Critters 2: The Main Course",
 			"Genre_Tags": "B-Movie, Comedy, Horror, Puppetry",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Critters 2: The Main Course",
 			"Logo": "logos/movies/Critters 2- The Main Course.png",
 			"Rating": "0.0",
@@ -2367,7 +2368,7 @@
 		},
 		{
 			"Title": "Clue",
-			"Genre_Tags": "Black Comedy, Comedy",
+			"Genre_Tags": "Black Comedy, Mystery",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Clue (film)",
 			"Logo": "logos/movies/Clue.png",
@@ -2466,7 +2467,7 @@
 		},
 		{
 			"Title": "In the Loop",
-			"Genre_Tags": "Black Comedy, British, Comedy, Politics",
+			"Genre_Tags": "Black Comedy, British, Politics",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/In the Loop",
 			"Logo": "logos/movies/In the Loop.png",
@@ -2555,7 +2556,7 @@
 		{
 			"Title": "This Is Spinal Tap",
 			"Genre_Tags": "Comedy, Mockumentary, Musical",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/This_Is_Spinal_Tap",
 			"Logo": "logos/movies/This Is Spinal Tap.png",
 			"Rating": "0.0",
@@ -2929,7 +2930,7 @@
 		{
 			"Title": "The Real Will Wood",
 			"Genre_Tags": "Mockumentary, Musical",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://www.imdb.com/title/tt12294158/",
 			"Logo": "logos/movies/The Real Will Wood.png",
 			"Rating": "0.0",
@@ -2994,7 +2995,7 @@
 		},
 		{
 			"Title": "The Witches",
-			"Genre_Tags": "Comedy, Henson, Horror",
+			"Genre_Tags": "Comedy, Horror, Henson",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Witches_(1990_film)",
 			"Logo": "logos/movies/The Witches.png",
@@ -3049,7 +3050,7 @@
 		},
 		{
 			"Title": "Beetlejuice",
-			"Genre_Tags": "Black Comedy, Burton, Horror",
+			"Genre_Tags": "Black Comedy, Tim Burton, Horror",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Beetlejuice",
 			"Logo": "logos/movies/Beetlejuice.png",
@@ -3094,11 +3095,11 @@
 		{
 			"Title": "Scooby-Doo, Where Are You Now!",
 			"Genre_Tags": "Comedy, Mockumentary, Mystery, Short Film, Animation",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Scooby-Doo,_Where_Are_You_Now!",
 			"Logo": "logos/movies/Scooby-Doo, Where Are You Now!.png",
-			"Rating": "0.0",
-			"Watched": false,
+			"Rating": "4.6",
+			"Watched": true,
 			"Duration": 39,
 			"Year": 2021
 		},
@@ -3182,7 +3183,7 @@
 		{
 			"Title": "Quigley",
 			"Genre_Tags": "B-Movie, Comedy",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Quigley_(film)",
 			"Logo": "logos/movies/Quigley.png",
 			"Rating": "0.0",
@@ -3369,7 +3370,7 @@
 		{
 			"Title": "The Road to El Dorado",
 			"Genre_Tags": "Animation, Comedy, Musical",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Road_to_El_Dorado",
 			"Logo": "logos/movies/The Road to El Dorado.png",
 			"Rating": "0.0",
@@ -3380,7 +3381,7 @@
 		{
 			"Title": "The Prince of Egypt",
 			"Genre_Tags": "Animation, Drama, Musical",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Prince_of_Egypt",
 			"Logo": "logos/movies/The Prince of Egypt.png",
 			"Rating": "0.0",
@@ -3471,8 +3472,8 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/An_American_Tail",
 			"Logo": "logos/movies/An American Tail.png",
-			"Rating": "0.0",
-			"Watched": false,
+			"Rating": "7.4",
+			"Watched": true,
 			"Duration": 81,
 			"Year": 1986
 		},
@@ -3522,7 +3523,7 @@
 		},
 		{
 			"Title": "Ruthless People",
-			"Genre_Tags": "Black Comedy, Comedy, Zucker Brothers",
+			"Genre_Tags": "Black Comedy, Zucker Brothers",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Ruthless_People",
 			"Logo": "logos/movies/Ruthless People.png",
@@ -3720,8 +3721,8 @@
 		},
 		{
 			"Title": "Batman and Harley Quinn",
-			"Genre_Tags": "Batman, DC, Superheroes, Timmverse, Animation",
-			"Downloaded": false,
+			"Genre_Tags": "Batman, DC, Superheroes, Bruce Timm, Animation",
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_and_Harley_Quinn",
 			"Logo": "logos/movies/Batman and Harley Quinn.png",
 			"Rating": "0.0",
@@ -3731,8 +3732,8 @@
 		},
 		{
 			"Title": "Batman: Mystery of the Batwoman",
-			"Genre_Tags": "Batman, DC, Superheroes, Timmverse, Animation",
-			"Downloaded": false,
+			"Genre_Tags": "Batman, DC, Superheroes, Bruce Timm, Animation",
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_Mystery_of_the_Batwoman",
 			"Logo": "logos/movies/Batman- Mystery of the Batwoman.png",
 			"Rating": "0.0",
@@ -3874,7 +3875,7 @@
 		},
 		{
 			"Title": "Brazil",
-			"Genre_Tags": "Black Comedy, Sci-Fi",
+			"Genre_Tags": "Black Comedy, Sci-Fi, Gilliam",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Brazil_(1985_film)",
 			"Logo": "logos/movies/Brazil.png",
@@ -3885,7 +3886,7 @@
 		},
 		{
 			"Title": "Fear and Loathing in Las Vegas",
-			"Genre_Tags": "Black Comedy",
+			"Genre_Tags": "Black Comedy, Gilliam",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Fear_and_Loathing_in_Las_Vegas_(film)",
 			"Logo": "logos/movies/Fear and Loathing in Las Vegas.png",
@@ -3896,7 +3897,7 @@
 		},
 		{
 			"Title": "The Man Who Killed Don Quixote",
-			"Genre_Tags": "Adventure, Comedy",
+			"Genre_Tags": "Adventure, Comedy, Gilliam",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Man_Who_Killed_Don_Quixote",
 			"Logo": "logos/movies/The Man Who Killed Don Quixote.png",
@@ -4802,7 +4803,7 @@
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Terminator_2:_Judgment_Day",
 			"Logo": "logos/movies/Terminator 2 Judgment Day.png",
-			"Rating": "8.8",
+			"Rating": "9.2",
 			"Watched": true,
 			"Duration": 137,
 			"Year": 1991
@@ -5033,7 +5034,7 @@
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Flushed_Away",
 			"Logo": "logos/movies/Flushed Away.png",
-			"Rating": "5.5",
+			"Rating": "6.8",
 			"Watched": true,
 			"Duration": 85,
 			"Year": 2006
@@ -5147,6 +5148,435 @@
 			"Watched": true,
 			"Duration": 94,
 			"Year": 1983
+		},
+		{
+			"Title": "Castle in the Sky",
+			"Genre_Tags": "Adventure, Animated, Fantasy, Miyazaki",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Castle_in_the_Sky",
+			"Logo": "logos/movies/Castle in the Sky.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 124,
+			"Year": 1986
+		},
+		{
+			"Title": "Nausica\u00e4 of the Valley of the Wind",
+			"Genre_Tags": "Adventure, Animated, Disaster, Miyazaki",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Nausica\u00e4_of_the_Valley_of_the_Wind_(film)",
+			"Logo": "logos/movies/Nausica\u00e4 of the Valley of the Wind.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 117,
+			"Year": 1984
+		},
+		{
+			"Title": "My Neighbor Totoro",
+			"Genre_Tags": "Adventure, Animation, Miyazaki",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/My_Neighbor_Totoro",
+			"Logo": "logos/movies/My Neighbor Totoro.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 86,
+			"Year": 1988
+		},
+		{
+			"Title": "Kiki's Delivery Service",
+			"Genre_Tags": "Animation, Fantasy, Miyazaki",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Kiki's_Delivery_Service",
+			"Logo": "logos/movies/Kiki's Delivery Service.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 102,
+			"Year": 1989
+		},
+		{
+			"Title": "Howls Moving Castle",
+			"Genre_Tags": "Animation, Fantasy, Miyazaki",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Howl's_Moving_Castle_(film)",
+			"Logo": "logos/movies/Howls Moving Castle.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 119,
+			"Year": 2004
+		},
+		{
+			"Title": "Spirited Away",
+			"Genre_Tags": "Animation, Fantasy, Miyazaki",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Spirited_Away",
+			"Logo": "logos/movies/Spirited Away.png",
+			"Rating": "8.7",
+			"Watched": true,
+			"Duration": 125,
+			"Year": 2001
+		},
+		{
+			"Title": "Princess Mononoke",
+			"Genre_Tags": "Animation, Fantasy, Miyazaki, History",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Princess_Mononoke",
+			"Logo": "logos/movies/Princess Mononoke.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 133,
+			"Year": 1997
+		},
+		{
+			"Title": "Atlantis: The Lost Empire",
+			"Genre_Tags": "Action, Animation, Sci-Fi",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Atlantis:_The_Lost_Empire",
+			"Logo": "logos/movies/Atlantis The Lost Empire.png",
+			"Rating": "7.4",
+			"Watched": true,
+			"Duration": 96,
+			"Year": 2001
+		},
+		{
+			"Title": "Backbeat",
+			"Genre_Tags": "Beatles, Drama",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Backbeat_(film)",
+			"Logo": "logos/movies/Backbeat.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 100,
+			"Year": 1994
+		},
+		{
+			"Title": "Friday",
+			"Genre_Tags": "Comedy",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Friday_(1995_film)",
+			"Logo": "logos/movies/Friday.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 91,
+			"Year": 1995
+		},
+		{
+			"Title": "Puss in Boots: The Last Wish",
+			"Genre_Tags": "Animation, Comedy",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Puss_in_Boots:_The_Last_Wish",
+			"Logo": "logos/movies/Puss in Boots The Last Wish.png",
+			"Rating": "8.2",
+			"Watched": true,
+			"Duration": 102,
+			"Year": 2022
+		},
+		{
+			"Title": "Fiddler on the Roof",
+			"Genre_Tags": "Comedy, History, Musical",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Fiddler_on_the_Roof_(film)",
+			"Logo": "logos/movies/Fiddler on the Roof.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 181,
+			"Year": 1971
+		},
+		{
+			"Title": "9 to 5",
+			"Genre_Tags": "Comedy, Girlboss, Musical",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/9_to_5_(film)",
+			"Logo": "logos/movies/9 to 5.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 110,
+			"Year": 1980
+		},
+		{
+			"Title": "Seven",
+			"Genre_Tags": "Crime, Horror, Thriller",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Seven_(1995_film)",
+			"Logo": "logos/movies/Seven.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 127,
+			"Year": 1995
+		},
+		{
+			"Title": "Addams Family Values",
+			"Genre_Tags": "Black Comedy, Horror",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Addams_Family_Values",
+			"Logo": "logos/movies/Addams Family Values.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 94,
+			"Year": 1993
+		},
+		{
+			"Title": "The Addams Family",
+			"Genre_Tags": "Black Comedy, Horror",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Addams_Family_(1991_film)",
+			"Logo": "logos/movies/The Addams Family.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 99,
+			"Year": 1991
+		},
+		{
+			"Title": "Police Academy",
+			"Genre_Tags": "Comedy",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Police_Academy_(film)",
+			"Logo": "logos/movies/Police Academy.png",
+			"Rating": "6.9",
+			"Watched": true,
+			"Duration": 96,
+			"Year": 1984
+		},
+		{
+			"Title": "Trading Places",
+			"Genre_Tags": "Comedy",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Trading_Places",
+			"Logo": "logos/movies/Trading Places.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 116,
+			"Year": 1983
+		},
+		{
+			"Title": "Flashdance",
+			"Genre_Tags": "Drama, Musical",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Flashdance",
+			"Logo": "logos/movies/Flashdance.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 97,
+			"Year": 1983
+		},
+		{
+			"Title": "The Adventures of Baron Munchausen",
+			"Genre_Tags": "Gilliam, Fantasy, Adventure",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Adventures_of_Baron_Munchausen",
+			"Logo": "logos/movies/The Adventures of Baron Munchausen.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 126,
+			"Year": 1988
+		},
+		{
+			"Title": "Time Bandits",
+			"Genre_Tags": "Comedy, Fantasy",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Time_Bandits",
+			"Logo": "logos/movies/Time Bandits.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 113,
+			"Year": 1981
+		},
+		{
+			"Title": "Casper",
+			"Genre_Tags": "Comedy, Horror",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Casper_(film)",
+			"Logo": "logos/movies/Casper.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 101,
+			"Year": 1995
+		},
+		{
+			"Title": "The Imaginarium of Doctor Parnassus",
+			"Genre_Tags": "Fantasy, Gilliam",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Imaginarium_of_Doctor_Parnassus",
+			"Logo": "logos/movies/The Imaginarium of Doctor Parnassus.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 123,
+			"Year": 2009
+		},
+		{
+			"Title": "Monty Python and the Holy Grail",
+			"Genre_Tags": "Comedy, Fantasy, Gilliam, Monty Python",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Monty_Python_and_the_Holy_Grail",
+			"Logo": "logos/movies/Monty Python and the Holy Grail.png",
+			"Rating": "9.2",
+			"Watched": true,
+			"Duration": 92,
+			"Year": 1975
+		},
+		{
+			"Title": "Monty Python's Life of Brian",
+			"Genre_Tags": "Comedy, History, Monty Python",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Monty_Python's_Life_of_Brian",
+			"Logo": "logos/movies/Monty Python's Life of Brian.png",
+			"Rating": "9.7",
+			"Watched": true,
+			"Duration": 94,
+			"Year": 1979
+		},
+		{
+			"Title": "Monty Python's The Meaning of Life",
+			"Genre_Tags": "Comedy, Monty Python",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Monty_Python's_The_Meaning_of_Life",
+			"Logo": "logos/movies/Monty Python's The Meaning of Life.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 90,
+			"Year": 1983
+		},
+		{
+			"Title": "12 Monkeys",
+			"Genre_Tags": "Gilliam, Sci-Fi, Thriller",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/12_Monkeys",
+			"Logo": "logos/movies/12 Monkeys.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 129,
+			"Year": 1995
+		},
+		{
+			"Title": "The Simpsons Movie",
+			"Genre_Tags": "Animation, Comedy",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Simpsons_Movie",
+			"Logo": "logos/movies/The Simpsons Movie.png",
+			"Rating": "7.9",
+			"Watched": true,
+			"Duration": 87,
+			"Year": 2007
+		},
+		{
+			"Title": "Troy",
+			"Genre_Tags": "Action, History",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Troy_(film)",
+			"Logo": "logos/movies/Troy.png",
+			"Rating": "7.5",
+			"Watched": true,
+			"Duration": 163,
+			"Year": 2004
+		},
+		{
+			"Title": "Lethal Weapon",
+			"Genre_Tags": "Action, Crime",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Lethal_Weapon",
+			"Logo": "logos/movies/Lethal Weapon.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 112,
+			"Year": 1987
+		},
+		{
+			"Title": "The Twelve Chairs",
+			"Genre_Tags": "Comedy, Mel Brooks",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Twelve_Chairs_(1970_film)",
+			"Logo": "logos/movies/The Twelve Chairs.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 93,
+			"Year": 1970
+		},
+		{
+			"Title": "Dracula: Dead and Loving It",
+			"Genre_Tags": "Comedy, Horror, Mel Brooks",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Dracula:_Dead_and_Loving_It",
+			"Logo": "logos/movies/Dracula Dead and Loving It.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 90,
+			"Year": 1995
+		},
+		{
+			"Title": "Life Stinks",
+			"Genre_Tags": "Comedy, Mel Brooks",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Life_Stinks",
+			"Logo": "logos/movies/Life Stinks.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 92,
+			"Year": 1991
+		},
+		{
+			"Title": "High Anxiety",
+			"Genre_Tags": "Comedy, Mel Brooks",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/High_Anxiety",
+			"Logo": "logos/movies/High Anxiety.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 94,
+			"Year": 1977
+		},
+		{
+			"Title": "Silent Movie",
+			"Genre_Tags": "Comedy, Mel Brooks",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Silent_Movie",
+			"Logo": "logos/movies/Silent Movie.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 87,
+			"Year": 1976
+		},
+		{
+			"Title": "In Bruges",
+			"Genre_Tags": "Black Comedy, Crime, Thriller",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/In_Bruges",
+			"Logo": "logos/movies/In Bruges.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 107,
+			"Year": 2008
+		},
+		{
+			"Title": "Raising Arizona",
+			"Genre_Tags": "Comedy, Crime",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Raising_Arizona",
+			"Logo": "logos/movies/Raising Arizona.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 94,
+			"Year": 1987
+		},
+		{
+			"Title": "No Country for Old Men",
+			"Genre_Tags": "Crime, Thriller, Western",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/No_Country_for_Old_Men",
+			"Logo": "logos/movies/No Country for Old Men.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 122,
+			"Year": 2007
+		},
+		{
+			"Title": "The Big Lebowski",
+			"Genre_Tags": "Comedy, Crime",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Big_Lebowski",
+			"Logo": "logos/movies/The Big Lebowski.png",
+			"Rating": "7.9",
+			"Watched": true,
+			"Duration": 117,
+			"Year": 1998
 		}
 	],
 	"TVShow": [
@@ -5360,7 +5790,7 @@
 		},
 		{
 			"Title": "The Thick Of It",
-			"Genre_Tags": "British, Comedy, Politics",
+			"Genre_Tags": "British, Black Comedy, Politics",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Thick_of_It",
 			"Logo": "logos/tvshows/The Thick Of It.png",
@@ -5429,7 +5859,7 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek:_Voyager",
 			"Logo": "logos/tvshows/Star Trek Voyager.png",
-			"Rating": "8.7",
+			"Rating": "8.3",
 			"Watched": true,
 			"Duration": 45,
 			"Length": 172,
@@ -5442,7 +5872,7 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek:_Enterprise",
 			"Logo": "logos/tvshows/Star Trek Enterprise.png",
-			"Rating": "8.8",
+			"Rating": "8.1",
 			"Watched": true,
 			"Duration": 42,
 			"Length": 98,
@@ -5464,11 +5894,11 @@
 		},
 		{
 			"Title": "Batman Beyond",
-			"Genre_Tags": "Batman, Animation, DC, Superheroes, Timmverse",
+			"Genre_Tags": "Batman, Animation, DC, Superheroes, Bruce Timm",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_Beyond",
 			"Logo": "logos/tvshows/Batman Beyond.png",
-			"Rating": "7.1",
+			"Rating": "6.3",
 			"Watched": true,
 			"Duration": 22,
 			"Length": 52,
@@ -5477,7 +5907,7 @@
 		},
 		{
 			"Title": "Batman: The Animated Series",
-			"Genre_Tags": "Batman, Animation, DC, Superheroes, Timmverse",
+			"Genre_Tags": "Batman, Animation, DC, Superheroes, Bruce Timm",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_The_Animated_Series",
 			"Logo": "logos/tvshows/Batman The Animated Series.png",
@@ -5503,7 +5933,7 @@
 		},
 		{
 			"Title": "The New Batman Adventures",
-			"Genre_Tags": "Batman, Animation, DC, Superheroes, Timmverse",
+			"Genre_Tags": "Batman, Animation, DC, Superheroes, Bruce Timm",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_New_Batman_Adventures",
 			"Logo": "logos/tvshows/The New Batman Adventures.png",
@@ -5520,7 +5950,7 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek:_Lower_Decks",
 			"Logo": "logos/tvshows/Star Trek- Lower Decks.png",
-			"Rating": "9.3",
+			"Rating": "8.7",
 			"Watched": true,
 			"Duration": 30,
 			"Length": 40,
@@ -5659,7 +6089,7 @@
 		},
 		{
 			"Title": "Justice League",
-			"Genre_Tags": "Animation, DC, Superheroes, Timmverse",
+			"Genre_Tags": "Animation, DC, Superheroes, Bruce Timm",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Justice_League_(TV_series)",
 			"Logo": "logos/tvshows/Justice Leagure.png",
@@ -5672,7 +6102,7 @@
 		},
 		{
 			"Title": "Justice League Unlimited",
-			"Genre_Tags": "Animation, DC, Superheroes, Timmverse",
+			"Genre_Tags": "Animation, DC, Superheroes, Bruce Timm",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Justice_League_Unlimited",
 			"Logo": "logos/tvshows/Justice League Unlimited.png",
@@ -6040,8 +6470,8 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Twenty_Twelve",
 			"Logo": "logos/tvshows/Twenty Twelve.png",
-			"Rating": "0.0",
-			"Watched": false,
+			"Rating": "7.7",
+			"Watched": true,
 			"Duration": 30,
 			"Length": 13,
 			"Series_Start": "2011-03-14",
@@ -6114,7 +6544,7 @@
 		},
 		{
 			"Title": "Superman: The Animated Series",
-			"Genre_Tags": "Animation, DC, Superheroes, Superman, Timmverse",
+			"Genre_Tags": "Animation, DC, Superheroes, Superman, Bruce Timm",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Superman:_The_Animated_Series",
 			"Logo": "logos/tvshows/Superman - The Animated Series.png",
@@ -6131,8 +6561,8 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Ted_(TV_series)",
 			"Logo": "logos/tvshows/ted.png",
-			"Rating": "0.0",
-			"Watched": false,
+			"Rating": "6.9",
+			"Watched": true,
 			"Duration": 45,
 			"Length": 7,
 			"Series_Start": "2024-01-11",
@@ -6154,7 +6584,7 @@
 		{
 			"Title": "Superman",
 			"Genre_Tags": "Animation, DC, Superheroes, Superman",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Superman_(1940s_animated_film_series)",
 			"Logo": "logos/tvshows/Superman.png",
 			"Rating": "0.0",
@@ -6300,12 +6730,25 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Orville",
 			"Logo": "logos/tvshows/The Orville.png",
-			"Rating": "7.8",
+			"Rating": "8.3",
 			"Watched": true,
 			"Duration": 45,
 			"Length": 36,
 			"Series_Start": "2019-09-10",
 			"Series_End": "1900-01-01"
+		},
+		{
+			"Title": "Fawlty Towers",
+			"Genre_Tags": "British, Comedy",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Fawlty_Towers",
+			"Logo": "logos/tvshows/Fawlty Towers.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 35,
+			"Length": 12,
+			"Series_Start": "1975-09-19",
+			"Series_End": "1979-10-19"
 		}
 	],
 	"Novel": [

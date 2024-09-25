@@ -191,50 +191,44 @@ def RuntimeBreakdown(objList: list) -> str:
 
 
 @register.filter
-def WatchOverYears(objList: list) -> str:
+def ValuesOverYears(objList: list) -> str:
     outputDiv = ""
     currentYear = datetime.datetime.now().year + 1
     years = []
     mediaCount = []
     watchStatus = []
     titles = []
-    if getattr(objList[0], "Year", None):
-        startDecade = min(x.Year for x in objList)
 
-        for year in range(startDecade, currentYear, 1):
-            years.append(year)
-            mediaCount.append(len([x for x in objList if x.Year == year and x.Watched]))
-            watchStatus.append("Watched")
-            titles.append("<br>".join([x.Title for x in objList if x.Year == year and x.Watched]))
+    startDecade = min(x.Year for x in objList)
 
-            years.append(year)
-            mediaCount.append(len([x for x in objList if x.Year == year and not x.Watched]))
-            watchStatus.append("Not Watched")
-            titles.append(
-                "<br>".join([x.Title for x in objList if x.Year == year and not x.Watched])
-            )
-    elif getattr(objList[0], "Series_Start", None):
-        startDecade = min(x.Series_Start for x in objList).year
-        for year in range(startDecade, currentYear, 1):
-            years.append(year)
-            mediaCount.append(
-                len([x for x in objList if x.Series_Start.year == year and x.Watched])
-            )
-            watchStatus.append("Watched")
-            titles.append(
-                "<br>".join([x.Title for x in objList if x.Series_Start.year == year and x.Watched])
-            )
+    for year in range(startDecade, currentYear, 1):
+        years.append(year)
+        mediaCount.append(len([x for x in objList if x.Year == year and x.Watched]))
+        watchStatus.append("Watched")
+        titles.append("<br>".join([x.Title for x in objList if x.Year == year and x.Watched]))
 
-            years.append(year)
-            mediaCount.append(
-                len([x for x in objList if x.Series_Start.year == year and not x.Watched])
+        years.append(year)
+        mediaCount.append(
+            len([x for x in objList if x.Year == year and not x.Watched and x.Downloaded])
+        )
+        watchStatus.append("Downloaded")
+        titles.append(
+            "<br>".join(
+                [x.Title for x in objList if x.Year == year and not x.Watched and x.Downloaded]
             )
-            watchStatus.append("Not Watched")
-            titles.append(
-                "<br>".join(
-                    [x.Title for x in objList if x.Series_Start.year == year and not x.Watched]
-                )
+        )
+
+        years.append(year)
+        mediaCount.append(
+            len([x for x in objList if x.Year == year and not x.Watched and not x.Downloaded])
+        )
+        watchStatus.append("Not Watched or Downloaded")
+        titles.append(
+            "<br>".join(
+                [x.Title for x in objList if x.Year == year and not x.Watched and not x.Downloaded]
             )
+        )
+
     df = pd.DataFrame(
         data={
             "Year": years,
@@ -250,11 +244,16 @@ def WatchOverYears(objList: list) -> str:
             y="Media Counts",
             color="Watch Status",
             hover_name="Titles",
+            color_discrete_sequence=[
+                "blue",
+                "lightgreen",
+                "red",
+            ],
         )
 
         fig.update_layout(
             barmode="stack",
-            title="Watching Trends Over Time",
+            title="Watched and Downloaded Trends Over Time",
             legend=dict(
                 orientation="h",
                 yanchor="top",

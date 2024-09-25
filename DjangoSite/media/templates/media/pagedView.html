@@ -113,7 +113,7 @@
 		});
 
 		function CopyLink() {
-			var copyText = window.location.href + "wiki?link=";
+			var copyText = window.location.href.split('?')[0] + "wiki?link=";
 			navigator.clipboard.writeText(copyText);
 
 			alert("Copied the Wiki Source Link!");
