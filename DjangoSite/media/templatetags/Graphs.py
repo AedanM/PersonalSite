@@ -21,6 +21,7 @@ def RatingOverTime(objList: list) -> str:
                 "Title": [x.Title for x in objList if x.Watched],
                 "Release Year": [x.Year for x in objList if x.Watched],
                 "Rating": [x.Rating for x in objList if x.Watched],
+                "Duration": [x.Duration.seconds // 60 for x in objList if x.Watched],
             }
         )
     elif getattr(objList[0], "Series_Start", None):
@@ -39,6 +40,8 @@ def RatingOverTime(objList: list) -> str:
             range_y=(0, 10.5),
             title="Rating Over Time",
             hover_name="Title",
+            color="Duration",
+            color_continuous_scale="rainbow",
         )
         rollingTrend = sm.nonparametric.lowess(df["Rating"], df["Release Year"], frac=0.2)
 
@@ -279,7 +282,11 @@ def TimeLine(objList: list) -> str:
                 "Title": obj.Title,
                 "Series_Start": f"{obj.Series_Start}",
                 "Series_End": f"{obj.Series_End if obj.Series_End.year > MINIMUM_YEAR else 'now'}",
-                "Watched": obj.Watched,
+                "Watched": (
+                    "Watched"
+                    if obj.Watched and obj.Downloaded
+                    else "Downloaded" if obj.Downloaded else "Not Watched or Downloaded"
+                ),
                 "Idx": yLevel,
             }
         )
@@ -289,10 +296,17 @@ def TimeLine(objList: list) -> str:
         x_start="Series_Start",
         x_end="Series_End",
         y="Idx",
-        color=df["Watched"].map({True: "Watched", False: "Not Watched"}),
+        color=df["Watched"].map(
+            {
+                "Watched": "Watched",
+                "Not Watched or Downloaded": "Not Watched",
+                "Downloaded": "Downloaded",
+            }
+        ),
         color_discrete_map={
             "Not Watched": "red",
             "Watched": "blue",
+            "Downloaded": "lightgreen",
         },
         hover_name="Title",
         title="Watching Trends over Time",
