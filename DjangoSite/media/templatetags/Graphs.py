@@ -284,7 +284,7 @@ def TimeLine(objList: list) -> str:
                 "Series_End": f"{obj.Series_End if obj.Series_End.year > MINIMUM_YEAR else 'now'}",
                 "Watched": (
                     "Watched"
-                    if obj.Watched and obj.Downloaded
+                    if obj.Watched
                     else "Downloaded" if obj.Downloaded else "Not Watched or Downloaded"
                 ),
                 "Idx": yLevel,
@@ -404,22 +404,37 @@ def DurationVsRating(objList: list) -> str:
 
 
 @register.filter
-def CompletionPercentage(objList: list, field: str) -> str:
-
-    if field == "Watched":
-        objList = [x for x in objList if x.Watched or x.Downloaded]
+def CompletionPercentageRuntime(objList: list) -> str:
+    cats = [
+        "Watched on MS",
+        "Watched Streaming",
+        "Ready On MS",
+        "Not Watched or Downloaded",
+    ]
     df = pd.DataFrame(
         {
-            "label": [field, f"Not {field}"],
+            "label": cats,
             "values": (
                 [
-                    sum(x.Duration.seconds // 60 for x in objList if getattr(x, field)),
-                    sum(x.Duration.seconds // 60 for x in objList if not getattr(x, field)),
+                    sum(x.Duration.seconds // 60 for x in objList if x.Watched and x.Downloaded),
+                    sum(
+                        x.Duration.seconds // 60 for x in objList if x.Watched and not x.Downloaded
+                    ),
+                    sum(
+                        x.Duration.seconds // 60 for x in objList if not x.Watched and x.Downloaded
+                    ),
+                    sum(
+                        x.Duration.seconds // 60
+                        for x in objList
+                        if not x.Watched and not x.Downloaded
+                    ),
                 ]
                 if "Total_Length" not in dir(objList[0])
                 else [
-                    sum(x.Total_Length for x in objList if getattr(x, field)),
-                    sum(x.Total_Length for x in objList if not getattr(x, field)),
+                    sum(x.Total_Length for x in objList if x.Watched and x.Downloaded),
+                    sum(x.Total_Length for x in objList if x.Watched and not x.Downloaded),
+                    sum(x.Total_Length for x in objList if not x.Watched and x.Downloaded),
+                    sum(x.Total_Length for x in objList if not x.Watched and not x.Downloaded),
                 ]
             ),
         }
@@ -428,8 +443,42 @@ def CompletionPercentage(objList: list, field: str) -> str:
         df,
         hole=0.25,
         names="label",
-        category_orders={"label": [field, f"Not {field}"]},
-        title=f"Completion Percentage for {field} Material",
+        category_orders={"label": cats},
+        title=f"Watch Status by Duration",
+        values="values",
+    )
+
+    outputDiv = GetHTML(fig)
+    return outputDiv
+
+
+@register.filter
+def CompletionPercentage(objList: list) -> str:
+    cats = [
+        "Watched on MS",
+        "Watched Streaming",
+        "Ready On MS",
+        "Not Watched or Downloaded",
+    ]
+    df = pd.DataFrame(
+        {
+            "label": cats,
+            "values": (
+                [
+                    len([x for x in objList if x.Watched and x.Downloaded]),
+                    len([x for x in objList if x.Watched and not x.Downloaded]),
+                    len([x for x in objList if not x.Watched and x.Downloaded]),
+                    len([x for x in objList if not x.Watched and not x.Downloaded]),
+                ]
+            ),
+        }
+    )
+    fig = px.pie(
+        df,
+        hole=0.25,
+        names="label",
+        category_orders={"label": cats},
+        title=f"Watch Status by Count",
         values="values",
     )
 

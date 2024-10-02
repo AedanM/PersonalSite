@@ -141,10 +141,14 @@ def new(request) -> HttpResponse:
             request.POST or None,
             instance=inst,
         )
-        matchingObjs = [
-            x for x in obj.objects.all() if x.InfoPage == form.InfoPage and x.Title == form.Title
-        ]
-        print(matchingObjs)
+        if "InfoPage" in dir(form):
+            matchingObjs = [
+                x
+                for x in obj.objects.all()
+                if x.InfoPage == form.InfoPage and x.Title == form.Title
+            ]
+        else:
+            matchingObjs = ["this"]
         if form.is_valid() and len(matchingObjs) == 1:
             form.save()
         context = {}
