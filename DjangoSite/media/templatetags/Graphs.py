@@ -497,12 +497,18 @@ def GetHTML(figure) -> str:
 
 
 def CalcIdx(obj, yLevels: list) -> int:
-    endYear = (
-        obj.Series_End.year if obj.Series_End.year > MINIMUM_YEAR else datetime.date.today().year
+    endPoint = GetDateVal(
+        obj.Series_End if obj.Series_End.year > MINIMUM_YEAR else datetime.date.today()
     )
+    startPoint = GetDateVal(obj.Series_Start)
+    daysList = list(range(startPoint, endPoint + 1))
     for idx, slot in enumerate(yLevels):
-        if not any(x in slot for x in range(obj.Series_Start.year, endYear + 1)):
-            slot += list(range(obj.Series_Start.year, endYear + 1))
+        if not any(x in slot for x in daysList):
+            slot += daysList
             return idx
-    yLevels.append(list(range(obj.Series_Start.year, endYear + 1)))
+    yLevels.append(daysList)
     return len(yLevels) - 1
+
+
+def GetDateVal(date: datetime.date):
+    return date.year * 365 + date.month * 30 + date.day

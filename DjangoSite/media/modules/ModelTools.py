@@ -54,7 +54,7 @@ def GetImageFromLink(savePath, requestImg):
     )
     try:
         img = Image.open(tempPath)
-        imScale = 320 / img.size[0]
+        imScale = 240 / img.size[1]
         newSize = round(img.size[0] * imScale), round(img.size[1] * imScale)
         img = img.resize(newSize)
         localPath = os.path.join(django_settings.STATICFILES_DIRS[0], f"{savePath}")

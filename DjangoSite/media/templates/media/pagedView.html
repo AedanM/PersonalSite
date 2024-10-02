@@ -147,7 +147,7 @@
 			<div class="d-flex justify-content-center">
 				<a
 					class="clean-link me-3"
-					href="/media">
+					href="/media?type={{type}}">
 					<i class="bi bi-house-fill"></i
 				></a>
 				<a
@@ -415,7 +415,7 @@
 									src="{%static show.Logo%}"
 									alt="{{show.Title}}" />{%endif%}</a
 							>
-							<div class="card-body">
+							<div class="card-body slideUncover">
 								<div class="d-flex">
 									<a
 										href="edit?id={{show.id}}"
@@ -448,11 +448,11 @@
 								{%endif%}
 								<div class="d-flex flex-wrap justify-content-center">
 									{% for genre in show.GenreTagList %} {%if genre not in filters|Get:"include"%}
-									<span class="genre-badge badge rounded-pill bg-secondary"
+									<span class="genre-badge badge rounded-pill bg-light"
 										><button
 											onclick="SetUrlParam(['genre', 'page', 'query'],['{{genre}}', '',''], true)"
 											style="text-decoration: none"
-											class="text-white clean-button">
+											class="text-dark clean-button">
 											{{genre}}
 										</button></span
 									>{%else%}
