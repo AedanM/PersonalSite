@@ -448,11 +448,11 @@
 								{%endif%}
 								<div class="d-flex flex-wrap justify-content-center">
 									{% for genre in show.GenreTagList %} {%if genre not in filters|Get:"include"%}
-									<span class="genre-badge badge rounded-pill bg-light"
+									<span class="genre-badge-dark badge rounded-pill bg-light"
 										><button
 											onclick="SetUrlParam(['genre', 'page', 'query'],['{{genre}}', '',''], true)"
 											style="text-decoration: none"
-											class="text-dark clean-button">
+											class="text-white clean-button">
 											{{genre}}
 										</button></span
 									>{%else%}

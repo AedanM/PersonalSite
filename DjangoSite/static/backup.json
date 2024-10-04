@@ -3,7 +3,7 @@
 	"Movie": [
 		{
 			"Title": "Superman: Red Son",
-			"Genre_Tags": "DC, Superheroes, Superman, Animation",
+			"Genre_Tags": "Animation, DC, Superheroes, Superman",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Superman:_Red_Son_(film)",
 			"Logo": "logos/movies/Superman- Red Son.png",
@@ -58,7 +58,7 @@
 		},
 		{
 			"Title": "Romeo + Juliet",
-			"Genre_Tags": "Drama, Rom-Com",
+			"Genre_Tags": "Drama, Romance",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Romeo_%2B_Juliet",
 			"Logo": "logos/movies/Romeo + Juliet.png",
@@ -80,7 +80,7 @@
 		},
 		{
 			"Title": "A Charlie Brown Christmas",
-			"Genre_Tags": "Christmas, Short Film, Peanuts, Animation",
+			"Genre_Tags": "Animation, Christmas, Holiday, Peanuts, Short Film",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/A_Charlie_Brown_Christmas",
 			"Logo": "logos/movies/A Charlie Brown Christmas.png",
@@ -102,7 +102,7 @@
 		},
 		{
 			"Title": "Justice League: Apocalypse",
-			"Genre_Tags": "DC, Superheroes, Animation",
+			"Genre_Tags": "Animation, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Superman/Batman:_Apocalypse",
 			"Logo": "logos/movies/Justice League- Apocalypse.png",
@@ -124,7 +124,7 @@
 		},
 		{
 			"Title": "Batman",
-			"Genre_Tags": "Batman, Tim Burton, DC, Superheroes",
+			"Genre_Tags": "Batman, DC, Superheroes, Tim Burton",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_(1989_film)",
 			"Logo": "logos/movies/Batman 89.png",
@@ -157,7 +157,7 @@
 		},
 		{
 			"Title": "Batman Returns",
-			"Genre_Tags": "Batman, Tim Burton, DC, Superheroes",
+			"Genre_Tags": "Batman, DC, Superheroes, Tim Burton",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_Returns",
 			"Logo": "logos/movies/Batman Returns.png",
@@ -168,7 +168,7 @@
 		},
 		{
 			"Title": "Batman Vs Robin",
-			"Genre_Tags": "Batman, DC, Superheroes, Animation",
+			"Genre_Tags": "Animation, Batman, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_vs._Robin",
 			"Logo": "logos/movies/Batman Vs Robin.png",
@@ -179,7 +179,7 @@
 		},
 		{
 			"Title": "Batman and Mr. Freeze Sub-Zero",
-			"Genre_Tags": "Batman, DC, Superheroes, Bruce Timm, Animation",
+			"Genre_Tags": "Animation, Batman, Bruce Timm, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_%26_Mr._Freeze:_SubZero",
 			"Logo": "logos/movies/Batman and Mr. Freeze Sub-Zero.png",
@@ -190,7 +190,7 @@
 		},
 		{
 			"Title": "Battle of the Super Sons",
-			"Genre_Tags": "DC, Superheroes, Animation",
+			"Genre_Tags": "Animation, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_and_Superman:_Battle_of_the_Super_Sons",
 			"Logo": "logos/movies/Battle of the Super Sons.png",
@@ -201,7 +201,7 @@
 		},
 		{
 			"Title": "Batman Beyond: Return of The Joker",
-			"Genre_Tags": "Batman, DC, Superheroes, Bruce Timm, Animation",
+			"Genre_Tags": "Animation, Batman, Bruce Timm, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_Beyond:_Return_of_the_Joker",
 			"Logo": "logos/movies/Batman Beyond- Return of The Joker.png",
@@ -300,7 +300,7 @@
 		},
 		{
 			"Title": "Elf",
-			"Genre_Tags": "Christmas, Comedy",
+			"Genre_Tags": "Christmas, Comedy, Holiday",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Elf_(film)",
 			"Logo": "logos/movies/Elf.png",
@@ -366,7 +366,7 @@
 		},
 		{
 			"Title": "Batman: Gotham By Gaslight",
-			"Genre_Tags": "Batman, DC, Superheroes, Animation",
+			"Genre_Tags": "Animation, Batman, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_Gotham_by_Gaslight",
 			"Logo": "logos/movies/Batman- Gotham By Gaslight.png",
@@ -388,7 +388,7 @@
 		},
 		{
 			"Title": "Batman: Hush",
-			"Genre_Tags": "Batman, DC, Superheroes, Animation",
+			"Genre_Tags": "Animation, Batman, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_Hush_(film)",
 			"Logo": "logos/movies/Batman- Hush.png",
@@ -410,7 +410,7 @@
 		},
 		{
 			"Title": "Justice League: Crisis On Two Earths",
-			"Genre_Tags": "DC, Superheroes, Animation",
+			"Genre_Tags": "Animation, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Justice_League:_Crisis_on_Two_Earths",
 			"Logo": "logos/movies/Justice League Crisis On Two Earths.png",
@@ -421,7 +421,7 @@
 		},
 		{
 			"Title": "Justice League Dark",
-			"Genre_Tags": "DC, Superheroes, Animation",
+			"Genre_Tags": "Animation, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Justice_League_Dark_(film)",
 			"Logo": "logos/movies/Justice League Dark.png",
@@ -432,7 +432,7 @@
 		},
 		{
 			"Title": "Justice League Dark: Apokolips War",
-			"Genre_Tags": "DC, Superheroes, Animation",
+			"Genre_Tags": "Animation, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Justice_League_Dark:_Apokolips_War",
 			"Logo": "logos/movies/Justice League Dark Apokolips War.png",
@@ -443,7 +443,7 @@
 		},
 		{
 			"Title": "Justice League: Doom",
-			"Genre_Tags": "DC, Superheroes, Animation",
+			"Genre_Tags": "Animation, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Justice_League:_Doom",
 			"Logo": "logos/movies/Justice League Doom.png",
@@ -454,7 +454,7 @@
 		},
 		{
 			"Title": "Justice League: War",
-			"Genre_Tags": "DC, Superheroes, Animation",
+			"Genre_Tags": "Animation, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Justice_League:_War",
 			"Logo": "logos/movies/Justice League War.png",
@@ -498,7 +498,7 @@
 		},
 		{
 			"Title": "Mamma Mia!",
-			"Genre_Tags": "Comedy, Girlboss, Musical, Rom-Com",
+			"Genre_Tags": "Comedy, Girlboss, Musical, Romance",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Mamma_Mia!_(film)",
 			"Logo": "logos/movies/Mamma Mia!.png",
@@ -520,7 +520,7 @@
 		},
 		{
 			"Title": "Batman: Mask of The Phantasm",
-			"Genre_Tags": "Batman, DC, Superheroes, Bruce Timm, Animation",
+			"Genre_Tags": "Animation, Batman, Bruce Timm, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_Mask_of_the_Phantasm",
 			"Logo": "logos/movies/Batman- Mask of The Phantasm.png",
@@ -531,7 +531,7 @@
 		},
 		{
 			"Title": "Mean Girls",
-			"Genre_Tags": "Comedy, Rom-Com",
+			"Genre_Tags": "Comedy, Romance",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Mean_Girls",
 			"Logo": "logos/movies/Mean Girls 2004.png",
@@ -564,7 +564,7 @@
 		},
 		{
 			"Title": "Muppets From Space",
-			"Genre_Tags": "Comedy, Muppets, Sci-Fi, Puppetry",
+			"Genre_Tags": "Comedy, Muppets, Puppetry, Sci-Fi",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Muppets_from_Space",
 			"Logo": "logos/movies/Muppets From Space.png",
@@ -729,7 +729,7 @@
 		},
 		{
 			"Title": "Spiderman: Across the Spider-Verse",
-			"Genre_Tags": "Marvel, Spiderman, Superheroes, Animation",
+			"Genre_Tags": "Animation, Marvel, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Spider-Man:_Across_the_Spider-Verse",
 			"Logo": "logos/movies/Spiderman - Across the Spider-Verse.png",
@@ -740,7 +740,7 @@
 		},
 		{
 			"Title": "Spiderman: Into the Spiderverse",
-			"Genre_Tags": "Marvel, Spiderman, Superheroes, Animation",
+			"Genre_Tags": "Animation, Marvel, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Spider-Man:_Into_the_Spider-Verse",
 			"Logo": "logos/movies/Spiderman - Into the Spiderverse.png",
@@ -751,7 +751,7 @@
 		},
 		{
 			"Title": "Spiderman 1",
-			"Genre_Tags": "Marvel, Raimi, Spiderman, Superheroes",
+			"Genre_Tags": "Marvel, Raimi, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Spider-Man_(2002_film)",
 			"Logo": "logos/movies/Spiderman 1.png",
@@ -762,7 +762,7 @@
 		},
 		{
 			"Title": "Spiderman 2",
-			"Genre_Tags": "Marvel, Raimi, Spiderman, Superheroes",
+			"Genre_Tags": "Marvel, Raimi, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Spider-Man_2",
 			"Logo": "logos/movies/Spiderman 2.png",
@@ -773,7 +773,7 @@
 		},
 		{
 			"Title": "Spiderman 3",
-			"Genre_Tags": "Marvel, Raimi, Spiderman, Superheroes",
+			"Genre_Tags": "Marvel, Raimi, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Spider-Man_3",
 			"Logo": "logos/movies/Spiderman 3.png",
@@ -784,7 +784,7 @@
 		},
 		{
 			"Title": "Spirited",
-			"Genre_Tags": "Christmas, Comedy",
+			"Genre_Tags": "Christmas, Comedy, Holiday",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Spirited_(film)",
 			"Logo": "logos/movies/Spirited.png",
@@ -993,7 +993,7 @@
 		},
 		{
 			"Title": "The Amazing Spiderman",
-			"Genre_Tags": "Marvel, Spiderman, Superheroes",
+			"Genre_Tags": "Marvel, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Amazing_Spider-Man_(film)",
 			"Logo": "logos/movies/The Amazing Spiderman.png",
@@ -1004,7 +1004,7 @@
 		},
 		{
 			"Title": "The Amazing Spiderman 2",
-			"Genre_Tags": "Marvel, Spiderman, Superheroes",
+			"Genre_Tags": "Marvel, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Amazing_Spider-Man_2",
 			"Logo": "logos/movies/The Amazing Spiderman 2.png",
@@ -1026,7 +1026,7 @@
 		},
 		{
 			"Title": "The Dark Knight Returns",
-			"Genre_Tags": "Batman, DC, Superheroes, Animation",
+			"Genre_Tags": "Animation, Batman, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_The_Dark_Knight_Returns_(film)",
 			"Logo": "logos/movies/The Dark Knight Returns.png",
@@ -1037,7 +1037,7 @@
 		},
 		{
 			"Title": "Batman: The Doom That Came To Gotham",
-			"Genre_Tags": "Batman, DC, Superheroes, Animation",
+			"Genre_Tags": "Animation, Batman, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_The_Doom_That_Came_to_Gotham_(film)",
 			"Logo": "logos/movies/Batman- The Doom That Came To Gotham.png",
@@ -1048,7 +1048,7 @@
 		},
 		{
 			"Title": "The Flashpoint Paradox",
-			"Genre_Tags": "DC, Superheroes, Animation",
+			"Genre_Tags": "Animation, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Justice_League:_The_Flashpoint_Paradox",
 			"Logo": "logos/movies/The Flashpoint Paradox.png",
@@ -1081,7 +1081,7 @@
 		},
 		{
 			"Title": "Batman: The Long Halloween pt 1",
-			"Genre_Tags": "Batman, DC, Superheroes, Animation",
+			"Genre_Tags": "Animation, Batman, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_The_Long_Halloween_(film)",
 			"Logo": "logos/movies/Batman - The Long Halloween pt 1.png",
@@ -1092,7 +1092,7 @@
 		},
 		{
 			"Title": "Batman: The Long Halloween pt 2",
-			"Genre_Tags": "Batman, DC, Superheroes, Animation",
+			"Genre_Tags": "Animation, Batman, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_The_Long_Halloween_(film)",
 			"Logo": "logos/movies/Batman - The Long Halloween pt 2.png",
@@ -1114,7 +1114,7 @@
 		},
 		{
 			"Title": "The Muppets Christmas Carol",
-			"Genre_Tags": "Christmas, Comedy, Muppets, Puppetry",
+			"Genre_Tags": "Christmas, Comedy, Holiday, Muppets, Puppetry",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Muppet_Christmas_Carol",
 			"Logo": "logos/movies/The Muppets Christmas Carol.png",
@@ -1224,7 +1224,7 @@
 		},
 		{
 			"Title": "Batman: Year One",
-			"Genre_Tags": "Batman, DC, Superheroes, Animation",
+			"Genre_Tags": "Animation, Batman, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_Year_One_(film)",
 			"Logo": "logos/movies/Batman - Year One.png",
@@ -1323,7 +1323,7 @@
 		},
 		{
 			"Title": "Dr Strangelove",
-			"Genre_Tags": "Black Comedy, Politics, History, Kubrick",
+			"Genre_Tags": "Black Comedy, History, Kubrick, Politics",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Dr._Strangelove",
 			"Logo": "logos/movies/Dr. Strangelove.png",
@@ -1466,7 +1466,7 @@
 		},
 		{
 			"Title": "Pee-wee's Big Adventure",
-			"Genre_Tags": "Tim Burton, Comedy",
+			"Genre_Tags": "Comedy, Tim Burton",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Pee-wee%27s_Big_Adventure",
 			"Logo": "logos/movies/Pee-wee's Big Adventure.png",
@@ -1708,7 +1708,7 @@
 		},
 		{
 			"Title": "The Princess Bride",
-			"Genre_Tags": "Fantasy, Rom-Com, Pirates",
+			"Genre_Tags": "Comedy, Fantasy, Pirates, Romance",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Princess_Bride_(film)",
 			"Logo": "logos/movies/The Princess Bride.png",
@@ -1730,7 +1730,7 @@
 		},
 		{
 			"Title": "Mean Girls",
-			"Genre_Tags": "Comedy, Girlboss, Musical, Rom-Com",
+			"Genre_Tags": "Comedy, Girlboss, Musical, Romance",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Mean_Girls_(2024_film)",
 			"Logo": "logos/movies/Mean Girls 2024.png",
@@ -1896,7 +1896,7 @@
 		{
 			"Title": "Scott Pilgrim vs. the World",
 			"Genre_Tags": "Comedy, Edgar Wright, Musical",
-			"Downloaded": false,
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Scott_Pilgrim_vs._the_World",
 			"Logo": "logos/movies/Scott Pilgrim vs. the World.png",
 			"Rating": "8.2",
@@ -1917,7 +1917,7 @@
 		},
 		{
 			"Title": "The Cat in the Hat",
-			"Genre_Tags": "Comedy",
+			"Genre_Tags": "Comedy, Seuss",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Cat_in_the_Hat_(film)",
 			"Logo": "logos/movies/The Cat in the Hat.png",
@@ -1961,7 +1961,7 @@
 		},
 		{
 			"Title": "Mars Attacks!",
-			"Genre_Tags": "Action, Black Comedy, Tim Burton, Sci-Fi",
+			"Genre_Tags": "Action, Black Comedy, Sci-Fi, Tim Burton",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Mars_Attacks!",
 			"Logo": "logos/movies/Mars Attacks!.png",
@@ -2009,8 +2009,8 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Dawn_of_the_Dead_(1978_film)",
 			"Logo": "logos/movies/Dawn of the Dead.png",
-			"Rating": "0.0",
-			"Watched": false,
+			"Rating": "7.2",
+			"Watched": true,
 			"Duration": 126,
 			"Year": 1978
 		},
@@ -2027,7 +2027,7 @@
 		},
 		{
 			"Title": "Gremlins 2: The New Batch",
-			"Genre_Tags": "Comedy, Fantasy, Puppetry, Horror",
+			"Genre_Tags": "Comedy, Fantasy, Horror, Puppetry",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Gremlins_2:_The_New_Batch",
 			"Logo": "logos/movies/Gremlins 2- The New Batch.png",
@@ -2093,7 +2093,7 @@
 		},
 		{
 			"Title": "Ed Wood",
-			"Genre_Tags": "Tim Burton, Comedy, History",
+			"Genre_Tags": "Comedy, History, Tim Burton",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Ed_Wood_(film)",
 			"Logo": "logos/movies/Ed Wood.png",
@@ -2225,7 +2225,7 @@
 		},
 		{
 			"Title": "Taxi Driver",
-			"Genre_Tags": "Noir, Thriller, Scorsese",
+			"Genre_Tags": "Noir, Scorsese, Thriller",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Taxi Driver",
 			"Logo": "logos/movies/Taxi Driver.png",
@@ -2280,7 +2280,7 @@
 		},
 		{
 			"Title": "Batman: The Killing Joke",
-			"Genre_Tags": "Batman, DC, Superheroes, Animation",
+			"Genre_Tags": "Animation, Batman, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_The_Killing_Joke_(film)",
 			"Logo": "logos/movies/Batman- The Killing Joke.png",
@@ -2500,7 +2500,7 @@
 		},
 		{
 			"Title": "Coming to America",
-			"Genre_Tags": "Comedy, Rom-Com",
+			"Genre_Tags": "Comedy, Romance",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Coming to America",
 			"Logo": "logos/movies/Coming to America.png",
@@ -2537,8 +2537,8 @@
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Watchmen_(film)",
 			"Logo": "logos/movies/Watchmen.png",
-			"Rating": "0.0",
-			"Watched": false,
+			"Rating": "7.4",
+			"Watched": true,
 			"Duration": 163,
 			"Year": 2009
 		},
@@ -2559,8 +2559,8 @@
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/This_Is_Spinal_Tap",
 			"Logo": "logos/movies/This Is Spinal Tap.png",
-			"Rating": "0.0",
-			"Watched": false,
+			"Rating": "8.5",
+			"Watched": true,
 			"Duration": 82,
 			"Year": 1984
 		},
@@ -2588,7 +2588,7 @@
 		},
 		{
 			"Title": "Alfie",
-			"Genre_Tags": "Comedy, Rom-Com",
+			"Genre_Tags": "Comedy, Romance",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Alfie_(1966_film)",
 			"Logo": "logos/movies/Alfie.png",
@@ -2819,7 +2819,7 @@
 		},
 		{
 			"Title": "Die Hard",
-			"Genre_Tags": "Action, Christmas",
+			"Genre_Tags": "Action, Christmas, Holiday",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Die_Hard",
 			"Logo": "logos/movies/Die Hard.png",
@@ -2852,7 +2852,7 @@
 		},
 		{
 			"Title": "Moulin Rouge!",
-			"Genre_Tags": "Musical, Rom-Com",
+			"Genre_Tags": "Musical, Romance",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Moulin_Rouge!",
 			"Logo": "logos/movies/Moulin Rouge!.png",
@@ -2863,7 +2863,7 @@
 		},
 		{
 			"Title": "Team America: World Police",
-			"Genre_Tags": "Comedy, Stone & Parker, Puppetry",
+			"Genre_Tags": "Comedy, Puppetry, Stone & Parker",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Team_America:_World_Police",
 			"Logo": "logos/movies/Team America- World Police.png",
@@ -2907,7 +2907,7 @@
 		},
 		{
 			"Title": "The Pirates! In an Adventure with Scientists!",
-			"Genre_Tags": "Comedy, Stop Motion, Pirates",
+			"Genre_Tags": "Comedy, Pirates, Stop Motion",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Pirates!_In_an_Adventure_with_Scientists!",
 			"Logo": "logos/movies/The Pirates! In an Adventure with Scientists!.png",
@@ -2995,7 +2995,7 @@
 		},
 		{
 			"Title": "The Witches",
-			"Genre_Tags": "Comedy, Horror, Henson",
+			"Genre_Tags": "Comedy, Henson, Horror",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Witches_(1990_film)",
 			"Logo": "logos/movies/The Witches.png",
@@ -3006,7 +3006,7 @@
 		},
 		{
 			"Title": "Injustice",
-			"Genre_Tags": "DC, Superheroes, Animation",
+			"Genre_Tags": "Animation, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Injustice_(2021_film)",
 			"Logo": "logos/movies/Injustice.png",
@@ -3050,7 +3050,7 @@
 		},
 		{
 			"Title": "Beetlejuice",
-			"Genre_Tags": "Black Comedy, Tim Burton, Horror",
+			"Genre_Tags": "Black Comedy, Horror, Tim Burton",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Beetlejuice",
 			"Logo": "logos/movies/Beetlejuice.png",
@@ -3094,7 +3094,7 @@
 		},
 		{
 			"Title": "Scooby-Doo, Where Are You Now!",
-			"Genre_Tags": "Comedy, Mockumentary, Mystery, Short Film, Animation",
+			"Genre_Tags": "Animation, Comedy, Mockumentary, Mystery, Short Film",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Scooby-Doo,_Where_Are_You_Now!",
 			"Logo": "logos/movies/Scooby-Doo, Where Are You Now!.png",
@@ -3138,7 +3138,7 @@
 		},
 		{
 			"Title": "The Graduate",
-			"Genre_Tags": "Drama, Rom-Com",
+			"Genre_Tags": "Comedy, Drama, Romance",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Graduate",
 			"Logo": "logos/movies/The Graduate.png",
@@ -3226,7 +3226,7 @@
 		},
 		{
 			"Title": "Scooby-Doo! and Kiss Rock and Roll Mystery",
-			"Genre_Tags": "Comedy, Mystery, Scooby-Doo, Animation",
+			"Genre_Tags": "Animation, Comedy, Mystery, Scooby-Doo",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Scooby-Doo!_and_Kiss:_Rock_and_Roll_Mystery",
 			"Logo": "logos/movies/Scooby-Doo! and Kiss Rock and Roll Mystery.png",
@@ -3237,7 +3237,7 @@
 		},
 		{
 			"Title": "Scooby-Doo! and the Goblin King",
-			"Genre_Tags": "Comedy, Mystery, Scooby-Doo, Animation",
+			"Genre_Tags": "Animation, Comedy, Mystery, Scooby-Doo",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Scooby-Doo!_and_the_Goblin_King",
 			"Logo": "logos/movies/Scooby-Doo! and the Goblin King.png",
@@ -3248,7 +3248,7 @@
 		},
 		{
 			"Title": "Scooby-Doo on Zombie Island",
-			"Genre_Tags": "Comedy, Mystery, Scooby-Doo, Animation",
+			"Genre_Tags": "Animation, Comedy, Mystery, Scooby-Doo",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Scooby-Doo_on_Zombie_Island",
 			"Logo": "logos/movies/Scooby-Doo on Zombie Island.png",
@@ -3259,7 +3259,7 @@
 		},
 		{
 			"Title": "Scooby-Doo and the Legend of the Vampire",
-			"Genre_Tags": "Comedy, Mystery, Scooby-Doo, Animation",
+			"Genre_Tags": "Animation, Comedy, Mystery, Scooby-Doo",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Scooby-Doo!_and_the_Legend_of_the_Vampire",
 			"Logo": "logos/movies/Scooby-Doo and the Legend of the Vampire.png",
@@ -3391,7 +3391,7 @@
 		},
 		{
 			"Title": "The Mummy",
-			"Genre_Tags": "Action, Girlboss, Mythology, Adventure",
+			"Genre_Tags": "Action, Adventure, Girlboss, Mythology",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Mummy_(1999_film)",
 			"Logo": "logos/movies/The Mummy.png",
@@ -3501,7 +3501,7 @@
 		},
 		{
 			"Title": "Jaws",
-			"Genre_Tags": "Thriller, Spielberg",
+			"Genre_Tags": "Spielberg, Thriller",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Jaws_(film)",
 			"Logo": "logos/movies/Jaws.png",
@@ -3710,7 +3710,7 @@
 		},
 		{
 			"Title": "Tropic Thunder",
-			"Genre_Tags": "Comedy, Action",
+			"Genre_Tags": "Action, Comedy",
 			"Downloaded": false,
 			"InfoPage": "Tropic_Thunder",
 			"Logo": "logos/movies/Tropic Thunder.png",
@@ -3721,7 +3721,7 @@
 		},
 		{
 			"Title": "Batman and Harley Quinn",
-			"Genre_Tags": "Batman, DC, Superheroes, Bruce Timm, Animation",
+			"Genre_Tags": "Animation, Batman, Bruce Timm, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_and_Harley_Quinn",
 			"Logo": "logos/movies/Batman and Harley Quinn.png",
@@ -3732,7 +3732,7 @@
 		},
 		{
 			"Title": "Batman: Mystery of the Batwoman",
-			"Genre_Tags": "Batman, DC, Superheroes, Bruce Timm, Animation",
+			"Genre_Tags": "Animation, Batman, Bruce Timm, DC, Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_Mystery_of_the_Batwoman",
 			"Logo": "logos/movies/Batman- Mystery of the Batwoman.png",
@@ -3754,7 +3754,7 @@
 		},
 		{
 			"Title": "Some Like It Hot",
-			"Genre_Tags": "Comedy, Girlboss, Musical, Marilyn Monroe",
+			"Genre_Tags": "Comedy, Girlboss, Marilyn Monroe, Musical",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Some_Like_It_Hot",
 			"Logo": "logos/movies/Some Like It Hot.png",
@@ -3831,7 +3831,7 @@
 		},
 		{
 			"Title": "A Charlie Brown Thanksgiving",
-			"Genre_Tags": "Animation, Peanuts, Thanksgiving, Short Film",
+			"Genre_Tags": "Animation, Holiday, Peanuts, Short Film, Thanksgiving",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/A_Charlie_Brown_Thanksgiving",
 			"Logo": "logos/movies/A Charlie Brown Thanksgiving.png",
@@ -3875,7 +3875,7 @@
 		},
 		{
 			"Title": "Brazil",
-			"Genre_Tags": "Black Comedy, Sci-Fi, Gilliam",
+			"Genre_Tags": "Black Comedy, Gilliam, Sci-Fi",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Brazil_(1985_film)",
 			"Logo": "logos/movies/Brazil.png",
@@ -3941,7 +3941,7 @@
 		},
 		{
 			"Title": "Gremlins",
-			"Genre_Tags": "Christmas, Comedy, Horror, Puppetry",
+			"Genre_Tags": "Christmas, Comedy, Holiday, Horror, Puppetry",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Gremlins",
 			"Logo": "logos/movies/Gremlins.png",
@@ -3952,7 +3952,7 @@
 		},
 		{
 			"Title": "Critters",
-			"Genre_Tags": "B-Movie, Horror, Puppetry, Comedy",
+			"Genre_Tags": "B-Movie, Comedy, Horror, Puppetry",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Critters_(film)",
 			"Logo": "logos/movies/Critters.png",
@@ -4205,7 +4205,7 @@
 		},
 		{
 			"Title": "The Gentlemen",
-			"Genre_Tags": "Comedy, Crime, Thriller, Guy Ritchie",
+			"Genre_Tags": "Comedy, Crime, Guy Ritchie, Thriller",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Gentlemen_(2019_film)",
 			"Logo": "logos/movies/The Gentlemen.png",
@@ -4315,7 +4315,7 @@
 		},
 		{
 			"Title": "Raiders of the Lost Ark",
-			"Genre_Tags": "Adventure, History, George Lucas, Spielberg, Indiana Jones",
+			"Genre_Tags": "Adventure, George Lucas, History, Indiana Jones, Spielberg",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Raiders_of_the_Lost_Ark",
 			"Logo": "logos/movies/Raiders of the Lost Ark.png",
@@ -4326,7 +4326,7 @@
 		},
 		{
 			"Title": "Temple of Doom",
-			"Genre_Tags": "Adventure, History, George Lucas, Spielberg, Indiana Jones",
+			"Genre_Tags": "Adventure, George Lucas, History, Indiana Jones, Spielberg",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Indiana_Jones_and_the_Temple_of_Doom",
 			"Logo": "logos/movies/Indiana Jones and the Temple of Doom.png",
@@ -4337,7 +4337,7 @@
 		},
 		{
 			"Title": "The Last Crusade",
-			"Genre_Tags": "Adventure, History, George Lucas, Spielberg, Indiana Jones",
+			"Genre_Tags": "Adventure, George Lucas, History, Indiana Jones, Spielberg",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Indiana_Jones_and_the_Last_Crusade",
 			"Logo": "logos/movies/Indiana Jones and the Last Crusade.png",
@@ -4348,7 +4348,7 @@
 		},
 		{
 			"Title": "Kingdom of the Crystal Skull",
-			"Genre_Tags": "Adventure, History, Sci-Fi, George Lucas, Spielberg, Indiana Jones",
+			"Genre_Tags": "Adventure, George Lucas, History, Indiana Jones, Sci-Fi, Spielberg",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Indiana_Jones_and_the_Kingdom_of_the_Crystal_Skull",
 			"Logo": "logos/movies/Indiana Jones and the Kingdom of the Crystal Skull.png",
@@ -4414,7 +4414,7 @@
 		},
 		{
 			"Title": "Star Wars: Episode IX - The Rise of Skywalker",
-			"Genre_Tags": "Adventure, Sci-Fi, Star Wars, George Lucas",
+			"Genre_Tags": "Adventure, George Lucas, Sci-Fi, Star Wars",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Wars:_The_Rise_of_Skywalker",
 			"Logo": "logos/movies/Star Wars The Rise of Skywalker.png",
@@ -4425,7 +4425,7 @@
 		},
 		{
 			"Title": "Star Wars: Episode VIII - The Last Jedi",
-			"Genre_Tags": "Adventure, Sci-Fi, Star Wars, George Lucas",
+			"Genre_Tags": "Adventure, George Lucas, Sci-Fi, Star Wars",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Wars:_The_Last_Jedi",
 			"Logo": "logos/movies/Star Wars The Last Jedi.png",
@@ -4436,7 +4436,7 @@
 		},
 		{
 			"Title": "Star Wars: Episode VII - The Force Awakens",
-			"Genre_Tags": "Adventure, Sci-Fi, Star Wars, George Lucas",
+			"Genre_Tags": "Adventure, George Lucas, Sci-Fi, Star Wars",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Wars:_The_Force_Awakens",
 			"Logo": "logos/movies/Star Wars The Force Awakens.png",
@@ -4447,7 +4447,7 @@
 		},
 		{
 			"Title": "Star Wars: Episode III - Revenge of the Sith",
-			"Genre_Tags": "Adventure, Sci-Fi, Star Wars, George Lucas",
+			"Genre_Tags": "Adventure, George Lucas, Sci-Fi, Star Wars",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Wars:_Episode_III_\u2013_Revenge_of_the_Sith",
 			"Logo": "logos/movies/Star Wars Episode III Revenge of the Sith.png",
@@ -4458,7 +4458,7 @@
 		},
 		{
 			"Title": "Star Wars: Episode II - Attack of the Clones",
-			"Genre_Tags": "Adventure, Sci-Fi, Star Wars, George Lucas",
+			"Genre_Tags": "Adventure, George Lucas, Sci-Fi, Star Wars",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Wars:_Episode_II_\u2013_Attack_of_the_Clones",
 			"Logo": "logos/movies/Star Wars Episode II - Attack of the Clones.png",
@@ -4469,7 +4469,7 @@
 		},
 		{
 			"Title": "Star Wars: Episode I - The Phantom Menace",
-			"Genre_Tags": "Adventure, Sci-Fi, Star Wars, George Lucas",
+			"Genre_Tags": "Adventure, George Lucas, Sci-Fi, Star Wars",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Wars:_Episode_I_\u2013_The_Phantom_Menace",
 			"Logo": "logos/movies/Star Wars Episode I - The Phantom Menace.png",
@@ -4480,7 +4480,7 @@
 		},
 		{
 			"Title": "Star Wars: Episode VI - Return of the Jedi",
-			"Genre_Tags": "Adventure, Sci-Fi, Star Wars, George Lucas",
+			"Genre_Tags": "Adventure, George Lucas, Sci-Fi, Star Wars",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Return_of_the_Jedi",
 			"Logo": "logos/movies/Return of the Jedi.png",
@@ -4491,7 +4491,7 @@
 		},
 		{
 			"Title": "Star Wars: Episode V - The Empire Strikes Back",
-			"Genre_Tags": "Adventure, Sci-Fi, Star Wars, George Lucas",
+			"Genre_Tags": "Adventure, George Lucas, Sci-Fi, Star Wars",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Empire_Strikes_Back",
 			"Logo": "logos/movies/Star Wars Episode V - The Empire Strikes Back.png",
@@ -4502,7 +4502,7 @@
 		},
 		{
 			"Title": "Star Wars Episode IV: A New Hope",
-			"Genre_Tags": "Adventure, Sci-Fi, Star Wars, George Lucas",
+			"Genre_Tags": "Adventure, George Lucas, Sci-Fi, Star Wars",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Wars_(film)",
 			"Logo": "logos/movies/Star Wars Episode IV A New Hope.png",
@@ -4545,8 +4545,8 @@
 			"Year": 1997
 		},
 		{
-			"Title": " Dead Men Tell No Tales",
-			"Genre_Tags": "Adventure, Fantasy,  Pirates of the Caribbean",
+			"Title": "Dead Men Tell No Tales",
+			"Genre_Tags": "Adventure, Fantasy, Pirates of the Caribbean",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_Dead_Men_Tell_No_Tales",
 			"Logo": "logos/movies/Pirates of the Caribbean Dead Men Tell No Tales.png",
@@ -4556,8 +4556,8 @@
 			"Year": 2017
 		},
 		{
-			"Title": " On Stranger Tides",
-			"Genre_Tags": "Adventure, Fantasy,  Pirates of the Caribbean",
+			"Title": "On Stranger Tides",
+			"Genre_Tags": "Adventure, Fantasy, Pirates of the Caribbean",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_On_Stranger_Tides",
 			"Logo": "logos/movies/Pirates of the Caribbean On Stranger Tides.png",
@@ -4567,8 +4567,8 @@
 			"Year": 2011
 		},
 		{
-			"Title": " At World's End",
-			"Genre_Tags": "Adventure, Fantasy,  Pirates of the Caribbean",
+			"Title": "At World's End",
+			"Genre_Tags": "Adventure, Fantasy, Pirates of the Caribbean",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_At_World's_End",
 			"Logo": "logos/movies/Pirates of the Caribbean At World's End.png",
@@ -4578,8 +4578,8 @@
 			"Year": 2007
 		},
 		{
-			"Title": " Dead Man's Chest",
-			"Genre_Tags": "Adventure, Fantasy,  Pirates of the Caribbean",
+			"Title": "Dead Man's Chest",
+			"Genre_Tags": "Adventure, Fantasy, Pirates of the Caribbean",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_Dead_Man's_Chest",
 			"Logo": "logos/movies/Pirates of the Caribbean Dead Man's Chest.png",
@@ -4589,8 +4589,8 @@
 			"Year": 2006
 		},
 		{
-			"Title": " The Curse of the Black Pearl",
-			"Genre_Tags": "Adventure, Fantasy,  Pirates of the Caribbean",
+			"Title": "The Curse of the Black Pearl",
+			"Genre_Tags": "Adventure, Fantasy, Pirates of the Caribbean",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_The_Curse_of_the_Black_Pearl",
 			"Logo": "logos/movies/Pirates of the Caribbean The Curse of the Black Pearl.png",
@@ -4601,7 +4601,7 @@
 		},
 		{
 			"Title": "Knives Out",
-			"Genre_Tags": "Comedy, Drama, Mystery, Knives Out",
+			"Genre_Tags": "Comedy, Drama, Knives Out, Mystery",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Knives_Out",
 			"Logo": "logos/movies/Knives Out.png",
@@ -4623,7 +4623,7 @@
 		},
 		{
 			"Title": "The Departed",
-			"Genre_Tags": "Crime, Drama, Thriller, Scorsese",
+			"Genre_Tags": "Crime, Drama, Scorsese, Thriller",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Departed",
 			"Logo": "logos/movies/The Departed.png",
@@ -4678,7 +4678,7 @@
 		},
 		{
 			"Title": "Hook",
-			"Genre_Tags": "Comedy, Fantasy, Spielberg, Pirates",
+			"Genre_Tags": "Comedy, Fantasy, Pirates, Spielberg",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Hook_(film)",
 			"Logo": "logos/movies/Hook.png",
@@ -4754,19 +4754,19 @@
 			"Year": 1990
 		},
 		{
-			"Title": "Silent Night, Deadly Night",
-			"Genre_Tags": "Christmas, Horror",
+			"Title": "Silent Night, Deadly Night 2",
+			"Genre_Tags": "Christmas, Holiday, Horror",
 			"Downloaded": false,
-			"InfoPage": "https://en.wikipedia.org/wiki/Silent_Night,_Deadly_Night",
+			"InfoPage": "https://en.wikipedia.org/wiki/Silent_Night,_Deadly_Night_Part_2",
 			"Logo": "logos/movies/Silent Night, Deadly Night.png",
 			"Rating": "0.0",
 			"Watched": false,
-			"Duration": 82,
-			"Year": 1984
+			"Duration": 88,
+			"Year": 1987
 		},
 		{
 			"Title": "Deck the Halls",
-			"Genre_Tags": "Christmas, Comedy",
+			"Genre_Tags": "Christmas, Comedy, Holiday",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Deck_the_Halls_(2006_film)",
 			"Logo": "logos/movies/Deck the Halls.png",
@@ -4964,7 +4964,7 @@
 		},
 		{
 			"Title": "Wallace and Gromit: The Curse of the Were-Rabbit",
-			"Genre_Tags": "Animation, British, Comedy, Wallace and Gromit, Aardman",
+			"Genre_Tags": "Aardman, Animation, British, Comedy, Wallace and Gromit",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Wallace_&_Gromit:_The_Curse_of_the_Were-Rabbit",
 			"Logo": "logos/movies/Wallace and Gromit The Curse of the Were-Rabbit.png",
@@ -4975,7 +4975,7 @@
 		},
 		{
 			"Title": "The Wrong Trousers",
-			"Genre_Tags": "Animation, British, Comedy, Short Film, Wallace and Gromit, Aardman",
+			"Genre_Tags": "Aardman, Animation, British, Comedy, Short Film, Wallace and Gromit",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Wrong_Trousers",
 			"Logo": "logos/movies/The Wrong Trousers.png",
@@ -4986,7 +4986,7 @@
 		},
 		{
 			"Title": "A Close Shave",
-			"Genre_Tags": "Animation, British, Comedy, Short Film, Wallace and Gromit, Aardman",
+			"Genre_Tags": "Aardman, Animation, British, Comedy, Short Film, Wallace and Gromit",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/A_Close_Shave",
 			"Logo": "logos/movies/Wallace and Gromit A Close Shave.png",
@@ -4997,7 +4997,7 @@
 		},
 		{
 			"Title": "A Matter of Loaf and Death",
-			"Genre_Tags": "Animation, British, Comedy, Short Film, Wallace and Gromit, Aardman",
+			"Genre_Tags": "Aardman, Animation, British, Comedy, Short Film, Wallace and Gromit",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/A_Matter_of_Loaf_and_Death",
 			"Logo": "logos/movies/A Matter of Loaf and Death.png",
@@ -5008,7 +5008,7 @@
 		},
 		{
 			"Title": "A Grand Day Out",
-			"Genre_Tags": "Animation, British, Comedy, Short Film, Wallace and Gromit, Aardman",
+			"Genre_Tags": "Aardman, Animation, British, Comedy, Short Film, Wallace and Gromit",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/A_Grand_Day_Out",
 			"Logo": "logos/movies/A Grand Day Out.png",
@@ -5019,7 +5019,7 @@
 		},
 		{
 			"Title": "Chicken Run",
-			"Genre_Tags": "Aardman, Animation, Comedy, British",
+			"Genre_Tags": "Aardman, Animation, British, Comedy",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Chicken_Run",
 			"Logo": "logos/movies/Chicken Run.png",
@@ -5030,7 +5030,7 @@
 		},
 		{
 			"Title": "Flushed Away",
-			"Genre_Tags": "Aardman, Animation, Comedy, British",
+			"Genre_Tags": "Aardman, Animation, British, Comedy",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Flushed_Away",
 			"Logo": "logos/movies/Flushed Away.png",
@@ -5041,7 +5041,7 @@
 		},
 		{
 			"Title": "Arthur Christmas",
-			"Genre_Tags": "Aardman, Animation, Christmas, Comedy",
+			"Genre_Tags": "Aardman, Animation, Christmas, Comedy, Holiday",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Arthur_Christmas",
 			"Logo": "logos/movies/Arthur Christmas.png",
@@ -5052,7 +5052,7 @@
 		},
 		{
 			"Title": "Prep and Landing",
-			"Genre_Tags": "Animation, Chrismas, Comedy",
+			"Genre_Tags": "Animation, Chrismas, Comedy, Short Film",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Prep_&_Landing",
 			"Logo": "logos/movies/Prep and Landing.png",
@@ -5074,7 +5074,7 @@
 		},
 		{
 			"Title": "The Nightmare Before Christmas",
-			"Genre_Tags": "Christmas, Puppetry, Tim Burton, Musical",
+			"Genre_Tags": "Christmas, Holiday, Musical, Puppetry, Tim Burton",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Nightmare_Before_Christmas",
 			"Logo": "logos/movies/The Nightmare Before Christmas.png",
@@ -5140,7 +5140,7 @@
 		},
 		{
 			"Title": "A Christmas Story",
-			"Genre_Tags": "Christmas, Comedy",
+			"Genre_Tags": "Christmas, Comedy, Holiday",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/A_Christmas_Story",
 			"Logo": "logos/movies/A Christmas Story.png",
@@ -5151,7 +5151,7 @@
 		},
 		{
 			"Title": "Castle in the Sky",
-			"Genre_Tags": "Adventure, Animated, Fantasy, Miyazaki",
+			"Genre_Tags": "Adventure, Animation, Fantasy, Miyazaki",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Castle_in_the_Sky",
 			"Logo": "logos/movies/Castle in the Sky.png",
@@ -5162,7 +5162,7 @@
 		},
 		{
 			"Title": "Nausica\u00e4 of the Valley of the Wind",
-			"Genre_Tags": "Adventure, Animated, Disaster, Miyazaki",
+			"Genre_Tags": "Adventure, Animation, Disaster, Miyazaki",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Nausica\u00e4_of_the_Valley_of_the_Wind_(film)",
 			"Logo": "logos/movies/Nausica\u00e4 of the Valley of the Wind.png",
@@ -5217,7 +5217,7 @@
 		},
 		{
 			"Title": "Princess Mononoke",
-			"Genre_Tags": "Animation, Fantasy, Miyazaki, History",
+			"Genre_Tags": "Animation, Fantasy, History, Miyazaki",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Princess_Mononoke",
 			"Logo": "logos/movies/Princess Mononoke.png",
@@ -5360,7 +5360,7 @@
 		},
 		{
 			"Title": "The Adventures of Baron Munchausen",
-			"Genre_Tags": "Gilliam, Fantasy, Adventure",
+			"Genre_Tags": "Adventure, Fantasy, Gilliam",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Adventures_of_Baron_Munchausen",
 			"Logo": "logos/movies/The Adventures of Baron Munchausen.png",
@@ -5577,12 +5577,507 @@
 			"Watched": true,
 			"Duration": 117,
 			"Year": 1998
+		},
+		{
+			"Title": "Vampire's Kiss",
+			"Genre_Tags": "Black Comedy, Horror, Romance",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Vampire's_Kiss",
+			"Logo": "logos/movies/Vampire's Kiss.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 103,
+			"Year": 1989
+		},
+		{
+			"Title": "Con Air",
+			"Genre_Tags": "Action, Thriller",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Con_Air",
+			"Logo": "logos/movies/Con Air.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 115,
+			"Year": 1997
+		},
+		{
+			"Title": "There Will Be Blood",
+			"Genre_Tags": "Drama, History",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/There_Will_Be_Blood",
+			"Logo": "logos/movies/There Will Be Blood.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 158,
+			"Year": 2007
+		},
+		{
+			"Title": "Boogie Nights",
+			"Genre_Tags": "Drama, History",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Boogie_Nights",
+			"Logo": "logos/movies/Boogie Nights.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 155,
+			"Year": 1997
+		},
+		{
+			"Title": "Barton Fink",
+			"Genre_Tags": "Black Comedy",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Barton_Fink",
+			"Logo": "logos/movies/Barton Fink.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 116,
+			"Year": 1991
+		},
+		{
+			"Title": "How the Grinch Stole Christmas!",
+			"Genre_Tags": "Animation, Christmas, Holiday, Seuss",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/How_the_Grinch_Stole_Christmas!_(TV_special)",
+			"Logo": "logos/movies/How the Grinch Stole Christmas!.png",
+			"Rating": "9.0",
+			"Watched": true,
+			"Duration": 25,
+			"Year": 1966
+		},
+		{
+			"Title": "How the Grinch Stole Christmas",
+			"Genre_Tags": "Christmas, Comedy, Holiday, Seuss",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/How_the_Grinch_Stole_Christmas_(2000_film)",
+			"Logo": "logos/movies/How the Grinch Stole Christmas.png",
+			"Rating": "8.7",
+			"Watched": true,
+			"Duration": 105,
+			"Year": 2000
+		},
+		{
+			"Title": "It's the Great Pumpkin, Charlie Brown",
+			"Genre_Tags": "Animation, Holiday, Peanuts, Short Film",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/It's_the_Great_Pumpkin,_Charlie_Brown",
+			"Logo": "logos/movies/It's the Great Pumpkin, Charlie Brown.png",
+			"Rating": "9.6",
+			"Watched": true,
+			"Duration": 25,
+			"Year": 1966
+		},
+		{
+			"Title": "A Boy Named Charlie Brown",
+			"Genre_Tags": "Animation, Comedy, Peanuts",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/A_Boy_Named_Charlie_Brown",
+			"Logo": "logos/movies/A Boy Named Charlie Brown.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 85,
+			"Year": 1969
+		},
+		{
+			"Title": "Scooby-Doo! & Batman: The Brave and the Bold",
+			"Genre_Tags": "Batman, DC, Mystery, Scooby-Doo, Superhero",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Scooby-Doo!_&_Batman:_The_Brave_and_the_Bold",
+			"Logo": "logos/movies/Scooby-Doo! &amp; Batman The Brave and the Bold.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 75,
+			"Year": 2018
+		},
+		{
+			"Title": "Iron Man",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Iron_Man_(2008_film)",
+			"Logo": "logos/movies/Iron Man.png",
+			"Rating": "8.6",
+			"Watched": true,
+			"Duration": 126,
+			"Year": 2008
+		},
+		{
+			"Title": "Iron Man 2",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Iron_Man_2",
+			"Logo": "logos/movies/Iron Man 2.png",
+			"Rating": "8.0",
+			"Watched": true,
+			"Duration": 125,
+			"Year": 2010
+		},
+		{
+			"Title": "Thor",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Thor_(film)",
+			"Logo": "logos/movies/Thor.png",
+			"Rating": "6.2",
+			"Watched": true,
+			"Duration": 114,
+			"Year": 2011
+		},
+		{
+			"Title": "Captain America: The First Avenger",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Captain_America:_The_First_Avenger",
+			"Logo": "logos/movies/Captain America The First Avenger.png",
+			"Rating": "7.5",
+			"Watched": true,
+			"Duration": 124,
+			"Year": 2011
+		},
+		{
+			"Title": "The Avengers",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Avengers_(2012_film)",
+			"Logo": "logos/movies/The Avengers.png",
+			"Rating": "8.8",
+			"Watched": true,
+			"Duration": 143,
+			"Year": 2012
+		},
+		{
+			"Title": "Iron Man 3",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Iron_Man_3",
+			"Logo": "logos/movies/Iron Man 3.png",
+			"Rating": "7.6",
+			"Watched": true,
+			"Duration": 131,
+			"Year": 2013
+		},
+		{
+			"Title": "Thor: The Dark World",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Thor:_The_Dark_World",
+			"Logo": "logos/movies/Thor The Dark World.png",
+			"Rating": "5.6",
+			"Watched": true,
+			"Duration": 112,
+			"Year": 2013
+		},
+		{
+			"Title": "Captain America: The Winter Soldier",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Captain_America:_The_Winter_Soldier",
+			"Logo": "logos/movies/Captain America The Winter Soldier.png",
+			"Rating": "8.2",
+			"Watched": true,
+			"Duration": 136,
+			"Year": 2014
+		},
+		{
+			"Title": "Guardians of the Galaxy",
+			"Genre_Tags": "Action, Comedy, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Guardians_of_the_Galaxy_(film)",
+			"Logo": "logos/movies/Guardians of the Galaxy.png",
+			"Rating": "8.6",
+			"Watched": true,
+			"Duration": 122,
+			"Year": 2014
+		},
+		{
+			"Title": "Avengers: Age of Ultron",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Avengers:_Age_of_Ultron",
+			"Logo": "logos/movies/Avengers Age of Ultron.png",
+			"Rating": "7.4",
+			"Watched": true,
+			"Duration": 141,
+			"Year": 2015
+		},
+		{
+			"Title": "Ant-Man",
+			"Genre_Tags": "Action, Comedy, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Ant-Man_(film)",
+			"Logo": "logos/movies/Ant-Man.png",
+			"Rating": "7.8",
+			"Watched": true,
+			"Duration": 117,
+			"Year": 2015
+		},
+		{
+			"Title": "Captain America: Civil War",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Captain_America:_Civil_War",
+			"Logo": "logos/movies/Captain America Civil War.png",
+			"Rating": "8.1",
+			"Watched": true,
+			"Duration": 147,
+			"Year": 2016
+		},
+		{
+			"Title": "Doctor Strange",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Doctor_Strange_(2016_film)",
+			"Logo": "logos/movies/Doctor Strange.png",
+			"Rating": "7.5",
+			"Watched": true,
+			"Duration": 115,
+			"Year": 2016
+		},
+		{
+			"Title": "Guardians of the Galaxy Vol. 2",
+			"Genre_Tags": "Action, Comedy, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Guardians_of_the_Galaxy_Vol._2",
+			"Logo": "logos/movies/Guardians of the Galaxy Vol. 2.png",
+			"Rating": "8.2",
+			"Watched": true,
+			"Duration": 136,
+			"Year": 2017
+		},
+		{
+			"Title": "Spider-Man: Homecoming",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Spider-Man:_Homecoming",
+			"Logo": "logos/movies/Spider-Man Homecoming.png",
+			"Rating": "8.1",
+			"Watched": true,
+			"Duration": 133,
+			"Year": 2017
+		},
+		{
+			"Title": "Thor: Ragnarok",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Thor:_Ragnarok",
+			"Logo": "logos/movies/Thor Ragnarok.png",
+			"Rating": "8.4",
+			"Watched": true,
+			"Duration": 130,
+			"Year": 2017
+		},
+		{
+			"Title": "Avengers: Infinity War",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Avengers:_Infinity_War",
+			"Logo": "logos/movies/Avengers Infinity War.png",
+			"Rating": "9.0",
+			"Watched": true,
+			"Duration": 149,
+			"Year": 2018
+		},
+		{
+			"Title": "Black Panther",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Black_Panther_(film)",
+			"Logo": "logos/movies/Black Panther.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 134,
+			"Year": 2018
+		},
+		{
+			"Title": "Avengers: Endgame",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Avengers:_Endgame",
+			"Logo": "logos/movies/Avengers Endgame.png",
+			"Rating": "8.1",
+			"Watched": true,
+			"Duration": 181,
+			"Year": 2019
+		},
+		{
+			"Title": "Spider-Man: Far From Home",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Spider-Man:_Far_From_Home",
+			"Logo": "logos/movies/Spider-Man Far From Home.png",
+			"Rating": "7.2",
+			"Watched": true,
+			"Duration": 129,
+			"Year": 2019
+		},
+		{
+			"Title": "Spider-Man: No Way Home",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Spider-Man:_No_Way_Home",
+			"Logo": "logos/movies/Spider-Man No Way Home.png",
+			"Rating": "8.0",
+			"Watched": true,
+			"Duration": 148,
+			"Year": 2021
+		},
+		{
+			"Title": "Doctor Strange in the Multiverse of Madness",
+			"Genre_Tags": "Action, MCU, Marvel, Raimi, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Doctor_Strange_in_the_Multiverse_of_Madness",
+			"Logo": "logos/movies/Doctor Strange in the Multiverse of Madness.png",
+			"Rating": "7.8",
+			"Watched": true,
+			"Duration": 126,
+			"Year": 2022
+		},
+		{
+			"Title": "Thor: Love and Thunder",
+			"Genre_Tags": "Action, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Thor:_Love_and_Thunder",
+			"Logo": "logos/movies/Thor Love and Thunder.png",
+			"Rating": "6.6",
+			"Watched": true,
+			"Duration": 119,
+			"Year": 2022
+		},
+		{
+			"Title": "Deadpool & Wolverine",
+			"Genre_Tags": "Action, Comedy, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Deadpool_&_Wolverine",
+			"Logo": "logos/movies/Deadpool & Wolverine.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 128,
+			"Year": 2024
+		},
+		{
+			"Title": "Deadpool 2",
+			"Genre_Tags": "Action, Comedy, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Deadpool_2",
+			"Logo": "logos/movies/Deadpool 2.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 119,
+			"Year": 2018
+		},
+		{
+			"Title": "Deadpool",
+			"Genre_Tags": "Action, Comedy, MCU, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Deadpool_(film)",
+			"Logo": "logos/movies/Deadpool.png",
+			"Rating": "8.2",
+			"Watched": true,
+			"Duration": 108,
+			"Year": 2016
+		},
+		{
+			"Title": "Fantastic Four",
+			"Genre_Tags": "Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Fantastic_Four_(2005_film)",
+			"Logo": "logos/movies/Fantastic Four.png",
+			"Rating": "7.0",
+			"Watched": true,
+			"Duration": 106,
+			"Year": 2005
+		},
+		{
+			"Title": "Fantastic Four: Rise of the Silver Surfer",
+			"Genre_Tags": "Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Fantastic_Four:_Rise_of_the_Silver_Surfer",
+			"Logo": "logos/movies/Fantastic Four Rise of the Silver Surfer.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 92,
+			"Year": 2007
+		},
+		{
+			"Title": "X2: X-Men United",
+			"Genre_Tags": "Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/X2_(film)",
+			"Logo": "logos/movies/X2 X-Men United.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 134,
+			"Year": 2003
+		},
+		{
+			"Title": "X-Men",
+			"Genre_Tags": "Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/X-Men_(film)",
+			"Logo": "logos/movies/X-Men.png",
+			"Rating": "7.7",
+			"Watched": true,
+			"Duration": 104,
+			"Year": 2000
+		},
+		{
+			"Title": "X-Men: The Last Stand",
+			"Genre_Tags": "Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/X-Men:_The_Last_Stand",
+			"Logo": "logos/movies/X-Men The Last Stand.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 104,
+			"Year": 2006
+		},
+		{
+			"Title": "Logan",
+			"Genre_Tags": "Drama, Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Logan_(film)",
+			"Logo": "logos/movies/Logan.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 137,
+			"Year": 2017
+		},
+		{
+			"Title": "X-Men: Days of Future Past",
+			"Genre_Tags": "Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/X-Men:_Days_of_Future_Past",
+			"Logo": "logos/movies/X-Men Days of Future Past.png",
+			"Rating": "7.6",
+			"Watched": true,
+			"Duration": 132,
+			"Year": 2014
+		},
+		{
+			"Title": "X-Men: Apocalypse",
+			"Genre_Tags": "Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/X-Men:_Apocalypse",
+			"Logo": "logos/movies/X-Men Apocalypse.png",
+			"Rating": "7.0",
+			"Watched": true,
+			"Duration": 144,
+			"Year": 2016
+		},
+		{
+			"Title": "X-Men: First Class",
+			"Genre_Tags": "Marvel, Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/X-Men:_First_Class",
+			"Logo": "logos/movies/X-Men First Class.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 132,
+			"Year": 2011
 		}
 	],
 	"TVShow": [
 		{
 			"Title": "Toast of London",
-			"Genre_Tags": "British, Comedy",
+			"Genre_Tags": "British,Comedy",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Toast_of_London",
 			"Logo": "logos/tvshows/Toast of London.png",
@@ -5595,7 +6090,7 @@
 		},
 		{
 			"Title": "Flight of The Conchords",
-			"Genre_Tags": "Comedy, Kiwi, Musical",
+			"Genre_Tags": "Comedy,Kiwi,Musical",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Flight_of_the_Conchords_(TV_series)",
 			"Logo": "logos/tvshows/Flight of The Conchords.png",
@@ -5608,7 +6103,7 @@
 		},
 		{
 			"Title": "The IT Crowd",
-			"Genre_Tags": "British, Comedy",
+			"Genre_Tags": "British,Comedy",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_IT_Crowd",
 			"Logo": "logos/tvshows/The IT Crowd.png",
@@ -5621,7 +6116,7 @@
 		},
 		{
 			"Title": "Andor",
-			"Genre_Tags": "Action, Sci-Fi, Star Wars, Drama",
+			"Genre_Tags": "Action,Drama,Sci-Fi,Star Wars",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Andor_(TV_series)",
 			"Logo": "logos/tvshows/Andor.png",
@@ -5647,7 +6142,7 @@
 		},
 		{
 			"Title": "Blackadder",
-			"Genre_Tags": "British, Comedy",
+			"Genre_Tags": "British,Comedy",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Blackadder",
 			"Logo": "logos/tvshows/Blackadder.png",
@@ -5660,7 +6155,7 @@
 		},
 		{
 			"Title": "Dilbert",
-			"Genre_Tags": "Animation, Comedy, Engineering",
+			"Genre_Tags": "Animation,Comedy,Engineering",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Dilbert_(TV_series)",
 			"Logo": "logos/tvshows/Dilbert.png",
@@ -5673,7 +6168,7 @@
 		},
 		{
 			"Title": "Firefly",
-			"Genre_Tags": "Action, Sci-Fi",
+			"Genre_Tags": "Action,Sci-Fi",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Firefly_(TV_series)",
 			"Logo": "logos/tvshows/Firefly.png",
@@ -5686,7 +6181,7 @@
 		},
 		{
 			"Title": "Futurama",
-			"Genre_Tags": "Animation, Comedy, Sci-Fi",
+			"Genre_Tags": "Animation,Comedy,Sci-Fi",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Futurama",
 			"Logo": "logos/tvshows/Futurama.png",
@@ -5712,7 +6207,7 @@
 		},
 		{
 			"Title": "Last Week Tonight",
-			"Genre_Tags": "Comedy, Educational, Politics",
+			"Genre_Tags": "Comedy,Educational,Politics",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Last_Week_Tonight_with_John_Oliver",
 			"Logo": "logos/tvshows/Last Week Tonight.png",
@@ -5725,11 +6220,11 @@
 		},
 		{
 			"Title": "The Looney Tunes Show",
-			"Genre_Tags": "Animation, Comedy, Looney Tunes",
+			"Genre_Tags": "Animation,Comedy,Looney Tunes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Looney_Tunes_Show",
 			"Logo": "logos/tvshows/The Looney Tunes Show.png",
-			"Rating": "9.6",
+			"Rating": "8.6",
 			"Watched": true,
 			"Duration": 22,
 			"Length": 52,
@@ -5751,7 +6246,7 @@
 		},
 		{
 			"Title": "Reacher",
-			"Genre_Tags": "Action, Drama, Mystery",
+			"Genre_Tags": "Action,Drama,Mystery",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Reacher_(TV_series)",
 			"Logo": "logos/tvshows/Reacher.png",
@@ -5764,7 +6259,7 @@
 		},
 		{
 			"Title": "Red Dwarf",
-			"Genre_Tags": "British, Comedy, Sci-Fi",
+			"Genre_Tags": "British,Comedy,Sci-Fi",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Red_Dwarf",
 			"Logo": "logos/tvshows/Red Dwarf.png",
@@ -5777,7 +6272,7 @@
 		},
 		{
 			"Title": "South Park",
-			"Genre_Tags": "Animation, Comedy, Stone & Parker",
+			"Genre_Tags": "Animation,Comedy,Stone & Parker",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/South_Park",
 			"Logo": "logos/tvshows/South Park.png",
@@ -5790,7 +6285,7 @@
 		},
 		{
 			"Title": "The Thick Of It",
-			"Genre_Tags": "British, Black Comedy, Politics",
+			"Genre_Tags": "Black Comedy,British,Politics",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Thick_of_It",
 			"Logo": "logos/tvshows/The Thick Of It.png",
@@ -5803,7 +6298,7 @@
 		},
 		{
 			"Title": "Yonderland",
-			"Genre_Tags": "6 Idiots, British, Comedy, Puppetry, Fantasy",
+			"Genre_Tags": "6 Idiots,British,Comedy,Fantasy,Puppetry",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Yonderland",
 			"Logo": "logos/tvshows/Yonderland.png",
@@ -5816,7 +6311,7 @@
 		},
 		{
 			"Title": "Star Trek: The Original Series",
-			"Genre_Tags": "Sci-Fi, Star Trek",
+			"Genre_Tags": "Sci-Fi,Star Trek",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek:_The_Original_Series",
 			"Logo": "logos/tvshows/Star Trek The Original Series.png",
@@ -5829,7 +6324,7 @@
 		},
 		{
 			"Title": "Star Trek: The Next Generation",
-			"Genre_Tags": "Sci-Fi, Star Trek",
+			"Genre_Tags": "Sci-Fi,Star Trek",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek:_The_Next_Generation",
 			"Logo": "logos/tvshows/Star Trek The Next Generation.png",
@@ -5842,7 +6337,7 @@
 		},
 		{
 			"Title": "Star Trek: Deep Space Nine",
-			"Genre_Tags": "Sci-Fi, Star Trek",
+			"Genre_Tags": "Sci-Fi,Star Trek",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek:_Deep_Space_Nine",
 			"Logo": "logos/tvshows/Star Trek Deep Space Nine.png",
@@ -5855,7 +6350,7 @@
 		},
 		{
 			"Title": "Star Trek: Voyager",
-			"Genre_Tags": "Sci-Fi, Star Trek",
+			"Genre_Tags": "Sci-Fi,Star Trek",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek:_Voyager",
 			"Logo": "logos/tvshows/Star Trek Voyager.png",
@@ -5868,7 +6363,7 @@
 		},
 		{
 			"Title": "Star Trek: Enterprise",
-			"Genre_Tags": "Sci-Fi, Star Trek",
+			"Genre_Tags": "Sci-Fi,Star Trek",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek:_Enterprise",
 			"Logo": "logos/tvshows/Star Trek Enterprise.png",
@@ -5881,7 +6376,7 @@
 		},
 		{
 			"Title": "Star Trek: Strange New Worlds",
-			"Genre_Tags": "Sci-Fi, Star Trek",
+			"Genre_Tags": "Sci-Fi,Star Trek",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek:_Strange_New_Worlds",
 			"Logo": "logos/tvshows/Star Trek Strange New Worlds.png",
@@ -5894,7 +6389,7 @@
 		},
 		{
 			"Title": "Batman Beyond",
-			"Genre_Tags": "Batman, Animation, DC, Superheroes, Bruce Timm",
+			"Genre_Tags": "Animation,Batman,Bruce Timm,DC,Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman_Beyond",
 			"Logo": "logos/tvshows/Batman Beyond.png",
@@ -5907,7 +6402,7 @@
 		},
 		{
 			"Title": "Batman: The Animated Series",
-			"Genre_Tags": "Batman, Animation, DC, Superheroes, Bruce Timm",
+			"Genre_Tags": "Animation,Batman,Bruce Timm,DC,Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_The_Animated_Series",
 			"Logo": "logos/tvshows/Batman The Animated Series.png",
@@ -5920,7 +6415,7 @@
 		},
 		{
 			"Title": "Batman: The Brave and the Bold",
-			"Genre_Tags": "Batman, Animation, DC, Superheroes",
+			"Genre_Tags": "Animation,Batman,DC,Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_The_Brave_and_the_Bold",
 			"Logo": "logos/tvshows/Batman The Brave and the Bold.png",
@@ -5933,7 +6428,7 @@
 		},
 		{
 			"Title": "The New Batman Adventures",
-			"Genre_Tags": "Batman, Animation, DC, Superheroes, Bruce Timm",
+			"Genre_Tags": "Animation,Batman,Bruce Timm,DC,Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_New_Batman_Adventures",
 			"Logo": "logos/tvshows/The New Batman Adventures.png",
@@ -5946,7 +6441,7 @@
 		},
 		{
 			"Title": "Star Trek: Lower Decks",
-			"Genre_Tags": "Comedy, Sci-Fi, Star Trek, Animation",
+			"Genre_Tags": "Animation,Comedy,Sci-Fi,Star Trek",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek:_Lower_Decks",
 			"Logo": "logos/tvshows/Star Trek- Lower Decks.png",
@@ -5959,7 +6454,7 @@
 		},
 		{
 			"Title": "Smiling Friends",
-			"Genre_Tags": "Animation, Comedy",
+			"Genre_Tags": "Animation,Comedy",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Smiling_Friends",
 			"Logo": "logos/tvshows/Smiling Friends.png",
@@ -5972,7 +6467,7 @@
 		},
 		{
 			"Title": "Veep",
-			"Genre_Tags": "Comedy, Politics",
+			"Genre_Tags": "Comedy,Politics",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Veep",
 			"Logo": "logos/tvshows/Veep.png",
@@ -5998,7 +6493,7 @@
 		},
 		{
 			"Title": "Outnumbered",
-			"Genre_Tags": "British, Comedy",
+			"Genre_Tags": "British,Comedy",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Outnumbered_(British_TV_series)",
 			"Logo": "logos/tvshows/Outnumbered.png",
@@ -6011,7 +6506,7 @@
 		},
 		{
 			"Title": "Death In Paradise",
-			"Genre_Tags": "British, Drama, Mystery, Comedy",
+			"Genre_Tags": "British,Comedy,Drama,Mystery",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Death_in_Paradise_(TV_series)",
 			"Logo": "logos/tvshows/Death In Paradise.png",
@@ -6024,7 +6519,7 @@
 		},
 		{
 			"Title": "The Sopranos",
-			"Genre_Tags": "Crime, Drama",
+			"Genre_Tags": "Crime,Drama",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Sopranos",
 			"Logo": "logos/tvshows/The Sopranos.png",
@@ -6037,7 +6532,7 @@
 		},
 		{
 			"Title": "My Adventures With Superman",
-			"Genre_Tags": "Animation, DC, Superheroes, Superman",
+			"Genre_Tags": "Animation,DC,Superheroes,Superman",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/My_Adventures_with_Superman",
 			"Logo": "logos/tvshows/My Adventures With Superman.png",
@@ -6050,7 +6545,7 @@
 		},
 		{
 			"Title": "Jonathan Creek",
-			"Genre_Tags": "British, Drama, Mystery",
+			"Genre_Tags": "British,Drama,Mystery",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Jonathan_Creek",
 			"Logo": "logos/tvshows/Jonathan Creek.png",
@@ -6063,7 +6558,7 @@
 		},
 		{
 			"Title": "Bob's Burgers",
-			"Genre_Tags": "Animation, Comedy",
+			"Genre_Tags": "Animation,Comedy",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Bob%27s_Burgers",
 			"Logo": "logos/tvshows/Bob's Burgers.png",
@@ -6076,7 +6571,7 @@
 		},
 		{
 			"Title": "The Muppet Show",
-			"Genre_Tags": "Comedy, Muppets, Puppetry",
+			"Genre_Tags": "Comedy,Muppets,Puppetry",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Muppet_Show",
 			"Logo": "logos/tvshows/The Muppet Show.png",
@@ -6089,7 +6584,7 @@
 		},
 		{
 			"Title": "Justice League",
-			"Genre_Tags": "Animation, DC, Superheroes, Bruce Timm",
+			"Genre_Tags": "Animation,Bruce Timm,DC,Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Justice_League_(TV_series)",
 			"Logo": "logos/tvshows/Justice Leagure.png",
@@ -6102,7 +6597,7 @@
 		},
 		{
 			"Title": "Justice League Unlimited",
-			"Genre_Tags": "Animation, DC, Superheroes, Bruce Timm",
+			"Genre_Tags": "Animation,Bruce Timm,DC,Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Justice_League_Unlimited",
 			"Logo": "logos/tvshows/Justice League Unlimited.png",
@@ -6128,7 +6623,7 @@
 		},
 		{
 			"Title": "What We Do in the Shadows",
-			"Genre_Tags": "Comedy, Horror, Kiwi, Mockumentary",
+			"Genre_Tags": "Comedy,Horror,Kiwi,Mockumentary",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/What_We_Do_in_the_Shadows_%28TV_series%29",
 			"Logo": "logos/tvshows/What We Do in the Shadows TV.png",
@@ -6141,7 +6636,7 @@
 		},
 		{
 			"Title": "Mare of Easttown",
-			"Genre_Tags": "Crime, Drama",
+			"Genre_Tags": "Crime,Drama",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Mare_of_Easttown",
 			"Logo": "logos/tvshows/Mare of Easttown.png",
@@ -6154,7 +6649,7 @@
 		},
 		{
 			"Title": "Gravity Falls",
-			"Genre_Tags": "Animation, Comedy, Mystery",
+			"Genre_Tags": "Animation,Comedy,Mystery",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Gravity_Falls",
 			"Logo": "logos/tvshows/Gravity Falls.png",
@@ -6167,8 +6662,8 @@
 		},
 		{
 			"Title": "Watchmen: Motion Comic",
-			"Genre_Tags": "DC, Superheroes, Watchmen, Animation",
-			"Downloaded": false,
+			"Genre_Tags": "Animation,DC,Superheroes,Watchmen",
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Watchmen:_Motion_Comic",
 			"Logo": "logos/tvshows/Watchmen Motion Comic.png",
 			"Rating": "0.0",
@@ -6180,8 +6675,8 @@
 		},
 		{
 			"Title": "Watchmen",
-			"Genre_Tags": "DC, Superheroes, Watchmen",
-			"Downloaded": false,
+			"Genre_Tags": "DC,Superheroes,Watchmen",
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Watchmen_(TV_series)",
 			"Logo": "logos/tvshows/Watchmen (TV).png",
 			"Rating": "0.0",
@@ -6193,7 +6688,7 @@
 		},
 		{
 			"Title": "The Aquabats! Super Show!",
-			"Genre_Tags": "Comedy, Musical, Superheroes",
+			"Genre_Tags": "Comedy,Musical,Superheroes",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Aquabats!_Super_Show!",
 			"Logo": "logos/tvshows/The Aquabats! Super Show!.png",
@@ -6219,7 +6714,7 @@
 		},
 		{
 			"Title": "Archer",
-			"Genre_Tags": "Action, Comedy, Spies, Animation",
+			"Genre_Tags": "Action,Animation,Comedy,Spies",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Archer_(2009_TV_series)",
 			"Logo": "logos/tvshows/Archer.png",
@@ -6232,7 +6727,7 @@
 		},
 		{
 			"Title": "Star Trek: The Animated Series",
-			"Genre_Tags": "Animation, Sci-Fi, Star Trek",
+			"Genre_Tags": "Animation,Sci-Fi,Star Trek",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Star_Trek:_The_Animated_Series",
 			"Logo": "logos/tvshows/Star Trek The Animated Series.png",
@@ -6245,7 +6740,7 @@
 		},
 		{
 			"Title": "The X-Files",
-			"Genre_Tags": "Mystery, Sci-Fi",
+			"Genre_Tags": "Mystery,Sci-Fi",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_X-Files",
 			"Logo": "logos/tvshows/The X-Files.png",
@@ -6258,7 +6753,7 @@
 		},
 		{
 			"Title": "Twin Peaks",
-			"Genre_Tags": "Drama, Lynch, Mystery",
+			"Genre_Tags": "Drama,Lynch,Mystery",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Twin_Peaks",
 			"Logo": "logos/tvshows/Twin Peaks.png",
@@ -6271,7 +6766,7 @@
 		},
 		{
 			"Title": "Scooby-Doo Mystery Incorporated",
-			"Genre_Tags": "Comedy, Mystery, Scooby-Doo, Animation",
+			"Genre_Tags": "Animation,Comedy,Mystery,Scooby-Doo",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Scooby-Doo!_Mystery_Incorporated",
 			"Logo": "logos/tvshows/Scooby-Doo Mystery Incorporated.png",
@@ -6284,7 +6779,7 @@
 		},
 		{
 			"Title": "The Tick",
-			"Genre_Tags": "Comedy, Superheroes",
+			"Genre_Tags": "Comedy,Superheroes",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Tick_(2001_TV_series)",
 			"Logo": "logos/tvshows/The Tick.png",
@@ -6297,7 +6792,7 @@
 		},
 		{
 			"Title": "Daredevil",
-			"Genre_Tags": "Daredevil, Marvel, Superheroes",
+			"Genre_Tags": "Daredevil,Marvel,Superheroes",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Daredevil_(TV_series)",
 			"Logo": "logos/tvshows/Daredevil.png",
@@ -6310,7 +6805,7 @@
 		},
 		{
 			"Title": "Fleabag",
-			"Genre_Tags": "British, Comedy",
+			"Genre_Tags": "British,Comedy",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Fleabag",
 			"Logo": "logos/tvshows/Fleabag.png",
@@ -6336,7 +6831,7 @@
 		},
 		{
 			"Title": "The Muppets",
-			"Genre_Tags": "Comedy, Muppets, Puppetry",
+			"Genre_Tags": "Comedy,Muppets,Puppetry",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Muppets_(TV_series)",
 			"Logo": "logos/tvshows/The Muppets.png",
@@ -6349,7 +6844,7 @@
 		},
 		{
 			"Title": "Whats New, Scooby-Doo?",
-			"Genre_Tags": "Comedy, Mystery, Scooby-Doo, Animation",
+			"Genre_Tags": "Animation,Comedy,Mystery,Scooby-Doo",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/What%27s_New,_Scooby-Doo%3F",
 			"Logo": "logos/tvshows/Whats New Scooby-Doo.png",
@@ -6362,7 +6857,7 @@
 		},
 		{
 			"Title": "Scooby-Doo, Where Are You?",
-			"Genre_Tags": "Comedy, Mystery, Scooby-Doo, Animation",
+			"Genre_Tags": "Animation,Comedy,Mystery,Scooby-Doo",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Scooby-Doo,_Where_Are_You!",
 			"Logo": "logos/tvshows/Scooby-Doo Where Are You.png",
@@ -6375,7 +6870,7 @@
 		},
 		{
 			"Title": "Totally Spies",
-			"Genre_Tags": "Comedy, Spies, Animation",
+			"Genre_Tags": "Animation,Comedy,Spies",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Totally_Spies!",
 			"Logo": "logos/tvshows/Totally Spies.png",
@@ -6388,7 +6883,7 @@
 		},
 		{
 			"Title": "Ted Lasso",
-			"Genre_Tags": "Comedy, Sports",
+			"Genre_Tags": "Comedy,Sports",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Ted_Lasso",
 			"Logo": "logos/tvshows/Ted Lasso.png",
@@ -6401,7 +6896,7 @@
 		},
 		{
 			"Title": "Cowboy Bebop",
-			"Genre_Tags": "Noir, Sci-Fi, Animation",
+			"Genre_Tags": "Animation,Noir,Sci-Fi",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Cowboy_Bebop",
 			"Logo": "logos/tvshows/Cowboy Bebop.png",
@@ -6414,7 +6909,7 @@
 		},
 		{
 			"Title": "Ghosts",
-			"Genre_Tags": "6 Idiots, British, Comedy",
+			"Genre_Tags": "6 Idiots,British,Comedy",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Ghosts_(2019_TV_series)",
 			"Logo": "logos/tvshows/Ghosts UK.png",
@@ -6440,7 +6935,7 @@
 		},
 		{
 			"Title": "Space Ghost Coast to Coast",
-			"Genre_Tags": "Animation, Comedy",
+			"Genre_Tags": "Animation,Comedy",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Space_Ghost_Coast_to_Coast",
 			"Logo": "logos/tvshows/Space Ghost Coast to Coast.png",
@@ -6453,7 +6948,7 @@
 		},
 		{
 			"Title": "Harvey Birdman Attorney at Law",
-			"Genre_Tags": "Animation, Comedy",
+			"Genre_Tags": "Animation,Comedy",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Harvey_Birdman,_Attorney_at_Law",
 			"Logo": "logos/tvshows/Harvey Birdman Attorney at Law.png",
@@ -6466,7 +6961,7 @@
 		},
 		{
 			"Title": "Twenty Twelve",
-			"Genre_Tags": "Comedy, Mockumentary, Politics, British",
+			"Genre_Tags": "British,Comedy,Mockumentary,Politics",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Twenty_Twelve",
 			"Logo": "logos/tvshows/Twenty Twelve.png",
@@ -6479,7 +6974,7 @@
 		},
 		{
 			"Title": "W1A",
-			"Genre_Tags": "Comedy, Mockumentary, Politics, British",
+			"Genre_Tags": "British,Comedy,Mockumentary,Politics",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/W1A_(TV_series)",
 			"Logo": "logos/tvshows/W1A.png",
@@ -6492,7 +6987,7 @@
 		},
 		{
 			"Title": "Garth Marenghi's Darkplace",
-			"Genre_Tags": "Comedy, Horror",
+			"Genre_Tags": "Comedy,Horror",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Garth_Marenghi's_Darkplace",
 			"Logo": "logos/tvshows/Garth Marenghi's Darkplace.png",
@@ -6505,7 +7000,7 @@
 		},
 		{
 			"Title": "Batman: Caped Crusader",
-			"Genre_Tags": "Batman, DC, Noir, Superheroes, Animation",
+			"Genre_Tags": "Animation,Batman,DC,Noir,Superheroes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman:_Caped_Crusader",
 			"Logo": "logos/tvshows/Batman Caped Crusader.png",
@@ -6518,7 +7013,7 @@
 		},
 		{
 			"Title": "24",
-			"Genre_Tags": "Action, Drama",
+			"Genre_Tags": "Action,Drama",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/24_(TV_series)",
 			"Logo": "logos/tvshows/24.png",
@@ -6531,7 +7026,7 @@
 		},
 		{
 			"Title": "The Batman",
-			"Genre_Tags": "Batman, DC, Superheroes, Animation",
+			"Genre_Tags": "Animation,Batman,DC,Superheroes",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Batman_(TV_series)",
 			"Logo": "logos/tvshows/The Batman.png",
@@ -6544,7 +7039,7 @@
 		},
 		{
 			"Title": "Superman: The Animated Series",
-			"Genre_Tags": "Animation, DC, Superheroes, Superman, Bruce Timm",
+			"Genre_Tags": "Animation,Bruce Timm,DC,Superheroes,Superman",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Superman:_The_Animated_Series",
 			"Logo": "logos/tvshows/Superman - The Animated Series.png",
@@ -6570,7 +7065,7 @@
 		},
 		{
 			"Title": "Father Ted",
-			"Genre_Tags": "British, Comedy",
+			"Genre_Tags": "British,Comedy",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Father_Ted",
 			"Logo": "logos/tvshows/Father Ted.png",
@@ -6583,7 +7078,7 @@
 		},
 		{
 			"Title": "Superman",
-			"Genre_Tags": "Animation, DC, Superheroes, Superman",
+			"Genre_Tags": "Animation,DC,Superheroes,Superman",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Superman_(1940s_animated_film_series)",
 			"Logo": "logos/tvshows/Superman.png",
@@ -6596,7 +7091,7 @@
 		},
 		{
 			"Title": "Merrie Melodies",
-			"Genre_Tags": "Animation, Comedy, Looney Tunes",
+			"Genre_Tags": "Animation,Comedy,Looney Tunes",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Merrie_Melodies",
 			"Logo": "logos/tvshows/Merrie Melodies.png",
@@ -6609,7 +7104,7 @@
 		},
 		{
 			"Title": "Top Gear",
-			"Genre_Tags": "Comedy, Educational, Motoring, British",
+			"Genre_Tags": "British,Comedy,Educational,Motoring",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Top_Gear_(2002_TV_series)",
 			"Logo": "logos/tvshows/Top Gear.png",
@@ -6622,7 +7117,7 @@
 		},
 		{
 			"Title": "The Grand Tour",
-			"Genre_Tags": "Motoring, Comedy, British, Educational",
+			"Genre_Tags": "British,Comedy,Educational,Motoring",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Grand_Tour",
 			"Logo": "logos/tvshows/The Grand Tour.png",
@@ -6635,8 +7130,8 @@
 		},
 		{
 			"Title": "Clarkson's Farm",
-			"Genre_Tags": "Comedy, British",
-			"Downloaded": false,
+			"Genre_Tags": "British,Comedy",
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Clarkson%27s_Farm",
 			"Logo": "logos/tvshows/Clarkson's Farm.png",
 			"Rating": "0.0",
@@ -6648,7 +7143,7 @@
 		},
 		{
 			"Title": "Chernobyl",
-			"Genre_Tags": "Drama, History",
+			"Genre_Tags": "Drama,History",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Chernobyl_(miniseries)",
 			"Logo": "logos/tvshows/Chernobyl.png",
@@ -6661,7 +7156,7 @@
 		},
 		{
 			"Title": "The Wire",
-			"Genre_Tags": "Crime, Drama",
+			"Genre_Tags": "Crime,Drama",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Wire",
 			"Logo": "logos/tvshows/The Wire.png",
@@ -6674,7 +7169,7 @@
 		},
 		{
 			"Title": "Boardwalk Empire",
-			"Genre_Tags": "Crime, Drama",
+			"Genre_Tags": "Crime,Drama",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Boardwalk_Empire",
 			"Logo": "logos/tvshows/Boardwalk Empire.png",
@@ -6687,7 +7182,7 @@
 		},
 		{
 			"Title": "The Newsroom",
-			"Genre_Tags": "Drama, Politics",
+			"Genre_Tags": "Drama,Politics",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Newsroom_(American_TV_series)",
 			"Logo": "logos/tvshows/The Newsroom.png",
@@ -6700,8 +7195,8 @@
 		},
 		{
 			"Title": "Tenacious D",
-			"Genre_Tags": "Comedy, Musical",
-			"Downloaded": false,
+			"Genre_Tags": "Comedy,Musical",
+			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/Tenacious_D_(TV_series)",
 			"Logo": "logos/tvshows/Tenacious D.png",
 			"Rating": "0.0",
@@ -6713,7 +7208,7 @@
 		},
 		{
 			"Title": "Doom Patrol",
-			"Genre_Tags": "Black Comedy, DC, Superheroes",
+			"Genre_Tags": "Black Comedy,DC,Superheroes",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Doom_Patrol_(TV_series)",
 			"Logo": "logos/tvshows/Doom Patrol.png",
@@ -6726,7 +7221,7 @@
 		},
 		{
 			"Title": "The Orville",
-			"Genre_Tags": "Sci-Fi, Star Trek",
+			"Genre_Tags": "Sci-Fi,Star Trek",
 			"Downloaded": true,
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Orville",
 			"Logo": "logos/tvshows/The Orville.png",
@@ -6739,7 +7234,7 @@
 		},
 		{
 			"Title": "Fawlty Towers",
-			"Genre_Tags": "British, Comedy",
+			"Genre_Tags": "British,Comedy",
 			"Downloaded": false,
 			"InfoPage": "https://en.wikipedia.org/wiki/Fawlty_Towers",
 			"Logo": "logos/tvshows/Fawlty Towers.png",
@@ -6749,6 +7244,357 @@
 			"Length": 12,
 			"Series_Start": "1975-09-19",
 			"Series_End": "1979-10-19"
+		},
+		{
+			"Title": "Battlestar Galactica",
+			"Genre_Tags": "Action,Sci-Fi",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Battlestar_Galactica_(2004_TV_series)",
+			"Logo": "/logos/tvshows/Battlestar Galactica.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 44,
+			"Length": 76,
+			"Series_Start": "2003-12-08",
+			"Series_End": "2009-10-27"
+		},
+		{
+			"Title": "Farscape",
+			"Genre_Tags": "Adventure,Sci-Fi",
+			"Downloaded": true,
+			"InfoPage": "https://en.wikipedia.org/wiki/Farscape",
+			"Logo": "logos/tvshows/Farscape.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 45,
+			"Length": 88,
+			"Series_Start": "1999-03-19",
+			"Series_End": "2003-03-21"
+		},
+		{
+			"Title": "Battlestar Galactica",
+			"Genre_Tags": "Sci-Fi",
+			"Downloaded": true,
+			"InfoPage": "https://en.wikipedia.org/wiki/Battlestar_Galactica_(1978_TV_series)",
+			"Logo": "logos/tvshows/Battlestar Galactica (1978).png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 45,
+			"Length": 34,
+			"Series_Start": "1978-09-17",
+			"Series_End": "1980-05-04"
+		},
+		{
+			"Title": "A Bit of Fry and Laurie",
+			"Genre_Tags": "British,Comedy,Sketch",
+			"Downloaded": true,
+			"InfoPage": "https://en.wikipedia.org/wiki/A_Bit_of_Fry_&_Laurie",
+			"Logo": "logos/tvshows/A Bit of Fry and Laurie.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 30,
+			"Length": 26,
+			"Series_Start": "1989-01-13",
+			"Series_End": "1995-04-02"
+		},
+		{
+			"Title": "That Mitchell and Webb Look",
+			"Genre_Tags": "British,Comedy,Sketch",
+			"Downloaded": true,
+			"InfoPage": "https://en.wikipedia.org/wiki/That_Mitchell_and_Webb_Look",
+			"Logo": "logos/tvshows/That Mitchell and Webb Look.png",
+			"Rating": "7.9",
+			"Watched": true,
+			"Duration": 30,
+			"Length": 24,
+			"Series_Start": "2006-09-14",
+			"Series_End": "2010-08-17"
+		},
+		{
+			"Title": "The Penguin",
+			"Genre_Tags": "Batman,Crime,Drama,Superheroes",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Penguin_(TV_series)",
+			"Logo": "logos/tvshows/The Penguin.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 60,
+			"Length": 8,
+			"Series_Start": "2024-09-19",
+			"Series_End": "2024-11-10"
+		},
+		{
+			"Title": "Agatha All Along",
+			"Genre_Tags": "Comedy,Mystery",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Agatha_All_Along_(miniseries)",
+			"Logo": "logos/tvshows/Agatha All Along.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 40,
+			"Length": 9,
+			"Series_Start": "2024-09-18",
+			"Series_End": "2024-10-30"
+		},
+		{
+			"Title": "The Expanse",
+			"Genre_Tags": "Drama,Mystery,Sci-Fi",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Expanse_(TV_series)",
+			"Logo": "logos/tvshows/The Expanse.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 50,
+			"Length": 62,
+			"Series_Start": "2015-12-14",
+			"Series_End": "2022-01-14"
+		},
+		{
+			"Title": "A Starstruck Odyssey",
+			"Genre_Tags": "Comedy,Dimension 20,DnD,Dropout,Intrepid Heroes,Sci-Fi",
+			"Downloaded": false,
+			"InfoPage": "https://dimension20.fandom.com/wiki/A_Starstruck_Odyssey",
+			"Logo": "logos/tvshows/A Starstruck Odyssey.png",
+			"Rating": "8.8",
+			"Watched": true,
+			"Duration": 140,
+			"Length": 18,
+			"Series_Start": "2022-01-12",
+			"Series_End": "2022-05-11"
+		},
+		{
+			"Title": "The Ravening War",
+			"Genre_Tags": "Comedy,Dimension 20,DnD,Drama,Dropout,Fantasy",
+			"Downloaded": false,
+			"InfoPage": "https://dimension20.fandom.com/wiki/The_Ravening_War",
+			"Logo": "logos/tvshows/The Ravening War.png",
+			"Rating": "7.5",
+			"Watched": true,
+			"Duration": 140,
+			"Length": 6,
+			"Series_Start": "2023-05-10",
+			"Series_End": "2023-06-14"
+		},
+		{
+			"Title": "Escape from the Bloodkeep",
+			"Genre_Tags": "Dimension 20,DnD,Dropout,Fantasy",
+			"Downloaded": false,
+			"InfoPage": "https://dimension20.fandom.com/wiki/Escape_from_the_Bloodkeep",
+			"Logo": "logos/tvshows/Escape from the Bloodkeep.png",
+			"Rating": "8.6",
+			"Watched": true,
+			"Duration": 150,
+			"Length": 6,
+			"Series_Start": "2019-04-30",
+			"Series_End": "2019-06-04"
+		},
+		{
+			"Title": "Coffin Run",
+			"Genre_Tags": "Comedy,Dimension 20,DnD,Dropout,Horror",
+			"Downloaded": false,
+			"InfoPage": "https://dimension20.fandom.com/wiki/Coffin_Run",
+			"Logo": "logos/tvshows/Coffin Run.png",
+			"Rating": "8.2",
+			"Watched": true,
+			"Duration": 150,
+			"Length": 6,
+			"Series_Start": "2022-06-08",
+			"Series_End": "2022-07-13"
+		},
+		{
+			"Title": "A Court of Fey & Flowers",
+			"Genre_Tags": "Comedy,Dimension 20,DnD,Dropout,Fantasy,Romance",
+			"Downloaded": false,
+			"InfoPage": "https://dimension20.fandom.com/wiki/A_Court_of_Fey_%26_Flowers",
+			"Logo": "logos/tvshows/A Court of Fey & Flowers.png",
+			"Rating": "8.8",
+			"Watched": true,
+			"Duration": 150,
+			"Length": 10,
+			"Series_Start": "2022-08-03",
+			"Series_End": "2022-10-05"
+		},
+		{
+			"Title": "The Unsleeping City: Chapter II",
+			"Genre_Tags": "Comedy,Dimension 20,DnD,Dropout,Fantasy,Intrepid Heroes",
+			"Downloaded": false,
+			"InfoPage": "https://dimension20.fandom.com/wiki/The_Unsleeping_City:_Chapter_II",
+			"Logo": "logos/tvshows/The Unsleeping City Chapter II.png",
+			"Rating": "8.3",
+			"Watched": true,
+			"Duration": 150,
+			"Length": 18,
+			"Series_Start": "2020-11-11",
+			"Series_End": "2021-03-10"
+		},
+		{
+			"Title": "The Unsleeping City",
+			"Genre_Tags": "Comedy,Dimension 20,DnD,Dropout,Fantasy,Intrepid Heroes",
+			"Downloaded": false,
+			"InfoPage": "https://dimension20.fandom.com/wiki/The_Unsleeping_City",
+			"Logo": "logos/tvshows/The Unsleeping City.png",
+			"Rating": "9.0",
+			"Watched": true,
+			"Duration": 150,
+			"Length": 17,
+			"Series_Start": "2019-07-09",
+			"Series_End": "2019-10-29"
+		},
+		{
+			"Title": "Neverafter",
+			"Genre_Tags": "Comedy,Dimension 20,DnD,Dropout,Fantasy,Horror,Intrepid Heroes",
+			"Downloaded": false,
+			"InfoPage": "https://dimension20.fandom.com/wiki/Neverafter",
+			"Logo": "logos/tvshows/Neverafter.png",
+			"Rating": "7.3",
+			"Watched": true,
+			"Duration": 150,
+			"Length": 20,
+			"Series_Start": "2022-11-30",
+			"Series_End": "2023-04-12"
+		},
+		{
+			"Title": "A Crown of Candy",
+			"Genre_Tags": "Dimension 20,DnD,Drama,Dropout,Fantasy,Intrepid Heroes",
+			"Downloaded": false,
+			"InfoPage": "https://dimension20.fandom.com/wiki/A_Crown_of_Candy",
+			"Logo": "logos/tvshows/A Crown of Candy.png",
+			"Rating": "8.8",
+			"Watched": true,
+			"Duration": 150,
+			"Length": 17,
+			"Series_Start": "2020-04-08",
+			"Series_End": "2020-08-05"
+		},
+		{
+			"Title": "Fantasy High: Junior Year",
+			"Genre_Tags": "Comedy,Dimension 20,DnD,Dropout,Fantasy,Intrepid Heroes",
+			"Downloaded": false,
+			"InfoPage": "https://dimension20.fandom.com/wiki/Fantasy_High:_Junior_Year",
+			"Logo": "logos/tvshows/Fantasy High Junior Year.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 150,
+			"Length": 20,
+			"Series_Start": "2024-01-10",
+			"Series_End": "2024-05-22"
+		},
+		{
+			"Title": "Fantasy High: Sophmore Year",
+			"Genre_Tags": "Comedy,Dimension 20,DnD,Dropout,Fantasy,Intrepid Heroes",
+			"Downloaded": false,
+			"InfoPage": "https://dimension20.fandom.com/wiki/Fantasy_High:_Sophomore_Year",
+			"Logo": "logos/tvshows/Fantasy High Sophmore Year.png",
+			"Rating": "8.2",
+			"Watched": true,
+			"Duration": 150,
+			"Length": 20,
+			"Series_Start": "2019-10-16",
+			"Series_End": "2020-04-03"
+		},
+		{
+			"Title": "Fantasy High",
+			"Genre_Tags": "Comedy,Dimension 20,DnD,Dropout,Fantasy,Intrepid Heroes",
+			"Downloaded": false,
+			"InfoPage": "https://dimension20.fandom.com/wiki/Fantasy_High",
+			"Logo": "logos/tvshows/Fantasy High.png",
+			"Rating": "8.3",
+			"Watched": true,
+			"Duration": 150,
+			"Length": 17,
+			"Series_Start": "2018-08-26",
+			"Series_End": "2019-01-09"
+		},
+		{
+			"Title": "Never Stop Blowing Up",
+			"Genre_Tags": "Action,Comedy,Dimension 20,DnD,Dropout",
+			"Downloaded": false,
+			"InfoPage": "https://dimension20.fandom.com/wiki/Never_Stop_Blowing_Up",
+			"Logo": "logos/tvshows/Never Stop Blowing Up.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 150,
+			"Length": 10,
+			"Series_Start": "2024-06-26",
+			"Series_End": "2024-08-28"
+		},
+		{
+			"Title": "Misfits and Magic",
+			"Genre_Tags": "Comedy,Dimension 20,Dropout,Fantasy",
+			"Downloaded": false,
+			"InfoPage": "https://dimension20.fandom.com/wiki/Misfits_and_Magic",
+			"Logo": "logos/tvshows/Misfits and Magic.png",
+			"Rating": "7.6",
+			"Watched": true,
+			"Duration": 150,
+			"Length": 4,
+			"Series_Start": "2021-06-30",
+			"Series_End": "2021-07-21"
+		},
+		{
+			"Title": "Mentopolis",
+			"Genre_Tags": "Comedy,Dimension 20,Dropout,Noir",
+			"Downloaded": false,
+			"InfoPage": "https://dimension20.fandom.com/wiki/Mentopolis",
+			"Logo": "logos/tvshows/Mentopolis.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 150,
+			"Length": 6,
+			"Series_Start": "2023-08-09",
+			"Series_End": "2023-09-13"
+		},
+		{
+			"Title": "The Seven",
+			"Genre_Tags": "Comedy,Dimension 20,DnD,Dropout,Fantasy",
+			"Downloaded": false,
+			"InfoPage": "https://dimension20.fandom.com/wiki/The_Seven",
+			"Logo": "logos/tvshows/The Seven.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 150,
+			"Length": 10,
+			"Series_Start": "2021-08-18",
+			"Series_End": "2021-10-20"
+		},
+		{
+			"Title": "Make Some Noise",
+			"Genre_Tags": "Comedy,Dropout",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Make_Some_Noise_(TV_series)",
+			"Logo": "logos/tvshows/Make Some Noise.png",
+			"Rating": "8.7",
+			"Watched": true,
+			"Duration": 30,
+			"Length": 35,
+			"Series_Start": "2022-06-13",
+			"Series_End": "1900-01-01"
+		},
+		{
+			"Title": "Game Changer",
+			"Genre_Tags": "Comedy,Dropout,Horror",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/Game_Changer_(game_show)",
+			"Logo": "logos/tvshows/Game Changer.png",
+			"Rating": "0.0",
+			"Watched": true,
+			"Duration": 30,
+			"Length": 59,
+			"Series_Start": "2019-09-20",
+			"Series_End": "1900-01-01"
+		},
+		{
+			"Title": "The Legend of Vox Machina",
+			"Genre_Tags": "Adventure, Animation, Fantasy, DnD",
+			"Downloaded": false,
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Legend_of_Vox_Machina",
+			"Logo": "logos/tvshows/The Legend of Vox Machina.png",
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 30,
+			"Length": 36,
+			"Series_Start": "2022-01-28",
+			"Series_End": "1900-01-01"
 		}
 	],
 	"Novel": [
