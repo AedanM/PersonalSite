@@ -9,17 +9,11 @@ from django.shortcuts import redirect, render
 from .modules.DB_Tools import CleanDupes
 from .modules.ModelTools import DownloadImage
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.Utils import (
-    MODEL_LIST,
-    DetermineForm,
-    FindID,
-    FormMatch,
-    GetAllTags,
-    GetContents,
-    GetFormAndClass,
-)
+from .modules.Utils import (MODEL_LIST, DetermineForm, FindID, FormMatch,
+                            GetAllTags, GetContents, GetFormAndClass)
 from .modules.WebTools import ScrapeWiki
-from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFunction
+from .utils import (ExtractYearRange, FilterTags, FuzzStr, SearchFunction,
+                    SortFunction)
 
 # Create your views here.
 
@@ -93,7 +87,7 @@ def wikiLoad(request) -> HttpResponse:
             else:
                 print(
                     f"Invalid Form {activeForm.errors}"
-                    if not activeForm.valid()
+                    if not activeForm.is_valid()
                     else "Already existing Item"
                 )
 

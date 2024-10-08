@@ -274,14 +274,16 @@ def ValuesOverYears(objList: list) -> str:
 def TimeLine(objList: list) -> str:
     objList = sorted(list(objList), key=lambda x: (x.Series_Start))
     data = []
-    freeList = []
+    freeList: list[int] = []
     for _idx, obj in enumerate(objList):
         yLevel = CalcIdx(obj, freeList)
         data.append(
             {
                 "Title": obj.Title,
-                "Series_Start": f"{obj.Series_Start}",
-                "Series_End": f"{obj.Series_End if obj.Series_End.year > MINIMUM_YEAR else 'now'}",
+                "Series_Start": str(f"{obj.Series_Start}"),
+                "Series_End": str(
+                    f"{obj.Series_End if obj.Series_End.year > MINIMUM_YEAR else 'now'}"
+                ),
                 "Watched": (
                     "Watched"
                     if obj.Watched
