@@ -5,6 +5,8 @@ from pathlib import Path
 from django.conf import settings as django_settings
 from PIL import Image, UnidentifiedImageError
 
+from .ImgResize import SingleResize
+
 DEFAULT_IMG = r"https://upload.wikimedia.org/wikipedia/commons/c/c9/Icon_Video.png"
 DEFAULT_IMG_PATH = "logos/DefaultIMG.png"
 
@@ -60,5 +62,7 @@ def GetImageFromLink(savePath, requestImg):
         localPath = os.path.join(django_settings.STATICFILES_DIRS[0], f"{savePath}")
         img.save(localPath)
         os.remove(tempPath)
+        if "tvshows" in str(localPath):
+            SingleResize(img=localPath)
     except UnidentifiedImageError:
         print("IMG Failed", savePath)
