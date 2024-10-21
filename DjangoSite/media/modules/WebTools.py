@@ -30,6 +30,28 @@ def GetImageLink(pageLink) -> str:
     return outStr
 
 
+def ExtractRuntime(regexStrings):
+    duration = re.findall(r"(\d{1,3})?.?(\d{1,3}) minutes", regexStrings)
+    duration = [
+        (
+            int(x[0] if x[0] != "" else 0),
+            int(x[1] if x[1] != "" else 0),
+        )
+        for x in duration
+    ]
+    duration = list(sum(duration, ()))
+    return duration
+
+
+def ExtractGenres(masterStr):
+    startReg = masterStr.find(">Genre<")
+    endReg = masterStr.find("</ul>", startReg)
+    genre = re.findall("<li>(.*)</li>", masterStr[startReg:endReg])
+    genre = ",".join([g[g.find(">") + 1 :].replace("</a>", "") if "<a" in g else g for g in genre])
+    genre = re.sub("<.*>", "", genre)
+    return genre
+
+
 def ScrapeWiki(wikiLink) -> dict:
     title = wikiLink.split("/wiki/")[-1]
     params = {

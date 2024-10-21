@@ -9,11 +9,17 @@ from django.shortcuts import redirect, render
 from .modules.DB_Tools import CleanDupes
 from .modules.ModelTools import DownloadImage
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.Utils import (MODEL_LIST, DetermineForm, FindID, FormMatch,
-                            GetAllTags, GetContents, GetFormAndClass)
+from .modules.Utils import (
+    MODEL_LIST,
+    DetermineForm,
+    FindID,
+    FormMatch,
+    GetAllTags,
+    GetContents,
+    GetFormAndClass,
+)
 from .modules.WebTools import ScrapeWiki
-from .utils import (ExtractYearRange, FilterTags, FuzzStr, SearchFunction,
-                    SortFunction)
+from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFunction
 
 # Create your views here.
 
@@ -110,14 +116,8 @@ def backup(_request) -> HttpResponse:
 
 def stats(request) -> HttpResponse:
     context = {}
-    genre: str = request.GET.get("genre", "")
-    exclude: str = request.GET.get("exclude", "")
     for media in MODEL_LIST:
-        # pylint: disable=E1101
-        objList = media.objects.all()
-        genre, objList = FilterTags(genre, objList, include=True)
-        exclude, objList = FilterTags(exclude, objList, include=False)
-        context[media.__name__] = objList
+        context[media.__name__] = FilterMedia(request, media)["obj_list"]
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
     return render(request, "media/stats.html", context=context)
 
@@ -216,17 +216,29 @@ def SetBool(request) -> HttpResponse:
 
 
 def index(request) -> HttpResponse:
-    # pylint: disable=E1101
 
-    colorMode = request.COOKIES.get("colorMode", "dark")
+    _formType, objType = GetFormAndClass(request.GET.get("type", "Movie"))
+    context = FilterMedia(request=request, objType=objType)
+    context["colorMode"] = request.COOKIES.get("colorMode", "dark")
     pageSize: int = int(request.GET.get("pageSize", 36))
     pageNumber: int = int(request.GET.get("page", 1))
+    paginator = Paginator(context["obj_list"], pageSize)
+    context["page_obj"] = paginator.get_page(pageNumber)
+    return render(
+        request,
+        "media/pagedView.html",
+        context,
+    )
+
+
+def FilterMedia(request, objType) -> dict:
+    # pylint: disable=E1101
+
     sortKey: str = request.GET.get("sort", "Title")
     genre: str = request.GET.get("genre", "")
     exclude: str = request.GET.get("exclude", "")
     query: str = request.GET.get("query", "")
     reverseSort: bool = request.GET.get("reverse", "false") == "true"
-    _formType, objType = GetFormAndClass(request.GET.get("type", "Movie"))
     objList = list(objType.objects.all())
     yearRange, objList = ExtractYearRange(request, objList)
 
@@ -243,24 +255,16 @@ def index(request) -> HttpResponse:
             objList = [x for x in objList if x.Rating > 0]
 
     objList = sorted(objList, key=lambda x: SortFunction(obj=x, key=sortKey), reverse=reverseSort)
-
-    paginator = Paginator(objList, pageSize)
-    page_obj = paginator.get_page(pageNumber)
-    return render(
-        request,
-        "media/pagedView.html",
-        {
-            "page_obj": page_obj,
-            "type": request.GET.get("type", "Movie"),
-            "sort": sortKey,
-            "reverse": reverseSort,
-            "Tags": GetAllTags(objType=objType),
-            "colorMode": colorMode,
-            "filters": {
-                "include": genre,
-                "exclude": exclude,
-                "minYear": yearRange.start,
-                "maxYear": yearRange.stop,
-            },
+    return {
+        "type": request.GET.get("type", "Movie"),
+        "sort": sortKey,
+        "reverse": reverseSort,
+        "obj_list": objList,
+        "Tags": GetAllTags(objType=objType),
+        "filters": {
+            "include": genre,
+            "exclude": exclude,
+            "minYear": yearRange.start,
+            "maxYear": yearRange.stop,
         },
-    )
+    }
