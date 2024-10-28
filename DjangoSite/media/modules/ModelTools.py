@@ -66,3 +66,9 @@ def GetImageFromLink(savePath, requestImg):
             SingleResize(img=localPath)
     except UnidentifiedImageError:
         print("IMG Failed", savePath)
+
+
+def SortTags(obj):
+    tagList = [x.strip() for x in obj.Genre_Tags.split(",")]
+    obj.Genre_Tags = ",".join(sorted(tagList))
+    obj.save()

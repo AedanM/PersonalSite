@@ -7,7 +7,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 
 from .modules.DB_Tools import CleanDupes
-from .modules.ModelTools import DownloadImage
+from .modules.ModelTools import DownloadImage, SortTags
 from .modules.UpdateFromFolder import UpdateFromFolder
 from .modules.Utils import (
     MODEL_LIST,
@@ -87,15 +87,15 @@ def wikiLoad(request) -> HttpResponse:
                 # pylint: disable=E1101
                 obj = model.objects.filter(Title=request.POST.get("Title")).first()
                 if obj:
-                    obj.Genre_Tags = ", ".join(sorted(obj.GenreTagList))
+                    SortTags(obj)
                     DownloadImage(obj)
                     obj.GetLogo(True)
-            else:
-                print(
-                    f"Invalid Form {activeForm.errors}"
-                    if not activeForm.is_valid()
-                    else "Already existing Item"
-                )
+            # else:
+            #     print(
+            #         f"Invalid Form {activeForm.errors}"
+            #         if not activeForm.is_valid()
+            #         else "Already existing Item"
+            #     )
 
             returnRender = redirect("/media")
     return returnRender
@@ -176,6 +176,8 @@ def edit(request) -> HttpResponse:
             if request.method == "GET"
             else redirect("/media")
         )
+        if request.POST:
+            SortTags(contentObj)
 
     return response
 
