@@ -1,5 +1,5 @@
 # pylint: disable=C0103
-
+import logging
 
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -7,7 +7,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 
 from .modules.DB_Tools import CleanDupes
-from .modules.ModelTools import DownloadImage
+from .modules.ModelTools import DownloadImage, SortTags
 from .modules.UpdateFromFolder import UpdateFromFolder
 from .modules.Utils import (
     MODEL_LIST,
@@ -22,6 +22,7 @@ from .modules.WebTools import ScrapeWiki
 from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFunction
 
 # Create your views here.
+LOGGER = logging.getLogger("Simple")
 
 
 def viewMedia(request) -> HttpResponse:
@@ -87,17 +88,14 @@ def wikiLoad(request) -> HttpResponse:
                 # pylint: disable=E1101
                 obj = model.objects.filter(Title=request.POST.get("Title")).first()
                 if obj:
-                    obj.Genre_Tags = ", ".join(sorted(obj.GenreTagList))
+                    SortTags(obj)
                     DownloadImage(obj)
                     obj.GetLogo(True)
+                else:
+                    LOGGER.error("Wiki load failed from %s", activeForm.data["InfoPage"])
             else:
-                print(
-                    f"Invalid Form {activeForm.errors}"
-                    if not activeForm.is_valid()
-                    else "Already existing Item"
-                )
-
-            returnRender = redirect("/media")
+                LOGGER.warning("Matching Object Found")
+            returnRender = redirect("/media?sort=Date+Added")
     return returnRender
 
 
@@ -171,11 +169,15 @@ def edit(request) -> HttpResponse:
         context["colorMode"] = request.COOKIES.get("colorMode", "dark")
 
         contentObj.GetLogo(True)
+
         response = (
             render(request, "media/editForm.html", context)
             if request.method == "GET"
             else redirect("/media")
         )
+        if request.POST:
+            SortTags(contentObj)
+            LOGGER.warning("Edited %s", contentObj.Title)
 
     return response
 
@@ -216,7 +218,6 @@ def SetBool(request) -> HttpResponse:
 
 
 def index(request) -> HttpResponse:
-
     _formType, objType = GetFormAndClass(request.GET.get("type", "Movie"))
     context = FilterMedia(request=request, objType=objType)
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")

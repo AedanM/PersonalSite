@@ -1,3 +1,4 @@
+import logging
 import os
 import urllib.request
 from pathlib import Path
@@ -6,6 +7,8 @@ from django.conf import settings as django_settings
 from PIL import Image, UnidentifiedImageError
 
 from .ImgResize import SingleResize
+
+LOGGER = logging.getLogger("Simple")
 
 DEFAULT_IMG = r"https://upload.wikimedia.org/wikipedia/commons/c/c9/Icon_Video.png"
 DEFAULT_IMG_PATH = "logos/DefaultIMG.png"
@@ -41,7 +44,7 @@ def DownloadImage(modelObj):
                 if (Path(django_settings.STATICFILES_DIRS[0]) / f"{savePath}").exists():
                     modelObj.Logo = savePath
                 else:
-                    print(f"Cant find {savePath}")
+                    LOGGER.error("Cant find %s", savePath)
                 modelObj.save()
             except ConnectionError:
                 pass
@@ -65,4 +68,10 @@ def GetImageFromLink(savePath, requestImg):
         if "tvshows" in str(localPath):
             SingleResize(img=localPath)
     except UnidentifiedImageError:
-        print("IMG Failed", savePath)
+        LOGGER.error("IMG Failed @ %s", savePath)
+
+
+def SortTags(obj):
+    tagList = [x.strip() for x in obj.Genre_Tags.split(",")]
+    obj.Genre_Tags = ",".join(sorted(tagList))
+    obj.save()
