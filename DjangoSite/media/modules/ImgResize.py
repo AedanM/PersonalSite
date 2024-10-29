@@ -1,6 +1,9 @@
+import logging
 from pathlib import Path
 
 from PIL import Image
+
+LOGGER = logging.getLogger("Simple")
 
 
 def RemoveAlpha(path: Path):
@@ -11,7 +14,7 @@ def RemoveAlpha(path: Path):
         return alphaComp
 
     except ValueError:
-        print(f"{path} Failed")
+        LOGGER.warning("%s Failed To Remove Alpha", path)
         return png
 
 
@@ -19,10 +22,9 @@ def ResizeImages(parentDir):
     parentDir = Path(parentDir)
     if parentDir.exists():
         for img in parentDir.glob("*.png"):
-            print(img)
             SingleResize(img)
     else:
-        print("No such dir")
+        LOGGER.error("No parent dir %s", parentDir)
 
 
 def SingleResize(img):
@@ -38,6 +40,7 @@ def SingleResize(img):
     background.save(str(img))
 
 
-ResizeImages(
-    r"C:\mysources\Aedan\PersonalScripts\Projects\PersonalSite\DjangoSite\static\logos\tvshows\ToReshape"
-)
+if __name__ == "__main__":
+    ResizeImages(
+        r"C:\mysources\Aedan\PersonalScripts\Projects\PersonalSite\DjangoSite\static\logos\tvshows\ToReshape"
+    )

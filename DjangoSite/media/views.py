@@ -1,5 +1,5 @@
 # pylint: disable=C0103
-
+import logging
 
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -22,6 +22,7 @@ from .modules.WebTools import ScrapeWiki
 from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFunction
 
 # Create your views here.
+LOGGER = logging.getLogger("Simple")
 
 
 def viewMedia(request) -> HttpResponse:
@@ -90,14 +91,11 @@ def wikiLoad(request) -> HttpResponse:
                     SortTags(obj)
                     DownloadImage(obj)
                     obj.GetLogo(True)
-            # else:
-            #     print(
-            #         f"Invalid Form {activeForm.errors}"
-            #         if not activeForm.is_valid()
-            #         else "Already existing Item"
-            #     )
-
-            returnRender = redirect("/media")
+                else:
+                    LOGGER.error("Wiki load failed from %s", activeForm.data["InfoPage"])
+            else:
+                LOGGER.warning("Matching Object Found")
+            returnRender = redirect("/media?sort=Date+Added")
     return returnRender
 
 
@@ -171,6 +169,7 @@ def edit(request) -> HttpResponse:
         context["colorMode"] = request.COOKIES.get("colorMode", "dark")
 
         contentObj.GetLogo(True)
+
         response = (
             render(request, "media/editForm.html", context)
             if request.method == "GET"
@@ -178,6 +177,7 @@ def edit(request) -> HttpResponse:
         )
         if request.POST:
             SortTags(contentObj)
+            LOGGER.warning("Edited %s", contentObj.Title)
 
     return response
 
@@ -218,7 +218,6 @@ def SetBool(request) -> HttpResponse:
 
 
 def index(request) -> HttpResponse:
-
     _formType, objType = GetFormAndClass(request.GET.get("type", "Movie"))
     context = FilterMedia(request=request, objType=objType)
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")

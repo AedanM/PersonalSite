@@ -1,4 +1,5 @@
 import glob
+import logging
 import os
 import re
 from dataclasses import dataclass
@@ -9,6 +10,8 @@ from django.conf import settings as django_settings
 from django.db import models
 
 from ..models import Comic, Movie, Novel, Podcast, TVShow, Youtube
+
+LOGGER = logging.getLogger("Simple")
 
 
 @dataclass
@@ -24,7 +27,7 @@ class Media:
     Length: int = 0
 
     def __lt__(self, obj):
-        if type(obj) == Media:
+        if obj.isinstance(Media):
             return (
                 self.MediaType < obj.MediaType
                 if self.MediaType != obj.MediaType
@@ -34,13 +37,15 @@ class Media:
 
 def LoadFiles() -> list[Media]:
     pathList = []
-    with open(os.path.join(django_settings.STATICFILES_DIRS[0], "mediaPaths.csv"), "r") as fp:
+    with open(
+        os.path.join(django_settings.STATICFILES_DIRS[0], "mediaPaths.csv"), "r", encoding="ascii"
+    ) as fp:
         pathList = fp.read().split(",")
-    MediaList: list[Media] = []
+    mediaList: list[Media] = []
     for path in pathList:
         splitList = path.replace("\\", "/").split("/")
         if len(splitList) > 2:
-            existingMedia = [x.Title for x in MediaList]
+            existingMedia = [x.Title for x in mediaList]
 
             elementType = splitList[1]
             mediaTitle = splitList[-1] if elementType != "TV Shows" else splitList[-3]
@@ -55,7 +60,7 @@ def LoadFiles() -> list[Media]:
                 extension = mediaTitle.split(sep=".")[-1]
                 mediaTitle = mediaTitle.replace(f".{extension}", "").strip()
             if mediaTitle not in existingMedia:
-                MediaList.append(
+                mediaList.append(
                     Media(
                         Title=mediaTitle,
                         MediaType=elementType,
@@ -76,9 +81,9 @@ def LoadFiles() -> list[Media]:
                     )
                 )
             else:
-                matchedMedia = [x for x in MediaList if x.Title == mediaTitle][0]
+                matchedMedia = [x for x in mediaList if x.Title == mediaTitle][0]
                 matchedMedia.Seasons.add(splitList[-2])
-    return sorted(MediaList)  # type:ignore
+    return sorted(mediaList)  # type:ignore
 
 
 def ExtractYear(mediaTitle):
@@ -88,14 +93,16 @@ def ExtractYear(mediaTitle):
         year = int(match.group(1))
         mediaTitle = mediaTitle.replace(f"({year})", "")
     else:
-        print("Unmatched", mediaTitle)
+        LOGGER.warning("Unmatched %s", mediaTitle)
     return mediaTitle, year
 
 
 def FindPaths(root) -> bool:
     pathList = glob.glob(pathname="./**/*", root_dir=root, recursive=True)
     pathList = [x for x in pathList if "." in x.replace("\\", "/").split("/")[-1]]
-    with open(os.path.join(django_settings.STATICFILES_DIRS[0], "mediaPaths.csv"), "w") as fp:
+    with open(
+        os.path.join(django_settings.STATICFILES_DIRS[0], "mediaPaths.csv"), "w", encoding="ascii"
+    ) as fp:
         fp.write(",".join(pathList))
     return True
 
@@ -186,24 +193,18 @@ def FilterDupes(mediaList):
     return mediaList
 
 
-def FindWikiPage(mediaList):
-    for media in mediaList:
-        pass  #   print(wikipedia.wikipedia.search(media.Title))
-    return mediaList
-
-
 def UpdateFromFolder(folder, useFile, save) -> str:
     if not useFile:
-        print("Loading Paths")
+        LOGGER.warning("Loading Paths")
         FindPaths(root=folder)
-        print("Paths Found")
+        LOGGER.warning("Paths Found")
     media: list[Media] = LoadFiles()
-    print("Files Loaded")
+    LOGGER.warning("Files Loaded")
     media = FilterDupes(mediaList=media)
-    print("Objects Filtered")
+    LOGGER.warning("Objects Filtered")
     mediaObjs: list[models.Model] = PopulateObjs(mediaList=media)
-    print("Objects Populated")
-    mediaObjs = FindWikiPage(mediaList=mediaObjs)
+    LOGGER.warning("Objects Populated")
+    # mediaObjs = FindWikiPage(mediaList=mediaObjs)
     if save:
         for m in mediaObjs:
             m.save()

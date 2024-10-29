@@ -1,12 +1,17 @@
 # pylint: disable=C0103
 import datetime
+import logging
 import os
+import urllib.error
 
 from django.conf import settings as django_settings
 from django.db import models
 
 from .modules.ModelTools import DEFAULT_IMG, DEFAULT_IMG_PATH, DownloadImage
 from .utils import MINIMUM_YEAR
+
+LOGGER = logging.getLogger("Simple")
+Handler = logging.getHandlerByName("file")
 
 
 class Media(models.Model):
@@ -37,14 +42,21 @@ class Media(models.Model):
 
     def GetLogo(self, loadLogo) -> str:
         returnVal = DEFAULT_IMG_PATH
-        logoExists = os.path.exists(os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo))
-        if loadLogo and not logoExists or not logoExists:
-            DownloadImage(self)
-        logoExists = os.path.exists(os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo))
-        if logoExists:
-            returnVal = self.Logo
-        else:
-            print("No Logo")
+        try:
+            logoExists = os.path.exists(
+                os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo)
+            )
+            if loadLogo and not logoExists or not logoExists:
+                DownloadImage(self)
+            logoExists = os.path.exists(
+                os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo)
+            )
+            if logoExists:
+                returnVal = self.Logo
+            else:
+                LOGGER.error("No Logo Found at %s", self.Logo)
+        except urllib.error.HTTPError as e:
+            LOGGER.error("Logo Collection Failed %s", str(e))
         return returnVal
 
     @property

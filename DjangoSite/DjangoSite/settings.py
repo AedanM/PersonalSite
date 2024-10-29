@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
+from datetime import date
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,7 +23,7 @@ LOGIN_REDIRECT_URL = "/"  # new
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get(
-    "DJANGO_SECRET_KEY", "9@g*i-m&yhutyk3t_s=l0%mkxh=+e+d3e0kk0mt6mim+y(&_6$"
+    "DJANGO_SECRET_KEY", "9@g*i-m&yhutyk3t_s=l0%mkxh=+e+d3e0kk0mt6mim+y(&_6$"  # type:ignore
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -33,6 +34,44 @@ ALLOWED_HOSTS: list = ["aedanmchale.duckdns.org", "aedanmchale.uk.to", "127.0.0.
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
 # Application definition
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "base": {
+            "format": "{name} at {asctime} ({levelname}) :: {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "SimpleHandle": {
+            "level": "WARNING",
+            "class": "logging.FileHandler",
+            "filename": f"Logging\\{date.today()} Simple.log",
+            "formatter": "base",
+        },
+        "ExtendedHandle": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": f"Logging\\{date.today()} Extended.log",
+            "formatter": "base",
+        },
+    },
+    "loggers": {
+        "Simple": {
+            "handlers": ["SimpleHandle"],
+            "level": "WARNING",
+            "propagate": True,
+        },
+        "django": {
+            "handlers": ["ExtendedHandle"],
+            "level": "INFO",
+            "propagate": True,
+        },
+    },
+}
 
 INSTALLED_APPS = [
     "media.apps.MediaConfig",
