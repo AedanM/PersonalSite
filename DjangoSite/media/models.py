@@ -11,7 +11,6 @@ from .modules.ModelTools import DEFAULT_IMG, DEFAULT_IMG_PATH, DownloadImage
 from .utils import MINIMUM_YEAR
 
 LOGGER = logging.getLogger("Simple")
-Handler = logging.getHandlerByName("file")
 
 
 class Media(models.Model):
