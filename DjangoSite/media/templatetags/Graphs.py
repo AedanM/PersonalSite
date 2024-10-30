@@ -2,8 +2,8 @@ import datetime
 from math import ceil
 
 import pandas as pd
-import plotly.express as px
-import statsmodels.api as sm
+import plotly.express as px  # type:ignore
+import statsmodels.api as sm  # type:ignore
 from django import template
 
 from ..utils import MINIMUM_YEAR
