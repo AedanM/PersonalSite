@@ -8,7 +8,7 @@ from PIL import Image, UnidentifiedImageError
 
 from .ImgResize import SingleResize
 
-LOGGER = logging.getLogger("Simple")
+LOGGER = logging.getLogger("UserLogger")
 
 DEFAULT_IMG = r"https://upload.wikimedia.org/wikipedia/commons/c/c9/Icon_Video.png"
 DEFAULT_IMG_PATH = "logos/DefaultIMG.png"
@@ -44,7 +44,8 @@ def DownloadImage(modelObj):
                 if (Path(django_settings.STATICFILES_DIRS[0]) / f"{savePath}").exists():
                     modelObj.Logo = savePath
                 else:
-                    LOGGER.error("Cant find %s", savePath)
+                    modelObj.Logo = DEFAULT_IMG_PATH
+                    LOGGER.error("Defaulting %s IMG Path", modelObj.Logo)
                 modelObj.save()
             except ConnectionError:
                 pass

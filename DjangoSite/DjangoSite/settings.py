@@ -46,10 +46,10 @@ LOGGING = {
         },
     },
     "handlers": {
-        "SimpleHandle": {
-            "level": "WARNING",
+        "UserLoggerHandle": {
+            "level": "INFO",
             "class": "logging.FileHandler",
-            "filename": f"Logging\\{date.today()} Simple.log",
+            "filename": f"Logging\\{date.today()} UserLogger.log",
             "formatter": "base",
         },
         "ExtendedHandle": {
@@ -60,9 +60,9 @@ LOGGING = {
         },
     },
     "loggers": {
-        "Simple": {
-            "handlers": ["SimpleHandle"],
-            "level": "WARNING",
+        "UserLogger": {
+            "handlers": ["UserLoggerHandle"],
+            "level": "INFO",
             "propagate": True,
         },
         "django": {

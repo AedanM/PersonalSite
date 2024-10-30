@@ -10,7 +10,7 @@ from django.db import models
 from .modules.ModelTools import DEFAULT_IMG, DEFAULT_IMG_PATH, DownloadImage
 from .utils import MINIMUM_YEAR
 
-LOGGER = logging.getLogger("Simple")
+LOGGER = logging.getLogger("UserLogger")
 Handler = logging.getHandlerByName("file")
 
 
@@ -42,6 +42,9 @@ class Media(models.Model):
 
     def GetLogo(self, loadLogo) -> str:
         returnVal = DEFAULT_IMG_PATH
+        if self.Logo == "None Found":
+            self.Logo = returnVal
+            self.save()
         try:
             logoExists = os.path.exists(
                 os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo)

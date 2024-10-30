@@ -9,20 +9,14 @@ from django.shortcuts import redirect, render
 from .modules.DB_Tools import CleanDupes
 from .modules.ModelTools import DownloadImage, SortTags
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.Utils import (
-    MODEL_LIST,
-    DetermineForm,
-    FindID,
-    FormMatch,
-    GetAllTags,
-    GetContents,
-    GetFormAndClass,
-)
+from .modules.Utils import (MODEL_LIST, DetermineForm, FindID, FormMatch,
+                            GetAllTags, GetContents, GetFormAndClass)
 from .modules.WebTools import ScrapeWiki
-from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFunction
+from .utils import (ExtractYearRange, FilterTags, FuzzStr, SearchFunction,
+                    SortFunction)
 
 # Create your views here.
-LOGGER = logging.getLogger("Simple")
+LOGGER = logging.getLogger("UserLogger")
 
 
 def viewMedia(request) -> HttpResponse:
@@ -91,11 +85,12 @@ def wikiLoad(request) -> HttpResponse:
                     SortTags(obj)
                     DownloadImage(obj)
                     obj.GetLogo(True)
+                    LOGGER.info("Loaded %s from Wikipedia", obj.Title)
                 else:
                     LOGGER.error("Wiki load failed from %s", activeForm.data["InfoPage"])
             else:
                 LOGGER.warning("Matching Object Found")
-            returnRender = redirect("/media?sort=Date+Added")
+            returnRender = redirect(f"/media?sort=Date+Added&type={request.GET.get('type', 'Movie')}")
     return returnRender
 
 
@@ -177,7 +172,7 @@ def edit(request) -> HttpResponse:
         )
         if request.POST:
             SortTags(contentObj)
-            LOGGER.warning("Edited %s", contentObj.Title)
+            LOGGER.info("Edited %s", contentObj.Title)
 
     return response
 

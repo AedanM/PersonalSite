@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-LOGGER = logging.getLogger("Simple")
+LOGGER = logging.getLogger("UserLogger")
 
 
 def RemoveAlpha(path: Path):

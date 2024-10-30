@@ -11,7 +11,7 @@ from django.db import models
 
 from ..models import Comic, Movie, Novel, Podcast, TVShow, Youtube
 
-LOGGER = logging.getLogger("Simple")
+LOGGER = logging.getLogger("UserLogger")
 
 
 @dataclass
