@@ -42,17 +42,21 @@ def GetTV(parent):
     return objList
 
 
-if __name__ == "__main__":
-    start = time.time()
+def RipWDrive():
+    # start = time.time()
     movies = GetMovies(Path(r"W:\\"))
-    print("Movies Done")
-    print(time.time() - start)
-    start = time.time()
+    # print("Movies Done")
+    # print(time.time() - start)
+    # start = time.time()
     tv = GetTV(Path(r"W:\\"))
-    print(time.time() - start)
+    # print(time.time() - start)
     with open(
-        r".\Projects\PersonalSite\DjangoSite\static\files\MediaServerSummary.json",
+        Path(__file__).parent.parent.parent / r"static\files\MediaServerSummary.json",
         mode="w",
         encoding="ascii",
     ) as fp:
         json.dump({"Movies": movies, "TV Shows": tv}, fp)
+
+
+if __name__ == "__main__":
+    RipWDrive()

@@ -9,6 +9,7 @@ from django.shortcuts import redirect, render
 from .models import Movie
 from .modules.CheckDetails import CheckMovies
 from .modules.DB_Tools import CleanDupes
+from .modules.FileRip import RipWDrive
 from .modules.ModelTools import DownloadImage, SortTags
 from .modules.UpdateFromFolder import UpdateFromFolder
 from .modules.Utils import (
@@ -109,6 +110,7 @@ def poll(_request) -> HttpResponse:
 
 
 def checkFiles(request) -> HttpResponse:
+    RipWDrive()
     unmatched, matched = CheckMovies()
 
     ids = [x["Match"]["ID"] for x in matched]
