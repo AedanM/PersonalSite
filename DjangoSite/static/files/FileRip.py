@@ -51,7 +51,7 @@ if __name__ == "__main__":
     tv = GetTV(Path(r"W:\\"))
     print(time.time() - start)
     with open(
-        r".\Projects\PersonalSite\DjangoSite\static\MediaServerSummary.json",
+        r".\Projects\PersonalSite\DjangoSite\static\files\MediaServerSummary.json",
         mode="w",
         encoding="ascii",
     ) as fp:

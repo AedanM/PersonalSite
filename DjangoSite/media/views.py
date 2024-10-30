@@ -6,14 +6,22 @@ from django.core.paginator import Paginator
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 
+from .models import Movie
+from .modules.CheckDetails import CheckMovies
 from .modules.DB_Tools import CleanDupes
 from .modules.ModelTools import DownloadImage, SortTags
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.Utils import (MODEL_LIST, DetermineForm, FindID, FormMatch,
-                            GetAllTags, GetContents, GetFormAndClass)
+from .modules.Utils import (
+    MODEL_LIST,
+    DetermineForm,
+    FindID,
+    FormMatch,
+    GetAllTags,
+    GetContents,
+    GetFormAndClass,
+)
 from .modules.WebTools import ScrapeWiki
-from .utils import (ExtractYearRange, FilterTags, FuzzStr, SearchFunction,
-                    SortFunction)
+from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFunction
 
 # Create your views here.
 LOGGER = logging.getLogger("UserLogger")
@@ -90,12 +98,30 @@ def wikiLoad(request) -> HttpResponse:
                     LOGGER.error("Wiki load failed from %s", activeForm.data["InfoPage"])
             else:
                 LOGGER.warning("Matching Object Found")
-            returnRender = redirect(f"/media?sort=Date+Added&type={request.GET.get('type', 'Movie')}")
+            returnRender = redirect(
+                f"/media?sort=Date+Added&type={request.GET.get('type', 'Movie')}"
+            )
     return returnRender
 
 
 def poll(_request) -> HttpResponse:
     return redirect("https://www.youtube.com/watch?v=sVjk5nrb_lI")
+
+
+def checkFiles(request) -> HttpResponse:
+    unmatched, matched = CheckMovies()
+
+    ids = [x["Match"]["ID"] for x in matched]
+    # pylint: disable=E1101
+    wronglyMarked = [
+        x for x in Movie.objects.all() if x.Downloaded and x.id not in ids  # type:ignore
+    ]
+
+    return render(
+        request=request,
+        template_name="media/checkFile.html",
+        context={"matched": matched, "unmatched": unmatched, "wronglyMarked": wronglyMarked},
+    )
 
 
 @login_required

@@ -10,7 +10,7 @@ from django.db import models
 from .modules.ModelTools import DEFAULT_IMG, DEFAULT_IMG_PATH, DownloadImage
 from .utils import MINIMUM_YEAR
 
-LOGGER = logging.getLogger("Simple")
+LOGGER = logging.getLogger("UserLogger")
 
 
 class Media(models.Model):
