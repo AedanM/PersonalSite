@@ -77,6 +77,7 @@ INSTALLED_APPS = [
     "media.apps.MediaConfig",
     "landing.apps.LandingConfig",
     "resume.apps.ResumeConfig",
+    "accountPages.apps.AccountPagesConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

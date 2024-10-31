@@ -98,15 +98,21 @@ def wikiLoad(request) -> HttpResponse:
                 else:
                     LOGGER.error("Wiki load failed from %s", activeForm.data["InfoPage"])
             else:
-                LOGGER.warning("Matching Object Found")
+                LOGGER.warning("Matching Object Found for %s, Not Added", activeForm.data["Title"])
             returnRender = redirect(
                 f"/media?sort=Date+Added&type={request.GET.get('type', 'Movie')}"
             )
     return returnRender
 
 
-def poll(_request) -> HttpResponse:
-    return redirect("https://www.youtube.com/watch?v=sVjk5nrb_lI")
+def adjustTags(_request):
+    adjustDict = {}
+    # pylint: disable=E1101
+    for m in Movie.objects.all():
+        for tag, replacement in adjustDict.items():
+            m.Genre_Tags = m.Genre_Tags.replace(tag, replacement)
+        m.save()
+    return redirect("/media")
 
 
 def checkFiles(request) -> HttpResponse:

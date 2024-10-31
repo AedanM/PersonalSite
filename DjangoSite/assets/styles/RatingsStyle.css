@@ -18,7 +18,7 @@
 .rate>label:before {
     display: inline-block;
     font-size: 2rem;
-    padding: .3rem .2rem;
+    padding: .3rem .28rem;
     margin: 0;
     cursor: pointer;
     font-family: FontAwesome;
@@ -43,4 +43,18 @@ input:checked~label:hover~label,
 label:hover~input:checked~label
     {
     color: #f5f56b;
+}
+
+
+.rating {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 2rem;
+    color: #e4c900;
+    font-family: FontAwesome;
+    }
+
+.rating::before {
+    content: "\f005  \f005  \f005  \f005  \f005";
 }

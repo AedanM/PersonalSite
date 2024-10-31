@@ -3,6 +3,8 @@ import os.path
 import time
 from pathlib import Path
 
+import logging
+LOGGER = logging.getLogger("UserLogger")
 
 def GetMovies(parent):
     path = parent / "Movies"
@@ -43,19 +45,19 @@ def GetTV(parent):
 
 
 def RipWDrive():
-    # start = time.time()
-    movies = GetMovies(Path(r"W:\\"))
-    # print("Movies Done")
-    # print(time.time() - start)
-    # start = time.time()
-    tv = GetTV(Path(r"W:\\"))
-    # print(time.time() - start)
-    with open(
-        Path(__file__).parent.parent.parent / r"static\files\MediaServerSummary.json",
-        mode="w",
-        encoding="ascii",
-    ) as fp:
-        json.dump({"Movies": movies, "TV Shows": tv}, fp)
+    if Path(r"W:\\").exists():
+        start = time.time()
+        movies = GetMovies(Path(r"W:\\"))
+        LOGGER.info("Movie scrape took %f seconds", time.time()-start)
+        start = time.time()
+        tv = GetTV(Path(r"W:\\"))
+        LOGGER.info("TV scrape took %f seconds", time.time() - start)
+        with open(
+            Path(__file__).parent.parent.parent / r"static\files\MediaServerSummary.json",
+            mode="w",
+            encoding="ascii",
+        ) as fp:
+            json.dump({"Movies": movies, "TV Shows": tv}, fp)
 
 
 if __name__ == "__main__":

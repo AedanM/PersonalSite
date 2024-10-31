@@ -256,11 +256,11 @@ def ValuesOverYears(objList: list) -> str:
 
         fig.update_layout(
             barmode="stack",
-            title="Watched and Downloaded Trends Over Time",
+            title="Watch Trends Over Time",
             legend=dict(
                 orientation="h",
                 yanchor="top",
-                y=1.2,
+                y=1.1,
                 xanchor="center",
                 x=0.5,
             ),
@@ -379,7 +379,7 @@ def DurationVsRating(objList: list) -> str:
     trimmedList = [x for x in objList if x.Watched]
     trimmedList = sorted(trimmedList, key=lambda x: x.Year)
     useTotal = "Length" in dir(objList[0])
-    duration = [x.Duration.seconds / 60 if not useTotal else x.Total_Length for x in trimmedList]
+    duration = [(x.Duration.seconds / 60 if not useTotal else x.Total_Length) for x in trimmedList]
     df = pd.DataFrame(
         {
             "Ratings": [x.Rating for x in trimmedList],

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="iso-8859-15" />
+		<meta charset="utf-8" />
 
 		<meta
 			http-equiv="X-UA-Compatible"
@@ -53,14 +53,17 @@
 			<h2>Current Files</h2>
 			<span id="DescriptionSpan">
 				<div id="contentDiv">
+					{% if unmatched|length > 0 %}
 					<details open>
 						<summary>Unmatched ({{unmatched|length}})</summary>
 						<table class="striped sortable">
 							<thead>
-								<td>Title</td>
-								<td>Year</td>
-								<td>Size</td>
-								<td>Closest</td>
+								<tr>
+									<th>Title</th>
+									<th>Year</th>
+									<th>Size</th>
+									<th>Closest</th>
+								</tr>
 							</thead>
 							{% for show in unmatched %}
 							<tr>
@@ -73,12 +76,15 @@
 							{% endfor %}
 						</table>
 					</details>
+					{%endif%} {% if wronglyMarked|length > 0 %}
 					<details open>
 						<summary>Wrongly Marked ({{wronglyMarked|length}})</summary>
 						<table class="striped sortable">
 							<thead>
-								<td>Title</td>
-								<td>Year</td>
+								<tr>
+									<th>Title</th>
+									<th>Year</th>
+								</tr>
 							</thead>
 							{% for show in wronglyMarked %}
 							<tr>
@@ -93,36 +99,42 @@
 							{% endfor %}
 						</table>
 					</details>
+					{%endif%} {% if matched|length > 0 %}
 					<details open>
 						<summary>Matched ({{matched|length}})</summary>
 						<table class="striped sortable">
 							<thead>
-								<td>Title</td>
-								<td>Year</td>
-								<td>Size</td>
-								<td>Runtime</td>
-								<td>Min/GB</td>
-								<td>Missing Tags</td>
-								<td>Marked Download?</td>
+								<tr>
+									<th>Title</th>
+									<th>Year</th>
+									<th>Size</th>
+									<th>Runtime</th>
+									<th>Min/GB</th>
+									<th>Missing Tags</th>
+									<th>Marked Download?</th>
+								</tr>
 							</thead>
-							{% for show in matched %}
-							<tr>
-								<td>
-									<a class="clean-link" href="edit?id={{show|Get:"Match"|Get:"ID"}}"/>{{show|Get:"Match"|Get:"Title"}}
-								</td>
-								<td>{{show|Get:"Year"}}</td>
-								<td>{{show|Get:"Size"}}</td>
-								<td>{{show|Get:"Match"|Get:"Runtime"}}</td>
-								<td>{% widthratio show|Get:"Match"|Get:"Runtime" show|Get:"Size" 1%}</td>
-								{%with tags=show|Get:"Match"|Get:"Tag Diff"%}
-								<td>{%for tag in tags%} {{tag}} {%endfor%}</td>
-								{%endwith%}
-								<td>{{show|Get:"Match"|Get:"Marked"}}</td>
-							</tr>
+							<tbody>
+								{% for show in matched %}
+								<tr>
+									<td>
+										<a class="clean-link" href="edit?id={{show|Get:"Match"|Get:"ID"}}"/>{{show|Get:"Match"|Get:"Title"}}
+									</td>
+									<td>{{show|Get:"Year"}}</td>
+									<td>{{show|Get:"Size"}}</td>
+									<td>{{show|Get:"Match"|Get:"Runtime"}}</td>
+									<td>{% widthratio show|Get:"Match"|Get:"Runtime" show|Get:"Size" 1%}</td>
+									{%with tags=show|Get:"Match"|Get:"Tag Diff"%}
+									<td>{%for tag in tags%} {{tag}} {%endfor%}</td>
+									{%endwith%}
+									<td>{{show|Get:"Match"|Get:"Marked"}}</td>
+								</tr>
 
-							{% endfor %}
+								{% endfor %}
+							</tbody>
 						</table>
 					</details>
+					{%endif%}
 				</div>
 			</span>
 		</main>

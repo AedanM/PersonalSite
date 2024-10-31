@@ -24,6 +24,7 @@ def DownloadImage(modelObj):
     )
 
     if reloadLogo:
+        LOGGER.info("Downloading new logo for %s", modelObj.Title)
         if "http" in modelObj.Logo or "www" in modelObj.Logo:
             logoIMG = modelObj.Logo
         elif modelObj.InfoPage and modelObj.InfoPage != "None":
@@ -68,6 +69,7 @@ def GetImageFromLink(savePath, requestImg):
         os.remove(tempPath)
         if "tvshows" in str(localPath):
             SingleResize(img=localPath)
+        LOGGER.info("New IMG saved to %s", savePath)
     except UnidentifiedImageError:
         LOGGER.error("IMG Failed @ %s", savePath)
 

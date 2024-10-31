@@ -15,5 +15,5 @@ urlpatterns = [
     path(route="check", view=views.checkFiles, name="checkInfo"),
     path(route="stats", view=views.stats, name="Stats"),
     path(route="backup.json", view=views.backup, name="backup"),
-    path(route="poll", view=views.poll, name="poll"),
+    path(route="adjustTags", view=views.adjustTags, name="adjustTags"),
 ]

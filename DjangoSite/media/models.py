@@ -48,7 +48,7 @@ class Media(models.Model):
             logoExists = os.path.exists(
                 os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo)
             )
-            if loadLogo and not logoExists or not logoExists:
+            if loadLogo or not logoExists:
                 DownloadImage(self)
             logoExists = os.path.exists(
                 os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo)
