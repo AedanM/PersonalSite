@@ -7,7 +7,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 
 from .models import Movie
-from .modules.CheckDetails import CheckMovies
+from .modules.CheckDetails import CheckMovies, CopyOverRenderQueue, HandleReRenderQueue
 from .modules.DB_Tools import CleanDupes
 from .modules.FileRip import RipWDrive
 from .modules.ModelTools import DownloadImage, SortTags
@@ -116,6 +116,13 @@ def adjustTags(_request):
 
 
 def checkFiles(request) -> HttpResponse:
+    if request.GET.get("renderList", "False") == "True":
+        HandleReRenderQueue()
+        return HttpResponse("Rendered to File")
+    if request.GET.get("copyList", "False") == "True":
+        CopyOverRenderQueue()
+        return HttpResponse("Copied Render List")
+
     RipWDrive()
     unmatched, matched = CheckMovies()
 

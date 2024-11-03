@@ -29,7 +29,9 @@
 		"The Long Halloween Pt 1": "Batman: The Long Halloween pt 1",
 		"The Long Halloween Pt 2": "Batman: The Long Halloween pt 2",
 		"Under the Red Hood": "Batman: Under the Red Hood",
-		"Year One": "Batman: Year One"
+		"Year One": "Batman: Year One",
+		"Birds Of Prey And The Fantabulous Emancipation Of One Harley Quinn": "Birds of Prey (and the Fantabulous Emancipation of One Harley Quinn)",
+		"Starsky And Hutch": "Starsky & Hutch"
 	},
 	"Tags": {
 		"B-Movies": "B-Movie",
@@ -39,16 +41,13 @@
 		"Directors": "",
 		"Early 2000s": "",
 		"Girl Power": "Girlboss",
-		"Jim Henson": "Henson",
-		"Musicals": "Musical",
-		"Quentin Tarantino": "Tarantino",
-		"Rom Com": "Romance",
-		"Sam Raimi": "Raimi",
-		"Scooby Doo": "Scooby-Doo",
-		"Stage Plays": "Stage Play",
-		"Stanley Kubrick": "Kubrick",
-		"Westerns": "Western",
 		"Historic": "Historical",
-		"Spiderman": "Spider-Man"
+		"Musicals": "Musical",
+		"Rom Com": "Romance",
+		"SNL & Characters": "",
+		"Scooby Doo": "Scooby-Doo",
+		"Spiderman": "Spider-Man",
+		"Stage Plays": "Stage Play",
+		"Westerns": "Western"
 	}
 }

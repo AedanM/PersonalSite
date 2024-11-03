@@ -1,10 +1,11 @@
 import json
+import logging
 import os.path
 import time
 from pathlib import Path
 
-import logging
 LOGGER = logging.getLogger("UserLogger")
+
 
 def GetMovies(parent):
     path = parent / "Movies"
@@ -15,8 +16,15 @@ def GetMovies(parent):
             size = os.stat(file).st_size / (1024 * 1024 * 1024)
             year = file.stem.split(" ")[-1][1:-1]
             tags = [x for x in str(file.parent).replace(str(path), "").split("\\") if x != ""]
-            obj = {"Title": title, "Year": year, "Size": round(size, 2), "Tags": tags}
+            obj = {
+                "Title": title,
+                "Year": year,
+                "Size": round(size, 2),
+                "Tags": tags,
+                "FilePath": str(file),
+            }
             objList.append(obj)
+
     with open(path / "Summary.json", encoding="ascii", mode="w") as fp:
         json.dump({"Movies": objList}, fp)
     return objList
@@ -48,7 +56,7 @@ def RipWDrive():
     if Path(r"W:\\").exists():
         start = time.time()
         movies = GetMovies(Path(r"W:\\"))
-        LOGGER.info("Movie scrape took %f seconds", time.time()-start)
+        LOGGER.info("Movie scrape took %f seconds", time.time() - start)
         start = time.time()
         tv = GetTV(Path(r"W:\\"))
         LOGGER.info("TV scrape took %f seconds", time.time() - start)
