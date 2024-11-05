@@ -8,9 +8,9 @@ MINIMUM_YEAR = 1900
 
 
 def FuzzStr(obj, query):
-    return fuzz.partial_ratio(query.lower(), obj.Title.lower()) + (
-        0.1 * fuzz.partial_ratio(query.lower(), obj.Genre_Tags.lower())
-    )
+    titleFuzz = fuzz.partial_ratio(query.lower(), obj.Title.lower())
+    tagFuzz = fuzz.partial_ratio(query.lower(), obj.Genre_Tags.lower())
+    return ((titleFuzz * 3) if titleFuzz > 75 else 0) + (tagFuzz if titleFuzz > 50 else 0)
 
 
 def CheckTags(x, tagList):

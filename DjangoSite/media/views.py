@@ -7,17 +7,22 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 
 from .models import Movie
-from .modules.CheckDetails import (CheckMovies, CopyOverRenderQueue,
-                                   HandleReRenderQueue)
+from .modules.CheckDetails import CheckMovies, CopyOverRenderQueue, HandleReRenderQueue
 from .modules.DB_Tools import CleanDupes
 from .modules.FileRip import RipWDrive
 from .modules.ModelTools import DownloadImage, SortTags
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.Utils import (MODEL_LIST, DetermineForm, FindID, FormMatch,
-                            GetAllTags, GetContents, GetFormAndClass)
+from .modules.Utils import (
+    MODEL_LIST,
+    DetermineForm,
+    FindID,
+    FormMatch,
+    GetAllTags,
+    GetContents,
+    GetFormAndClass,
+)
 from .modules.WebTools import ScrapeWiki
-from .utils import (ExtractYearRange, FilterTags, FuzzStr, SearchFunction,
-                    SortFunction)
+from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFunction
 
 # Create your views here.
 LOGGER = logging.getLogger("UserLogger")
@@ -200,7 +205,6 @@ def edit(request) -> HttpResponse:
         context["form"] = form
         context["inst"] = contentObj
         context["colorMode"] = request.COOKIES.get("colorMode", "dark")
-        print(contentObj, contentObj.Logo, "www." in contentObj.Logo or "://" in contentObj.Logo)
         contentObj.GetLogo("www." in contentObj.Logo or "://" in contentObj.Logo)
 
         response = (

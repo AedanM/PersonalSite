@@ -26,14 +26,8 @@ def DownloadImage(modelObj):
 
     if reloadLogo:
         LOGGER.info("Downloading new logo for %s", modelObj.Title)
-        if "http" in modelObj.Logo or "www" in modelObj.Logo:
-            logoIMG = modelObj.Logo
-        elif modelObj.InfoPage and modelObj.InfoPage != "None":
-            logoIMG = modelObj.InfoPage
-        elif ":" in modelObj.Logo:
-            logoIMG = DEFAULT_IMG
-        else:
-            logoIMG = DEFAULT_IMG
+
+        logoIMG = modelObj.Logo
         if logoIMG:
             try:
                 savePath = (
@@ -51,15 +45,21 @@ def DownloadImage(modelObj):
                 modelObj.save()
             except ConnectionError:
                 pass
+        else:
+            modelObj.Logo = DEFAULT_IMG
+            modelObj.save()
 
 
 def GetImageFromLink(savePath, requestImg):
     tempPath = os.path.join(django_settings.STATICFILES_DIRS[0], "temp.png")
 
-    urllib.request.urlretrieve(
-        urllib.parse.quote(requestImg).replace("%3A", ":"),
-        tempPath,
-    )
+    try:
+        urllib.request.urlretrieve(
+            urllib.parse.quote(requestImg).replace("%3A", ":"),
+            tempPath,
+        )
+    except ValueError:
+        return
     try:
         img = Image.open(tempPath)
         imScale = 320 / img.size[0]
@@ -72,7 +72,10 @@ def GetImageFromLink(savePath, requestImg):
             SingleResize(img=localPath)
         LOGGER.info("New IMG saved to %s", savePath)
     except UnidentifiedImageError:
-        LOGGER.error("IMG Failed @ %s", savePath)
+        if Path(tempPath).exists():
+            LOGGER.error("Resize Failed @ %s", savePath)
+        else:
+            LOGGER.error("IMG Failed @ %s", requestImg)
 
 
 def SortTags(obj):
