@@ -43,7 +43,7 @@ def RatingOverTime(objList: list) -> str:
             color="Duration",
             color_continuous_scale="rainbow",
         )
-        rollingTrend = sm.nonparametric.lowess(df["Rating"], df["Release Year"], frac=0.2)
+        rollingTrend = sm.nonparametric.lowess(df["Rating"], df["Release Year"], frac=0.35)
 
         fig.add_scatter(
             x=rollingTrend[:, 0],
@@ -62,34 +62,26 @@ def DurationOverTime(objList: list) -> str:
     df = None
 
     useTotal = getattr(objList[0], "Total_Length", None) is not None
-    if useTotal:
-        df = pd.DataFrame(
-            {
-                "Title": [x.Title for x in objList],
-                "Year": [x.Series_Start.year for x in objList],
-                "Duration": [x.Total_Length for x in objList],
-                "Watched": [x.Watched for x in objList],
-            }
-        )
-    else:
-        df = pd.DataFrame(
-            {
-                "Title": [x.Title for x in objList],
-                "Year": [x.Year for x in objList],
-                "Duration": [x.Duration.seconds / 60 for x in objList],
-                "Watched": [x.Watched for x in objList],
-            }
-        )
+    df = pd.DataFrame(
+        {
+            "Title": [x.Title for x in objList],
+            "Year": [x.Year for x in objList],
+            "Duration": [
+                x.Duration.seconds / 60 if not useTotal else x.Total_Length for x in objList
+            ],
+            "Watched": [
+                "Watched" if x.Watched else "On MS" if x.Downloaded else "Not Watched"
+                for x in objList
+            ],
+        }
+    )
     if df is not None:
         fig = px.scatter(
             df,
             x="Year",
             y="Duration",
-            color=df["Watched"].map({True: "Watched", False: "Not Watched"}),
-            color_discrete_map={
-                "Not Watched": "red",
-                "Watched": "blue",
-            },
+            color="Watched",
+            color_discrete_map={"Not Watched": "red", "Watched": "blue", "On MS": "lightgreen"},
             labels={"x": "Release Year", "y": "Duration (minutes)"},
             title="Duration Over Time",
             hover_name="Title",

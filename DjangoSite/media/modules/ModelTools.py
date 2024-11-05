@@ -1,5 +1,6 @@
 import logging
 import os
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -56,7 +57,7 @@ def GetImageFromLink(savePath, requestImg):
     tempPath = os.path.join(django_settings.STATICFILES_DIRS[0], "temp.png")
 
     urllib.request.urlretrieve(
-        requestImg,
+        urllib.parse.quote(requestImg).replace("%3A", ":"),
         tempPath,
     )
     try:

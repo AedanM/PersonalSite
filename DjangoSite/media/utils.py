@@ -8,7 +8,9 @@ MINIMUM_YEAR = 1900
 
 
 def FuzzStr(obj, query):
-    return fuzz.partial_ratio(query.lower(), f"{obj.Genre_Tags} {obj.Title}".lower())
+    return fuzz.partial_ratio(query.lower(), obj.Title.lower()) + (
+        0.1 * fuzz.partial_ratio(query.lower(), obj.Genre_Tags.lower())
+    )
 
 
 def CheckTags(x, tagList):
@@ -66,7 +68,6 @@ def SortFunction(obj, key: str):
             outObj = obj.id
         case _others:
             outObj = getattr(obj, key)
-
     return outObj
 
 

@@ -7,7 +7,7 @@ import urllib.error
 from django.conf import settings as django_settings
 from django.db import models
 
-from .modules.ModelTools import DEFAULT_IMG, DEFAULT_IMG_PATH, DownloadImage
+from .modules.ModelTools import DEFAULT_IMG_PATH, DownloadImage
 from .utils import MINIMUM_YEAR
 
 LOGGER = logging.getLogger("UserLogger")
@@ -15,10 +15,10 @@ LOGGER = logging.getLogger("UserLogger")
 
 class Media(models.Model):
     Title: models.CharField = models.CharField(max_length=200)
-    Genre_Tags: models.TextField = models.TextField()
-    Downloaded: models.BooleanField = models.BooleanField(default=False)
+    Genre_Tags: models.CharField = models.CharField(max_length=200)
+    Logo: models.CharField = models.CharField(default=DEFAULT_IMG_PATH, max_length=200)
     InfoPage: models.CharField = models.CharField(max_length=200)
-    Logo: models.CharField = models.CharField(default=DEFAULT_IMG, max_length=200)
+    Downloaded: models.BooleanField = models.BooleanField(default=False)
     Rating: models.DecimalField = models.DecimalField(
         default=0,  # type: ignore
         decimal_places=1,

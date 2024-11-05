@@ -1,24 +1,18 @@
 import json
 import logging
-import os
 import shutil
 import time
 from pathlib import Path
 
-import cv2
-import ffmpeg
+import ffmpeg # type: ignore
 import thefuzz.fuzz
+from django.conf import settings as django_settings
 
-try:
-    from django.conf import settings as django_settings
+from ..models import Movie
 
-    from ..models import Movie, TVShow
+STATIC_FILES = Path(django_settings.STATICFILES_DIRS[0]) / "Files"
 
-    STATIC_FILES = Path(django_settings.STATICFILES_DIRS[0]) / "Files"
-
-    LOGGER = logging.getLogger("UserLogger")
-except:
-    pass
+LOGGER = logging.getLogger("UserLogger")
 
 
 def CheckMovies():
@@ -33,6 +27,7 @@ def CheckMovies():
 
 
 def FilterOutMatches(movies):
+    # pylint: disable=E1101
     movieList = Movie.objects.all()
     matched = []
     unmatched = []

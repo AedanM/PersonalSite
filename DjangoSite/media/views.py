@@ -7,22 +7,17 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 
 from .models import Movie
-from .modules.CheckDetails import CheckMovies, CopyOverRenderQueue, HandleReRenderQueue
+from .modules.CheckDetails import (CheckMovies, CopyOverRenderQueue,
+                                   HandleReRenderQueue)
 from .modules.DB_Tools import CleanDupes
 from .modules.FileRip import RipWDrive
 from .modules.ModelTools import DownloadImage, SortTags
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.Utils import (
-    MODEL_LIST,
-    DetermineForm,
-    FindID,
-    FormMatch,
-    GetAllTags,
-    GetContents,
-    GetFormAndClass,
-)
+from .modules.Utils import (MODEL_LIST, DetermineForm, FindID, FormMatch,
+                            GetAllTags, GetContents, GetFormAndClass)
 from .modules.WebTools import ScrapeWiki
-from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFunction
+from .utils import (ExtractYearRange, FilterTags, FuzzStr, SearchFunction,
+                    SortFunction)
 
 # Create your views here.
 LOGGER = logging.getLogger("UserLogger")
@@ -106,7 +101,9 @@ def wikiLoad(request) -> HttpResponse:
 
 
 def adjustTags(_request):
-    adjustDict = {}
+    adjustDict = {
+        "Gangster": "Mafia",
+    }
     # pylint: disable=E1101
     for m in Movie.objects.all():
         for tag, replacement in adjustDict.items():
@@ -203,8 +200,8 @@ def edit(request) -> HttpResponse:
         context["form"] = form
         context["inst"] = contentObj
         context["colorMode"] = request.COOKIES.get("colorMode", "dark")
-
-        contentObj.GetLogo(True)
+        print(contentObj, contentObj.Logo, "www." in contentObj.Logo or "://" in contentObj.Logo)
+        contentObj.GetLogo("www." in contentObj.Logo or "://" in contentObj.Logo)
 
         response = (
             render(request, "media/editForm.html", context)
@@ -272,26 +269,26 @@ def FilterMedia(request, objType) -> dict:
     # pylint: disable=E1101
 
     sortKey: str = request.GET.get("sort", "Title")
-    genre: str = request.GET.get("genre", "")
-    exclude: str = request.GET.get("exclude", "")
-    query: str = request.GET.get("query", "")
     reverseSort: bool = request.GET.get("reverse", "false") == "true"
     objList = list(objType.objects.all())
     yearRange, objList = ExtractYearRange(request, objList)
 
-    if query:
+    genre, objList = FilterTags(request.GET.get("genre", ""), objList, include=True)
+    exclude, objList = FilterTags(request.GET.get("exclude", ""), objList, include=False)
+
+    if query := request.GET.get("query", None):
         objList = [x for x in objList if SearchFunction(subStr=x, tagStr=query)]
-        objList = sorted(objList, key=lambda x: FuzzStr(x, query))
+        objList = sorted(objList, key=lambda x: FuzzStr(x, query), reverse=True)
+        sortKey = f"Search {query}"
+    else:
+        if sortKey in ["Rating", "Genre Tags", "Date Added"]:
+            reverseSort = not reverseSort
+            if sortKey == "Rating":
+                objList = [x for x in objList if x.Rating > 0]
+        objList = sorted(
+            objList, key=lambda x: SortFunction(obj=x, key=sortKey), reverse=reverseSort
+        )
 
-    genre, objList = FilterTags(genre, objList, include=True)
-    exclude, objList = FilterTags(exclude, objList, include=False)
-
-    if sortKey in ["Rating", "Genre Tags", "Date Added"]:
-        reverseSort = not reverseSort
-        if sortKey == "Rating":
-            objList = [x for x in objList if x.Rating > 0]
-
-    objList = sorted(objList, key=lambda x: SortFunction(obj=x, key=sortKey), reverse=reverseSort)
     return {
         "type": request.GET.get("type", "Movie"),
         "sort": sortKey,
