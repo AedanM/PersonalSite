@@ -1,21 +1,22 @@
 import datetime
-import os
 import typing
 
-import matplotlib
 from django import template
-from django.conf import settings as django_settings
 from django.core.paginator import Paginator
 
+from ..models import Movie, TVShow
 from ..utils import MINIMUM_YEAR
 
-from ..models import Movie, TVShow
-
-matplotlib.use("Agg")
-# pylint:disable=C0413
-import matplotlib.pyplot as plt
-
 register = template.Library()
+TAG_SECTIONS = {
+    "Features": "success",
+    "Genres": "primary",
+    "Directors": "info",
+    "Series": "warning",
+    "Styles": "light",
+    "Content": "secondary",
+    "ETC": "danger",
+}
 
 
 def ObjFromDict(d) -> typing.Any:
@@ -28,6 +29,17 @@ def ObjFromDict(d) -> typing.Any:
 @register.filter
 def HasAttr(iterDict, attrName) -> bool:
     return hasattr(ObjFromDict(iterDict), attrName)
+
+
+@register.filter
+def TagOrder():
+    yield from TAG_SECTIONS
+
+
+@register.filter
+def TagStyle(group: str, active: bool):
+
+    return f"btn btn-{"" if active else 'outline-'}{TAG_SECTIONS[group]} m-1"
 
 
 @register.filter
@@ -51,33 +63,6 @@ def Rating(number):
     for _ in range(5 - (number // 2) - number % 2):
         outStr += "☆"
     return outStr if number != 0 else "\u200c"
-
-
-@register.filter
-def MakeChart(iterDict, chartType) -> str:
-    outPath = os.path.join(
-        django_settings.STATICFILES_DIRS[0], f"images/charts/mediaChart-{chartType}.png"
-    )
-    sizes = []
-    labels = []
-    for label, media in iterDict.items():
-        labels.append(label)
-        match (chartType):
-            case "Duration":
-                sizes.append(
-                    sum(
-                        x.Duration.total_seconds()
-                        for x in [y for y in media.values()]
-                        if "Duration" in dir(x)
-                    )
-                )
-            case "Count":
-                sizes.append(len(media.values()))
-
-    plt.pie(sizes, labels=labels, shadow=True, textprops={"color": "white"})
-    plt.savefig(outPath, transparent=True)
-    plt.close()
-    return f"images/charts/mediaChart-{chartType}.png"
 
 
 @register.simple_tag
@@ -133,6 +118,11 @@ def MinYear(objList):
             minVal = min(x.Year for x in TVShow.objects.all())
 
     return minVal
+
+
+@register.filter
+def InList(val: typing.Any, valList: typing.Iterable):
+    return val in valList
 
 
 @register.filter

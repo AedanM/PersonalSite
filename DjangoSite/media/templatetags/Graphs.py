@@ -438,7 +438,7 @@ def CompletionPercentageRuntime(objList: list) -> str:
         hole=0.25,
         names="label",
         category_orders={"label": cats},
-        title=f"Watch Status by Duration",
+        title="Watch Status by Duration",
         values="values",
     )
 
@@ -472,7 +472,7 @@ def CompletionPercentage(objList: list) -> str:
         hole=0.25,
         names="label",
         category_orders={"label": cats},
-        title=f"Watch Status by Count",
+        title="Watch Status by Count",
         values="values",
     )
 

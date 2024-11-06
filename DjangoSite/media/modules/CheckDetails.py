@@ -4,7 +4,7 @@ import shutil
 import time
 from pathlib import Path
 
-import ffmpeg # type: ignore
+import ffmpeg  # type: ignore
 import thefuzz.fuzz
 from django.conf import settings as django_settings
 
@@ -53,7 +53,9 @@ def FilterOutMatches(movies):
             if matches[0].Duration.seconds // 60 / m["Size"] < 45:
                 rerender.append(m["FilePath"])
         else:
-            closest = sorted(movieList, key=lambda x: thefuzz.fuzz.ratio(m["Title"], x.Title))
+            closest = sorted(
+                movieList, key=lambda x, obj=m: thefuzz.fuzz.ratio(obj["Title"], x.Title)
+            )
             m["Closest"] = {"Title": closest[-1].Title, "Year": closest[-1].Year}
             unmatched.append(m)
     if rerender:

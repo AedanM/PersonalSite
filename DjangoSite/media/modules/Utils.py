@@ -1,11 +1,20 @@
+import json
 import re
+from pathlib import Path
 from typing import Any
 
+from django.conf import settings as django_settings
 from django.core.exceptions import ObjectDoesNotExist
 
 # pylint: disable=E0402
 from ..forms import AlbumForm, ComicForm, MovieForm, NovelForm, PodcastForm, TVForm, YoutubeForm
 from ..models import Album, Comic, Movie, Novel, Podcast, TVShow, Youtube
+
+DEFINED_TAGS = {}
+
+with open(Path(django_settings.STATICFILES_DIRS[0]) / "files/Genres.json", encoding="ascii") as fp:
+    DEFINED_TAGS = json.load(fp)
+    DEFINED_TAGS.pop("_comment", None)
 
 
 def CamelToSentence(text: str) -> str:
@@ -117,14 +126,29 @@ def FindID(contentID: str) -> Any:
     return None
 
 
-def GetAllTags(objType=None) -> dict[str, int]:
+def GetAllTags(objType) -> dict[str, dict]:
     genres = []
-    genreFreq = {}
-    modelTypes = [objType] if objType else MODEL_LIST
-    _ = [
-        [[genres.append(y) for y in x.GenreTagList] for x in modelType.objects.all()]
-        for modelType in modelTypes
-    ]
-    for i in set(genres):
-        genreFreq[i] = genres.count(i)
-    return dict(sorted(genreFreq.items(), key=lambda x: x[1], reverse=True))
+    _ = [[genres.append(y) for y in x.GenreTagList] for x in objType.objects.all()]
+    freqDir = {}
+    for title, definedList in DEFINED_TAGS.items():
+        freqDir[title] = {}
+        for i in definedList:
+            if genres.count(i) > 0:
+                freqDir[title][i] = genres.count(i)
+            elif i == "Downloaded" and "Downloaded" in dir(objType.objects.all()[0]):
+                freqDir[title][i] = len([x for x in objType.objects.all() if x.Downloaded])
+            elif i == "Watched" and "Watched" in dir(objType.objects.all()[0]):
+                freqDir[title][i] = len([x for x in objType.objects.all() if x.Watched])
+        genres = [x for x in genres if x not in definedList]
+        if len(freqDir[title].items()) < 1:
+            del freqDir[title]
+
+    if set(genres):
+        freqDir["ETC"] = {}
+        for i in set(genres):
+            freqDir["ETC"][i] = genres.count(i)
+
+    outputDir = {}
+    for title, freqList in freqDir.items():
+        outputDir[title] = dict(sorted(freqList.items(), key=lambda x: x[1], reverse=True))
+    return outputDir

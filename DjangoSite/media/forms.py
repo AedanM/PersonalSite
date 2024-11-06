@@ -8,8 +8,6 @@ class TVForm(forms.ModelForm):
     class Meta:
         model = TVShow
         fields = "__all__"
-        
-    field_order = ["title,genre_tags,logo, "]
 
 
 class ComicForm(forms.ModelForm):
@@ -28,7 +26,6 @@ class MovieForm(forms.ModelForm):
     class Meta:
         model = Movie
         fields = "__all__"
-        field_order = ["Title", "Genre_Tags", "Logo"]
 
 
 class PodcastForm(forms.ModelForm):

@@ -9,34 +9,34 @@ MINIMUM_YEAR = 1900
 
 def FuzzStr(obj, query):
     titleFuzz = fuzz.partial_ratio(query.lower(), obj.Title.lower())
-    tagFuzz = fuzz.partial_ratio(query.lower(), obj.Genre_Tags.lower())
-    return ((titleFuzz * 3) if titleFuzz > 75 else 0) + (tagFuzz if titleFuzz > 50 else 0)
+    tagFuzz = max(fuzz.partial_ratio(query.lower(), tag.lower()) for tag in obj.GenreTagList)
+    return max(titleFuzz, tagFuzz)
 
 
 def CheckTags(x, tagList):
-    return all(tag in " ".join(x.GenreTagList) for tag in tagList.split(",") if tag)
+    return all(tag in x.GenreTagList for tag in tagList.split(",") if tag)
 
 
 def ExcludeTags(x, tagList):
-    return any(tag in " ".join(x.GenreTagList) for tag in tagList.split(",") if tag)
+    return any(tag in x.GenreTagList for tag in tagList.split(",") if tag)
 
 
 def FilterTags(tagList, objList, include):
     if tagList:
-        if "watched" in tagList:
+        if "Watched" in tagList:
             objList = [
                 x for x in objList if (include and x.Watched) or (not include and not x.Watched)
             ]
-            tagList = tagList.replace("watched", "").strip()
+            tagList = tagList.replace("Watched", "").strip()
 
-        if "downloaded" in tagList:
+        if "Downloaded" in tagList:
             objList = [
                 x
                 for x in objList
                 if (include and x.Downloaded) or (not include and not x.Downloaded)
             ]
-            tagList = tagList.replace("downloaded,", "").strip()
-            tagList = tagList.replace("downloaded", "").strip()
+            tagList = tagList.replace("Downloaded", "").strip()
+
         if tagList:
             objList = [
                 x

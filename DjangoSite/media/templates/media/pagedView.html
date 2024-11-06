@@ -258,144 +258,50 @@
 					</details>
 					<details>
 						<summary>Include</summary>
-						<button
-							onclick="SetUrlParam(['genre', 'page'],['watched', ''], true)"
-							class="btn btn-outline-success m-1">
-							Watched
-						</button>
-						<button
-							onclick="SetUrlParam(['genre', 'page'],['downloaded', ''], true)"
-							class="btn btn-outline-success m-1">
-							Downloaded
-						</button>
 						<table>
+							{%with activeList=filters|Get:"include"%} {% for title, genre in Tags.items%}
 							<tr>
-								<td>Major Tags</td>
 								<td>
-									{% for item, freq in Tags.items %} {% if freq > 15 %} {% if item not in filters|Get:"include"%}
-									<button
-										onclick="SetUrlParam(['genre', 'page'],['{{item}}', ''], true)"
-										class="btn btn-outline-primary m-1">
-										{{item}} ({{freq}})
-									</button>
-									{%else%}
-									<button
-										onclick="SetUrlParam(['genre', 'page'],['{{item}}', ''], true)"
-										class="btn btn-primary m-1">
-										{{item}} ({{freq}})
-									</button>
-									{%endif%} {%endif%} {% endfor %}
+									<p>{{title}}</p>
 								</td>
-							</tr>
-							<tr>
-								<td>Minor Tags</td>
 								<td>
 									<!-- prettier-ignore -->
-									{% for item, freq in Tags.items %} {% if freq <= 15 and freq > 5 %} {% if item not in filters|Get:"include"%}
+
+									{% for item, freq in genre.items %}
+									{% with active=item|InList:activeList%}
 									<button
 										onclick="SetUrlParam(['genre', 'page'],['{{item}}', ''], true)"
-										class="btn btn-outline-info m-1">
+										class="{{ title|TagStyle:active }}">
 										{{item}} ({{freq}})
 									</button>
-									{%else%}
-									<button
-										onclick="SetUrlParam(['genre', 'page'],['{{item}}', ''], true)"
-										class="btn btn-info m-1">
-										{{item}} ({{freq}})
-									</button>
-									{%endif%} {%endif%} {% endfor %}
+									{% endwith %} {% endfor %}
 								</td>
 							</tr>
-							<tr>
-								<td>Specific Tags</td>
-								<td>
-									<!-- prettier-ignore -->
-									{% for item, freq in Tags.items %} {% if freq <= 5 %} {% if item not in filters|Get:"include"%}
-									<button
-										onclick="SetUrlParam(['genre', 'page'],['{{item}}', ''], true)"
-										class="btn btn-outline-light m-1">
-										{{item}} ({{freq}})
-									</button>
-									{%else%}
-									<button
-										onclick="SetUrlParam(['genre', 'page'],['{{item}}', ''], true)"
-										class="btn btn-light m-1">
-										{{item}} ({{freq}})
-									</button>
-									{%endif%} {%endif%} {% endfor %}
-								</td>
-							</tr>
+							{%endfor%} {%endwith%}
 						</table>
 					</details>
 					<details>
 						<summary>Exclude</summary>
-						<button
-							onclick="SetUrlParam(['exclude', 'page'],['watched', ''], true)"
-							class="btn btn-outline-success m-1">
-							Watched
-						</button>
-						<button
-							onclick="SetUrlParam(['exclude', 'page'],['downloaded', ''], true)"
-							class="btn btn-outline-success m-1">
-							Downloaded
-						</button>
 						<table>
+							{%with activeList=filters|Get:"include"%} {% for title, genre in Tags.items%}
 							<tr>
-								<td>Major Tags</td>
+								<td>
+									<p>{{title}}</p>
+								</td>
 								<td>
 									<!-- prettier-ignore -->
-									{% for item, freq in Tags.items %} {% if freq > 15 %} {% if item not in filters|Get:"exclude"%}
+
+									{% for item, freq in genre.items %}
+									{% with active=item|InList:activeList%}
 									<button
 										onclick="SetUrlParam(['exclude', 'page'],['{{item}}', ''], true)"
-										class="btn btn-outline-primary m-1">
+										class="{{ title|TagStyle:active }}">
 										{{item}} ({{freq}})
 									</button>
-									{%else%}
-									<button
-										onclick="SetUrlParam(['exclude', 'page'],['{{item}}', ''], true)"
-										class="btn btn-primary m-1">
-										{{item}} ({{freq}})
-									</button>
-									{%endif%} {%endif%} {% endfor %}
+									{% endwith %} {% endfor %}
 								</td>
 							</tr>
-							<tr>
-								<td>Minor Tags</td>
-								<td>
-									<!-- prettier-ignore -->
-									{% for item, freq in Tags.items %} {% if freq <= 15 and freq > 5 %} {% if item not in filters|Get:"exclude"%}
-									<button
-										onclick="SetUrlParam(['exclude', 'page'],['{{item}}', ''], true)"
-										class="btn btn-outline-info m-1">
-										{{item}} ({{freq}})
-									</button>
-									{%else%}
-									<button
-										onclick="SetUrlParam(['exclude', 'page'],['{{item}}', ''], true)"
-										class="btn btn-info m-1">
-										{{item}} ({{freq}})
-									</button>
-									{%endif%} {%endif%} {% endfor %}
-								</td>
-							</tr>
-							<tr>
-								<td>Specific Tags</td>
-								<td>
-									{% for item, freq in Tags.items %} {% if freq <= 5 %} {% if item not in filters|Get:"exclude"%}
-									<button
-										onclick="SetUrlParam(['exclude', 'page'],['{{item}}', ''], true)"
-										class="btn btn-outline-light m-1">
-										{{item}} ({{freq}})
-									</button>
-									{%else%}
-									<button
-										onclick="SetUrlParam(['exclude', 'page'],['{{item}}', ''], true)"
-										class="btn btn-light m-1">
-										{{item}} ({{freq}})
-									</button>
-									{%endif%} {%endif%} {% endfor %}
-								</td>
-							</tr>
+							{%endfor%} {%endwith%}
 						</table>
 					</details>
 				</details>

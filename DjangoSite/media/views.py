@@ -7,22 +7,17 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 
 from .models import Movie
-from .modules.CheckDetails import CheckMovies, CopyOverRenderQueue, HandleReRenderQueue
+from .modules.CheckDetails import (CheckMovies, CopyOverRenderQueue,
+                                   HandleReRenderQueue)
 from .modules.DB_Tools import CleanDupes
 from .modules.FileRip import RipWDrive
 from .modules.ModelTools import DownloadImage, SortTags
 from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.Utils import (
-    MODEL_LIST,
-    DetermineForm,
-    FindID,
-    FormMatch,
-    GetAllTags,
-    GetContents,
-    GetFormAndClass,
-)
+from .modules.Utils import (MODEL_LIST, DetermineForm, FindID, FormMatch,
+                            GetAllTags, GetContents, GetFormAndClass)
 from .modules.WebTools import ScrapeWiki
-from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFunction
+from .utils import (ExtractYearRange, FilterTags, FuzzStr, SearchFunction,
+                    SortFunction)
 
 # Create your views here.
 LOGGER = logging.getLogger("UserLogger")
@@ -44,7 +39,7 @@ def fullView(request) -> HttpResponse:
             else GetContents(request=request)[soloContent]
         ),
         "Graphs": "noGraphs" in request.GET,
-        "Tags": GetAllTags() if "genre" not in request.GET else {},
+        "Tags": GetAllTags(objType=None) if "genre" not in request.GET else {},
     }
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
 
@@ -292,7 +287,6 @@ def FilterMedia(request, objType) -> dict:
         objList = sorted(
             objList, key=lambda x: SortFunction(obj=x, key=sortKey), reverse=reverseSort
         )
-
     return {
         "type": request.GET.get("type", "Movie"),
         "sort": sortKey,
