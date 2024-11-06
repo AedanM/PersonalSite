@@ -346,14 +346,14 @@ def FancyRatings(objList: list) -> str:
     )
 
     fig = px.scatter(
-        df,
+        data_frame=df,
         x="Year",
         y="Ratings",
         title="Yearly Average Rating Over Time",
         size="Number of Shows",
         hover_name="Shows Active",
     )
-    rollingTrend = sm.nonparametric.lowess(df["Ratings"], df["Year"], frac=0.12)
+    rollingTrend = sm.nonparametric.lowess(df["Ratings"], df["Year"], frac=0.11)
 
     fig.add_scatter(
         x=rollingTrend[:, 0],
