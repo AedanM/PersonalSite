@@ -7,10 +7,13 @@ from django.conf import settings as django_settings
 from django.core.exceptions import ObjectDoesNotExist
 
 # pylint: disable=E0402
-from ..forms import AlbumForm, ComicForm, MovieForm, NovelForm, PodcastForm, TVForm, YoutubeForm
+from ..forms import (AlbumForm, ComicForm, MovieForm, NovelForm, PodcastForm,
+                     TVForm, YoutubeForm)
 from ..models import Album, Comic, Movie, Novel, Podcast, TVShow, Youtube
 
 DEFINED_TAGS = {}
+FORM_LIST = [MovieForm, TVForm, NovelForm, ComicForm, PodcastForm, YoutubeForm, AlbumForm]
+MODEL_LIST = [Movie, TVShow, Novel, Comic, Podcast, Youtube, Album]
 
 with open(Path(django_settings.STATICFILES_DIRS[0]) / "files/Genres.json", encoding="ascii") as fp:
     DEFINED_TAGS = json.load(fp)
@@ -27,28 +30,13 @@ def ModelDisplayName(model):
 
 
 def FormMatch(obj):
-    form = MovieForm
-    if isinstance(obj, Movie):
-        form = MovieForm
-    elif isinstance(obj, TVShow):
-        form = TVForm
-    elif isinstance(obj, Novel):
-        form = NovelForm
-    elif isinstance(obj, Comic):
-        form = ComicForm
-    elif isinstance(obj, Podcast):
-        form = PodcastForm
-    elif isinstance(obj, Youtube):
-        form = YoutubeForm
-    elif isinstance(obj, Album):
-        form = AlbumForm
-    return form
+    return [x for x in FORM_LIST if isinstance(obj, x.Meta.model)][0]
 
 
 def DetermineForm(request):
     contentType = "Movie"
     if "Year" in request.POST:
-        pass
+        contentType = "Movie"
     elif "Length" in request.POST:
         contentType = "TV"
     elif "Creator" in request.POST:
@@ -66,36 +54,13 @@ def DetermineForm(request):
 
 
 def GetFormAndClass(formType) -> tuple:
-    cls: Any = MovieForm
-    obj: Any = Movie
-    if "Movie" in formType:
-        cls = MovieForm
-        obj = Movie
-    elif "TV" in formType:
-        cls = TVForm
-        obj = TVShow
-    elif "Book" in formType:
-        cls = NovelForm
-        obj = Novel
-    elif "Comic" in formType:
-        cls = ComicForm
-        obj = Comic
-    elif "Podcast" in formType:
-        cls = PodcastForm
-        obj = Podcast
-    elif "Youtube" in formType:
-        cls = YoutubeForm
-        obj = Youtube
-    elif "Album" in formType:
-        cls = AlbumForm
-        obj = Album
+    obj = [x for x in MODEL_LIST if formType.replace(" ", "") in x.__name__][0]
+    cls = FormMatch(obj())
     return cls, obj
 
 
-MODEL_LIST = [Movie, TVShow, Novel, Comic, Podcast, Youtube, Album]
-
-
 def ContentFilter(getParams: dict, contentList) -> list:
+    """Full View (semi Deprecated)"""
     returnList = contentList
     if "genre" in getParams:
         returnList = [x for x in returnList if getParams["genre"] in x.GenreTagList]
@@ -103,6 +68,7 @@ def ContentFilter(getParams: dict, contentList) -> list:
 
 
 def GetContents(request) -> dict[str, dict]:
+    """Full View (semi Deprecated)"""
     # pylint: disable=E1101
     loadLogo = "updateLogos" in request.GET
     outDict = {}
@@ -140,13 +106,10 @@ def GetAllTags(objType) -> dict[str, dict]:
             elif i == "Watched" and "Watched" in dir(objType.objects.all()[0]):
                 freqDir[title][i] = len([x for x in objType.objects.all() if x.Watched])
         genres = [x for x in genres if x not in definedList]
-        if len(freqDir[title].items()) < 1:
-            del freqDir[title]
 
-    if set(genres):
-        freqDir["ETC"] = {}
-        for i in set(genres):
-            freqDir["ETC"][i] = genres.count(i)
+    freqDir["ETC"] = {}
+    for i in set(genres):
+        freqDir["ETC"][i] = genres.count(i)
 
     outputDir = {}
     for title, freqList in freqDir.items():

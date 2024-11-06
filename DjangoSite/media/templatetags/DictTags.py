@@ -32,7 +32,7 @@ def HasAttr(iterDict, attrName) -> bool:
 
 
 @register.filter
-def TagOrder():
+def TagOrder(_tag):
     yield from TAG_SECTIONS
 
 

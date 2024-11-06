@@ -174,7 +174,7 @@
 					</button>
 					<button
 						class="clean-button"
-						onclick="SetUrlParam(['type', 'page'], ['Book',''])">
+						onclick="SetUrlParam(['type', 'page'], ['Novel',''])">
 						<i class="mx-3 bi bi-journal-bookmark"></i>
 					</button>
 					<button
@@ -216,7 +216,7 @@
 					<input
 						type="Search"
 						placeholder="Search"
-						onkeydown="if (event.key =='Enter') {SetUrlParam('query', this.value)}" />
+						onkeydown="if (event.key =='Enter') {SetUrlParam(['query','genre','exclude','page'], [this.value,'','',''])}" />
 					<details>
 						<summary>Sorting</summary>
 						<select onchange="SetUrlParam('sort', this.value)">
@@ -259,7 +259,9 @@
 					<details>
 						<summary>Include</summary>
 						<table>
-							{%with activeList=filters|Get:"include"%} {% for title, genre in Tags.items%}
+							<!-- prettier-ignore -->
+							{%with activeList=filters|Get:"include"%} {% for title in 'tag'|TagOrder %} {% with genre=Tags|Get:title%}
+							{% if genre|length > 0%}
 							<tr>
 								<td>
 									<p>{{title}}</p>
@@ -277,13 +279,15 @@
 									{% endwith %} {% endfor %}
 								</td>
 							</tr>
-							{%endfor%} {%endwith%}
+							{%endif%} {%endwith%} {%endfor%} {%endwith%}
 						</table>
 					</details>
 					<details>
 						<summary>Exclude</summary>
 						<table>
-							{%with activeList=filters|Get:"include"%} {% for title, genre in Tags.items%}
+							<!-- prettier-ignore -->
+							{%with activeList=filters|Get:"include"%} {% for title in 'tag'|TagOrder %} {% with genre=Tags|Get:title%}
+							{% if genre|length > 0%}
 							<tr>
 								<td>
 									<p>{{title}}</p>
@@ -301,7 +305,7 @@
 									{% endwith %} {% endfor %}
 								</td>
 							</tr>
-							{%endfor%} {%endwith%}
+							{%endif%} {%endwith%} {%endfor%} {%endwith%}
 						</table>
 					</details>
 				</details>

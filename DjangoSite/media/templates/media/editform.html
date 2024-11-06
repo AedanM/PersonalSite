@@ -1,6 +1,8 @@
 {% load static %} {%load crispy_forms_tags %}
 <!DOCTYPE html>
-<html>
+<html
+	data-bs-theme="{{colorMode}}"
+	data-theme="{{colorMode}}">
 	<head>
 		<meta charset="utf-8" />
 		<meta
@@ -16,12 +18,21 @@
 		<link
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.css" />
+
 		<link
 			rel="stylesheet"
 			href="{% static 'styles/MasterStyle.css' %}" />
 	</head>
 	<body>
-		<h1>{{inst.Title}}</h1>
+		<div class="pico">
+			<h1>{{inst.Title}}</h1>
+		</div>
+		<a
+			type="button"
+			style="background-color: red; border: red"
+			onclick="document.location = '/media/delete?id={{inst.id}}'"
+			>Delete Media</a
+		>
 		<form
 			action=""
 			method="post">

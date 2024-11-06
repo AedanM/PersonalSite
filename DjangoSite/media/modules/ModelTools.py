@@ -48,6 +48,7 @@ def DownloadImage(modelObj):
         else:
             modelObj.Logo = DEFAULT_IMG
             modelObj.save()
+    return modelObj.Logo != DEFAULT_IMG
 
 
 def GetImageFromLink(savePath, requestImg):
@@ -55,11 +56,17 @@ def GetImageFromLink(savePath, requestImg):
 
     try:
         urllib.request.urlretrieve(
-            urllib.parse.quote(requestImg).replace("%3A", ":"),
+            requestImg,
             tempPath,
         )
     except ValueError:
-        return
+        try:
+            urllib.request.urlretrieve(
+                urllib.parse.quote(requestImg).replace("%3A", ":"),
+                tempPath,
+            )
+        except ValueError:
+            return
     try:
         img = Image.open(tempPath)
         imScale = 320 / img.size[0]

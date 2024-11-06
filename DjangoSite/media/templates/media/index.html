@@ -4,15 +4,29 @@
 	<head>
 		<meta charset="iso-8859-15" />
 
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta
+			http-equiv="X-UA-Compatible"
+			content="IE=edge" />
 		<title>Media Server Description</title>
-		<meta name="description" content="" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta
+			name="description"
+			content="" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1" />
 		<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="{% static 'styles/MasterStyle.css' %}" />
-		<link rel="stylesheet" href="{% static 'styles/MediaStyle.css' %}" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<link
+			rel="stylesheet"
+			href="{% static 'styles/MasterStyle.css' %}" />
+		<link
+			rel="stylesheet"
+			href="{% static 'styles/MediaStyle.css' %}" />
 	</head>
 	<body>
 		<main class="container">
@@ -38,11 +52,7 @@
 			</header>
 			<h2>Current Files</h2>
 
-			{% if Graphs %} {% with imgLink=MediaTypes|MakeChart:"Count" %}
-			<img src="{% static imgLink %}" />
-			{%endwith%} {% with imgLink=MediaTypes|MakeChart:"Duration" %}
-			<img src="{% static imgLink %}" />
-			{%endwith%} {% endif %} {% if Tags|length > 0%}
+			{% if Tags|length > 0%}
 			<details>
 				<summary>Available Tags ({{Tags.items|length}})</summary>
 				<table>
@@ -50,7 +60,11 @@
 						<td>Major Tags</td>
 						<td>
 							{% for item, freq in Tags.items %} {% if freq > 15 %}
-							<button onclick="document.location='/media?genre={{item}}'" class="tag">{{item}} ({{freq}}) {{count}}</button>
+							<button
+								onclick="document.location='/media?genre={{item}}'"
+								class="tag">
+								{{item}} ({{freq}}) {{count}}
+							</button>
 							{%endif%} {% endfor %}
 						</td>
 					</tr>
@@ -58,7 +72,11 @@
 						<td>Minor Tags</td>
 						<td>
 							{% for item, freq in Tags.items %} {% if freq <= 15 and freq > 5 %}
-							<button onclick="document.location='/media?genre={{item}}'" class="secondary tag">{{item}} ({{freq}})</button>
+							<button
+								onclick="document.location='/media?genre={{item}}'"
+								class="secondary tag">
+								{{item}} ({{freq}})
+							</button>
 							{%endif%} {% endfor %}
 						</td>
 					</tr>
@@ -66,7 +84,11 @@
 						<td>Specific Tags</td>
 						<td>
 							{% for item, freq in Tags.items %} {% if freq < 5 %}
-							<button onclick="document.location='/media?genre={{item}}'" class="contrast tag">{{item}} ({{freq}})</button>
+							<button
+								onclick="document.location='/media?genre={{item}}'"
+								class="contrast tag">
+								{{item}} ({{freq}})
+							</button>
 							{%endif%} {% endfor %}
 						</td>
 					</tr>
@@ -121,31 +143,57 @@
 								<td id="MediaLogo">
 									<a href="{{show.InfoPage}}">
 										{% if show|ModelType != "TVShow" %}
-										<img id="MediaImg" src="{% static img %}" alt="{{show.Title}}" />
+										<img
+											id="MediaImg"
+											src="{% static img %}"
+											alt="{{show.Title}}" />
 										{% else %}
-										<img id="MediaLogoImg" src="{% static img %}" alt="{{show.Title}}" />
+										<img
+											id="MediaLogoImg"
+											src="{% static img %}"
+											alt="{{show.Title}}" />
 										{% endif %}
 									</a>
 								</td>
 								{% if media|HasAttr:"Creator" %}
 								<td>
-									<a id="GenreTag" href="/media?genre={{show.Creator}}"> {{show.Creator}} </a>
+									<a
+										id="GenreTag"
+										href="/media?genre={{show.Creator}}">
+										{{show.Creator}}
+									</a>
 								</td>
 								{%endif%} {% if media|HasAttr:"Author" %}
 								<td>
-									<a id="GenreTag" href="/media?genre={{show.Author}}"> {{show.Author}} </a>
+									<a
+										id="GenreTag"
+										href="/media?genre={{show.Author}}">
+										{{show.Author}}
+									</a>
 								</td>
 								{%endif%} {% if media|HasAttr:"Company" %}
 								<td>
-									<a id="GenreTag" href="/media?genre={{show.Company}}"> {{show.Company}} </a>
+									<a
+										id="GenreTag"
+										href="/media?genre={{show.Company}}">
+										{{show.Company}}
+									</a>
 								</td>
 								{%endif%} {% if media|HasAttr:"Character" %}
 								<td>
-									<a id="GenreTag" href="/media?genre={{show.Character}}"> {{show.Character}} </a>
+									<a
+										id="GenreTag"
+										href="/media?genre={{show.Character}}">
+										{{show.Character}}
+									</a>
 								</td>
 								{%endif%}
 								<td>
-									<a id="MediaLink" href="/media/view?id={{show.id}}"> {{show.Title}} </a>
+									<a
+										id="MediaLink"
+										href="/media/view?id={{show.id}}">
+										{{show.Title}}
+									</a>
 								</td>
 								<td>{{show.Rating|rating}}</td>
 								{% if media|HasAttr:"Year" %}
@@ -157,31 +205,67 @@
 								{% else %}
 								<td>{{show.PageLength}}</td>
 								{%endif%} {% if show.Downloaded %}
-								<td align="center" style="text-align: center; font-size: 150%; font-weight: bold">
-									<a href="/media/setBool?field=Downloaded&contentId={{show.id}}" style="color: green; text-decoration: none"> &#10004; </a>
+								<td
+									align="center"
+									style="text-align: center; font-size: 150%; font-weight: bold">
+									<a
+										href="/media/setBool?field=Downloaded&contentId={{show.id}}"
+										style="color: green; text-decoration: none">
+										&#10004;
+									</a>
 								</td>
 								{% else %}
-								<td align="center" style="text-align: center; font-size: 150%; font-weight: bold">
-									<a href="/media/setBool?field=Downloaded&contentId={{show.id}}" style="color: red; text-decoration: none"> &#10007; </a>
+								<td
+									align="center"
+									style="text-align: center; font-size: 150%; font-weight: bold">
+									<a
+										href="/media/setBool?field=Downloaded&contentId={{show.id}}"
+										style="color: red; text-decoration: none">
+										&#10007;
+									</a>
 								</td>
 								{% endif %} {% if media|HasAttr:"Watched" %} {% if show.Watched %}
-								<td align="center" style="text-align: center; font-size: 150%; font-weight: bold">
-									<a href="/media/setBool?field=Watched&contentId={{show.id}}" style="color: green; text-decoration: none"> &#10004; </a>
+								<td
+									align="center"
+									style="text-align: center; font-size: 150%; font-weight: bold">
+									<a
+										href="/media/setBool?field=Watched&contentId={{show.id}}"
+										style="color: green; text-decoration: none">
+										&#10004;
+									</a>
 								</td>
 								{% else %}
-								<td align="center" style="text-align: center; font-size: 150%; font-weight: bold">
-									<a href="/media/setBool?field=Watched&contentId={{show.id}}" style="color: red; text-decoration: none"> &#10007; </a>
+								<td
+									align="center"
+									style="text-align: center; font-size: 150%; font-weight: bold">
+									<a
+										href="/media/setBool?field=Watched&contentId={{show.id}}"
+										style="color: red; text-decoration: none">
+										&#10007;
+									</a>
 								</td>
 								{% endif %} {% endif %} {% if media|HasAttr:"Read" %} {% if show.Read %}
-								<td align="center" style="text-align: center; font-size: 150%; font-weight: bold; color: green">&#10004;</td>
+								<td
+									align="center"
+									style="text-align: center; font-size: 150%; font-weight: bold; color: green">
+									&#10004;
+								</td>
 								{% else %}
-								<td align="center" style="text-align: center; font-size: 150%; font-weight: bold; color: red">&#10007;</td>
+								<td
+									align="center"
+									style="text-align: center; font-size: 150%; font-weight: bold; color: red">
+									&#10007;
+								</td>
 								{% endif %} {% endif %}
 								<td>
 									<details>
 										<summary>{{ show.GenreTagList|length }} Tags</summary>
 										{% for genre in show.GenreTagList %}
-										<a id="GenreTag" href="/media?genre={{genre}}"> {% if not forloop.last%} {{genre}}, {% else %} {{genre}} {% endif %} </a>
+										<a
+											id="GenreTag"
+											href="/media?genre={{genre}}">
+											{% if not forloop.last%} {{genre}}, {% else %} {{genre}} {% endif %}
+										</a>
 										{% endfor %}
 									</details>
 								</td>

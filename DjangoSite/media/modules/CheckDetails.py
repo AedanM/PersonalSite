@@ -44,9 +44,7 @@ def FilterOutMatches(movies):
                 "Runtime": matches[0].Duration.seconds // 60,
                 "Title": matches[0].Title,
                 "Year": matches[0].Year,
-                "Tag Diff": [
-                    x for x in m["Tags"] if ResetAliasTags(x) not in matches[0].GenreTagList
-                ],
+                "Tag Diff": [x for x in m["Tags"] if x not in matches[0].GenreTagList],
                 "Marked": matches[0].Downloaded,
             }
             matched.append(m)
@@ -117,11 +115,6 @@ def MatchTitles(t1, t2) -> bool:
         t1 = t1.replace(char, "")
         t2 = t2.replace(char, "")
     return t1.lower() == t2.lower()
-
-
-def ResetAliasTags(string):
-
-    return string
 
 
 def ResetAlias(files):

@@ -3,21 +3,24 @@ import logging
 
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.http import HttpResponse, JsonResponse
+from django.http import Http404, HttpResponse, HttpResponseNotFound, JsonResponse
 from django.shortcuts import redirect, render
 
 from .models import Movie
-from .modules.CheckDetails import (CheckMovies, CopyOverRenderQueue,
-                                   HandleReRenderQueue)
-from .modules.DB_Tools import CleanDupes
+from .modules.CheckDetails import CheckMovies, CopyOverRenderQueue, HandleReRenderQueue
 from .modules.FileRip import RipWDrive
 from .modules.ModelTools import DownloadImage, SortTags
-from .modules.UpdateFromFolder import UpdateFromFolder
-from .modules.Utils import (MODEL_LIST, DetermineForm, FindID, FormMatch,
-                            GetAllTags, GetContents, GetFormAndClass)
+from .modules.Utils import (
+    MODEL_LIST,
+    DetermineForm,
+    FindID,
+    FormMatch,
+    GetAllTags,
+    GetContents,
+    GetFormAndClass,
+)
 from .modules.WebTools import ScrapeWiki
-from .utils import (ExtractYearRange, FilterTags, FuzzStr, SearchFunction,
-                    SortFunction)
+from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFunction
 
 # Create your views here.
 LOGGER = logging.getLogger("UserLogger")
@@ -32,6 +35,11 @@ def viewMedia(request) -> HttpResponse:
 
 def fullView(request) -> HttpResponse:
     soloContent = request.GET.get("type", None)
+    masterTags = {}
+    for i in MODEL_LIST:
+        for title, valDict in GetAllTags(i).items():
+            masterTags |= valDict
+
     context = {
         "MediaTypes": (
             GetContents(request=request)
@@ -39,7 +47,7 @@ def fullView(request) -> HttpResponse:
             else GetContents(request=request)[soloContent]
         ),
         "Graphs": "noGraphs" in request.GET,
-        "Tags": GetAllTags(objType=None) if "genre" not in request.GET else {},
+        "Tags": masterTags if "genre" not in request.GET else {},
     }
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
 
@@ -47,15 +55,24 @@ def fullView(request) -> HttpResponse:
 
 
 @login_required
-def update(request) -> HttpResponse:
-    if "clean" not in request.GET:
-        response = UpdateFromFolder(
-            folder=r"W:/", useFile="useFile" in request.GET, save="save" in request.GET
-        )
+def delete(request) -> HttpResponse:
+    confirm = request.GET.get("confirm", "False")
+    if contentObj := FindID(request.GET.get("id", -1)):
+        if confirm == "True":
+            contentObj.delete()
+        else:
+            return render(
+                request,
+                "media/confirmPage.html",
+                context={
+                    "inst": contentObj,
+                    "src": f"/media/delete?id={contentObj.id}",
+                    "colorMode": request.COOKIES.get("colorMode", "dark"),
+                },
+            )
     else:
-        _, model = GetFormAndClass(request.GET.get("type", "Movie"))
-        response = CleanDupes(model=model)  # type:ignore
-    return HttpResponse(content=response, content_type="text/plain")
+        return HttpResponseNotFound("No Matching ID Found")
+    return redirect("/media")
 
 
 @login_required

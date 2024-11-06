@@ -1,8 +1,8 @@
 # pylint: disable=C0103
 import datetime
 import logging
-import os
 import urllib.error
+from pathlib import Path
 
 from django.conf import settings as django_settings
 from django.db import models
@@ -28,6 +28,13 @@ class Media(models.Model):
     def __lt__(self, cmpObj) -> bool:
         return self.SortTitle < cmpObj.SortTitle
 
+    def delete(self, using=None, keep_parents=None):
+        print(f"Deleting {self.Logo}")
+        logoDst = Path(django_settings.STATICFILES_DIRS[0]) / self.Logo
+        if logoDst.exists():
+            logoDst.resolve().unlink()
+        return super().delete(using, keep_parents)
+
     @property
     def SortTitle(self):
         return str(self.Title).replace("The ", "").replace("A ", "").strip()
@@ -45,15 +52,8 @@ class Media(models.Model):
             self.Logo = returnVal
             self.save()
         try:
-            logoExists = os.path.exists(
-                os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo)
-            )
-            if loadLogo or not logoExists:
-                DownloadImage(self)
-            logoExists = os.path.exists(
-                os.path.join(django_settings.STATICFILES_DIRS[0], self.Logo)
-            )
-            if logoExists:
+            logoDst = Path(django_settings.STATICFILES_DIRS[0]) / self.Logo
+            if (loadLogo or not logoDst.exists()) and DownloadImage(self):
                 returnVal = self.Logo
             else:
                 LOGGER.error("No Logo Found at %s", self.Logo)
