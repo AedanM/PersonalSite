@@ -71,6 +71,26 @@ class Media(models.Model):
                 outDict[key.replace('"', "")] = item
         return outDict
 
+    @property
+    def BiggestTag(self) -> str:
+        bigList = [
+            "Sci-Fi",
+            "Dimension 20",
+            "Romance",
+            "Educational",
+            "Superheroes",
+            "Mystery",
+            "Comedy",
+            "Drama",
+            "Action",
+        ]
+        outVal = self.GenreTagList[0]
+        for i in bigList:
+            if i in self.GenreTagList:
+                outVal = i
+                break
+        return outVal
+
 
 class WatchableMedia(Media):
     Watched: models.BooleanField = models.BooleanField(default=False)

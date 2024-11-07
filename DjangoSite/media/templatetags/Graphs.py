@@ -1,5 +1,8 @@
 import datetime
+import logging
+from functools import wraps
 from math import ceil
+from time import time
 
 import pandas as pd
 import plotly.express as px  # type:ignore
@@ -9,6 +12,20 @@ from django import template
 from ..utils import MINIMUM_YEAR
 
 register = template.Library()
+
+LOGGER = logging.getLogger("UserLogger")
+
+
+def LogTiming(f):
+    @wraps(f)
+    def Wrap(*args, **kw):
+        ts = time()
+        result = f(*args, **kw)
+        te = time()
+        LOGGER.debug("func:%r took: %2.4f sec", f.__name__, te - ts)
+        return result
+
+    return Wrap
 
 
 @register.filter
@@ -37,7 +54,6 @@ def RatingOverTime(objList: list) -> str:
             df,
             x="Release Year",
             y="Rating",
-            range_y=(0, 10.5),
             title="Rating Over Time",
             hover_name="Title",
             color="Duration",
@@ -131,7 +147,7 @@ def DecadeBreakdown(objList: list) -> str:
             title="Release Decade Breakdown by Year",
             values=values,
         )
-        outputDiv = GetHTML(fig)
+        outputDiv = GetHTML(fig, True)
     return outputDiv
 
 
@@ -150,19 +166,11 @@ def RuntimeBreakdown(objList: list) -> str:
                     ceil(
                         (x.Duration.seconds / 60)
                         * x.Length
-                        * len(
-                            [
-                                y
-                                for y in range(x.Series_Start.year, x.Series_End.year + 1)
-                                if y in range(year, year + 11)
-                            ]
-                        )
-                        / len(range(x.Series_Start.year, x.Series_End.year + 1))
+                        * len([y for y in YearRange(x) if y in range(year, year + 11)])
+                        / len(YearRange(x))
                     )
                     for x in objList
-                    if set(range(year, year + 10)).intersection(
-                        set(range(x.Series_Start.year, x.Series_End.year + 1))
-                    )
+                    if set(range(year, year + 10)).intersection(set(YearRange(x)))
                 )
             )
     elif getattr(objList[0], "Year", None):
@@ -181,7 +189,7 @@ def RuntimeBreakdown(objList: list) -> str:
             values=values,
         )
 
-        outputDiv = GetHTML(fig)
+        outputDiv = GetHTML(fig, True)
     return outputDiv
 
 
@@ -267,7 +275,7 @@ def TimeLine(objList: list) -> str:
     objList = sorted(list(objList), key=lambda x: (x.Series_Start))
     data = []
     freeList: list[int] = []
-    for _idx, obj in enumerate(objList):
+    for obj in objList:
         yLevel = CalcIdx(obj, freeList)
         data.append(
             {
@@ -309,61 +317,80 @@ def TimeLine(objList: list) -> str:
     return outputDiv
 
 
+def YearPercentage(date):
+    date = datetime.date.today() if date.year <= MINIMUM_YEAR else date
+    return date.year + (date.month / 12) + (date.day) / 31
+
+
 @register.filter
 def FancyRatings(objList: list) -> str:
     startDecade = min(x.Series_Start.year for x in objList)
-    trimmedObj = [x for x in objList if x.Watched]
-    ratings = []
-    years = []
-    sizes = []
-    shows = []
-    for i in range(startDecade, datetime.datetime.now().year + 1):
-        showsActive = [
-            x
-            for x in trimmedObj
-            if i
-            in range(
-                x.Series_Start.year,
-                (
-                    x.Series_End.year + 1
-                    if x.Series_End.year > MINIMUM_YEAR
-                    else datetime.datetime.now().year + 1
-                ),
-            )
-        ]
-        if showsActive:
-            years.append(i)
-            ratings.append(sum(x.Rating for x in showsActive) / len(showsActive))
-            sizes.append(len(showsActive))
-            shows.append("<br>".join(sorted([x.Title for x in showsActive])))
+    trimmedList = [x for x in objList if x.Watched]
+    rollingTrend = ExtractRollingTrendRatings(startDecade, trimmedList)
+
+    titles = []
+    soloRatings = []
+    soloYears = []
+    genres = []
+    for obj in sorted(trimmedList, key=lambda x: x.Series_End - x.Series_Start, reverse=True):
+        titles.append(obj.Title)
+        titles.append(obj.Title)
+        soloRatings.append(obj.Rating)
+        soloRatings.append(obj.Rating)
+        soloYears.append(YearPercentage(obj.Series_Start))
+        soloYears.append(YearPercentage(obj.Series_End))
+        genres.append(obj.BiggestTag)
+        genres.append(obj.BiggestTag)
     df = pd.DataFrame(
         {
-            "Ratings": ratings,
-            "Year": years,
-            "Number of Shows": sizes,
-            "Shows Active": shows,
+            "Ratings": soloRatings,
+            "Year": soloYears,
+            "Title": titles,
+            "Genre": genres,
         }
     )
 
-    fig = px.scatter(
+    fig = px.line(
         data_frame=df,
         x="Year",
         y="Ratings",
+        color="Genre",
         title="Yearly Average Rating Over Time",
-        size="Number of Shows",
-        hover_name="Shows Active",
+        hover_name="Title",
+        line_group="Title",
+        markers=True,
     )
-    rollingTrend = sm.nonparametric.lowess(df["Ratings"], df["Year"], frac=0.11)
-
     fig.add_scatter(
         x=rollingTrend[:, 0],
         y=rollingTrend[:, 1],
-        mode="lines",
+        line={"dash": "dash"},
+        name="Rolling Average",
     )
-    fig.update_layout(showlegend=False)
+    fig.update_layout(showlegend=True)
 
     outputDiv = GetHTML(fig)
     return outputDiv
+
+
+def YearRange(obj):
+    endYear = (
+        obj.Series_End.year + 1
+        if obj.Series_End.year > MINIMUM_YEAR
+        else datetime.datetime.now().year + 1
+    )
+    return range(obj.Series_Start.year, endYear)
+
+
+def ExtractRollingTrendRatings(startDecade, trimmedObj):
+    ratings = []
+    years = []
+    for i in list(range(startDecade, datetime.datetime.now().year + 1)):
+        showsActive = [x for x in trimmedObj if i in YearRange(x)]
+        if showsActive:
+            years.append(i)
+            ratings.append(sum(x.Rating for x in showsActive) / len(showsActive))
+    rollingTrend = sm.nonparametric.lowess(ratings, years, frac=0.11)
+    return rollingTrend
 
 
 @register.filter
@@ -385,7 +412,6 @@ def DurationVsRating(objList: list) -> str:
         x="Duration",
         y="Ratings",
         title="Duration vs Rating",
-        range_y=(0, 10.5),
         color="Decade",
         log_x=useTotal,
         labels={"Duration": "Media Length", "Ratings": "Star Ratings"},
@@ -442,7 +468,7 @@ def CompletionPercentageRuntime(objList: list) -> str:
         values="values",
     )
 
-    outputDiv = GetHTML(fig)
+    outputDiv = GetHTML(fig, True)
     return outputDiv
 
 
@@ -476,31 +502,37 @@ def CompletionPercentage(objList: list) -> str:
         values="values",
     )
 
-    outputDiv = GetHTML(fig)
+    outputDiv = GetHTML(fig, True)
     return outputDiv
 
 
-def GetHTML(figure) -> str:
+def GetHTML(figure, isPie=False) -> str:
 
     figure.update_layout(
         paper_bgcolor="rgb(33, 37, 41)",
         plot_bgcolor="rgb(33, 37, 41)",
         template="plotly_dark",
+        height=450 if isPie else 800,
     )
     return figure.to_html(full_html=False)
 
 
 def CalcIdx(obj, yLevels: list) -> int:
-    endPoint = GetDateVal(
-        obj.Series_End if obj.Series_End.year > MINIMUM_YEAR else datetime.date.today()
+    rangeObj = range(
+        GetDateVal(obj.Series_Start),
+        GetDateVal(obj.Series_End if obj.Series_End.year > MINIMUM_YEAR else datetime.date.today())
+        + 1,
     )
-    startPoint = GetDateVal(obj.Series_Start)
-    daysList = list(range(startPoint, endPoint + 1))
-    for idx, slot in enumerate(yLevels):
-        if not any(x in slot for x in daysList):
-            slot += daysList
+    for idx, levelList in enumerate(yLevels):
+        foundMatch = False
+        for levelRange in reversed(levelList):
+            if set(levelRange) & set(rangeObj):
+                foundMatch = True
+                break
+        if not foundMatch:
+            levelList.append(rangeObj)
             return idx
-    yLevels.append(daysList)
+    yLevels.append([rangeObj])
     return len(yLevels) - 1
 
 

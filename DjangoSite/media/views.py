@@ -1,9 +1,10 @@
 # pylint: disable=C0103
 import logging
+import time
 
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.http import Http404, HttpResponse, HttpResponseNotFound, JsonResponse
+from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 from django.shortcuts import redirect, render
 
 from .models import Movie
@@ -163,11 +164,14 @@ def backup(_request) -> HttpResponse:
 
 
 def stats(request) -> HttpResponse:
+    start = time.time()
     context = {}
     for media in MODEL_LIST:
         context[media.__name__] = FilterMedia(request, media)["obj_list"]
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
-    return render(request, "media/stats.html", context=context)
+    response = render(request, "media/stats.html", context=context)
+    LOGGER.info("Stats Rendering Took %2.4f", time.time() - start)
+    return response
 
 
 @login_required
