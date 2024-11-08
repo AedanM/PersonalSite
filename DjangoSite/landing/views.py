@@ -11,7 +11,11 @@ def index(request) -> HttpResponse:
 def iterLink(request):
     link = request.GET.get("link")
     start = int(request.GET.get("start", 0))
+    pad = int(request.GET.get("pad", 0))
     end = int(request.GET.get("end", 10)) + 1
-    linkList = [link.replace("{idx}", str(x)) for x in range(start, end)]
+    linkList = [
+        link.replace("{idx}", "{number:0{width}d}".format(width=pad, number=x))
+        for x in range(start, end)
+    ]
     context: dict = {"colorMode": request.COOKIES.get("colorMode", "dark"), "linkList": linkList}
     return render(request, "landing/iterLink.html", context)
