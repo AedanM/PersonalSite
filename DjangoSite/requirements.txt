@@ -1,8 +1,0 @@
-Django==5.1
-matplotlib==3.9.2
-numpy==2.1.0
-pandas==2.2.2
-pillow==10.4.0
-thefuzz==0.22.1
-wheel==0.43.0
-whitenoise==6.7.0
