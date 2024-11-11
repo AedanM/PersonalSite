@@ -60,7 +60,7 @@ def RipWDrive():
         movies = GetMovies(Path(r"W:\\"))
         LOGGER.info("Movie scrape took %f seconds", time.time() - start)
         start = time.time()
-        tv = {}  # GetTV(Path(r"W:\\"))
+        tv = GetTV(Path(r"W:\\"))
         LOGGER.info("TV scrape took %f seconds", time.time() - start)
         with open(
             Path(__file__).parent.parent.parent / r"static\files\MediaServerSummary.json",
