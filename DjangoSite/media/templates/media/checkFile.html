@@ -123,7 +123,7 @@
 									<td>{{show|Get:"Year"}}</td>
 									<td>{{show|Get:"Size"}}</td>
 									<td>{{show|Get:"Match"|Get:"Runtime"}}</td>
-									<td>{% widthratio show|Get:"Match"|Get:"Runtime" show|Get:"Size" 1%}</td>
+									<td>{{show|Ratio}}</td>
 									{%with tags=show|Get:"Match"|Get:"Tag Diff"%}
 									<td>{%for tag in tags%} {{tag}} {%endfor%}</td>
 									{%endwith%}

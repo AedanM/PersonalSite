@@ -41,14 +41,19 @@ def GetTV(parent):
             showName = showPath.split("\\")[-1]
             if showName not in objList:
                 objList[showName] = {
+                    "Title": showName,
                     "Count": 1,
                     "Tags": showPath.split("\\")[:-1],
-                    "Size": os.stat(file).st_size,
+                    "Size": os.stat(file).st_size / (1024 * 1024 * 1024),
+                    "FilePath": str(
+                        file.parent if "Season" not in str(file.parent) else file.parent.parent
+                    ),
                 }
                 # print(showName, objList[showName])
             else:
                 objList[showName]["Count"] = objList[showName]["Count"] + 1
-                objList[showName]["Size"] = objList[showName]["Size"] + os.stat(file).st_size
+                addedSize = os.stat(file).st_size / (1024 * 1024 * 1024)
+                objList[showName]["Size"] = f"{float(objList[showName]["Size"]) + addedSize:0.2f}"
     with open(path / "Summary.json", encoding="ascii", mode="w") as fp:
         json.dump({"TV Show": objList}, fp)
     return objList

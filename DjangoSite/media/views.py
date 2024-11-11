@@ -7,8 +7,8 @@ from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 from django.shortcuts import redirect, render
 
-from .models import Movie
-from .modules.CheckDetails import CheckMovies, CopyOverRenderQueue, HandleReRenderQueue
+from .models import Movie, TVShow
+from .modules.CheckDetails import CheckMovies, CheckTV, CopyOverRenderQueue, HandleReRenderQueue
 from .modules.FileRip import RipWDrive
 from .modules.ModelTools import DownloadImage, SortTags
 from .modules.Utils import (
@@ -138,13 +138,20 @@ def checkFiles(request) -> HttpResponse:
         CopyOverRenderQueue()
         return HttpResponse("Copied Render List")
 
-    RipWDrive()
-    unmatched, matched = CheckMovies()
+    if request.GET.get("Scan", "True") == "True":
+        RipWDrive()
+
+    match request.GET.get("type"):
+        case "TVShow":
+            unmatched, matched = CheckTV()
+        case _others:
+            unmatched, matched = CheckMovies()
 
     ids = [x["Match"]["ID"] for x in matched]
     # pylint: disable=E1101
+    objList = Movie.objects.all() if request.GET.get("type") != "TVShow" else TVShow.objects.all()
     wronglyMarked = [
-        x for x in Movie.objects.all() if x.Downloaded and x.id not in ids  # type:ignore
+        x for x in objList if x.Downloaded and x.id not in ids  # type:ignore
     ]
 
     return render(

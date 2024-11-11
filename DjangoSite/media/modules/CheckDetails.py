@@ -3,12 +3,14 @@ import logging
 import shutil
 import time
 from pathlib import Path
+from pprint import pp
+from typing import Any
 
 import ffmpeg  # type: ignore
 import thefuzz.fuzz
 from django.conf import settings as django_settings
 
-from ..models import Movie
+from ..models import Movie, TVShow
 
 STATIC_FILES = Path(django_settings.STATICFILES_DIRS[0]) / "Files"
 
@@ -26,9 +28,9 @@ def CheckMovies():
     return unmatched, matched
 
 
-def FilterOutMatches(movies):
+def FilterOutMatches(movies, obj: Any = Movie):
     # pylint: disable=E1101
-    movieList = Movie.objects.all()
+    movieList = obj.objects.all()
     matched = []
     unmatched = []
     rerender = []
@@ -57,7 +59,9 @@ def FilterOutMatches(movies):
             m["Closest"] = {"Title": closest[-1].Title, "Year": closest[-1].Year}
             unmatched.append(m)
     if rerender:
-        with open(file=Path("./static/files/rerenderList.csv"), mode="w", encoding="ascii") as fp:
+        with open(
+            file=Path(f"./static/files/rerenderList{obj.__name__}.csv"), mode="w", encoding="ascii"
+        ) as fp:
             fp.write("\n".join(rerender))
 
     return unmatched, matched
@@ -132,3 +136,47 @@ def ResetAlias(files):
             if tag in tags:
                 fileStr = fileStr.replace(tag, tags[tag])
         file["Tags"] = fileStr.split(",")
+
+
+def CheckTV():
+    shows = []
+    with (STATIC_FILES / "MediaServerSummary.json").open(mode="r", encoding="ascii") as fp:
+        shows = json.load(fp)["TV Shows"]
+
+    # ResetAlias(shows)
+    unmatched, matched = FilterOutTVMatches(shows, TVShow)
+
+    return unmatched, matched
+
+
+def FilterOutTVMatches(movies: dict, obj: Any = Movie):
+    # pylint: disable=E1101
+    movieList = obj.objects.all()
+    matched = []
+    unmatched = []
+    rerender = []
+    for title, m in movies.items():
+        m["Size"] = float(m["Size"])
+        matches = [x for x in movieList if MatchTitles(x.Title, title)]
+        if matches:
+            m["Match"] = {
+                "ID": matches[0].id,  # type:ignore
+                "Runtime": matches[0].Total_Length,
+                "Title": matches[0].Title,
+                "Tag Diff": [x for x in m["Tags"] if x not in matches[0].GenreTagList],
+                "Marked": matches[0].Downloaded,
+            }
+            matched.append(m)
+            # if matches[0].Duration.seconds // 60 / m["Size"] < 45:
+            #     rerender.append(m["FilePath"])
+        else:
+            closest = sorted(movieList, key=lambda x, obj=title: thefuzz.fuzz.ratio(obj, x.Title))
+            m["Closest"] = {"Title": closest[-1].Title}
+            unmatched.append(m)
+    if rerender:
+        with open(
+            file=Path(f"./static/files/rerenderList{obj.__name__}.csv"), mode="w", encoding="ascii"
+        ) as fp:
+            fp.write("\n".join(rerender))
+
+    return unmatched, matched
