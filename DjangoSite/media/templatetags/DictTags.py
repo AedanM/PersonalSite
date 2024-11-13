@@ -21,7 +21,7 @@ TAG_SECTIONS = {
 
 @register.filter()
 def Ratio(obj):
-    return f"{(obj["Match"]["Runtime"] *60)/ obj["Size"]:0.2f}"
+    return f"{((obj["Match"]["Runtime"]) / obj["Size"]):0.2f}"
 
 
 def ObjFromDict(d) -> typing.Any:

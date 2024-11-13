@@ -112,12 +112,14 @@ def CopyOverRenderQueue():
 
 def MatchTitles(t1, t2) -> bool:
     # return thefuzz.fuzz.ratio(t1.lower(), t2.lower()) > 93
-    badChars = [".", ",", ":", "!", "'", '"', "-", " "]
+    badChars = [".", ",", ":", "!", "'", "?", '"', "-", " ", "The ", "A "]
     t1 = t1.replace("&", "and")
     t2 = t2.replace("&", "and")
     for char in badChars:
         t1 = t1.replace(char, "")
         t2 = t2.replace(char, "")
+    if "star trek" in t1:
+        print(t1, t2)
     return t1.lower() == t2.lower()
 
 
@@ -128,14 +130,24 @@ def ResetAlias(files):
         jsonFile = json.load(fp)
         titles = jsonFile["Titles"]
         tags = jsonFile["Tags"]
-    for file in files:
-        if file["Title"] in titles:
-            file["Title"] = titles[file["Title"]]
-        fileStr = ",".join(file["Tags"])
-        for tag in file["Tags"]:
-            if tag in tags:
-                fileStr = fileStr.replace(tag, tags[tag])
-        file["Tags"] = fileStr.split(",")
+    if isinstance(files, list):
+        for f in files:
+            if f["Title"] in titles:
+                f["Title"] = titles[f["Title"]]
+            fileStr = ",".join(f["Tags"])
+            for tag in f["Tags"]:
+                if tag in tags:
+                    fileStr = fileStr.replace(tag, tags[tag])
+            f["Tags"] = fileStr.split(",")
+    else:
+        for title, f in files.items():
+            if f["Title"] in titles:
+                f["Title"] = titles[f["Title"]]
+            fileStr = ",".join(f["Tags"])
+            for tag in f["Tags"]:
+                if tag in tags:
+                    fileStr = fileStr.replace(tag, tags[tag])
+            f["Tags"] = fileStr.split(",")
 
 
 def CheckTV():
@@ -143,39 +155,42 @@ def CheckTV():
     with (STATIC_FILES / "MediaServerSummary.json").open(mode="r", encoding="ascii") as fp:
         shows = json.load(fp)["TV Shows"]
 
-    # ResetAlias(shows)
-    unmatched, matched = FilterOutTVMatches(shows, TVShow)
+    ResetAlias(shows)
+    unmatched, matched = FilterOutTVMatches(shows)
 
     return unmatched, matched
 
 
-def FilterOutTVMatches(movies: dict, obj: Any = Movie):
+def FilterOutTVMatches(files: dict):
     # pylint: disable=E1101
-    movieList = obj.objects.all()
+    tvList = TVShow.objects.all()
     matched = []
     unmatched = []
     rerender = []
-    for title, m in movies.items():
+    for m in files.values():
         m["Size"] = float(m["Size"])
-        matches = [x for x in movieList if MatchTitles(x.Title, title)]
+        matches = [x for x in tvList if MatchTitles(x.Title, m["Title"])]
         if matches:
+            matchedElement = (
+                matches[0] if len(matches) < 2 else [x for x in matches if x.Downloaded][0]
+            )
             m["Match"] = {
-                "ID": matches[0].id,  # type:ignore
-                "Runtime": matches[0].Total_Length,
-                "Title": matches[0].Title,
-                "Tag Diff": [x for x in m["Tags"] if x not in matches[0].GenreTagList],
-                "Marked": matches[0].Downloaded,
+                "ID": matchedElement.id,  # type:ignore
+                "Runtime": float(matchedElement.Duration.seconds // 60) * m["Count"],
+                "Title": matchedElement.Title,
+                "Tag Diff": [x for x in m["Tags"] if x not in matchedElement.GenreTagList],
+                "Marked": matchedElement.Downloaded,
             }
             matched.append(m)
             # if matches[0].Duration.seconds // 60 / m["Size"] < 45:
             #     rerender.append(m["FilePath"])
         else:
-            closest = sorted(movieList, key=lambda x, obj=title: thefuzz.fuzz.ratio(obj, x.Title))
+            closest = sorted(tvList, key=lambda x, obj=m["Title"]: thefuzz.fuzz.ratio(obj, x.Title))
             m["Closest"] = {"Title": closest[-1].Title}
             unmatched.append(m)
     if rerender:
         with open(
-            file=Path(f"./static/files/rerenderList{obj.__name__}.csv"), mode="w", encoding="ascii"
+            file=Path(f"./static/files/rerenderListTV.csv"), mode="w", encoding="ascii"
         ) as fp:
             fp.write("\n".join(rerender))
 
