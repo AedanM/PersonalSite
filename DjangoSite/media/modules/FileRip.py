@@ -32,31 +32,43 @@ def GetMovies(parent):
     return objList
 
 
-def GetTV(parent):
+BANNED_COMPONENTS = ["season", "_", "special"]
+
+
+def GetTV(parent: Path):
     path = parent / "TV Shows"
-    objList = {}
-    for file in path.glob("**/*.*"):
-        if file.is_file() and file.suffix not in [".ico", ".json"]:
-            showPath = str(file.parent).replace(str(path) + "\\", "").split("\\Season", 1)[0]
-            showName = showPath.split("\\")[-1]
-            if showName not in objList:
-                objList[showName] = {
-                    "Title": showName,
-                    "Count": 1,
-                    "Tags": showPath.split("\\")[:-1],
-                    "Size": os.stat(file).st_size / (1024 * 1024 * 1024),
-                    "FilePath": str(
-                        file.parent if "Season" not in str(file.parent) else file.parent.parent
-                    ),
-                }
-                # print(showName, objList[showName])
-            else:
-                objList[showName]["Count"] = objList[showName]["Count"] + 1
-                addedSize = os.stat(file).st_size / (1024 * 1024 * 1024)
-                objList[showName]["Size"] = f"{float(objList[showName]["Size"]) + addedSize:0.2f}"
-    with open(path / "Summary.json", encoding="ascii", mode="w") as fp:
-        json.dump({"TV Show": objList}, fp)
-    return objList
+    folderObjs = []
+
+    for folder in path.glob("**/*/"):
+        subFolders = [str(x).lower() for x in folder.glob("**/*/")]
+        useFolder = True
+        if not FolderBanned(folder):
+            for subF in subFolders:
+                if not FolderBanned(subF):  # All subFolders must be banned
+                    useFolder = False
+                    break
+            if useFolder:
+                subFiles = list(folder.glob("**/*.*"))
+                folderObjs.append(
+                    {
+                        "Title": folder.stem,
+                        "FilePath": str(folder),
+                        "Count": len(subFiles),
+                        "Tags": [
+                            x
+                            for x in str(folder).replace(str(path), "").split("\\")[:-1]
+                            if x != ""
+                        ],
+                        "Size": sum(f.stat().st_size for f in subFiles) / (1024 * 1024 * 1024),
+                    }
+                )
+    with (path / "Summary.json").open("w", encoding="utf-8") as fp:
+        json.dump(folderObjs, fp)
+    return folderObjs
+
+
+def FolderBanned(pathObj):
+    return any(x.lower() in str(pathObj).lower() for x in BANNED_COMPONENTS)
 
 
 def RipWDrive():

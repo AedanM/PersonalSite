@@ -161,32 +161,29 @@ def CheckTV():
     return unmatched, matched
 
 
-def FilterOutTVMatches(files: dict):
+def FilterOutTVMatches(files: list):
     # pylint: disable=E1101
     tvList = TVShow.objects.all()
     matched = []
     unmatched = []
     rerender = []
-    for m in files.values():
-        m["Size"] = float(m["Size"])
+    for m in files:
         matches = [x for x in tvList if MatchTitles(x.Title, m["Title"])]
         if matches:
-            matchedElement = (
-                matches[0] if len(matches) < 2 else [x for x in matches if x.Downloaded][0]
-            )
             m["Match"] = {
-                "ID": matchedElement.id,  # type:ignore
-                "Runtime": float(matchedElement.Duration.seconds // 60) * m["Count"],
-                "Title": matchedElement.Title,
-                "Tag Diff": [x for x in m["Tags"] if x not in matchedElement.GenreTagList],
-                "Marked": matchedElement.Downloaded,
+                "ID": matches[0].id,  # type:ignore
+                "Runtime": (matches[0].Duration.seconds // 60) * m["Count"],
+                "Year": matches[0].Year,
+                "Tag Diff": [x for x in m["Tags"] if x not in matches[0].GenreTagList],
+                "Marked": matches[0].Downloaded,
+                "Count": matches[0].Length,
             }
             matched.append(m)
-            # if matches[0].Duration.seconds // 60 / m["Size"] < 45:
-            #     rerender.append(m["FilePath"])
+            if m["Match"]["Runtime"] / m["Size"] < 45:
+                rerender.append(m["FilePath"])
         else:
-            closest = sorted(tvList, key=lambda x, obj=m["Title"]: thefuzz.fuzz.ratio(obj, x.Title))
-            m["Closest"] = {"Title": closest[-1].Title}
+            closest = sorted(tvList, key=lambda x, obj=m: thefuzz.fuzz.ratio(obj["Title"], x.Title))
+            m["Closest"] = {"Title": closest[-1].Title, "Year": closest[-1].Year}
             unmatched.append(m)
     if rerender:
         with open(

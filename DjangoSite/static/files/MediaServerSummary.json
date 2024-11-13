@@ -1758,545 +1758,538 @@
 			"FilePath": "W:\\Movies\\Superheroes\\Marvel\\Spiderman\\The Amazing Spiderman 2 (2014).mp4"
 		}
 	],
-	"TV Shows": {
-		"Scott Pilgrim Takes Off": {
-			"Title": "Scott Pilgrim Takes Off",
-			"Count": 8,
-			"Tags": ["Cartoons", "Oddballs"],
-			"Size": "10.44",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Oddballs\\Scott Pilgrim Takes Off"
-		},
-		"Gravity Falls": {
-			"Title": "Gravity Falls",
-			"Count": 40,
-			"Tags": ["Cartoons", "Oddballs"],
-			"Size": "19.75",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Oddballs\\Gravity Falls"
-		},
-		"Harvey Birdman Attorney At Law": {
-			"Title": "Harvey Birdman Attorney At Law",
-			"Count": 40,
-			"Tags": ["Cartoons", "Oddballs"],
-			"Size": "5.99",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Oddballs\\Harvey Birdman Attorney At Law"
-		},
-		"Smiling Friends": {
-			"Title": "Smiling Friends",
-			"Count": 11,
-			"Tags": ["Cartoons", "Oddballs"],
-			"Size": "0.99",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Oddballs\\Smiling Friends"
-		},
-		"Bob's Burgers": {
-			"Title": "Bob's Burgers",
-			"Count": 259,
-			"Tags": ["Cartoons", "Sitcoms"],
-			"Size": "31.38",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Sitcoms\\Bob's Burgers"
-		},
-		"Futurama": {
-			"Title": "Futurama",
-			"Count": 128,
-			"Tags": ["Cartoons", "Sitcoms"],
-			"Size": "82.30",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Sitcoms\\Futurama"
-		},
-		"South Park": {
-			"Title": "South Park",
-			"Count": 280,
-			"Tags": ["Cartoons", "Sitcoms"],
-			"Size": "19.51",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Sitcoms\\South Park"
-		},
-		"Watchmen the Motion Comic": {
-			"Title": "Watchmen the Motion Comic",
-			"Count": 12,
-			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics"],
-			"Size": "2.06",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Watchmen the Motion Comic"
-		},
-		"Batman Beyond": {
-			"Title": "Batman Beyond",
-			"Count": 53,
-			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics", "Batman"],
-			"Size": "9.35",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Batman\\Batman Beyond"
-		},
-		"Batman Caped Crusader": {
-			"Title": "Batman Caped Crusader",
-			"Count": 10,
-			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics", "Batman"],
-			"Size": "0.79",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Batman\\Batman Caped Crusader"
-		},
-		"Batman The Animated Series": {
-			"Title": "Batman The Animated Series",
-			"Count": 85,
-			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics", "Batman"],
-			"Size": "24.06",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Batman\\Batman The Animated Series"
-		},
-		"The Brave and the Bold": {
-			"Title": "The Brave and the Bold",
-			"Count": 65,
-			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics", "Batman"],
-			"Size": "27.75",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Batman\\The Brave and the Bold"
-		},
-		"The New Batman Adventures": {
-			"Title": "The New Batman Adventures",
-			"Count": 24,
-			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics", "Batman"],
-			"Size": "5.52",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Batman\\The New Batman Adventures"
-		},
-		"Justice League": {
-			"Title": "Justice League",
-			"Count": 52,
-			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics", "Justice League"],
-			"Size": "20.75",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Justice League\\Justice League"
-		},
-		"Justice League Unlimited": {
-			"Title": "Justice League Unlimited",
-			"Count": 39,
-			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics", "Justice League"],
-			"Size": "12.65",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Justice League\\Justice League Unlimited"
-		},
-		"Superman (1941)": {
-			"Title": "Superman (1941)",
-			"Count": 17,
-			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics", "Superman"],
-			"Size": "2.01",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Superman\\Superman (1941)"
-		},
-		"My Adventures with Superman": {
-			"Title": "My Adventures with Superman",
-			"Count": 10,
-			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics", "Superman"],
-			"Size": "1.23",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Superman\\My Adventures with Superman"
-		},
-		"Golden Collection": {
-			"Title": "Golden Collection",
-			"Count": 422,
-			"Tags": ["Cartoons", "Warner Brothers", "Looney Tunes"],
-			"Size": "31.22",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Looney Tunes\\Golden Collection\\Season 01"
-		},
-		"Looney Tunes Show": {
-			"Title": "Looney Tunes Show",
-			"Count": 52,
-			"Tags": ["Cartoons", "Warner Brothers", "Looney Tunes"],
-			"Size": "12.20",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Looney Tunes\\Looney Tunes Show"
-		},
-		"Scooby Doo Mystery Incorporated": {
-			"Title": "Scooby Doo Mystery Incorporated",
-			"Count": 52,
-			"Tags": ["Cartoons", "Warner Brothers", "Scooby Doo"],
-			"Size": "42.00",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Scooby Doo\\Scooby Doo Mystery Incorporated"
-		},
-		"What's New, Scooby-Doo": {
-			"Title": "What's New, Scooby-Doo",
-			"Count": 42,
-			"Tags": ["Cartoons", "Warner Brothers", "Scooby Doo"],
-			"Size": "8.71",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Scooby Doo\\What's New, Scooby-Doo"
-		},
-		"Where Are You!": {
-			"Title": "Where Are You!",
-			"Count": 41,
-			"Tags": ["Cartoons", "Warner Brothers", "Scooby Doo"],
-			"Size": "10.31",
-			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Scooby Doo\\Where Are You!"
-		},
-		"A Bit of Fry and Laurie": {
-			"Title": "A Bit of Fry and Laurie",
-			"Count": 27,
-			"Tags": ["Comedy", "British"],
-			"Size": "10.69",
-			"FilePath": "W:\\TV Shows\\Comedy\\British\\A Bit of Fry and Laurie"
-		},
-		"Blackadder": {
-			"Title": "Blackadder",
-			"Count": 24,
-			"Tags": ["Comedy", "British", "Blackadder"],
-			"Size": "5.08",
-			"FilePath": "W:\\TV Shows\\Comedy\\British\\Blackadder"
-		},
-		"Father Ted": {
-			"Title": "Father Ted",
-			"Count": 24.89,
-			"Tags": ["Comedy", "British"],
-			"Size": "6.63",
-			"FilePath": "W:\\TV Shows\\Comedy\\British\\Father Ted"
-		},
-		"Fawlty Towers": {
-			"Title": "Fawlty Towers",
-			"Count": 13,
-			"Tags": ["Comedy", "British"],
-			"Size": "3.18",
-			"FilePath": "W:\\TV Shows\\Comedy\\British\\Fawlty Towers"
-		},
-		"Ghosts (UK)": {
-			"Title": "Ghosts (UK)",
-			"Count": 33,
-			"Tags": ["Comedy", "British"],
-			"Size": "6.16",
-			"FilePath": "W:\\TV Shows\\Comedy\\British\\Ghosts (UK)"
-		},
-		"That Mitchell and Webb Look": {
-			"Title": "That Mitchell and Webb Look",
-			"Count": 24,
-			"Tags": ["Comedy", "British"],
-			"Size": "8.42",
-			"FilePath": "W:\\TV Shows\\Comedy\\British\\That Mitchell and Webb Look"
-		},
-		"The Thick Of It": {
-			"Title": "The Thick Of It",
-			"Count": 27,
-			"Tags": ["Comedy", "British"],
-			"Size": "18.45",
-			"FilePath": "W:\\TV Shows\\Comedy\\British\\The Thick Of It"
-		},
-		"Toast Of London": {
-			"Title": "Toast Of London",
-			"Count": 24,
-			"Tags": ["Comedy", "British"],
-			"Size": "4.67",
-			"FilePath": "W:\\TV Shows\\Comedy\\British\\Toast Of London"
-		},
-		"Twenty Twelve": {
-			"Title": "Twenty Twelve",
-			"Count": 13,
-			"Tags": ["Comedy", "British"],
-			"Size": "5.61",
-			"FilePath": "W:\\TV Shows\\Comedy\\British\\Twenty Twelve"
-		},
-		"W1A": {
-			"Title": "W1A",
-			"Count": 15,
-			"Tags": ["Comedy", "British"],
-			"Size": "3.22",
-			"FilePath": "W:\\TV Shows\\Comedy\\British\\W1A"
-		},
-		"Yonderland": {
-			"Title": "Yonderland",
-			"Count": 25,
-			"Tags": ["Comedy", "British"],
-			"Size": "4.12",
-			"FilePath": "W:\\TV Shows\\Comedy\\British\\Yonderland"
-		},
-		"The Muppets": {
-			"Title": "The Muppets",
-			"Count": 16,
-			"Tags": ["Comedy", "Muppets"],
-			"Size": "3.23",
-			"FilePath": "W:\\TV Shows\\Comedy\\Muppets\\The Muppets"
-		},
-		"The Muppet Show": {
-			"Title": "The Muppet Show",
-			"Count": 122,
-			"Tags": ["Comedy", "Muppets"],
-			"Size": "43.04",
-			"FilePath": "W:\\TV Shows\\Comedy\\Muppets\\The Muppet Show"
-		},
-		"Tenacious D": {
-			"Title": "Tenacious D",
-			"Count": 6,
-			"Tags": ["Comedy", "Musical Shows"],
-			"Size": "0.23",
-			"FilePath": "W:\\TV Shows\\Comedy\\Musical Shows\\Tenacious D"
-		},
-		"Flight of the Concords": {
-			"Title": "Flight of the Concords",
-			"Count": 22,
-			"Tags": ["Comedy", "Musical Shows"],
-			"Size": "15.36",
-			"FilePath": "W:\\TV Shows\\Comedy\\Musical Shows\\Flight of the Concords"
-		},
-		"30 Rock": {
-			"Title": "30 Rock",
-			"Count": 137,
-			"Tags": ["Comedy", "US Sitcoms"],
-			"Size": "76.04",
-			"FilePath": "W:\\TV Shows\\Comedy\\US Sitcoms\\30 Rock"
-		},
-		"Abbott Elementary": {
-			"Title": "Abbott Elementary",
-			"Count": 54,
-			"Tags": ["Comedy", "US Sitcoms"],
-			"Size": "12.11",
-			"FilePath": "W:\\TV Shows\\Comedy\\US Sitcoms\\Abbott Elementary"
-		},
-		"Arrested Development": {
-			"Title": "Arrested Development",
-			"Count": 68,
-			"Tags": ["Comedy", "US Sitcoms"],
-			"Size": "11.30",
-			"FilePath": "W:\\TV Shows\\Comedy\\US Sitcoms\\Arrested Development"
-		},
-		"Community": {
-			"Title": "Community",
-			"Count": 110,
-			"Tags": ["Comedy", "US Sitcoms"],
-			"Size": "23.99",
-			"FilePath": "W:\\TV Shows\\Comedy\\US Sitcoms\\Community"
-		},
-		"Ghosts (US)": {
-			"Title": "Ghosts (US)",
-			"Count": 50,
-			"Tags": ["Comedy", "US Sitcoms"],
-			"Size": "32.85",
-			"FilePath": "W:\\TV Shows\\Comedy\\US Sitcoms\\Ghosts (US)"
-		},
-		"Its Always Sunny In Philadelphia": {
-			"Title": "Its Always Sunny In Philadelphia",
-			"Count": 169,
-			"Tags": ["Comedy", "US Sitcoms"],
-			"Size": "91.41",
-			"FilePath": "W:\\TV Shows\\Comedy\\US Sitcoms\\Its Always Sunny In Philadelphia"
-		},
-		"Schitts Creek": {
-			"Title": "Schitts Creek",
-			"Count": 79,
-			"Tags": ["Comedy", "US Sitcoms"],
-			"Size": "8.70",
-			"FilePath": "W:\\TV Shows\\Comedy\\US Sitcoms\\Schitts Creek"
-		},
-		"Ted": {
-			"Title": "Ted",
-			"Count": 7,
-			"Tags": ["Comedy", "US Sitcoms"],
-			"Size": "2.83",
-			"FilePath": "W:\\TV Shows\\Comedy\\US Sitcoms\\Ted"
-		},
-		"Veep": {
-			"Title": "Veep",
-			"Count": 65,
-			"Tags": ["Comedy", "US Sitcoms"],
-			"Size": "59.00",
-			"FilePath": "W:\\TV Shows\\Comedy\\US Sitcoms\\Veep"
-		},
-		"Mare Of Easttown": {
-			"Title": "Mare Of Easttown",
-			"Count": 7,
-			"Tags": ["Drama", "Crime"],
-			"Size": "11.42",
-			"FilePath": "W:\\TV Shows\\Drama\\Crime\\Mare Of Easttown"
-		},
-		"The Penguin": {
-			"Title": "The Penguin",
-			"Count": 2,
-			"Tags": ["Drama", "Crime"],
-			"Size": "1.12",
-			"FilePath": "W:\\TV Shows\\Drama\\Crime\\The Penguin"
-		},
-		"Watchmen": {
-			"Title": "Watchmen",
-			"Count": 9,
-			"Tags": ["Drama", "Crime"],
-			"Size": "5.40",
-			"FilePath": "W:\\TV Shows\\Drama\\Crime\\Watchmen"
-		},
-		"Death in Paradise": {
-			"Title": "Death in Paradise",
-			"Count": 97,
-			"Tags": ["Drama", "Crime"],
-			"Size": "72.41",
-			"FilePath": "W:\\TV Shows\\Drama\\Crime\\Death in Paradise"
-		},
-		"Jonathan Creek": {
-			"Title": "Jonathan Creek",
-			"Count": 33,
-			"Tags": ["Drama", "Crime"],
-			"Size": "14.11",
-			"FilePath": "W:\\TV Shows\\Drama\\Crime\\Jonathan Creek"
-		},
-		"Reacher": {
-			"Title": "Reacher",
-			"Count": 8,
-			"Tags": ["Drama", "Crime"],
-			"Size": "2.27",
-			"FilePath": "W:\\TV Shows\\Drama\\Crime\\Reacher"
-		},
-		"The Sopranos": {
-			"Title": "The Sopranos",
-			"Count": 13,
-			"Tags": ["Drama", "Crime"],
-			"Size": "5.02",
-			"FilePath": "W:\\TV Shows\\Drama\\Crime\\The Sopranos"
-		},
-		"Americas Sweethearts": {
-			"Title": "Americas Sweethearts",
-			"Count": 7,
-			"Tags": ["Drama", "Documentary"],
-			"Size": "3.15",
-			"FilePath": "W:\\TV Shows\\Drama\\Documentary\\Americas Sweethearts"
-		},
-		"Nobody Wants This": {
-			"Title": "Nobody Wants This",
-			"Count": 10,
-			"Tags": ["Drama", "Romance"],
-			"Size": "1.67",
-			"FilePath": "W:\\TV Shows\\Drama\\Romance\\Nobody Wants This"
-		},
-		"Bridgerton": {
-			"Title": "Bridgerton",
-			"Count": 16,
-			"Tags": ["Drama", "Romance"],
-			"Size": "6.21",
-			"FilePath": "W:\\TV Shows\\Drama\\Romance\\Bridgerton"
-		},
-		"Heartstopper": {
-			"Title": "Heartstopper",
-			"Count": 24,
-			"Tags": ["Drama", "Romance"],
-			"Size": "4.87",
-			"FilePath": "W:\\TV Shows\\Drama\\Romance\\Heartstopper"
-		},
-		"Clarkson's Farm": {
+	"TV Shows": [
+		{
 			"Title": "Clarkson's Farm",
+			"FilePath": "W:\\TV Shows\\Educational\\Clarkson's Farm",
 			"Count": 24,
 			"Tags": ["Educational"],
-			"Size": "8.73",
-			"FilePath": "W:\\TV Shows\\Educational\\Clarkson's Farm"
+			"Size": 8.722143460065126
 		},
-		"Last Week Tonight": {
+		{
 			"Title": "Last Week Tonight",
+			"FilePath": "W:\\TV Shows\\Educational\\Last Week Tonight",
 			"Count": 273,
 			"Tags": ["Educational"],
-			"Size": "160.09",
-			"FilePath": "W:\\TV Shows\\Educational\\Last Week Tonight"
+			"Size": 160.04966837260872
 		},
-		"Top Gear": {
+		{
 			"Title": "Top Gear",
+			"FilePath": "W:\\TV Shows\\Educational\\Top Gear",
 			"Count": 75,
 			"Tags": ["Educational"],
-			"Size": "23.52",
-			"FilePath": "W:\\TV Shows\\Educational\\Top Gear"
+			"Size": 23.515451249666512
 		},
-		"Dilbert": {
+		{
 			"Title": "Dilbert",
+			"FilePath": "W:\\TV Shows\\Engineering\\Dilbert",
 			"Count": 30,
 			"Tags": ["Engineering"],
-			"Size": "3.04",
-			"FilePath": "W:\\TV Shows\\Engineering\\Dilbert"
+			"Size": 3.0553505746647716
 		},
-		"Mythbusters": {
+		{
 			"Title": "Mythbusters",
+			"FilePath": "W:\\TV Shows\\Engineering\\Mythbusters",
 			"Count": 277,
 			"Tags": ["Engineering"],
-			"Size": "236.90",
-			"FilePath": "W:\\TV Shows\\Engineering\\Mythbusters"
+			"Size": 237.10651946347207
 		},
-		"The IT Crowd": {
+		{
 			"Title": "The IT Crowd",
+			"FilePath": "W:\\TV Shows\\Engineering\\The IT Crowd",
 			"Count": 25,
 			"Tags": ["Engineering"],
-			"Size": "7.76",
-			"FilePath": "W:\\TV Shows\\Engineering\\The IT Crowd"
+			"Size": 7.7719901371747255
 		},
-		"Firefly": {
-			"Title": "Firefly",
-			"Count": 14,
-			"Tags": ["Sci-Fi"],
-			"Size": "9.27",
-			"FilePath": "W:\\TV Shows\\Sci-Fi\\Firefly"
-		},
-		"Andor": {
+		{
 			"Title": "Andor",
+			"FilePath": "W:\\TV Shows\\Sci-Fi\\Andor",
 			"Count": 12,
 			"Tags": ["Sci-Fi"],
-			"Size": "12.38",
-			"FilePath": "W:\\TV Shows\\Sci-Fi\\Andor"
+			"Size": 12.37778726965189
 		},
-		"Battlestar Galactica (1978)": {
-			"Title": "Battlestar Galactica (1978)",
-			"Count": 32,
-			"Tags": ["Sci-Fi", "Battlestar Galactica"],
-			"Size": "7.21",
-			"FilePath": "W:\\TV Shows\\Sci-Fi\\Battlestar Galactica\\Battlestar Galactica (1978)"
-		},
-		"Farscape": {
+		{
 			"Title": "Farscape",
+			"FilePath": "W:\\TV Shows\\Sci-Fi\\Farscape",
 			"Count": 88,
 			"Tags": ["Sci-Fi"],
-			"Size": "63.14",
-			"FilePath": "W:\\TV Shows\\Sci-Fi\\Farscape"
+			"Size": 63.10970252659172
 		},
-		"Red Dwarf": {
+		{
+			"Title": "Firefly",
+			"FilePath": "W:\\TV Shows\\Sci-Fi\\Firefly",
+			"Count": 14,
+			"Tags": ["Sci-Fi"],
+			"Size": 9.255713937804103
+		},
+		{
 			"Title": "Red Dwarf",
+			"FilePath": "W:\\TV Shows\\Sci-Fi\\Red Dwarf",
 			"Count": 70,
 			"Tags": ["Sci-Fi"],
-			"Size": "22.44",
-			"FilePath": "W:\\TV Shows\\Sci-Fi\\Red Dwarf"
+			"Size": 22.451670738868415
 		},
-		"0) TOS": {
-			"Title": "0) TOS",
-			"Count": 80,
-			"Tags": ["Sci-Fi", "Star Trek"],
-			"Size": "31.29",
-			"FilePath": "W:\\TV Shows\\Sci-Fi\\Star Trek\\0) TOS"
-		},
-		"1) TAS": {
-			"Title": "1) TAS",
-			"Count": 22,
-			"Tags": ["Sci-Fi", "Star Trek"],
-			"Size": "2.78",
-			"FilePath": "W:\\TV Shows\\Sci-Fi\\Star Trek\\1) TAS"
-		},
-		"2) TNG": {
-			"Title": "2) TNG",
-			"Count": 176,
-			"Tags": ["Sci-Fi", "Star Trek"],
-			"Size": "91.55",
-			"FilePath": "W:\\TV Shows\\Sci-Fi\\Star Trek\\2) TNG"
-		},
-		"3) DS9": {
-			"Title": "3) DS9",
-			"Count": 173,
-			"Tags": ["Sci-Fi", "Star Trek"],
-			"Size": "89.70",
-			"FilePath": "W:\\TV Shows\\Sci-Fi\\Star Trek\\3) DS9"
-		},
-		"4) VOY": {
-			"Title": "4) VOY",
-			"Count": 168,
-			"Tags": ["Sci-Fi", "Star Trek"],
-			"Size": "25.76",
-			"FilePath": "W:\\TV Shows\\Sci-Fi\\Star Trek\\4) VOY"
-		},
-		"5) ENT": {
-			"Title": "5) ENT",
-			"Count": 96,
-			"Tags": ["Sci-Fi", "Star Trek"],
-			"Size": "57.84",
-			"FilePath": "W:\\TV Shows\\Sci-Fi\\Star Trek\\5) ENT"
-		},
-		"6) SNW": {
-			"Title": "6) SNW",
-			"Count": 20,
-			"Tags": ["Sci-Fi", "Star Trek"],
-			"Size": "24.42",
-			"FilePath": "W:\\TV Shows\\Sci-Fi\\Star Trek\\6) SNW"
-		},
-		"7) LD": {
-			"Title": "7) LD",
-			"Count": 40,
-			"Tags": ["Sci-Fi", "Star Trek"],
-			"Size": "25.31",
-			"FilePath": "W:\\TV Shows\\Sci-Fi\\Star Trek\\7) LD"
-		},
-		"The Orville": {
+		{
 			"Title": "The Orville",
+			"FilePath": "W:\\TV Shows\\Sci-Fi\\The Orville",
 			"Count": 36,
 			"Tags": ["Sci-Fi"],
-			"Size": "44.16",
-			"FilePath": "W:\\TV Shows\\Sci-Fi\\The Orville"
+			"Size": 44.15253859665245
+		},
+		{
+			"Title": "Gravity Falls",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Oddballs\\Gravity Falls",
+			"Count": 40,
+			"Tags": ["Cartoons", "Oddballs"],
+			"Size": 19.78040330298245
+		},
+		{
+			"Title": "Harvey Birdman Attorney At Law",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Oddballs\\Harvey Birdman Attorney At Law",
+			"Count": 40,
+			"Tags": ["Cartoons", "Oddballs"],
+			"Size": 6.0138607220724225
+		},
+		{
+			"Title": "Scott Pilgrim Takes Off",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Oddballs\\Scott Pilgrim Takes Off",
+			"Count": 8,
+			"Tags": ["Cartoons", "Oddballs"],
+			"Size": 10.4498455170542
+		},
+		{
+			"Title": "Smiling Friends",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Oddballs\\Smiling Friends",
+			"Count": 11,
+			"Tags": ["Cartoons", "Oddballs"],
+			"Size": 0.9715185193344951
+		},
+		{
+			"Title": "Bob's Burgers",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Sitcoms\\Bob's Burgers",
+			"Count": 259,
+			"Tags": ["Cartoons", "Sitcoms"],
+			"Size": 31.436502317897975
+		},
+		{
+			"Title": "Futurama",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Sitcoms\\Futurama",
+			"Count": 128,
+			"Tags": ["Cartoons", "Sitcoms"],
+			"Size": 82.24366408400238
+		},
+		{
+			"Title": "South Park",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Sitcoms\\South Park",
+			"Count": 280,
+			"Tags": ["Cartoons", "Sitcoms"],
+			"Size": 19.49732001964003
+		},
+		{
+			"Title": "Watchmen the Motion Comic",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Watchmen the Motion Comic",
+			"Count": 12,
+			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics"],
+			"Size": 2.0746882054954767
+		},
+		{
+			"Title": "Golden Collection",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Looney Tunes\\Golden Collection",
+			"Count": 422,
+			"Tags": ["Cartoons", "Warner Brothers", "Looney Tunes"],
+			"Size": 31.114898069761693
+		},
+		{
+			"Title": "Looney Tunes Show",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Looney Tunes\\Looney Tunes Show",
+			"Count": 52,
+			"Tags": ["Cartoons", "Warner Brothers", "Looney Tunes"],
+			"Size": 12.187682899646461
+		},
+		{
+			"Title": "Scooby Doo Mystery Incorporated",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Scooby Doo\\Scooby Doo Mystery Incorporated",
+			"Count": 52,
+			"Tags": ["Cartoons", "Warner Brothers", "Scooby Doo"],
+			"Size": 41.99055396299809
+		},
+		{
+			"Title": "What's New, Scooby-Doo",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Scooby Doo\\What's New, Scooby-Doo",
+			"Count": 42,
+			"Tags": ["Cartoons", "Warner Brothers", "Scooby Doo"],
+			"Size": 8.617388072423637
+		},
+		{
+			"Title": "Where Are You!",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Scooby Doo\\Where Are You!",
+			"Count": 41,
+			"Tags": ["Cartoons", "Warner Brothers", "Scooby Doo"],
+			"Size": 10.32756177149713
+		},
+		{
+			"Title": "Batman Beyond",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Batman\\Batman Beyond",
+			"Count": 53,
+			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics", "Batman"],
+			"Size": 9.344242556020617
+		},
+		{
+			"Title": "Batman Caped Crusader",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Batman\\Batman Caped Crusader",
+			"Count": 10,
+			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics", "Batman"],
+			"Size": 0.7902370095252991
+		},
+		{
+			"Title": "Batman The Animated Series",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Batman\\Batman The Animated Series",
+			"Count": 85,
+			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics", "Batman"],
+			"Size": 24.09015880152583
+		},
+		{
+			"Title": "The Brave and the Bold",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Batman\\The Brave and the Bold",
+			"Count": 65,
+			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics", "Batman"],
+			"Size": 27.765191380865872
+		},
+		{
+			"Title": "The New Batman Adventures",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Batman\\The New Batman Adventures",
+			"Count": 24,
+			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics", "Batman"],
+			"Size": 5.546119800768793
+		},
+		{
+			"Title": "Justice League",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Justice League\\Justice League",
+			"Count": 52,
+			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics", "Justice League"],
+			"Size": 20.741023906506598
+		},
+		{
+			"Title": "Justice League Unlimited",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Justice League\\Justice League Unlimited",
+			"Count": 39,
+			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics", "Justice League"],
+			"Size": 12.63263101503253
+		},
+		{
+			"Title": "My Adventures with Superman",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Superman\\My Adventures with Superman",
+			"Count": 10,
+			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics", "Superman"],
+			"Size": 1.2226980347186327
+		},
+		{
+			"Title": "Superman (1941)",
+			"FilePath": "W:\\TV Shows\\Cartoons\\Warner Brothers\\Detective Comics\\Superman\\Superman (1941)",
+			"Count": 17,
+			"Tags": ["Cartoons", "Warner Brothers", "Detective Comics", "Superman"],
+			"Size": 2.0292291082441807
+		},
+		{
+			"Title": "A Bit of Fry and Laurie",
+			"FilePath": "W:\\TV Shows\\Comedy\\British\\A Bit of Fry and Laurie",
+			"Count": 27,
+			"Tags": ["Comedy", "British"],
+			"Size": 10.682749883271754
+		},
+		{
+			"Title": "Blackadder",
+			"FilePath": "W:\\TV Shows\\Comedy\\British\\Blackadder",
+			"Count": 24,
+			"Tags": ["Comedy", "British"],
+			"Size": 5.083245076239109
+		},
+		{
+			"Title": "Father Ted",
+			"FilePath": "W:\\TV Shows\\Comedy\\British\\Father Ted",
+			"Count": 24,
+			"Tags": ["Comedy", "British"],
+			"Size": 7.498153594322503
+		},
+		{
+			"Title": "Fawlty Towers",
+			"FilePath": "W:\\TV Shows\\Comedy\\British\\Fawlty Towers",
+			"Count": 13,
+			"Tags": ["Comedy", "British"],
+			"Size": 3.190142066217959
+		},
+		{
+			"Title": "Ghosts (UK)",
+			"FilePath": "W:\\TV Shows\\Comedy\\British\\Ghosts (UK)",
+			"Count": 33,
+			"Tags": ["Comedy", "British"],
+			"Size": 6.167286271229386
+		},
+		{
+			"Title": "That Mitchell and Webb Look",
+			"FilePath": "W:\\TV Shows\\Comedy\\British\\That Mitchell and Webb Look",
+			"Count": 24,
+			"Tags": ["Comedy", "British"],
+			"Size": 8.406074262224138
+		},
+		{
+			"Title": "The Thick Of It",
+			"FilePath": "W:\\TV Shows\\Comedy\\British\\The Thick Of It",
+			"Count": 27,
+			"Tags": ["Comedy", "British"],
+			"Size": 18.482749142684042
+		},
+		{
+			"Title": "Toast Of London",
+			"FilePath": "W:\\TV Shows\\Comedy\\British\\Toast Of London",
+			"Count": 24,
+			"Tags": ["Comedy", "British"],
+			"Size": 4.6780556896701455
+		},
+		{
+			"Title": "Twenty Twelve",
+			"FilePath": "W:\\TV Shows\\Comedy\\British\\Twenty Twelve",
+			"Count": 13,
+			"Tags": ["Comedy", "British"],
+			"Size": 5.610060186125338
+		},
+		{
+			"Title": "W1A",
+			"FilePath": "W:\\TV Shows\\Comedy\\British\\W1A",
+			"Count": 15,
+			"Tags": ["Comedy", "British"],
+			"Size": 3.212952838279307
+		},
+		{
+			"Title": "Yonderland",
+			"FilePath": "W:\\TV Shows\\Comedy\\British\\Yonderland",
+			"Count": 25,
+			"Tags": ["Comedy", "British"],
+			"Size": 4.0880784671753645
+		},
+		{
+			"Title": "The Muppet Show",
+			"FilePath": "W:\\TV Shows\\Comedy\\Muppets\\The Muppet Show",
+			"Count": 122,
+			"Tags": ["Comedy", "Muppets"],
+			"Size": 43.05586491152644
+		},
+		{
+			"Title": "The Muppets",
+			"FilePath": "W:\\TV Shows\\Comedy\\Muppets\\The Muppets",
+			"Count": 16,
+			"Tags": ["Comedy", "Muppets"],
+			"Size": 3.257760414853692
+		},
+		{
+			"Title": "Flight of the Concords",
+			"FilePath": "W:\\TV Shows\\Comedy\\Musical Shows\\Flight of the Concords",
+			"Count": 22,
+			"Tags": ["Comedy", "Musical Shows"],
+			"Size": 15.364818017929792
+		},
+		{
+			"Title": "Tenacious D",
+			"FilePath": "W:\\TV Shows\\Comedy\\Musical Shows\\Tenacious D",
+			"Count": 6,
+			"Tags": ["Comedy", "Musical Shows"],
+			"Size": 0.22715256456285715
+		},
+		{
+			"Title": "30 Rock",
+			"FilePath": "W:\\TV Shows\\Comedy\\US Sitcoms\\30 Rock",
+			"Count": 137,
+			"Tags": ["Comedy", "US Sitcoms"],
+			"Size": 76.00243066716939
+		},
+		{
+			"Title": "Abbott Elementary",
+			"FilePath": "W:\\TV Shows\\Comedy\\US Sitcoms\\Abbott Elementary",
+			"Count": 54,
+			"Tags": ["Comedy", "US Sitcoms"],
+			"Size": 12.128074103035033
+		},
+		{
+			"Title": "Arrested Development",
+			"FilePath": "W:\\TV Shows\\Comedy\\US Sitcoms\\Arrested Development",
+			"Count": 68,
+			"Tags": ["Comedy", "US Sitcoms"],
+			"Size": 11.32005649805069
+		},
+		{
+			"Title": "Community",
+			"FilePath": "W:\\TV Shows\\Comedy\\US Sitcoms\\Community",
+			"Count": 110,
+			"Tags": ["Comedy", "US Sitcoms"],
+			"Size": 24.16579483449459
+		},
+		{
+			"Title": "Ghosts (US)",
+			"FilePath": "W:\\TV Shows\\Comedy\\US Sitcoms\\Ghosts (US)",
+			"Count": 50,
+			"Tags": ["Comedy", "US Sitcoms"],
+			"Size": 32.836503204889596
+		},
+		{
+			"Title": "Its Always Sunny In Philadelphia",
+			"FilePath": "W:\\TV Shows\\Comedy\\US Sitcoms\\Its Always Sunny In Philadelphia",
+			"Count": 169,
+			"Tags": ["Comedy", "US Sitcoms"],
+			"Size": 91.45420162566006
+		},
+		{
+			"Title": "Schitts Creek",
+			"FilePath": "W:\\TV Shows\\Comedy\\US Sitcoms\\Schitts Creek",
+			"Count": 79,
+			"Tags": ["Comedy", "US Sitcoms"],
+			"Size": 8.68468530010432
+		},
+		{
+			"Title": "Ted",
+			"FilePath": "W:\\TV Shows\\Comedy\\US Sitcoms\\Ted",
+			"Count": 7,
+			"Tags": ["Comedy", "US Sitcoms"],
+			"Size": 2.816900944337249
+		},
+		{
+			"Title": "Veep",
+			"FilePath": "W:\\TV Shows\\Comedy\\US Sitcoms\\Veep",
+			"Count": 65,
+			"Tags": ["Comedy", "US Sitcoms"],
+			"Size": 59.0112972157076
+		},
+		{
+			"Title": "Death in Paradise",
+			"FilePath": "W:\\TV Shows\\Drama\\Crime\\Death in Paradise",
+			"Count": 97,
+			"Tags": ["Drama", "Crime"],
+			"Size": 72.39972797036171
+		},
+		{
+			"Title": "Jonathan Creek",
+			"FilePath": "W:\\TV Shows\\Drama\\Crime\\Jonathan Creek",
+			"Count": 33,
+			"Tags": ["Drama", "Crime"],
+			"Size": 14.11081952881068
+		},
+		{
+			"Title": "Mare Of Easttown",
+			"FilePath": "W:\\TV Shows\\Drama\\Crime\\Mare Of Easttown",
+			"Count": 7,
+			"Tags": ["Drama", "Crime"],
+			"Size": 11.413738805800676
+		},
+		{
+			"Title": "Reacher",
+			"FilePath": "W:\\TV Shows\\Drama\\Crime\\Reacher",
+			"Count": 8,
+			"Tags": ["Drama", "Crime"],
+			"Size": 2.2631046883761883
+		},
+		{
+			"Title": "The Penguin",
+			"FilePath": "W:\\TV Shows\\Drama\\Crime\\The Penguin",
+			"Count": 2,
+			"Tags": ["Drama", "Crime"],
+			"Size": 1.117961684241891
+		},
+		{
+			"Title": "The Sopranos",
+			"FilePath": "W:\\TV Shows\\Drama\\Crime\\The Sopranos",
+			"Count": 14,
+			"Tags": ["Drama", "Crime"],
+			"Size": 5.045013340190053
+		},
+		{
+			"Title": "Watchmen",
+			"FilePath": "W:\\TV Shows\\Drama\\Crime\\Watchmen",
+			"Count": 9,
+			"Tags": ["Drama", "Crime"],
+			"Size": 5.407933717593551
+		},
+		{
+			"Title": "Bridgerton",
+			"FilePath": "W:\\TV Shows\\Drama\\Romance\\Bridgerton",
+			"Count": 16,
+			"Tags": ["Drama", "Romance"],
+			"Size": 6.212046450003982
+		},
+		{
+			"Title": "Heartstopper",
+			"FilePath": "W:\\TV Shows\\Drama\\Romance\\Heartstopper",
+			"Count": 24,
+			"Tags": ["Drama", "Romance"],
+			"Size": 4.854778285138309
+		},
+		{
+			"Title": "Nobody Wants This",
+			"FilePath": "W:\\TV Shows\\Drama\\Romance\\Nobody Wants This",
+			"Count": 10,
+			"Tags": ["Drama", "Romance"],
+			"Size": 1.6765618212521076
+		},
+		{
+			"Title": "Battlestar Galactica (1978)",
+			"FilePath": "W:\\TV Shows\\Sci-Fi\\Battlestar Galactica\\Battlestar Galactica (1978)",
+			"Count": 32,
+			"Tags": ["Sci-Fi", "Battlestar Galactica"],
+			"Size": 7.203578577376902
+		},
+		{
+			"Title": "0) TOS",
+			"FilePath": "W:\\TV Shows\\Sci-Fi\\Star Trek\\0) TOS",
+			"Count": 80,
+			"Tags": ["Sci-Fi", "Star Trek"],
+			"Size": 31.141765157692134
+		},
+		{
+			"Title": "1) TAS",
+			"FilePath": "W:\\TV Shows\\Sci-Fi\\Star Trek\\1) TAS",
+			"Count": 22,
+			"Tags": ["Sci-Fi", "Star Trek"],
+			"Size": 2.7719620037823915
+		},
+		{
+			"Title": "2) TNG",
+			"FilePath": "W:\\TV Shows\\Sci-Fi\\Star Trek\\2) TNG",
+			"Count": 176,
+			"Tags": ["Sci-Fi", "Star Trek"],
+			"Size": 91.41692862752825
+		},
+		{
+			"Title": "3) DS9",
+			"FilePath": "W:\\TV Shows\\Sci-Fi\\Star Trek\\3) DS9",
+			"Count": 173,
+			"Tags": ["Sci-Fi", "Star Trek"],
+			"Size": 89.52655655425042
+		},
+		{
+			"Title": "4) VOY",
+			"FilePath": "W:\\TV Shows\\Sci-Fi\\Star Trek\\4) VOY",
+			"Count": 168,
+			"Tags": ["Sci-Fi", "Star Trek"],
+			"Size": 25.21000594832003
+		},
+		{
+			"Title": "5) ENT",
+			"FilePath": "W:\\TV Shows\\Sci-Fi\\Star Trek\\5) ENT",
+			"Count": 96,
+			"Tags": ["Sci-Fi", "Star Trek"],
+			"Size": 57.7825830290094
+		},
+		{
+			"Title": "6) SNW",
+			"FilePath": "W:\\TV Shows\\Sci-Fi\\Star Trek\\6) SNW",
+			"Count": 20,
+			"Tags": ["Sci-Fi", "Star Trek"],
+			"Size": 24.440827420912683
+		},
+		{
+			"Title": "7) LD",
+			"FilePath": "W:\\TV Shows\\Sci-Fi\\Star Trek\\7) LD",
+			"Count": 40,
+			"Tags": ["Sci-Fi", "Star Trek"],
+			"Size": 25.314092185348272
 		}
-	}
+	]
 }

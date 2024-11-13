@@ -117,9 +117,7 @@
 							<tbody>
 								{% for show in matched %}
 								<tr>
-									<td>
-										<a class="clean-link" href="edit?id={{show|Get:"Match"|Get:"ID"}}"/>{{show|Get:"Match"|Get:"Title"}}
-									</td>
+									<td><a class="clean-link" href="edit?id={{show|Get:"Match"|Get:"ID"}}"/>{{show|Get:"Title"}}</td>
 									<td>{{show|Get:"Year"}}</td>
 									<td>{{show|Get:"Size"}}</td>
 									<td>{{show|Get:"Match"|Get:"Runtime"}}</td>
