@@ -390,8 +390,7 @@
 										style="font-size: 1.6rem"></i>
 									{% endif %}
 								</a>
-								{% if not show.Watched or show.Downloaded%}
-								<a
+								{% if not show.Watched or show.Downloaded%} {%if loggedIn%}<a
 									class="btn"
 									href="/media/setBool?field=Downloaded&contentId={{show.id}}">
 									{% if show.Downloaded %}
@@ -404,7 +403,7 @@
 										style="font-size: 1.6rem"></i>
 									{% endif %}
 								</a>
-								{%endif%}
+								{%endif%} {%endif%}
 							</div>
 						</div>
 

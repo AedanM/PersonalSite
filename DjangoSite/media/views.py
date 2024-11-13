@@ -38,7 +38,7 @@ def fullView(request) -> HttpResponse:
     soloContent = request.GET.get("type", None)
     masterTags = {}
     for i in MODEL_LIST:
-        for title, valDict in GetAllTags(i).items():
+        for _title, valDict in GetAllTags(i, request.user.is_authenticated).items():
             masterTags |= valDict
 
     context = {
@@ -285,6 +285,7 @@ def index(request) -> HttpResponse:
     pageNumber: int = int(request.GET.get("page", 1))
     paginator = Paginator(context["obj_list"], pageSize)
     context["page_obj"] = paginator.get_page(pageNumber)
+    context["loggedIn"] = request.user.is_authenticated
     return render(
         request,
         "media/pagedView.html",
@@ -300,8 +301,16 @@ def FilterMedia(request, objType) -> dict:
     objList = list(objType.objects.all())
     yearRange, objList = ExtractYearRange(request, objList)
 
-    genre, objList = FilterTags(request.GET.get("genre", ""), objList, include=True)
-    exclude, objList = FilterTags(request.GET.get("exclude", ""), objList, include=False)
+    genre, objList = FilterTags(
+        request.GET.get("genre", ""),
+        objList,
+        include=True,
+    )
+    exclude, objList = FilterTags(
+        request.GET.get("exclude", ""),
+        objList,
+        include=False,
+    )
 
     if query := request.GET.get("query", None):
         objList = [x for x in objList if SearchFunction(subStr=x, tagStr=query)]
@@ -320,7 +329,7 @@ def FilterMedia(request, objType) -> dict:
         "sort": sortKey,
         "reverse": reverseSort,
         "obj_list": objList,
-        "Tags": GetAllTags(objType=objType),
+        "Tags": GetAllTags(objType=objType, loggedIn=request.user.is_authenticated),
         "filters": {
             "include": genre,
             "exclude": exclude,

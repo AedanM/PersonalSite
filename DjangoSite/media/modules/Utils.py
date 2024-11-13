@@ -7,8 +7,7 @@ from django.conf import settings as django_settings
 from django.core.exceptions import ObjectDoesNotExist
 
 # pylint: disable=E0402
-from ..forms import (AlbumForm, ComicForm, MovieForm, NovelForm, PodcastForm,
-                     TVForm, YoutubeForm)
+from ..forms import AlbumForm, ComicForm, MovieForm, NovelForm, PodcastForm, TVForm, YoutubeForm
 from ..models import Album, Comic, Movie, Novel, Podcast, TVShow, Youtube
 
 DEFINED_TAGS = {}
@@ -92,7 +91,7 @@ def FindID(contentID: str) -> Any:
     return None
 
 
-def GetAllTags(objType) -> dict[str, dict]:
+def GetAllTags(objType, loggedIn=False) -> dict[str, dict]:
     genres = []
     _ = [[genres.append(y) for y in x.GenreTagList] for x in objType.objects.all()]
     freqDir = {}
@@ -101,12 +100,11 @@ def GetAllTags(objType) -> dict[str, dict]:
         for i in definedList:
             if genres.count(i) > 0:
                 freqDir[title][i] = genres.count(i)
-            elif i == "Downloaded" and "Downloaded" in dir(objType.objects.all()[0]):
+            elif i == "Downloaded" and loggedIn and "Downloaded" in dir(objType.objects.all()[0]):
                 freqDir[title][i] = len([x for x in objType.objects.all() if x.Downloaded])
             elif i == "Watched" and "Watched" in dir(objType.objects.all()[0]):
                 freqDir[title][i] = len([x for x in objType.objects.all() if x.Watched])
-        genres = [x for x in genres if x not in definedList]
-
+        genres = [x for x in genres if x not in definedList and x != "Downloaded"]
     freqDir["ETC"] = {}
     for i in set(genres):
         freqDir["ETC"][i] = genres.count(i)
