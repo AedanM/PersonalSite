@@ -156,7 +156,7 @@
 					<i class="bi bi-bar-chart-line"></i
 				></a>
 				<p class="flex-grow-1"></p>
-				<div class="flex-grow-1">
+				<div class="flex-grow-1 linkIcon">
 					<button
 						class="clean-button"
 						onclick="SetUrlParam(['type', 'page'], ['Movie',''])">
@@ -382,11 +382,11 @@
 									href="/media/setBool?field=Watched&contentId={{show.id}}">
 									{% if show.Watched %}
 									<i
-										class="bi bi-camera-video-fill"
+										class="bi bi-camera-video-fill bs-logo"
 										style="font-size: 1.6rem"></i>
 									{% else %}
 									<i
-										class="bi bi-camera-video"
+										class="bi bi-camera-video bs-logo"
 										style="font-size: 1.6rem"></i>
 									{% endif %}
 								</a>
@@ -395,11 +395,11 @@
 									href="/media/setBool?field=Downloaded&contentId={{show.id}}">
 									{% if show.Downloaded %}
 									<i
-										class="bi bi-cloud-check-fill"
+										class="bi bi-cloud-check-fill bs-logo"
 										style="font-size: 1.6rem"></i>
 									{% else %}
 									<i
-										class="bi bi-cloud-download"
+										class="bi bi-cloud-download bs-logo"
 										style="font-size: 1.6rem"></i>
 									{% endif %}
 								</a>
@@ -410,9 +410,7 @@
 						{%endfor%}
 					</div>
 					<div class="pagination d-flex align-items-center justify-content-center">
-						<span
-							class="step-links"
-							style="font-size: 1rem">
+						<span class="step-links">
 							{% if page_obj.has_previous %}
 							<button
 								onclick="SetUrlParam('page', '1')"

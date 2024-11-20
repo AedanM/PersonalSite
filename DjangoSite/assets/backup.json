@@ -301,7 +301,7 @@
 			"Genre_Tags": "Comedy,Girlboss",
 			"InfoPage": "https://en.wikipedia.org/wiki/Barbie_(film)",
 			"Logo": "logos/movies/Barbie.png",
-			"Rating": "8.3",
+			"Rating": "8.1",
 			"Title": "Barbie",
 			"Watched": true,
 			"Year": 2023
@@ -444,9 +444,9 @@
 			"Genre_Tags": "Action,James Bond,Spies",
 			"InfoPage": "https://en.wikipedia.org/wiki/Diamonds_Are_Forever_(film)",
 			"Logo": "logos/movies/Diamonds Are Forever.png",
-			"Rating": "0.0",
+			"Rating": "7.1",
 			"Title": "Diamonds Are Forever",
-			"Watched": false,
+			"Watched": true,
 			"Year": 1971
 		},
 		{
@@ -1871,7 +1871,7 @@
 		{
 			"Downloaded": true,
 			"Duration": 128,
-			"Genre_Tags": "Fantasy",
+			"Genre_Tags": "Fantasy,Romance",
 			"InfoPage": "https://en.wikipedia.org/wiki/Stardust_(2007_film)",
 			"Logo": "logos/movies/Stardust.png",
 			"Rating": "0.0",
@@ -2058,7 +2058,7 @@
 		{
 			"Downloaded": true,
 			"Duration": 110,
-			"Genre_Tags": "Comedy,Musical",
+			"Genre_Tags": "Bildungsroman,Comedy,Musical",
 			"InfoPage": "https://en.wikipedia.org/wiki/Grease_(film)",
 			"Logo": "logos/movies/Grease.png",
 			"Rating": "7.0",
@@ -2069,7 +2069,7 @@
 		{
 			"Downloaded": true,
 			"Duration": 112,
-			"Genre_Tags": "Comedy,Edgar Wright",
+			"Genre_Tags": "Bildungsroman,Comedy,Edgar Wright",
 			"InfoPage": "https://en.wikipedia.org/wiki/Scott_Pilgrim_vs._the_World",
 			"Logo": "logos/movies/Scott Pilgrim vs. the World.png",
 			"Rating": "8.2",
@@ -2199,7 +2199,7 @@
 			"Year": 1968
 		},
 		{
-			"Downloaded": false,
+			"Downloaded": true,
 			"Duration": 106,
 			"Genre_Tags": "Comedy,Fantasy,Horror,Puppetry",
 			"InfoPage": "https://en.wikipedia.org/wiki/Gremlins_2:_The_New_Batch",
@@ -2432,7 +2432,7 @@
 		{
 			"Downloaded": true,
 			"Duration": 112,
-			"Genre_Tags": "Comedy,Drama,George Lucas,Historical",
+			"Genre_Tags": "Bildungsroman,Comedy,Drama,George Lucas,Historical",
 			"InfoPage": "https://en.wikipedia.org/wiki/American Graffiti",
 			"Logo": "logos/movies/American Graffiti.png",
 			"Rating": "0.0",
@@ -2465,10 +2465,10 @@
 		{
 			"Downloaded": false,
 			"Duration": 165,
-			"Genre_Tags": "Batman,DC,Christopher Nolan,Superheroes",
+			"Genre_Tags": "Batman,Christopher Nolan,DC,Superheroes",
 			"InfoPage": "https://en.wikipedia.org/wiki/The Dark Knight Rises",
 			"Logo": "logos/movies/The Dark Knight Rises.png",
-			"Rating": "7.5",
+			"Rating": "7.9",
 			"Title": "The Dark Knight Rises",
 			"Watched": true,
 			"Year": 2012
@@ -2490,7 +2490,7 @@
 			"Genre_Tags": "Batman,Christopher Nolan,DC,Superheroes",
 			"InfoPage": "https://en.wikipedia.org/wiki/Batman Begins",
 			"Logo": "logos/movies/Batman Begins.png",
-			"Rating": "7.5",
+			"Rating": "8.2",
 			"Title": "Batman Begins",
 			"Watched": true,
 			"Year": 2005
@@ -2729,7 +2729,7 @@
 		{
 			"Downloaded": true,
 			"Duration": 82,
-			"Genre_Tags": "Comedy,Mockumentary,Musical",
+			"Genre_Tags": "Comedy,Mockumentary",
 			"InfoPage": "https://en.wikipedia.org/wiki/This_Is_Spinal_Tap",
 			"Logo": "logos/movies/This Is Spinal Tap.png",
 			"Rating": "8.5",
@@ -3081,7 +3081,7 @@
 		{
 			"Downloaded": false,
 			"Duration": 88,
-			"Genre_Tags": "Comedy,Pirates,Stop Motion",
+			"Genre_Tags": "Aardman,Comedy,Pirates,Stop Motion",
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Pirates!_In_an_Adventure_with_Scientists!",
 			"Logo": "logos/movies/The Pirates! In an Adventure with Scientists!.png",
 			"Rating": "8.7",
@@ -3312,7 +3312,7 @@
 		{
 			"Downloaded": false,
 			"Duration": 106,
-			"Genre_Tags": "Comedy,Drama,Romance",
+			"Genre_Tags": "Bildungsroman,Comedy,Drama,Romance",
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Graduate",
 			"Logo": "logos/movies/The Graduate.png",
 			"Rating": "0.0",
@@ -3403,7 +3403,7 @@
 			"Genre_Tags": "Animation,Comedy,Mystery,Scooby-Doo",
 			"InfoPage": "https://en.wikipedia.org/wiki/Scooby-Doo!_and_Kiss:_Rock_and_Roll_Mystery",
 			"Logo": "logos/movies/Scooby-Doo! and Kiss Rock and Roll Mystery.png",
-			"Rating": "8.9",
+			"Rating": "8.1",
 			"Title": "Scooby-Doo! and Kiss Rock and Roll Mystery",
 			"Watched": true,
 			"Year": 2015
@@ -3436,9 +3436,9 @@
 			"Genre_Tags": "Animation,Comedy,Mystery,Scooby-Doo",
 			"InfoPage": "https://en.wikipedia.org/wiki/Scooby-Doo!_and_the_Legend_of_the_Vampire",
 			"Logo": "logos/movies/Scooby-Doo and the Legend of the Vampire.png",
-			"Rating": "0.0",
+			"Rating": "6.4",
 			"Title": "Scooby-Doo and the Legend of the Vampire",
-			"Watched": false,
+			"Watched": true,
 			"Year": 2003
 		},
 		{
@@ -3565,7 +3565,7 @@
 		{
 			"Downloaded": false,
 			"Duration": 90,
-			"Genre_Tags": "Comedy",
+			"Genre_Tags": "Bildungsroman,Comedy",
 			"InfoPage": "https://en.wikipedia.org/wiki/Revenge_of_the_Nerds",
 			"Logo": "logos/movies/Revenge of the Nerds.png",
 			"Rating": "0.0",
@@ -3783,7 +3783,7 @@
 			"Year": 1996
 		},
 		{
-			"Downloaded": false,
+			"Downloaded": true,
 			"Duration": 131,
 			"Genre_Tags": "Detective,Mystery,Noir",
 			"InfoPage": "https://en.wikipedia.org/wiki/Chinatown_(1974_film)",
@@ -4102,7 +4102,7 @@
 			"Year": 1979
 		},
 		{
-			"Downloaded": false,
+			"Downloaded": true,
 			"Duration": 106,
 			"Genre_Tags": "Christmas,Comedy,Holiday,Horror,Puppetry",
 			"InfoPage": "https://en.wikipedia.org/wiki/Gremlins",
@@ -4214,7 +4214,7 @@
 		{
 			"Downloaded": false,
 			"Duration": 112,
-			"Genre_Tags": "Drama,Mafia",
+			"Genre_Tags": "Bildungsroman,Drama,Mafia",
 			"InfoPage": "https://en.wikipedia.org/wiki/Boyz_n_the_Hood",
 			"Logo": "logos/movies/Boyz n the Hood.png",
 			"Rating": "0.0",
@@ -4852,7 +4852,7 @@
 		{
 			"Downloaded": false,
 			"Duration": 114,
-			"Genre_Tags": "Adventure,Comedy,Steven Spielberg",
+			"Genre_Tags": "Adventure,Bildungsroman,Comedy,Steven Spielberg",
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Goonies",
 			"Logo": "logos/movies/The Goonies.png",
 			"Rating": "8.2",
@@ -4916,7 +4916,7 @@
 			"Year": 1990
 		},
 		{
-			"Downloaded": false,
+			"Downloaded": true,
 			"Duration": 88,
 			"Genre_Tags": "Christmas,Holiday,Horror",
 			"InfoPage": "https://en.wikipedia.org/wiki/Silent_Night,_Deadly_Night_Part_2",
@@ -4954,7 +4954,7 @@
 			"Genre_Tags": "Sci-Fi,Thriller",
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Terminator",
 			"Logo": "logos/movies/The Terminator.png",
-			"Rating": "8.5",
+			"Rating": "8.7",
 			"Title": "The Terminator",
 			"Watched": true,
 			"Year": 1984
@@ -5130,9 +5130,9 @@
 			"Genre_Tags": "Aardman,Animation,British,Comedy,Short Film,Wallace and Gromit",
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Wrong_Trousers",
 			"Logo": "logos/movies/The Wrong Trousers.png",
-			"Rating": "0.0",
+			"Rating": "8.4",
 			"Title": "The Wrong Trousers",
-			"Watched": false,
+			"Watched": true,
 			"Year": 1993
 		},
 		{
@@ -5141,9 +5141,9 @@
 			"Genre_Tags": "Aardman,Animation,British,Comedy,Short Film,Wallace and Gromit",
 			"InfoPage": "https://en.wikipedia.org/wiki/A_Close_Shave",
 			"Logo": "logos/movies/Wallace and Gromit A Close Shave.png",
-			"Rating": "0.0",
+			"Rating": "8.3",
 			"Title": "A Close Shave",
-			"Watched": false,
+			"Watched": true,
 			"Year": 1995
 		},
 		{
@@ -5152,9 +5152,9 @@
 			"Genre_Tags": "Aardman,Animation,British,Comedy,Short Film,Wallace and Gromit",
 			"InfoPage": "https://en.wikipedia.org/wiki/A_Matter_of_Loaf_and_Death",
 			"Logo": "logos/movies/A Matter of Loaf and Death.png",
-			"Rating": "0.0",
+			"Rating": "7.7",
 			"Title": "A Matter of Loaf and Death",
-			"Watched": false,
+			"Watched": true,
 			"Year": 2008
 		},
 		{
@@ -5163,9 +5163,9 @@
 			"Genre_Tags": "Aardman,Animation,British,Comedy,Short Film,Wallace and Gromit",
 			"InfoPage": "https://en.wikipedia.org/wiki/A_Grand_Day_Out",
 			"Logo": "logos/movies/A Grand Day Out.png",
-			"Rating": "0.0",
+			"Rating": "7.0",
 			"Title": "A Grand Day Out",
-			"Watched": false,
+			"Watched": true,
 			"Year": 1989
 		},
 		{
@@ -5402,7 +5402,7 @@
 		{
 			"Downloaded": false,
 			"Duration": 91,
-			"Genre_Tags": "Comedy",
+			"Genre_Tags": "Bildungsroman,Comedy",
 			"InfoPage": "https://en.wikipedia.org/wiki/Friday_(1995_film)",
 			"Logo": "logos/movies/Friday.png",
 			"Rating": "0.0",
@@ -5479,7 +5479,7 @@
 		{
 			"Downloaded": false,
 			"Duration": 96,
-			"Genre_Tags": "Comedy",
+			"Genre_Tags": "Comedy,Cop",
 			"InfoPage": "https://en.wikipedia.org/wiki/Police_Academy_(film)",
 			"Logo": "logos/movies/Police Academy.png",
 			"Rating": "6.9",
@@ -5490,7 +5490,7 @@
 		{
 			"Downloaded": false,
 			"Duration": 116,
-			"Genre_Tags": "Comedy",
+			"Genre_Tags": "Comedy,John Landis",
 			"InfoPage": "https://en.wikipedia.org/wiki/Trading_Places",
 			"Logo": "logos/movies/Trading Places.png",
 			"Rating": "0.0",
@@ -5501,7 +5501,7 @@
 		{
 			"Downloaded": false,
 			"Duration": 97,
-			"Genre_Tags": "Drama,Musical",
+			"Genre_Tags": "Bildungsroman,Drama,Musical",
 			"InfoPage": "https://en.wikipedia.org/wiki/Flashdance",
 			"Logo": "logos/movies/Flashdance.png",
 			"Rating": "0.0",
@@ -5523,7 +5523,7 @@
 		{
 			"Downloaded": false,
 			"Duration": 113,
-			"Genre_Tags": "Comedy,Fantasy",
+			"Genre_Tags": "Comedy,Fantasy,Terry Gilliam",
 			"InfoPage": "https://en.wikipedia.org/wiki/Time_Bandits",
 			"Logo": "logos/movies/Time Bandits.png",
 			"Rating": "0.0",
@@ -5785,7 +5785,7 @@
 			"Year": 1991
 		},
 		{
-			"Downloaded": false,
+			"Downloaded": true,
 			"Duration": 25,
 			"Genre_Tags": "Animation,Christmas,Holiday,Seuss",
 			"InfoPage": "https://en.wikipedia.org/wiki/How_the_Grinch_Stole_Christmas!_(TV_special)",
@@ -5834,9 +5834,9 @@
 			"Genre_Tags": "Batman,DC,Mystery,Scooby-Doo,Superheroes",
 			"InfoPage": "https://en.wikipedia.org/wiki/Scooby-Doo!_&_Batman:_The_Brave_and_the_Bold",
 			"Logo": "logos/movies/Scooby-Doo! &amp; Batman The Brave and the Bold.png",
-			"Rating": "0.0",
+			"Rating": "8.0",
 			"Title": "Scooby-Doo! & Batman: The Brave and the Bold",
-			"Watched": false,
+			"Watched": true,
 			"Year": 2018
 		},
 		{
@@ -5845,7 +5845,7 @@
 			"Genre_Tags": "Action,MCU,Marvel,Superheroes",
 			"InfoPage": "https://en.wikipedia.org/wiki/Iron_Man_(2008_film)",
 			"Logo": "logos/movies/Iron Man.png",
-			"Rating": "8.6",
+			"Rating": "8.4",
 			"Title": "Iron Man",
 			"Watched": true,
 			"Year": 2008
@@ -6098,9 +6098,9 @@
 			"Genre_Tags": "Action,Comedy,MCU,Marvel,Superheroes",
 			"InfoPage": "https://en.wikipedia.org/wiki/Deadpool_&_Wolverine",
 			"Logo": "logos/movies/Deadpool & Wolverine.png",
-			"Rating": "0.0",
+			"Rating": "7.5",
 			"Title": "Deadpool & Wolverine",
-			"Watched": false,
+			"Watched": true,
 			"Year": 2024
 		},
 		{
@@ -6249,24 +6249,13 @@
 		{
 			"Downloaded": false,
 			"Duration": 94,
-			"Genre_Tags": "Comedy",
+			"Genre_Tags": "Bildungsroman,Comedy",
 			"InfoPage": "https://en.wikipedia.org/wiki/Detroit_Rock_City_(film)",
 			"Logo": "logos/movies/Detroit Rock City.png",
 			"Rating": "0.0",
 			"Title": "Detroit Rock City",
 			"Watched": false,
 			"Year": 1999
-		},
-		{
-			"Downloaded": false,
-			"Duration": 96,
-			"Genre_Tags": "B-Movie,Comedy,Fantasy",
-			"InfoPage": "https://en.wikipedia.org/wiki/Kiss_Meets_the_Phantom_of_the_Park",
-			"Logo": "logos/movies/Kiss Meets the Phantom of the Park.png",
-			"Rating": "0.0",
-			"Title": "Kiss Meets the Phantom of the Park",
-			"Watched": false,
-			"Year": 1978
 		},
 		{
 			"Downloaded": false,
@@ -6293,7 +6282,7 @@
 		{
 			"Downloaded": false,
 			"Duration": 95,
-			"Genre_Tags": "Horror,Sci-Fi,Steven King",
+			"Genre_Tags": "Horror,Sci-Fi",
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Blob_(1988_film)",
 			"Logo": "logos/movies/The Blob.png",
 			"Rating": "0.0",
@@ -6439,7 +6428,7 @@
 			"Genre_Tags": "Heist,Thriller",
 			"InfoPage": "https://en.wikipedia.org/wiki/Now_You_See_Me_(film)",
 			"Logo": "logos/movies/Now You See Me.png",
-			"Rating": "8.6",
+			"Rating": "8.2",
 			"Title": "Now You See Me",
 			"Watched": true,
 			"Year": 2013
@@ -6478,7 +6467,7 @@
 			"Year": 2024
 		},
 		{
-			"Downloaded": false,
+			"Downloaded": true,
 			"Duration": 93,
 			"Genre_Tags": "Black Comedy,Fantasy",
 			"InfoPage": "https://en.wikipedia.org/wiki/Monkeybone",
@@ -6742,7 +6731,7 @@
 			"Year": 1990
 		},
 		{
-			"Downloaded": false,
+			"Downloaded": true,
 			"Duration": 120,
 			"Genre_Tags": "Christmas,Comedy,Holiday",
 			"InfoPage": "https://en.wikipedia.org/wiki/Home_Alone_2:_Lost_in_New_York",
@@ -6890,7 +6879,7 @@
 			"Genre_Tags": "Holiday,Muppets,Puppetry",
 			"InfoPage": "https://en.wikipedia.org/wiki/Muppets_Haunted_Mansion",
 			"Logo": "logos/movies/Muppets Haunted Mansion.png",
-			"Rating": "7.3",
+			"Rating": "6.8",
 			"Title": "Muppets Haunted Mansion",
 			"Watched": true,
 			"Year": 2021
@@ -6975,7 +6964,7 @@
 		{
 			"Downloaded": false,
 			"Duration": 97,
-			"Genre_Tags": "Black Comedy,Horror,Vampires",
+			"Genre_Tags": "Bildungsroman,Black Comedy,Horror,Vampires",
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Lost_Boys",
 			"Logo": "logos/movies/The Lost Boys.png",
 			"Rating": "0.0",
@@ -7303,14 +7292,14 @@
 			"Year": 2024
 		},
 		{
-			"Downloaded": false,
+			"Downloaded": true,
 			"Duration": 89,
 			"Genre_Tags": "Comedy",
 			"InfoPage": "https://en.wikipedia.org/wiki/Kids_in_the_Hall:_Brain_Candy",
 			"Logo": "logos/movies/Kids in the Hall Brain Candy.png",
-			"Rating": "0.0",
+			"Rating": "6.0",
 			"Title": "Kids in the Hall: Brain Candy",
-			"Watched": false,
+			"Watched": true,
 			"Year": 1996
 		},
 		{
@@ -7413,7 +7402,7 @@
 			"Year": 1987
 		},
 		{
-			"Downloaded": false,
+			"Downloaded": true,
 			"Duration": 111,
 			"Genre_Tags": "Coen Brothers,Comedy",
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Hudsucker_Proxy",
@@ -7611,18 +7600,18 @@
 			"Year": 2000
 		},
 		{
-			"Downloaded": false,
+			"Downloaded": true,
 			"Duration": 96,
 			"Genre_Tags": "B-Movie,Comedy,Horror",
 			"InfoPage": "https://en.wikipedia.org/wiki/Elvira:_Mistress_of_the_Dark_(film)",
 			"Logo": "logos/movies/Elvira Mistress of the Dark.png",
-			"Rating": "0.0",
+			"Rating": "7.5",
 			"Title": "Elvira: Mistress of the Dark",
-			"Watched": false,
+			"Watched": true,
 			"Year": 1988
 		},
 		{
-			"Downloaded": false,
+			"Downloaded": true,
 			"Duration": 85,
 			"Genre_Tags": "B-Movie,Comedy,John Landis,Sci-Fi",
 			"InfoPage": "https://en.wikipedia.org/wiki/Amazon_Women_on_the_Moon",
@@ -7798,9 +7787,9 @@
 			"Year": 2015
 		},
 		{
-			"Downloaded": false,
+			"Downloaded": true,
 			"Duration": 92,
-			"Genre_Tags": "Comedy",
+			"Genre_Tags": "Bildungsroman,Comedy",
 			"InfoPage": "https://en.wikipedia.org/wiki/EuroTrip",
 			"Logo": "logos/movies/EuroTrip.png",
 			"Rating": "0.0",
@@ -7836,7 +7825,7 @@
 			"Genre_Tags": "Animation,Batman,Comedy,DC,Superheroes,Superman",
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Lego_Batman_Movie",
 			"Logo": "logos/movies/The Lego Batman Movie.png",
-			"Rating": "7.2",
+			"Rating": "7.5",
 			"Title": "The Lego Batman Movie",
 			"Watched": true,
 			"Year": 2017
@@ -7888,7 +7877,7 @@
 		{
 			"Downloaded": false,
 			"Duration": 109,
-			"Genre_Tags": "Comedy,John Landis",
+			"Genre_Tags": "Bildungsroman,Comedy,John Landis",
 			"InfoPage": "https://en.wikipedia.org/wiki/Animal_House",
 			"Logo": "logos/movies/National Lampoon's Animal House.png",
 			"Rating": "0.0",
@@ -7899,7 +7888,7 @@
 		{
 			"Downloaded": false,
 			"Duration": 95,
-			"Genre_Tags": "Comedy",
+			"Genre_Tags": "Bildungsroman,Comedy",
 			"InfoPage": "https://en.wikipedia.org/wiki/American_Pie_(film)",
 			"Logo": "logos/movies/American Pie.png",
 			"Rating": "0.0",
@@ -7908,14 +7897,14 @@
 			"Year": 1999
 		},
 		{
-			"Downloaded": false,
+			"Downloaded": true,
 			"Duration": 139,
 			"Genre_Tags": "Sci-Fi,Stanley Kubrick",
 			"InfoPage": "https://en.wikipedia.org/wiki/2001:_A_Space_Odyssey",
 			"Logo": "logos/movies/2001 A Space Odyssey.png",
 			"Rating": "0.0",
 			"Title": "2001: A Space Odyssey",
-			"Watched": true,
+			"Watched": false,
 			"Year": 1968
 		},
 		{
@@ -7928,6 +7917,336 @@
 			"Title": "7 Days in Hell",
 			"Watched": false,
 			"Year": 2015
+		},
+		{
+			"Downloaded": false,
+			"Duration": 89,
+			"Genre_Tags": "Bildungsroman,Drama",
+			"InfoPage": "https://en.wikipedia.org/wiki/Stand_by_Me_(film)",
+			"Logo": "logos/movies/Stand by Me.png",
+			"Rating": "0.0",
+			"Title": "Stand by Me",
+			"Watched": false,
+			"Year": 1986
+		},
+		{
+			"Downloaded": false,
+			"Duration": 103,
+			"Genre_Tags": "Bildungsroman,Comedy",
+			"InfoPage": "https://en.wikipedia.org/wiki/Ferris_Bueller's_Day_Off",
+			"Logo": "logos/movies/Ferris Bueller's Day Off.png",
+			"Rating": "8.4",
+			"Title": "Ferris Bueller's Day Off",
+			"Watched": true,
+			"Year": 1986
+		},
+		{
+			"Downloaded": false,
+			"Duration": 94,
+			"Genre_Tags": "Bildungsroman,Comedy,Sci-Fi",
+			"InfoPage": "https://en.wikipedia.org/wiki/Weird_Science_(film)",
+			"Logo": "logos/movies/Weird Science.png",
+			"Rating": "0.0",
+			"Title": "Weird Science",
+			"Watched": false,
+			"Year": 1985
+		},
+		{
+			"Downloaded": false,
+			"Duration": 102,
+			"Genre_Tags": "Bildungsroman,Comedy,Sports",
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Sandlot",
+			"Logo": "logos/movies/The Sandlot.png",
+			"Rating": "0.0",
+			"Title": "The Sandlot",
+			"Watched": false,
+			"Year": 1993
+		},
+		{
+			"Downloaded": false,
+			"Duration": 97,
+			"Genre_Tags": "Bildungsroman,Comedy,Romance",
+			"InfoPage": "https://en.wikipedia.org/wiki/10_Things_I_Hate_About_You",
+			"Logo": "logos/movies/10 Things I Hate About You.png",
+			"Rating": "7.6",
+			"Title": "10 Things I Hate About You",
+			"Watched": true,
+			"Year": 1999
+		},
+		{
+			"Downloaded": false,
+			"Duration": 96,
+			"Genre_Tags": "Comedy,Girlboss",
+			"InfoPage": "https://en.wikipedia.org/wiki/Legally_Blonde",
+			"Logo": "logos/movies/Legally Blonde.png",
+			"Rating": "8.4",
+			"Title": "Legally Blonde",
+			"Watched": true,
+			"Year": 2001
+		},
+		{
+			"Downloaded": false,
+			"Duration": 127,
+			"Genre_Tags": "Action,Bildungsroman,Drama",
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Karate_Kid",
+			"Logo": "logos/movies/The Karate Kid.png",
+			"Rating": "0.0",
+			"Title": "The Karate Kid",
+			"Watched": false,
+			"Year": 1984
+		},
+		{
+			"Downloaded": false,
+			"Duration": 92,
+			"Genre_Tags": "Bildungsroman,Comedy",
+			"InfoPage": "https://en.wikipedia.org/wiki/Wet_Hot_American_Summer",
+			"Logo": "logos/movies/Wet Hot American Summer.png",
+			"Rating": "0.0",
+			"Title": "Wet Hot American Summer",
+			"Watched": false,
+			"Year": 2001
+		},
+		{
+			"Downloaded": false,
+			"Duration": 109,
+			"Genre_Tags": "Bildungsroman,Comedy,Musical",
+			"InfoPage": "https://en.wikipedia.org/wiki/School_of_Rock",
+			"Logo": "logos/movies/School of Rock.png",
+			"Rating": "0.0",
+			"Title": "School of Rock",
+			"Watched": false,
+			"Year": 2003
+		},
+		{
+			"Downloaded": false,
+			"Duration": 95,
+			"Genre_Tags": "Bildungsroman,Comedy",
+			"InfoPage": "https://en.wikipedia.org/wiki/Napoleon_Dynamite",
+			"Logo": "logos/movies/Napoleon Dynamite.png",
+			"Rating": "0.0",
+			"Title": "Napoleon Dynamite",
+			"Watched": false,
+			"Year": 2004
+		},
+		{
+			"Downloaded": false,
+			"Duration": 94,
+			"Genre_Tags": "Comedy",
+			"InfoPage": "https://en.wikipedia.org/wiki/Anchorman:_The_Legend_of_Ron_Burgundy",
+			"Logo": "logos/movies/Anchorman The Legend of Ron Burgundy.png",
+			"Rating": "9.0",
+			"Title": "Anchorman: The Legend of Ron Burgundy",
+			"Watched": true,
+			"Year": 2004
+		},
+		{
+			"Downloaded": false,
+			"Duration": 119,
+			"Genre_Tags": "Comedy",
+			"InfoPage": "https://en.wikipedia.org/wiki/Anchorman_2:_The_Legend_Continues",
+			"Logo": "logos/movies/Anchorman 2 The Legend Continues.png",
+			"Rating": "7.5",
+			"Title": "Anchorman 2: The Legend Continues",
+			"Watched": true,
+			"Year": 2013
+		},
+		{
+			"Downloaded": false,
+			"Duration": 108,
+			"Genre_Tags": "Comedy,Sports",
+			"InfoPage": "https://en.wikipedia.org/wiki/Talladega_Nights:_The_Ballad_of_Ricky_Bobby",
+			"Logo": "logos/movies/Talladega Nights The Ballad of Ricky Bobby.png",
+			"Rating": "8.8",
+			"Title": "Talladega Nights: The Ballad of Ricky Bobby",
+			"Watched": true,
+			"Year": 2006
+		},
+		{
+			"Downloaded": false,
+			"Duration": 93,
+			"Genre_Tags": "Comedy,Sports",
+			"InfoPage": "https://en.wikipedia.org/wiki/Blades_of_Glory",
+			"Logo": "logos/movies/Blades of Glory.png",
+			"Rating": "8.5",
+			"Title": "Blades of Glory",
+			"Watched": true,
+			"Year": 2007
+		},
+		{
+			"Downloaded": false,
+			"Duration": 92,
+			"Genre_Tags": "Comedy,Sports",
+			"InfoPage": "https://en.wikipedia.org/wiki/Semi-Pro",
+			"Logo": "logos/movies/Semi-Pro.png",
+			"Rating": "0.0",
+			"Title": "Semi-Pro",
+			"Watched": false,
+			"Year": 2008
+		},
+		{
+			"Downloaded": false,
+			"Duration": 92,
+			"Genre_Tags": "Comedy,Sports",
+			"InfoPage": "https://en.wikipedia.org/wiki/Nacho_Libre",
+			"Logo": "logos/movies/Nacho Libre.png",
+			"Rating": "0.0",
+			"Title": "Nacho Libre",
+			"Watched": false,
+			"Year": 2006
+		},
+		{
+			"Downloaded": false,
+			"Duration": 85,
+			"Genre_Tags": "Adventure,Comedy,Fantasy",
+			"InfoPage": "https://en.wikipedia.org/wiki/Gulliver's_Travels_(2010_film)",
+			"Logo": "logos/movies/Gulliver's Travels.png",
+			"Rating": "6.2",
+			"Title": "Gulliver's Travels",
+			"Watched": true,
+			"Year": 2010
+		},
+		{
+			"Downloaded": false,
+			"Duration": 89,
+			"Genre_Tags": "Comedy,Documentary",
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Aristocrats_(film)",
+			"Logo": "logos/movies/The Aristocrats.png",
+			"Rating": "0.0",
+			"Title": "The Aristocrats",
+			"Watched": false,
+			"Year": 2005
+		},
+		{
+			"Downloaded": false,
+			"Duration": 97,
+			"Genre_Tags": "Black Comedy,British",
+			"InfoPage": "https://en.wikipedia.org/wiki/Four_Lions",
+			"Logo": "logos/movies/Four Lions.png",
+			"Rating": "0.0",
+			"Title": "Four Lions",
+			"Watched": false,
+			"Year": 2010
+		},
+		{
+			"Downloaded": false,
+			"Duration": 123,
+			"Genre_Tags": "David Lynch,Drama",
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Elephant_Man_(film)",
+			"Logo": "logos/movies/The Elephant Man.png",
+			"Rating": "0.0",
+			"Title": "The Elephant Man",
+			"Watched": false,
+			"Year": 1980
+		},
+		{
+			"Downloaded": true,
+			"Duration": 136,
+			"Genre_Tags": "Christmas,Holiday,Romance",
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Holiday",
+			"Logo": "logos/movies/The Holiday.png",
+			"Rating": "0.0",
+			"Title": "The Holiday",
+			"Watched": false,
+			"Year": 2006
+		},
+		{
+			"Downloaded": false,
+			"Duration": 102,
+			"Genre_Tags": "B-Movie,Sci-Fi",
+			"InfoPage": "https://en.wikipedia.org/wiki/Zardoz",
+			"Logo": "logos/movies/Zardoz.png",
+			"Rating": "0.0",
+			"Title": "Zardoz",
+			"Watched": false,
+			"Year": 1974
+		},
+		{
+			"Downloaded": false,
+			"Duration": 102,
+			"Genre_Tags": "Comedy,Sci-Fi",
+			"InfoPage": "https://en.wikipedia.org/wiki/Evolution_(2001_film)",
+			"Logo": "logos/movies/Evolution.png",
+			"Rating": "0.0",
+			"Title": "Evolution",
+			"Watched": false,
+			"Year": 2001
+		},
+		{
+			"Downloaded": false,
+			"Duration": 96,
+			"Genre_Tags": "Comedy,Mockumentary",
+			"InfoPage": "https://en.wikipedia.org/wiki/ABBA:_The_Movie",
+			"Logo": "logos/movies/ABBA The Movie.png",
+			"Rating": "0.0",
+			"Title": "ABBA: The Movie",
+			"Watched": false,
+			"Year": 1977
+		},
+		{
+			"Downloaded": false,
+			"Duration": 31,
+			"Genre_Tags": "Action,Comedy,Short Film",
+			"InfoPage": "https://en.wikipedia.org/wiki/Kung_Fury",
+			"Logo": "logos/movies/Kung Fury.png",
+			"Rating": "8.0",
+			"Title": "Kung Fury",
+			"Watched": true,
+			"Year": 2015
+		},
+		{
+			"Downloaded": false,
+			"Duration": 115,
+			"Genre_Tags": "Mafia,Noir,Thriller",
+			"InfoPage": "https://en.wikipedia.org/wiki/Miller's_Crossing",
+			"Logo": "logos/movies/Miller's Crossing.png",
+			"Rating": "0.0",
+			"Title": "Miller's Crossing",
+			"Watched": false,
+			"Year": 1990
+		},
+		{
+			"Downloaded": false,
+			"Duration": 95,
+			"Genre_Tags": "Comedy",
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Jerk",
+			"Logo": "logos/movies/The Jerk.png",
+			"Rating": "0.0",
+			"Title": "The Jerk",
+			"Watched": false,
+			"Year": 1979
+		},
+		{
+			"Downloaded": false,
+			"Duration": 123,
+			"Genre_Tags": "Action,Comedy",
+			"InfoPage": "https://en.wikipedia.org/wiki/Out_of_Sight",
+			"Logo": "logos/movies/Out of Sight.png",
+			"Rating": "0.0",
+			"Title": "Out of Sight",
+			"Watched": false,
+			"Year": 1998
+		},
+		{
+			"Downloaded": false,
+			"Duration": 74,
+			"Genre_Tags": "Horror,Silent",
+			"InfoPage": "https://en.wikipedia.org/wiki/The_Cabinet_of_Dr._Caligari",
+			"Logo": "logos/movies/The Cabinet of Dr. Caligari.png",
+			"Rating": "0.0",
+			"Title": "The Cabinet of Dr. Caligari",
+			"Watched": false,
+			"Year": 1920
+		},
+		{
+			"Downloaded": false,
+			"Duration": 91,
+			"Genre_Tags": "Comedy,Horror,Musical",
+			"InfoPage": "https://en.wikipedia.org/wiki/Phantom_of_the_Paradise",
+			"Logo": "logos/movies/Phantom of the Paradise.png",
+			"Rating": "0.0",
+			"Title": "Phantom of the Paradise",
+			"Watched": false,
+			"Year": 1974
 		}
 	],
 	"Novel": [
@@ -8107,7 +8426,7 @@
 			"Logo": "logos/podcasts/Campaign 2 - Eldermourne.png",
 			"Rating": "0.0",
 			"Title": "Campaign 2 - Eldermourne",
-			"Watched": true
+			"Watched": false
 		},
 		{
 			"Creator": "Worlds Beyond Number",
@@ -8717,7 +9036,7 @@
 			"Duration": 22,
 			"Genre_Tags": "Comedy,Horror,Kiwi,Mockumentary,Vampires",
 			"InfoPage": "https://en.wikipedia.org/wiki/What_We_Do_in_the_Shadows_%28TV_series%29",
-			"Length": 50,
+			"Length": 57,
 			"Logo": "logos/tvshows/What We Do in the Shadows TV.png",
 			"Rating": "7.7",
 			"Series_End": "1900-01-01",
@@ -8767,7 +9086,7 @@
 		{
 			"Downloaded": true,
 			"Duration": 60,
-			"Genre_Tags": "DC,Superheroes",
+			"Genre_Tags": "DC,Drama,Superheroes",
 			"InfoPage": "https://en.wikipedia.org/wiki/Watchmen_(TV_series)",
 			"Length": 9,
 			"Logo": "logos/tvshows/Watchmen (TV).png",
@@ -8862,11 +9181,11 @@
 			"InfoPage": "https://en.wikipedia.org/wiki/Scooby-Doo!_Mystery_Incorporated",
 			"Length": 52,
 			"Logo": "logos/tvshows/Scooby-Doo Mystery Incorporated.png",
-			"Rating": "0.0",
+			"Rating": "8.4",
 			"Series_End": "2013-04-05",
 			"Series_Start": "2010-04-05",
 			"Title": "Scooby-Doo Mystery Incorporated",
-			"Watched": false
+			"Watched": true
 		},
 		{
 			"Downloaded": false,
@@ -9194,7 +9513,7 @@
 			"Watched": true
 		},
 		{
-			"Downloaded": false,
+			"Downloaded": true,
 			"Duration": 60,
 			"Genre_Tags": "British,Comedy,Educational,Motoring",
 			"InfoPage": "https://en.wikipedia.org/wiki/Top_Gear_(2002_TV_series)",
@@ -9222,7 +9541,7 @@
 		{
 			"Downloaded": true,
 			"Duration": 45,
-			"Genre_Tags": "British,Comedy",
+			"Genre_Tags": "British,Comedy,Educational",
 			"InfoPage": "https://en.wikipedia.org/wiki/Clarkson%27s_Farm",
 			"Length": 24,
 			"Logo": "logos/tvshows/Clarkson's Farm.png",
@@ -9402,7 +9721,7 @@
 			"Watched": true
 		},
 		{
-			"Downloaded": false,
+			"Downloaded": true,
 			"Duration": 60,
 			"Genre_Tags": "Batman,Drama,Mafia,Superheroes",
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Penguin_(TV_series)",
@@ -9417,7 +9736,7 @@
 		{
 			"Downloaded": false,
 			"Duration": 40,
-			"Genre_Tags": "Comedy,MCU,Marvel,Mystery",
+			"Genre_Tags": "Comedy,MCU,Marvel",
 			"InfoPage": "https://en.wikipedia.org/wiki/Agatha_All_Along_(miniseries)",
 			"Length": 9,
 			"Logo": "logos/tvshows/Agatha All Along.png",
@@ -9705,7 +10024,7 @@
 			"Duration": 22,
 			"Genre_Tags": "Comedy",
 			"InfoPage": "https://en.wikipedia.org/wiki/Abbott_Elementary",
-			"Length": 49,
+			"Length": 71,
 			"Logo": "logos/tvshows/Abbott Elementary.png",
 			"Rating": "0.0",
 			"Series_End": "1900-01-01",
@@ -9841,6 +10160,19 @@
 			"Series_End": "1900-01-01",
 			"Series_Start": "2024-09-25",
 			"Title": "Ludwig",
+			"Watched": false
+		},
+		{
+			"Downloaded": true,
+			"Duration": 29,
+			"Genre_Tags": "Animation,Comedy",
+			"InfoPage": "https://en.wikipedia.org/wiki/Scott_Pilgrim_Takes_Off",
+			"Length": 8,
+			"Logo": "logos/tvshows/Scott Pilgrim Takes Off.png",
+			"Rating": "0.0",
+			"Series_End": "2023-11-27",
+			"Series_Start": "2023-11-27",
+			"Title": "Scott Pilgrim Takes Off",
 			"Watched": false
 		}
 	],
