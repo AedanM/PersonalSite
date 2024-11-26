@@ -1,6 +1,7 @@
 # pylint: disable=C0103
 import datetime
 import logging
+import re
 import urllib.error
 from pathlib import Path
 
@@ -90,6 +91,10 @@ class Media(models.Model):
                 outVal = i
                 break
         return outVal
+
+    @property
+    def EscapedTitle(self) -> str:
+        return re.escape(self.Title)
 
 
 class WatchableMedia(Media):

@@ -2,7 +2,10 @@
 	"_comment": "cSpell:disable",
 	"Content": [
 		"Beatles",
+		"Christmas",
+		"Cop",
 		"DC",
+		"Detective",
 		"Dinosaur",
 		"DnD",
 		"Engineering",
@@ -67,10 +70,7 @@
 		"Action",
 		"Adventure",
 		"Black Comedy",
-		"Christmas",
 		"Comedy",
-		"Cop",
-		"Detective",
 		"Disaster",
 		"Documentary",
 		"Drama",
@@ -87,6 +87,7 @@
 		"Romance",
 		"Sci-Fi",
 		"Sports",
+		"Superheroes",
 		"Thriller",
 		"Western"
 	],
@@ -127,6 +128,7 @@
 		"Aardman",
 		"Animation",
 		"B-Movie",
+		"B&W",
 		"Band Musical",
 		"Bildungsroman",
 		"Blaxploitation",
@@ -145,7 +147,6 @@
 		"Sketch",
 		"Stage Play",
 		"Stop Motion",
-		"Superheroes",
 		"Surrealist",
 		"Silent"
 	]

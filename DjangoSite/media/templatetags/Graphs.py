@@ -1,19 +1,35 @@
 import datetime
+import json
 import logging
 from functools import wraps
 from math import ceil
+from pathlib import Path
 from time import time
 
 import pandas as pd
 import plotly.express as px  # type:ignore
 import statsmodels.api as sm  # type:ignore
 from django import template
+from django.conf import settings as django_settings
 
 from ..utils import MINIMUM_YEAR
+
+DEFINED_TAGS = {}
+with open(Path(django_settings.STATICFILES_DIRS[0]) / "files/Genres.json", encoding="ascii") as fp:
+    DEFINED_TAGS = json.load(fp)
+    DEFINED_TAGS.pop("_comment", None)
 
 register = template.Library()
 
 LOGGER = logging.getLogger("UserLogger")
+
+WATCH_COLOR_MAP = {
+    "Watched": "blue",
+    "Downloaded": "lightgreen",
+    "Neither": "red",
+    "Watched On MS": "#1111FF",
+    "Watched Streaming": "purple",
+}
 
 
 def LogTiming(f):
@@ -57,7 +73,7 @@ def RatingOverTime(objList: list) -> str:
             title="Rating Over Time",
             hover_name="Title",
             color="Duration",
-            color_continuous_scale="rainbow",
+            color_continuous_scale="Electric",
         )
         rollingTrend = sm.nonparametric.lowess(df["Rating"], df["Release Year"], frac=0.35)
 
@@ -86,7 +102,7 @@ def DurationOverTime(objList: list) -> str:
                 x.Duration.seconds / 60 if not useTotal else x.Total_Length for x in objList
             ],
             "Watched": [
-                "Watched" if x.Watched else "On MS" if x.Downloaded else "Not Watched"
+                "Watched" if x.Watched else "Downloaded" if x.Downloaded else "Neither"
                 for x in objList
             ],
         }
@@ -97,7 +113,7 @@ def DurationOverTime(objList: list) -> str:
             x="Year",
             y="Duration",
             color="Watched",
-            color_discrete_map={"Not Watched": "red", "Watched": "blue", "On MS": "lightgreen"},
+            color_discrete_map=WATCH_COLOR_MAP,
             labels={"x": "Release Year", "y": "Duration (minutes)"},
             title="Duration Over Time",
             hover_name="Title",
@@ -194,6 +210,43 @@ def RuntimeBreakdown(objList: list) -> str:
 
 
 @register.filter
+def GenreBreakdown(objList: list, useCount: bool) -> str:
+    outputDiv = ""
+    results = {}
+    gList = [y for y in DEFINED_TAGS["Genres"] if [x for x in objList if y in x.Genre_Tags]]
+    colors = px.colors.qualitative.Plotly + px.colors.qualitative.Light24
+    colorMap = dict(
+        (DEFINED_TAGS["Genres"][idx], colors[idx]) for idx in range(len(DEFINED_TAGS["Genres"]))
+    )
+
+    genreSorted = sorted(
+        gList,
+        key=lambda y: len([x for x in objList if y in x.Genre_Tags]),
+    )
+
+    for genre in genreSorted:
+        if genreEls := [x for x in objList if genre in x.Genre_Tags]:
+            results[genre] = (
+                len(genreEls) if useCount else sum(x.Duration.seconds for x in genreEls)
+            )
+            objList = [x for x in objList if genre not in x.Genre_Tags]
+
+    if results := dict(sorted(results.items(), key=lambda item: item[1], reverse=True)):
+        fig = px.pie(
+            category_orders={"names": list(results.keys())},
+            hole=0.25,
+            color=list(results.keys()),
+            color_discrete_map=colorMap,
+            names=list(results.keys()),
+            title=f"{"Runtime" if not useCount else "Count"} Breakdown by Genre",
+            values=list(results.values()),
+        )
+
+        outputDiv = GetHTML(fig, True)
+    return outputDiv
+
+
+@register.filter
 def ValuesOverYears(objList: list) -> str:
     outputDiv = ""
     currentYear = datetime.datetime.now().year + 1
@@ -205,32 +258,21 @@ def ValuesOverYears(objList: list) -> str:
     startDecade = min(x.Year for x in objList)
 
     for year in range(startDecade, currentYear, 1):
+        w, d, n = Get3Types([x for x in objList if x.Year == year])
         years.append(year)
-        mediaCount.append(len([x for x in objList if x.Year == year and x.Watched]))
+        mediaCount.append(len(w))
         watchStatus.append("Watched")
-        titles.append("<br>".join([x.Title for x in objList if x.Year == year and x.Watched]))
+        titles.append("<br>".join([x.Title for x in w]))
 
         years.append(year)
-        mediaCount.append(
-            len([x for x in objList if x.Year == year and not x.Watched and x.Downloaded])
-        )
+        mediaCount.append(len(d))
         watchStatus.append("Downloaded")
-        titles.append(
-            "<br>".join(
-                [x.Title for x in objList if x.Year == year and not x.Watched and x.Downloaded]
-            )
-        )
+        titles.append("<br>".join([x.Title for x in d]))
 
         years.append(year)
-        mediaCount.append(
-            len([x for x in objList if x.Year == year and not x.Watched and not x.Downloaded])
-        )
-        watchStatus.append("Not Watched or Downloaded")
-        titles.append(
-            "<br>".join(
-                [x.Title for x in objList if x.Year == year and not x.Watched and not x.Downloaded]
-            )
-        )
+        mediaCount.append(len(n))
+        watchStatus.append("Neither")
+        titles.append("<br>".join([x.Title for x in n]))
 
     df = pd.DataFrame(
         data={
@@ -247,11 +289,7 @@ def ValuesOverYears(objList: list) -> str:
             y="Media Counts",
             color="Watch Status",
             hover_name="Titles",
-            color_discrete_sequence=[
-                "blue",
-                "lightgreen",
-                "red",
-            ],
+            color_discrete_map=WATCH_COLOR_MAP,
         )
 
         fig.update_layout(
@@ -285,9 +323,7 @@ def TimeLine(objList: list) -> str:
                     f"{obj.Series_End if obj.Series_End.year > MINIMUM_YEAR else 'now'}"
                 ),
                 "Watched": (
-                    "Watched"
-                    if obj.Watched
-                    else "Downloaded" if obj.Downloaded else "Not Watched or Downloaded"
+                    "Watched" if obj.Watched else "Downloaded" if obj.Downloaded else "Neither"
                 ),
                 "Idx": yLevel,
             }
@@ -298,18 +334,8 @@ def TimeLine(objList: list) -> str:
         x_start="Series_Start",
         x_end="Series_End",
         y="Idx",
-        color=df["Watched"].map(
-            {
-                "Watched": "Watched",
-                "Not Watched or Downloaded": "Not Watched",
-                "Downloaded": "Downloaded",
-            }
-        ),
-        color_discrete_map={
-            "Not Watched": "red",
-            "Watched": "blue",
-            "Downloaded": "lightgreen",
-        },
+        color="Watched",
+        color_discrete_map=WATCH_COLOR_MAP,
         hover_name="Title",
         title="Watching Trends over Time",
     )
@@ -319,7 +345,86 @@ def TimeLine(objList: list) -> str:
 
 def YearPercentage(date):
     date = datetime.date.today() if date.year <= MINIMUM_YEAR else date
-    return date.year + (date.month / 12) + (date.day) / 31
+    # 04/06/2019
+    return date.year + (date.month / 12) + (date.day / (31 * 12))
+
+
+def Get3Types(objList):
+    watched = [x for x in objList if x.Watched]
+    downloaded = [x for x in objList if x.Downloaded and not x.Watched]
+    neither = [x for x in objList if not x.Downloaded and not x.Watched]
+    return watched, downloaded, neither
+
+
+@register.filter
+def GenreSearch(objList: list):
+    genres = []
+    mediaCount = []
+    watchStatus = []
+    counts = []
+    typeStr = objList[0].__class__.__name__
+
+    def GenreSort(g, objList) -> float:
+        subList = [x for x in objList if g in x.Genre_Tags]
+        types = Get3Types(subList)
+        return len(types[0]) / len(subList) if subList else 0
+
+    genreDict = {}
+    for genre in sorted(
+        DEFINED_TAGS["Genres"], key=lambda y: len([x for x in objList if y in x.Genre_Tags])
+    ):
+        genreDict[genre] = [x for x in objList if genre in x.Genre_Tags]
+        objList = [x for x in objList if x not in genreDict[genre]]
+
+    for genre in sorted(genreDict, key=lambda x: GenreSort(x, genreDict[x]), reverse=True):
+        if genreList := genreDict[genre]:
+            w, d, n = Get3Types(genreList)
+            genres.append(genre)
+            mediaCount.append(len(w) / len(genreList))
+            watchStatus.append("Watched")
+            counts.append(f"{len(w)} Watched {typeStr}s")
+
+            genres.append(genre)
+            mediaCount.append(len(d) / len(genreList))
+            watchStatus.append("Downloaded")
+            counts.append(f"{len(d)} Downloaded {typeStr}s")
+
+            genres.append(genre)
+            mediaCount.append(len(n) / len(genreList))
+            watchStatus.append("Neither")
+            counts.append(f"{len(n)} Unwatched {typeStr}s")
+
+    df = pd.DataFrame(
+        data={
+            "Genre": genres,
+            "Watch %": mediaCount,
+            "Watch Status": watchStatus,
+            "Number": counts,
+        }
+    )
+    if not df.empty:
+        fig = px.bar(
+            df,
+            x="Genre",
+            y="Watch %",
+            color="Watch Status",
+            hover_name="Number",
+            color_discrete_map=WATCH_COLOR_MAP,
+        )
+
+        fig.update_layout(
+            barmode="stack",
+            title="Watch Trends Over Time",
+            legend=dict(
+                orientation="h",
+                yanchor="top",
+                y=1.1,
+                xanchor="center",
+                x=0.5,
+            ),
+        )
+        return GetHTML(fig)
+    return ""
 
 
 @register.filter
@@ -355,7 +460,7 @@ def FancyRatings(objList: list) -> str:
         x="Year",
         y="Ratings",
         color="Genre",
-        title="Yearly Average Rating Over Time",
+        title="Rating Over Time",
         hover_name="Title",
         line_group="Title",
         markers=True,
@@ -428,8 +533,8 @@ def CompletionPercentageRuntime(objList: list) -> str:
     cats = [
         "Watched on MS",
         "Watched Streaming",
-        "Ready On MS",
-        "Not Watched or Downloaded",
+        "Downloaded",
+        "Neither",
     ]
     df = pd.DataFrame(
         {
@@ -463,6 +568,8 @@ def CompletionPercentageRuntime(objList: list) -> str:
         df,
         hole=0.25,
         names="label",
+        color="label",
+        color_discrete_map=WATCH_COLOR_MAP,
         category_orders={"label": cats},
         title="Watch Status by Duration",
         values="values",
@@ -477,8 +584,8 @@ def CompletionPercentage(objList: list) -> str:
     cats = [
         "Watched on MS",
         "Watched Streaming",
-        "Ready On MS",
-        "Not Watched or Downloaded",
+        "Downloaded",
+        "Neither",
     ]
     df = pd.DataFrame(
         {
@@ -498,6 +605,8 @@ def CompletionPercentage(objList: list) -> str:
         hole=0.25,
         names="label",
         category_orders={"label": cats},
+        color="label",
+        color_discrete_map=WATCH_COLOR_MAP,
         title="Watch Status by Count",
         values="values",
     )
