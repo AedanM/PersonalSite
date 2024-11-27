@@ -72,18 +72,21 @@ def FolderBanned(pathObj):
 
 
 def RipWDrive():
-    start = time.time()
-    movies = GetMovies(Path(r"Z:\\"))
-    LOGGER.info("Movie scrape took %f seconds", time.time() - start)
-    start = time.time()
-    tv = GetTV(Path(r"Z:\\"))
-    LOGGER.info("TV scrape took %f seconds", time.time() - start)
-    with open(
-        Path(__file__).parent.parent.parent / r"static\files\MediaServerSummary.json",
-        mode="w",
-        encoding="ascii",
-    ) as fp:
-        json.dump({"Movies": movies, "TV Shows": tv}, fp)
+    try:
+        start = time.time()
+        movies = GetMovies(Path(r"Z:\\"))
+        LOGGER.info("Movie scrape took %f seconds", time.time() - start)
+        start = time.time()
+        tv = GetTV(Path(r"Z:\\"))
+        LOGGER.info("TV scrape took %f seconds", time.time() - start)
+        with open(
+            Path(__file__).parent.parent.parent / r"static\files\MediaServerSummary.json",
+            mode="w",
+            encoding="ascii",
+        ) as fp:
+            json.dump({"Movies": movies, "TV Shows": tv}, fp)
+    except FileNotFoundError:
+        pass
 
 
 if __name__ == "__main__":
