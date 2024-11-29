@@ -64,22 +64,22 @@
 				<details open>
 					<summary>Pie Graphs</summary>
 					<div class="d-flex flex-row flex-wrap">
-						{{ Movie|DecadeBreakdown|safe }}{{ Movie|RuntimeBreakdown|safe }}
+						{{ Movie|DecadeBreakdown:force|safe }}{{ Movie|RuntimeBreakdown:force|safe }}
 					</div>
 					<div class="d-flex flex-row flex-wrap">
-						<div>{{ Movie|CompletionPercentage|safe }}</div>
-						<div>{{ Movie|CompletionPercentageRuntime|safe }}</div>
+						<div>{{ Movie|CompletionPercentage:force|safe }}</div>
+						<div>{{ Movie|CompletionPercentageRuntime:force|safe }}</div>
 					</div>
 					<div class="d-flex flex-row flex-wrap">
-						<div>{{ Movie|GenreBreakdown:True|safe }}</div>
-						<div>{{ Movie|GenreBreakdown:False|safe }}</div>
+						<div>{% GenreBreakdown Movie True force as result%}{{result|safe}}</div>
+						<div>{% GenreBreakdown Movie False force as result%}{{result|safe}}</div>
 					</div>
 				</details>
-				<div>{{ Movie|ValuesOverYears|safe }}</div>
-				<div>{{ Movie|GenreSearch|safe }}</div>
-				<div>{{ Movie|RatingOverTime|safe }}</div>
-				<div>{{ Movie|DurationOverTime|safe }}</div>
-				<div>{{ Movie|DurationVsRating|safe }}</div>
+				<div>{{ Movie|ValuesOverYears:force|safe }}</div>
+				<div>{{ Movie|GenreSearch:force|safe }}</div>
+				<div>{{ Movie|RatingOverTime:force|safe }}</div>
+				<div>{{ Movie|DurationOverTime:force|safe }}</div>
+				<div>{{ Movie|DurationVsRating:force|safe }}</div>
 			</details>
 			{%endif%} {% if TVShow %}
 			<details open>
@@ -87,22 +87,22 @@
 				<details open>
 					<summary>Pie Graphs</summary>
 					<div class="d-flex flex-row flex-wrap">
-						{{ TVShow|DecadeBreakdown|safe }}{{ TVShow|RuntimeBreakdown|safe }}
+						{{ TVShow|DecadeBreakdown:force|safe }}{{ TVShow|RuntimeBreakdown:force|safe }}
 					</div>
 					<div class="d-flex flex-row flex-wrap">
-						<div>{{ TVShow|CompletionPercentage|safe }}</div>
-						<div>{{ TVShow|CompletionPercentageRuntime |safe }}</div>
+						<div>{{ TVShow|CompletionPercentage:force|safe }}</div>
+						<div>{{ TVShow|CompletionPercentageRuntime:force|safe }}</div>
 					</div>
 					<div class="d-flex flex-row flex-wrap">
-						<div>{{ TVShow|GenreBreakdown:True|safe }}</div>
-						<div>{{ TVShow|GenreBreakdown:False|safe }}</div>
+						<div>{% GenreBreakdown TVShow True force as result%}{{result|safe}}</div>
+						<div>{% GenreBreakdown TVShow False force as result%}{{result|safe}}</div>
 					</div>
 				</details>
-				<div>{{ TVShow|TimeLine|safe }}</div>
-				<div>{{ TVShow|GenreSearch|safe }}</div>
-				<div>{{ TVShow|FancyRatings|safe }}</div>
-				<div>{{ TVShow|DurationOverTime|safe }}</div>
-				<div>{{ TVShow|DurationVsRating|safe }}</div>
+				<div>{{ TVShow|TimeLine:force|safe }}</div>
+				<div>{{ TVShow|GenreSearch:force|safe }}</div>
+				<div>{{ TVShow|FancyRatings:force|safe }}</div>
+				<div>{{ TVShow|DurationOverTime:force|safe }}</div>
+				<div>{{ TVShow|DurationVsRating:force|safe }}</div>
 			</details>
 			{%endif%}
 		</main>

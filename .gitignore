@@ -10,7 +10,6 @@ __pycache__/
 */Temp
 
 
-
 # Distribution / packaging
 .Python
 build/
@@ -526,3 +525,4 @@ Temp/Movies/Movie 9/1945 The Bashful Buzzard.avi
 Temp/Movies/Movie 9/1945 Wagon Heels.avi
 DjangoSite/temp.html
 DjangoSite/static/temp.png
+DjangoSite/static/stats/*

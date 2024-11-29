@@ -176,6 +176,7 @@ def stats(request) -> HttpResponse:
     for media in MODEL_LIST:
         context[media.__name__] = FilterMedia(request, media)["obj_list"]
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
+    context["force"] = request.GET.get("force", "False") == "True"
     response = render(request, "media/stats.html", context=context)
     LOGGER.info("Stats Rendering Took %2.4f", time.time() - start)
     return response
