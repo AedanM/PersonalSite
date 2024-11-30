@@ -118,8 +118,6 @@ def MatchTitles(t1, t2) -> bool:
     for char in badChars:
         t1 = t1.replace(char, "")
         t2 = t2.replace(char, "")
-    if "star trek" in t1:
-        print(t1, t2)
     return t1.lower() == t2.lower()
 
 
@@ -168,7 +166,11 @@ def FilterOutTVMatches(files: list):
     unmatched = []
     rerender = []
     for m in files:
-        matches = [x for x in tvList if MatchTitles(x.Title, m["Title"])]
+        matches = (
+            [x for x in tvList if MatchTitles(x.Title, m["Title"])]
+            if isinstance(m["Title"], str)
+            else [x for x in tvList if x.id == m["Title"]]  # type: ignore
+        )
         if matches:
             m["Match"] = {
                 "ID": matches[0].id,  # type:ignore
@@ -178,6 +180,7 @@ def FilterOutTVMatches(files: list):
                 "Marked": matches[0].Downloaded,
                 "Count": matches[0].Length,
             }
+            m["Title"] = matches[0].Title
             matched.append(m)
             if m["Match"]["Runtime"] / m["Size"] < 45:
                 rerender.append(m["FilePath"])
@@ -186,9 +189,7 @@ def FilterOutTVMatches(files: list):
             m["Closest"] = {"Title": closest[-1].Title, "Year": closest[-1].Year}
             unmatched.append(m)
     if rerender:
-        with open(
-            file=Path(f"./static/files/rerenderListTV.csv"), mode="w", encoding="ascii"
-        ) as fp:
+        with open(file=Path("./static/files/rerenderListTV.csv"), mode="w", encoding="ascii") as fp:
             fp.write("\n".join(rerender))
 
     return unmatched, matched

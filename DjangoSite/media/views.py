@@ -8,20 +8,15 @@ from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 from django.shortcuts import redirect, render
 
 from .models import Movie, TVShow
-from .modules.CheckDetails import CheckMovies, CheckTV, CopyOverRenderQueue, HandleReRenderQueue
+from .modules.CheckDetails import (CheckMovies, CheckTV, CopyOverRenderQueue,
+                                   HandleReRenderQueue)
 from .modules.FileRip import RipWDrive
 from .modules.ModelTools import DownloadImage, SortTags
-from .modules.Utils import (
-    MODEL_LIST,
-    DetermineForm,
-    FindID,
-    FormMatch,
-    GetAllTags,
-    GetContents,
-    GetFormAndClass,
-)
+from .modules.Utils import (MODEL_LIST, DetermineForm, FindID, FormMatch,
+                            GetAllTags, GetContents, GetFormAndClass)
 from .modules.WebTools import ScrapeWiki
-from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFunction
+from .utils import (ExtractYearRange, FilterTags, FuzzStr, SearchFunction,
+                    SortFunction)
 
 # Create your views here.
 LOGGER = logging.getLogger("UserLogger")
@@ -139,7 +134,7 @@ def checkFiles(request) -> HttpResponse:
         return HttpResponse("Copied Render List")
 
     if request.GET.get("Scan", "True") == "True":
-        RipWDrive()
+        RipWDrive(request.GET.get("type","Movie"), showProgress=request.GET.get("progress",False))
 
     match request.GET.get("type"):
         case "TVShow":
@@ -174,7 +169,8 @@ def stats(request) -> HttpResponse:
     start = time.time()
     context = {}
     for media in MODEL_LIST:
-        context[media.__name__] = FilterMedia(request, media)["obj_list"]
+        # pylint: disable=E1101
+        context[media.__name__] = media.objects.all()
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
     context["force"] = request.GET.get("force", "False") == "True"
     response = render(request, "media/stats.html", context=context)

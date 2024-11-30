@@ -49,5 +49,5 @@ def FolderBanned(pathObj):
 
 
 if __name__ == "__main__":
-    p = Path(r"Z:\\")
+    p = Path(r"\\192.168.0.100")
     RipTV(p)

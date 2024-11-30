@@ -1,15 +1,24 @@
 import json
 import logging
 import os.path
+import sys
 import time
 from pathlib import Path
+
+from progress.bar import Bar
 
 LOGGER = logging.getLogger("UserLogger")
 
 
-def GetMovies(parent):
+def GetMovies(parent, showProgress: bool):
     path = parent / "Movies"
     objList = []
+    if showProgress:
+        pbar = Bar(
+            "Loading Movies...",
+            max=len(list(path.glob("**/*.*"))),
+            suffix=r"%(index)d/%(max)d - %(eta)ds",
+        )
     for file in path.glob("**/*.*"):
         if file.is_file() and file.suffix not in [".ico", ".json"]:
             title = " ".join(file.stem.split(" ")[:-1])
@@ -26,7 +35,11 @@ def GetMovies(parent):
             if obj["Size"] == 0:
                 obj["Size"] = 0.0001
             objList.append(obj)
-
+        if showProgress:
+            pbar.next()
+    if showProgress:
+        print()
+        print("Movies Complete")
     with open(path / "Summary.json", encoding="ascii", mode="w") as fp:
         json.dump({"Movies": objList}, fp)
     return objList
@@ -35,10 +48,15 @@ def GetMovies(parent):
 BANNED_COMPONENTS = ["season", "_", "special"]
 
 
-def GetTV(parent: Path):
+def GetTV(parent: Path, showProgress: bool):
     path = parent / "TV Shows"
     folderObjs = []
-
+    if showProgress:
+        pbar = Bar(
+            "Loading Shows...",
+            max=len(list(path.glob("**/*/"))),
+            suffix=r"%(index)d/%(max)d - %(eta)ds",
+        )
     for folder in path.glob("**/*/"):
         subFolders = [str(x).lower() for x in folder.glob("**/*/")]
         useFolder = True
@@ -62,8 +80,14 @@ def GetTV(parent: Path):
                         "Size": sum(f.stat().st_size for f in subFiles) / (1024 * 1024 * 1024),
                     }
                 )
-    with (path / "Summary.json").open("w", encoding="utf-8") as fp:
-        json.dump(folderObjs, fp)
+        if showProgress:
+            pbar.next()
+    if showProgress:
+        print()
+        print("TV Complete")
+    if folderObjs:
+        with (path / "Summary.json").open("w", encoding="utf-8") as fp:
+            json.dump(folderObjs, fp)
     return folderObjs
 
 
@@ -71,23 +95,37 @@ def FolderBanned(pathObj):
     return any(x.lower() in str(pathObj).lower() for x in BANNED_COMPONENTS)
 
 
-def RipWDrive():
+def RipWDrive(mediaType: str, showProgress: bool):
     try:
+        ms = Path(r"\\192.168.0.100") if not Path("Z:\\").exists() else Path("Z:\\")
         start = time.time()
-        movies = GetMovies(Path(r"Z:\\"))
-        LOGGER.info("Movie scrape took %f seconds", time.time() - start)
-        start = time.time()
-        tv = GetTV(Path(r"Z:\\"))
-        LOGGER.info("TV scrape took %f seconds", time.time() - start)
+        movie = []
+        tv = []
+        if mediaType == "Movie":
+            movies = GetMovies(ms, showProgress)
+            LOGGER.info("Movie scrape took %f seconds", time.time() - start)
+        else:
+            tv = GetTV(ms, showProgress)
+            LOGGER.info("TV scrape took %f seconds", time.time() - start)
+        summaryFile = Path(__file__).parent.parent.parent / r"static\files\MediaServerSummary.json"
+        currentFile = json.loads(summaryFile.read_text())
         with open(
             Path(__file__).parent.parent.parent / r"static\files\MediaServerSummary.json",
             mode="w",
             encoding="ascii",
         ) as fp:
-            json.dump({"Movies": movies, "TV Shows": tv}, fp)
-    except FileNotFoundError:
-        pass
+            json.dump(
+                {
+                    "Movies": movies if mediaType == "Movie" and movies else currentFile["Movies"],
+                    "TV Shows": tv if mediaType != "Movie" and tv else currentFile["TV Shows"],
+                },
+                fp,
+            )
+    except FileNotFoundError as e:
+        print(f"Drive not found {e}")
 
 
 if __name__ == "__main__":
-    RipWDrive()
+    LOGGER.addHandler(logging.StreamHandler(sys.stdout))
+    RipWDrive("TV Show", True)
+    RipWDrive("Movie", True)
