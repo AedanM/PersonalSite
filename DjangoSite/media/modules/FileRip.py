@@ -14,7 +14,7 @@ def GetMovies(parent, showProgress: bool):
     path = parent / "Movies"
     objList = []
     if showProgress:
-        pbar = Bar(
+        pBar = Bar(
             "Loading Movies...",
             max=len(list(path.glob("**/*.*"))),
             suffix=r"%(index)d/%(max)d - %(eta)ds",
@@ -36,7 +36,7 @@ def GetMovies(parent, showProgress: bool):
                 obj["Size"] = 0.0001
             objList.append(obj)
         if showProgress:
-            pbar.next()
+            pBar.next()
     if showProgress:
         print()
         print("Movies Complete")
@@ -52,7 +52,7 @@ def GetTV(parent: Path, showProgress: bool):
     path = parent / "TV Shows"
     folderObjs = []
     if showProgress:
-        pbar = Bar(
+        pBar = Bar(
             "Loading Shows...",
             max=len(list(path.glob("**/*/"))),
             suffix=r"%(index)d/%(max)d - %(eta)ds",
@@ -81,7 +81,7 @@ def GetTV(parent: Path, showProgress: bool):
                     }
                 )
         if showProgress:
-            pbar.next()
+            pBar.next()
     if showProgress:
         print()
         print("TV Complete")
@@ -99,7 +99,7 @@ def RipWDrive(mediaType: str, showProgress: bool):
     try:
         ms = Path(r"\\192.168.0.100") if not Path("Z:\\").exists() else Path("Z:\\")
         start = time.time()
-        movie = []
+        movies = []
         tv = []
         if mediaType == "Movie":
             movies = GetMovies(ms, showProgress)
