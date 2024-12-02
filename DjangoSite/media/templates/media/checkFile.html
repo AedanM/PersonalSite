@@ -106,7 +106,7 @@
 							<thead>
 								<tr>
 									<th>Title</th>
-									<th>Year</th>
+									<th>{% if matched|first|Get:"Year" %} Year {%else%} Count{%endif%}</th>
 									<th>Size</th>
 									<th>Runtime</th>
 									<th>Min/GB</th>
@@ -118,7 +118,7 @@
 								{% for show in matched %}
 								<tr>
 									<td><a class="clean-link" href="edit?id={{show|Get:"Match"|Get:"ID"}}"/>{{show|Get:"Title"}}</td>
-									<td>{{show|Get:"Year"}}</td>
+									<td>{% if show|Get:"Year" %} {{show|Get:"Year"}} {%else%} {{show|Get:"Count"}}{%endif%}</td>
 									<td>{{show|Get:"Size"}}</td>
 									<td>{{show|Get:"Match"|Get:"Runtime"}}</td>
 									<td>{{show|Ratio}}</td>
