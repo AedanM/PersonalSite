@@ -36,7 +36,7 @@ def GetMovies(parent, showProgress: bool):
                 obj["Size"] = 0.0001
             objList.append(obj)
         if showProgress:
-            pbar.next()
+            pbar.next()  # type:ignore
     if showProgress:
         print()
         print("Movies Complete")
@@ -81,7 +81,7 @@ def GetTV(parent: Path, showProgress: bool):
                     }
                 )
         if showProgress:
-            pbar.next()
+            pbar.next()  # type:ignore
     if showProgress:
         print()
         print("TV Complete")
@@ -99,7 +99,7 @@ def RipWDrive(mediaType: str, showProgress: bool):
     try:
         ms = Path(r"\\192.168.0.100") if not Path("Z:\\").exists() else Path("Z:\\")
         start = time.time()
-        movie = []
+        movies = []
         tv = []
         if mediaType == "Movie":
             movies = GetMovies(ms, showProgress)

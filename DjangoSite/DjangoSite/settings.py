@@ -53,7 +53,7 @@ LOGGING = {
             "formatter": "base",
         },
         "ExtendedHandle": {
-            "level": "DEBUG",
+            "level": "INFO",
             "class": "logging.FileHandler",
             "filename": f"Logging\\{date.today()} Extended.log",
             "formatter": "base",
@@ -70,6 +70,10 @@ LOGGING = {
             "level": "INFO",
             "propagate": True,
         },
+    },
+    "root": {
+        "handlers": ["ExtendedHandle"],
+        "level": "INFO",
     },
 }
 
