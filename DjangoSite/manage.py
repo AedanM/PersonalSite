@@ -3,6 +3,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+from pathlib import Path
 
 
 def Main():
@@ -20,4 +21,5 @@ def Main():
 
 
 if __name__ == "__main__":
+    os.chdir(Path(__file__).parent)
     Main()

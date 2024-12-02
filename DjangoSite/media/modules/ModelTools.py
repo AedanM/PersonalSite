@@ -1,8 +1,10 @@
 import logging
 import os
+import shutil
 import urllib.parse
 import urllib.request
 from pathlib import Path
+from pprint import pp
 
 from django.conf import settings as django_settings
 from PIL import Image, UnidentifiedImageError
@@ -16,6 +18,7 @@ DEFAULT_IMG_PATH = "logos/DefaultIMG.png"
 
 
 def DownloadImage(modelObj):
+
     logoIMG = None
     reloadLogo = (
         not modelObj.Logo
@@ -52,6 +55,8 @@ def DownloadImage(modelObj):
 
 
 def GetImageFromLink(savePath, requestImg):
+    from DjangoSite.wsgi import application
+
     tempPath = os.path.join(django_settings.STATICFILES_DIRS[0], "temp.png")
 
     try:
@@ -76,7 +81,7 @@ def GetImageFromLink(savePath, requestImg):
         img.save(localPath)
         os.remove(tempPath)
         if "tvshows" in str(localPath):
-            SingleResize(img=localPath)
+            SingleResize(img=localPath)  #
         LOGGER.info("New IMG saved to %s", savePath)
     except UnidentifiedImageError:
         if Path(tempPath).exists():

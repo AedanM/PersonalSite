@@ -14,4 +14,4 @@ from whitenoise import WhiteNoise
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "DjangoSite.settings")
 
-application = WhiteNoise(get_wsgi_application())
+application = WhiteNoise(get_wsgi_application(), autorefresh=True)

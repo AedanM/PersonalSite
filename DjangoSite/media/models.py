@@ -30,7 +30,7 @@ class Media(models.Model):
         return self.SortTitle < cmpObj.SortTitle
 
     def delete(self, using=None, keep_parents=None):
-        print(f"Deleting {self.Logo}")
+        LOGGER.info("Deleting %s", self.Logo)
         logoDst = Path(django_settings.STATICFILES_DIRS[0]) / self.Logo
         if logoDst.exists():
             logoDst.resolve().unlink()
