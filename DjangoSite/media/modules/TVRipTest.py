@@ -1,7 +1,5 @@
 import json
-import os
 from pathlib import Path
-from pprint import pp
 
 from progress import bar
 

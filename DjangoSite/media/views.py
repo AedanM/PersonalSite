@@ -8,15 +8,21 @@ from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 from django.shortcuts import redirect, render
 
 from .models import Movie, TVShow
-from .modules.CheckDetails import (CheckMovies, CheckTV, CopyOverRenderQueue,
-                                   HandleReRenderQueue)
+from .modules.CheckDetails import CheckMovies, CheckTV, CopyOverRenderQueue, HandleReRenderQueue
 from .modules.FileRip import RipWDrive
+from .modules.HardwareFunctions import RebootPC, StartRestartThread
 from .modules.ModelTools import DownloadImage, SortTags
-from .modules.Utils import (MODEL_LIST, DetermineForm, FindID, FormMatch,
-                            GetAllTags, GetContents, GetFormAndClass)
+from .modules.Utils import (
+    MODEL_LIST,
+    DetermineForm,
+    FindID,
+    FormMatch,
+    GetAllTags,
+    GetContents,
+    GetFormAndClass,
+)
 from .modules.WebTools import ScrapeWiki
-from .utils import (ExtractYearRange, FilterTags, FuzzStr, SearchFunction,
-                    SortFunction)
+from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFunction
 
 # Create your views here.
 LOGGER = logging.getLogger("UserLogger")
@@ -27,6 +33,15 @@ def viewMedia(request) -> HttpResponse:
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
 
     return render(request, "media/mediaPage.html", context)
+
+
+@login_required
+def refresh(request):
+    if request.GET.get("hard", "False") == "True":
+        RebootPC()
+
+    StartRestartThread(int(request.GET.get("time", 1)))
+    return redirect("/media")
 
 
 def fullView(request) -> HttpResponse:
@@ -103,6 +118,7 @@ def wikiLoad(request) -> HttpResponse:
                     DownloadImage(obj)
                     obj.GetLogo(True)
                     LOGGER.info("Loaded %s from Wikipedia", obj.Title)
+                    StartRestartThread(1)
                 else:
                     LOGGER.error("Wiki load failed from %s", activeForm.data["InfoPage"])
             else:
@@ -134,7 +150,7 @@ def checkFiles(request) -> HttpResponse:
         return HttpResponse("Copied Render List")
 
     if request.GET.get("Scan", "True") == "True":
-        RipWDrive(request.GET.get("type","Movie"), showProgress=request.GET.get("progress",False))
+        RipWDrive(request.GET.get("type", "Movie"), showProgress=request.GET.get("progress", False))
 
     match request.GET.get("type"):
         case "TVShow":

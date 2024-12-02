@@ -1,0 +1,28 @@
+# cspell: disable
+[project]
+name = "PersonalSite"
+version = "0.1.0"
+description = "Personal Django Site served in Waitress"
+readme = "README.md"
+requires-python = ">=3.13"
+# Update Reqs with 
+# uv pip compile pyproject.toml --all-extras -o .\requirements.txt
+dependencies = [
+    "Django",
+    "Pillow",
+    "Requests",
+    "Wikipedia",
+    "ffmpeg-python",
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "paste",
+    "plotly",
+    "progress",
+    "statsmodels",
+    "thefuzz",
+    "types-requests",
+    "waitress",
+    "wheel",
+    "whitenoise",
+]

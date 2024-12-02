@@ -1,4 +1,5 @@
 import logging
+import sys
 from pathlib import Path
 
 from PIL import Image
@@ -41,6 +42,4 @@ def SingleResize(img):
 
 
 if __name__ == "__main__":
-    ResizeImages(
-        r"C:\mysources\Aedan\PersonalScripts\Projects\PersonalSite\DjangoSite\static\logos\tvshows\ToReshape"
-    )
+    ResizeImages(sys.argv[1])
