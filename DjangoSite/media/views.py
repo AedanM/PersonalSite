@@ -35,11 +35,12 @@ def viewMedia(request) -> HttpResponse:
     return render(request, "media/mediaPage.html", context)
 
 
+@login_required
 def refresh(request):
-    if request.get("hard", "False") == "True":
+    if request.GET.get("hard", "False") == "True":
         RebootPC()
 
-    StartRestartThread(int(request.get("time", 1)))
+    StartRestartThread(int(request.GET.get("time", 1)))
     return redirect("/media")
 
 

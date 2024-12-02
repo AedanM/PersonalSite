@@ -1,3 +1,4 @@
+# pylint:disable=C0103
 """
 URL configuration for DjangoSite project.
 

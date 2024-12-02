@@ -34,18 +34,18 @@ WATCH_COLOR_MAP = {
 }
 
 
-def DB_MD5_Hash():
-    hash_md5 = hashlib.md5()
+def DatabaseMD5():
+    hashMD5 = hashlib.md5()
     path = Path(django_settings.DATABASES["default"]["NAME"])
     with path.open("rb") as f:
         for chunk in iter(lambda: f.read(4096), b""):
-            hash_md5.update(chunk)
-    return hash_md5.hexdigest()
+            hashMD5.update(chunk)
+    return hashMD5.hexdigest()
 
 
 def GetDst(objList, plotName):
     mediaType = objList[0].__class__.__name__
-    dstFolder = Path(django_settings.STATICFILES_DIRS[0]) / f"stats/{DB_MD5_Hash()}"
+    dstFolder = Path(django_settings.STATICFILES_DIRS[0]) / f"stats/{DatabaseMD5()}"
     if not dstFolder.exists():
         for f in dstFolder.parent.glob("**/*/"):
             shutil.rmtree(f)

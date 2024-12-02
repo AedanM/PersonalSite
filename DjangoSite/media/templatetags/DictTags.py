@@ -80,7 +80,7 @@ def DottedPageRange(p, number, eachSide=1, onEnds=1):
 
 @register.filter
 def GetAttrs(obj):
-    ExcludeList = [
+    excludeList = [
         "Downloaded",
         "InfoPage",
         "Link",
@@ -91,7 +91,7 @@ def GetAttrs(obj):
         [
             str(x).replace("_", " ")
             for x in obj[0].__dict__
-            if str(x[0]).isupper() and x not in ExcludeList
+            if str(x[0]).isupper() and x not in excludeList
         ]
         if obj
         else []

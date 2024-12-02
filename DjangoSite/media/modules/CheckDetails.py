@@ -3,7 +3,6 @@ import logging
 import shutil
 import time
 from pathlib import Path
-from pprint import pp
 from typing import Any
 
 import ffmpeg  # type: ignore
@@ -138,7 +137,7 @@ def ResetAlias(files):
                     fileStr = fileStr.replace(tag, tags[tag])
             f["Tags"] = fileStr.split(",")
     else:
-        for title, f in files.items():
+        for _title, f in files.items():
             if f["Title"] in titles:
                 f["Title"] = titles[f["Title"]]
             fileStr = ",".join(f["Tags"])

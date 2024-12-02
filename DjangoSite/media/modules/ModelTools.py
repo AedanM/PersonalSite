@@ -1,10 +1,8 @@
 import logging
 import os
-import shutil
 import urllib.parse
 import urllib.request
 from pathlib import Path
-from pprint import pp
 
 from django.conf import settings as django_settings
 from PIL import Image, UnidentifiedImageError
@@ -55,7 +53,6 @@ def DownloadImage(modelObj):
 
 
 def GetImageFromLink(savePath, requestImg):
-    from DjangoSite.wsgi import application
 
     tempPath = os.path.join(django_settings.STATICFILES_DIRS[0], "temp.png")
 
