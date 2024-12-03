@@ -1,5 +1,4 @@
 {
-	"_comment": "cspell:disable",
 	"Movie": [
 		{
 			"Title": "Superman: Red Son",
@@ -246,7 +245,7 @@
 		{
 			"Title": "Casino Royale",
 			"Genre_Tags": "Action,James Bond,Spies",
-			"Logo": "logos/movies/Casino Royale.png",
+			"Logo": "logos/movies/Casino Royale (2006).png",
 			"InfoPage": "https://en.wikipedia.org/wiki/Casino_Royale_(2006_film)",
 			"Downloaded": true,
 			"Rating": "8.4",
@@ -498,7 +497,7 @@
 		},
 		{
 			"Title": "Mamma Mia!",
-			"Genre_Tags": "Comedy,Girlboss,Jukebox,Musical,Romance",
+			"Genre_Tags": "Comedy,Girlboss,Jukebox,Musical,Romance,Stage Play",
 			"Logo": "logos/movies/Mamma Mia!.png",
 			"InfoPage": "https://en.wikipedia.org/wiki/Mamma_Mia!_(film)",
 			"Downloaded": true,
@@ -1323,7 +1322,7 @@
 		},
 		{
 			"Title": "The Producers",
-			"Genre_Tags": "Comedy,Mel Brooks,Musical",
+			"Genre_Tags": "Comedy,Mel Brooks,Musical,Stage Play",
 			"Logo": "logos/movies/The Producers (Musical).png",
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Producers_(2005_film)",
 			"Downloaded": true,
@@ -1719,7 +1718,7 @@
 		},
 		{
 			"Title": "Mean Girls",
-			"Genre_Tags": "Comedy,Girlboss,Musical,Romance",
+			"Genre_Tags": "Comedy,Girlboss,Musical,Romance,Stage Play",
 			"Logo": "logos/movies/Mean Girls 2024.png",
 			"InfoPage": "https://en.wikipedia.org/wiki/Mean_Girls_(2024_film)",
 			"Downloaded": true,
@@ -2701,7 +2700,7 @@
 			"Genre_Tags": "Comedy,Mockumentary,Musical",
 			"Logo": "logos/movies/Walk Hard The Dewey Cox Story.png",
 			"InfoPage": "https://en.wikipedia.org/wiki/Walk_Hard:_The_Dewey_Cox_Story",
-			"Downloaded": false,
+			"Downloaded": true,
 			"Rating": "0.0",
 			"Watched": false,
 			"Duration": 96,
@@ -2841,7 +2840,7 @@
 		},
 		{
 			"Title": "Moulin Rouge!",
-			"Genre_Tags": "Jukebox,Musical,Romance",
+			"Genre_Tags": "Jukebox,Musical,Romance,Stage Play",
 			"Logo": "logos/movies/Moulin Rouge!.png",
 			"InfoPage": "https://en.wikipedia.org/wiki/Moulin_Rouge!",
 			"Downloaded": false,
@@ -3050,7 +3049,7 @@
 		},
 		{
 			"Title": "Sweeney Todd The Demon Barber of Fleet Street",
-			"Genre_Tags": "Horror,Musical",
+			"Genre_Tags": "Horror,Musical,Stage Play",
 			"Logo": "logos/movies/Sweeney Todd The Demon Barber of Fleet Street.png",
 			"InfoPage": "https://en.wikipedia.org/wiki/Sweeney_Todd:_The_Demon_Barber_of_Fleet_Street_(2007_film)",
 			"Downloaded": false,
@@ -3614,7 +3613,7 @@
 			"Genre_Tags": "Action,Comedy,Cop",
 			"Logo": "logos/movies/Tango and Cash.png",
 			"InfoPage": "https://en.wikipedia.org/wiki/Tango_%26_Cash",
-			"Downloaded": false,
+			"Downloaded": true,
 			"Rating": "0.0",
 			"Watched": false,
 			"Duration": 104,
@@ -5239,7 +5238,7 @@
 		},
 		{
 			"Title": "Fiddler on the Roof",
-			"Genre_Tags": "Comedy,Historical,Musical",
+			"Genre_Tags": "Comedy,Historical,Musical,Stage Play",
 			"Logo": "logos/movies/Fiddler on the Roof.png",
 			"InfoPage": "https://en.wikipedia.org/wiki/Fiddler_on_the_Roof_(film)",
 			"Downloaded": false,
@@ -6614,7 +6613,7 @@
 		},
 		{
 			"Title": "The Music Man",
-			"Genre_Tags": "Comedy,Musical,Romance",
+			"Genre_Tags": "Comedy,Musical,Romance,Stage Play",
 			"Logo": "logos/movies/The Music Man.png",
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Music_Man_(2003_film)",
 			"Downloaded": false,
@@ -6955,7 +6954,7 @@
 		},
 		{
 			"Title": "Tick, Tick... Boom!",
-			"Genre_Tags": "Historical,LGBTQ+,Musical",
+			"Genre_Tags": "Historical,LGBTQ+,Musical,Stage Play",
 			"Logo": "logos/movies/Tick, Tick... Boom!.png",
 			"InfoPage": "https://en.wikipedia.org/wiki/Tick,_Tick..._Boom!_(film)",
 			"Downloaded": false,
@@ -7286,7 +7285,7 @@
 		{
 			"Title": "Mission: Impossible \u2013 Dead Reckoning Part One",
 			"Genre_Tags": "Action,Spies",
-			"Logo": "logos/movies/Mission Impossible \u2013 Dead Reckoning Part One.png",
+			"Logo": "logos/movies/Mission Impossible - Dead Reckoning Part One.png",
 			"InfoPage": "https://en.wikipedia.org/wiki/Mission:_Impossible_\u2013_Dead_Reckoning_Part_One",
 			"Downloaded": false,
 			"Rating": "0.0",
@@ -7439,7 +7438,7 @@
 		},
 		{
 			"Title": "Sister Act",
-			"Genre_Tags": "Comedy,Musical",
+			"Genre_Tags": "Comedy,Musical,Stage Play",
 			"Logo": "logos/movies/Sister Act.png",
 			"InfoPage": "https://en.wikipedia.org/wiki/Sister_Act",
 			"Downloaded": false,
@@ -7615,10 +7614,10 @@
 		},
 		{
 			"Title": "Speed Racer",
-			"Genre_Tags": "Comedy,Sports,The Wachowskis",
+			"Genre_Tags": "Action,Comedy,Motoring,The Wachowskis",
 			"Logo": "logos/movies/Speed Racer.png",
 			"InfoPage": "https://en.wikipedia.org/wiki/Speed_Racer_(film)",
-			"Downloaded": false,
+			"Downloaded": true,
 			"Rating": "0.0",
 			"Watched": false,
 			"Duration": 135,
@@ -8111,7 +8110,7 @@
 		{
 			"Title": "Wallace & Gromit: Vengeance Most Fowl",
 			"Genre_Tags": "Aardman,Animation,British,Comedy,Wallace and Gromit",
-			"Logo": "logos\\movies\\Wallace & Gromit Vengeance Most Fowl.png",
+			"Logo": "logos/movies/Wallace and Gromit Vengeance Most Fowl.png",
 			"InfoPage": "https://en.wikipedia.org/wiki/Wallace_&_Gromit:_Vengeance_Most_Fowl",
 			"Downloaded": false,
 			"Rating": "0.0",
@@ -8158,8 +8157,8 @@
 			"Logo": "logos/movies/The Muppets' Wizard of Oz.png",
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Muppets'_Wizard_of_Oz",
 			"Downloaded": true,
-			"Rating": "0.0",
-			"Watched": false,
+			"Rating": "6.2",
+			"Watched": true,
 			"Duration": 87,
 			"Year": 2005
 		},
@@ -8195,6 +8194,160 @@
 			"Watched": false,
 			"Duration": 92,
 			"Year": 2010
+		},
+		{
+			"Title": "Love Actually",
+			"Genre_Tags": "British,Christmas,Comedy,Holiday,Romance",
+			"Logo": "logos/movies/Love Actually.png",
+			"InfoPage": "https://en.wikipedia.org/wiki/Love_Actually",
+			"Downloaded": false,
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 135,
+			"Year": 2003
+		},
+		{
+			"Title": "Rudolph the Red-Nosed Reindeer",
+			"Genre_Tags": "Animation,Christmas,Holiday",
+			"Logo": "logos/movies/Rudolph the Red-Nosed Reindeer.png",
+			"InfoPage": "https://en.wikipedia.org/wiki/Rudolph_the_Red-Nosed_Reindeer_(TV_special)",
+			"Downloaded": false,
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 52,
+			"Year": 1964
+		},
+		{
+			"Title": "Frosty the Snowman",
+			"Genre_Tags": "Animation,Christmas,Holiday,Short Film",
+			"Logo": "logos/movies/Frosty the Snowman.png",
+			"InfoPage": "https://en.wikipedia.org/wiki/Frosty_the_Snowman_(TV_special)",
+			"Downloaded": false,
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 25,
+			"Year": 1969
+		},
+		{
+			"Title": "Santa Claus Is Comin' to Town",
+			"Genre_Tags": "Animation,Christmas,Holiday",
+			"Logo": "logos/movies/Santa Claus Is Comin to Town.png",
+			"InfoPage": "https://en.wikipedia.org/wiki/Santa_Claus_Is_Comin'_to_Town_(TV_special)",
+			"Downloaded": false,
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 51,
+			"Year": 1970
+		},
+		{
+			"Title": "Lord of War",
+			"Genre_Tags": "Drama",
+			"Logo": "logos/movies/Lord of War.png",
+			"InfoPage": "https://en.wikipedia.org/wiki/Lord_of_War",
+			"Downloaded": false,
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 121,
+			"Year": 2005
+		},
+		{
+			"Title": "War Dogs",
+			"Genre_Tags": "Black Comedy,Historical,Politics",
+			"Logo": "logos/movies/War Dogs.png",
+			"InfoPage": "https://en.wikipedia.org/wiki/War_Dogs_(2016_film)",
+			"Downloaded": false,
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 114,
+			"Year": 2016
+		},
+		{
+			"Title": "Kick-Ass",
+			"Genre_Tags": "Black Comedy,Superheroes",
+			"Logo": "logos/movies/Kick-Ass.png",
+			"InfoPage": "https://en.wikipedia.org/wiki/Kick-Ass_(film)",
+			"Downloaded": false,
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 118,
+			"Year": 2010
+		},
+		{
+			"Title": "Kick-Ass 2",
+			"Genre_Tags": "Black Comedy,Superheroes",
+			"Logo": "logos/movies/Kick-Ass 2.png",
+			"InfoPage": "https://en.wikipedia.org/wiki/Kick-Ass_2_(film)",
+			"Downloaded": false,
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 103,
+			"Year": 2013
+		},
+		{
+			"Title": "Scooby-Doo! and the Witch's Ghost",
+			"Genre_Tags": "Animation,Comedy,Mystery,Scooby-Doo",
+			"Logo": "logos/movies/Scooby-Doo! and the Witch's Ghost.png",
+			"InfoPage": "https://en.wikipedia.org/wiki/Scooby-Doo!_and_the_Witch's_Ghost",
+			"Downloaded": true,
+			"Rating": "6.8",
+			"Watched": true,
+			"Duration": 66,
+			"Year": 1999
+		},
+		{
+			"Title": "Citizen Kane",
+			"Genre_Tags": "B&W,Drama",
+			"Logo": "logos/movies/Citizen Kane.png",
+			"InfoPage": "https://en.wikipedia.org/wiki/Citizen_Kane",
+			"Downloaded": false,
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 119,
+			"Year": 1941
+		},
+		{
+			"Title": "Casino Royale",
+			"Genre_Tags": "B-Movie,Comedy,James Bond,Spies",
+			"Logo": "logos/movies/Casino Royale.png",
+			"InfoPage": "https://en.wikipedia.org/wiki/Casino_Royale_(1967_film)",
+			"Downloaded": false,
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 131,
+			"Year": 1967
+		},
+		{
+			"Title": "West Side Story",
+			"Genre_Tags": "Comedy,Musical,Romance,Stage Play",
+			"Logo": "logos/movies/West Side Story.png",
+			"InfoPage": "https://en.wikipedia.org/wiki/West_Side_Story_(1961_film)",
+			"Downloaded": false,
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 152,
+			"Year": 1961
+		},
+		{
+			"Title": "West Side Story",
+			"Genre_Tags": "Comedy,Musical,Romance,Stage Play,Steven Spielberg",
+			"Logo": "logos/movies/West Side Story (2021).png",
+			"InfoPage": "https://en.wikipedia.org/wiki/West_Side_Story_(2021_film)",
+			"Downloaded": false,
+			"Rating": "0.0",
+			"Watched": false,
+			"Duration": 156,
+			"Year": 2021
+		},
+		{
+			"Title": "Bridget Jones's Diary",
+			"Genre_Tags": "British,Christmas,Comedy,Holiday,Romance",
+			"Logo": "logos/movies/Bridget Jones's Diary.png",
+			"InfoPage": "https://en.wikipedia.org/wiki/Bridget_Jones's_Diary",
+			"Downloaded": false,
+			"Rating": "7.5",
+			"Watched": true,
+			"Duration": 96,
+			"Year": 2001
 		}
 	],
 	"TVShow": [
@@ -9950,7 +10103,7 @@
 			"Watched": true,
 			"Duration": 35,
 			"Length": 8,
-			"Series_Start": "2024-12-19",
+			"Series_Start": "2023-12-19",
 			"Series_End": "1900-01-01"
 		},
 		{
@@ -9968,8 +10121,8 @@
 		},
 		{
 			"Title": "The Tick",
-			"Genre_Tags": "Comedy, Superheroes",
-			"Logo": "logos\\tvshows\\The Tick 2016.png",
+			"Genre_Tags": "Comedy,Superheroes",
+			"Logo": "logos/tvshows/The Tick 2016.png",
 			"InfoPage": "https://en.wikipedia.org/wiki/The_Tick_(2016_TV_series)",
 			"Downloaded": false,
 			"Rating": "0.0",
