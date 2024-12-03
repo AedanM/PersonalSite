@@ -26,7 +26,7 @@
 			<div>
 				<h1>Login Page</h1>
 				<form
-					action=""
+					action="/accounts/login/"
 					method="post">
 					{% csrf_token %}
 					<label for="">Username</label>
@@ -41,6 +41,7 @@
 						id="" />
 					<input
 						type="submit"
+						formmethod="post"
 						value="Login" />
 				</form>
 			</div>
