@@ -107,6 +107,9 @@
 								<tr>
 									<th>Title</th>
 									<th>{% if matched|first|Get:"Year" %} Year {%else%} Count{%endif%}</th>
+									{% if matched|first|Get:"CountDiff"|add:1 %}
+									<th>Files Missing</th>
+									{%endif%}
 									<th>Size</th>
 									<th>Runtime</th>
 									<th>Min/GB</th>
@@ -119,7 +122,10 @@
 								<tr>
 									<td><a class="clean-link" href="edit?id={{show|Get:"Match"|Get:"ID"}}"/>{{show|Get:"Title"}}</td>
 									<td>{% if show|Get:"Year" %} {{show|Get:"Year"}} {%else%} {{show|Get:"Count"}}{%endif%}</td>
-									<td>{{show|Get:"Size"}}</td>
+									{% if matched|first|Get:"CountDiff"|add:1 %}
+									<th>{{show|Get:"CountDiff"}}</th>
+									{%endif%}
+									<td>{{show|Get:"Size"|stringformat:"0.2f"}}</td>
 									<td>{{show|Get:"Match"|Get:"Runtime"}}</td>
 									<td>{{show|Ratio}}</td>
 									{%with tags=show|Get:"Match"|Get:"Tag Diff"%}

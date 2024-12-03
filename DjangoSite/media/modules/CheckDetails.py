@@ -34,11 +34,15 @@ def FilterOutMatches(movies, obj: Any = Movie):
     unmatched = []
     rerender = []
     for m in movies:
-        matches = [
-            x
-            for x in movieList
-            if MatchTitles(x.Title, m["Title"]) and abs(x.Year - int(m["Year"])) == 0
-        ]
+        matches = (
+            [
+                x
+                for x in movieList
+                if MatchTitles(x.Title, m["Title"]) and abs(x.Year - int(m["Year"])) == 0
+            ]
+            if isinstance(m["Title"], str)
+            else [x for x in movieList if x.id == m["Title"]]  # type: ignore
+        )
         if matches:
             m["Match"] = {
                 "ID": matches[0].id,  # type:ignore
@@ -48,6 +52,7 @@ def FilterOutMatches(movies, obj: Any = Movie):
                 "Tag Diff": [x for x in m["Tags"] if x not in matches[0].GenreTagList],
                 "Marked": matches[0].Downloaded,
             }
+            m["Title"] = m["Match"]["Title"]
             matched.append(m)
             if matches[0].Duration.seconds // 60 / m["Size"] < 45:
                 rerender.append(m["FilePath"])
@@ -180,6 +185,7 @@ def FilterOutTVMatches(files: list):
                 "Count": matches[0].Length,
             }
             m["Title"] = matches[0].Title
+            m["CountDiff"] = matches[0].Length - m["Count"]
             matched.append(m)
             if m["Match"]["Runtime"] / m["Size"] < 45:
                 rerender.append(m["FilePath"])
