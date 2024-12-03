@@ -36,7 +36,7 @@ def GetMovies(parent, showProgress: bool):
                 obj["Size"] = 0.0001
             objList.append(obj)
         if showProgress:
-            pbar.next()
+            progBar.next()
     if showProgress:
         print()
         print("Movies Complete")
@@ -52,7 +52,7 @@ def GetTV(parent: Path, showProgress: bool):
     path = parent / "TV Shows"
     folderObjs = []
     if showProgress:
-        pbar = Bar(
+        progBar = Bar(
             "Loading Shows...",
             max=len(list(path.glob("**/*/"))),
             suffix=r"%(index)d/%(max)d - %(eta)ds",
@@ -81,7 +81,7 @@ def GetTV(parent: Path, showProgress: bool):
                     }
                 )
         if showProgress:
-            pbar.next()
+            progBar.next()
     if showProgress:
         print()
         print("TV Complete")
