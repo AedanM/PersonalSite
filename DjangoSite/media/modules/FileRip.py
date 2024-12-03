@@ -36,7 +36,7 @@ def GetMovies(parent, showProgress: bool):
                 obj["Size"] = 0.0001
             objList.append(obj)
         if showProgress:
-            progBar.next()  # type:ignore
+            progBar.next()
     if showProgress:
         print()
         print("Movies Complete")
@@ -81,7 +81,7 @@ def GetTV(parent: Path, showProgress: bool):
                     }
                 )
         if showProgress:
-            progBar.next()  # type:ignore
+            progBar.next()
     if showProgress:
         print()
         print("TV Complete")
