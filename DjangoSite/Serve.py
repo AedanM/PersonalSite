@@ -19,7 +19,7 @@ if __name__ == "__main__":
         f"""
 Waitress Serving Django App
 {datetime.now()}
-http://127.0.0.1:8000      
+http://127.0.0.1:8080      
 """
     )
-    serve(logApp, port="8000", threads=6)
+    serve(logApp, host="0.0.0.0", port="8080", threads=6)

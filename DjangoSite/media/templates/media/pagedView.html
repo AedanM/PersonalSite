@@ -135,7 +135,11 @@
 							<a href="/resume">About</a>
 						</li>
 						<li>
-							<a href="/media">Media Server Access</a>
+							{% if not loggedIn %}
+							<a href="/accounts/login/?next=/media">Log In</a>
+							{% else %}
+							<a href="/accounts/logout?next=/media">Log Out</a>
+							{%endif%}
 						</li>
 						<li>
 							<a href="/admin">Admin</a>

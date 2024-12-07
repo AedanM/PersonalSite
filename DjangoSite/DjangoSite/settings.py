@@ -1,4 +1,4 @@
-#pylint:disable=C0103
+# pylint:disable=C0103
 """
 Django settings for DjangoSite project.
 
@@ -34,8 +34,8 @@ logging.getLogger("django").info("DEBUG %s", "Enabled" if DEBUG else "Disabled")
 # cspell:disable-next-line
 ALLOWED_HOSTS: list = ["aedanmchale.duckdns.org", "aedanmchale.uk.to", "127.0.0.1", "*"]
 
-SESSION_COOKIE_SECURE = not DEBUG
-CSRF_COOKIE_SECURE = not DEBUG
+# SESSION_COOKIE_SECURE = not DEBUG
+# CSRF_COOKIE_SECURE = not DEBUG
 # Application definition
 
 

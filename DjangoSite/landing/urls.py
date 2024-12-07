@@ -7,5 +7,6 @@ from . import views
 urlpatterns = [
     path("favicon.ico", RedirectView.as_view(url=staticfiles_storage.url("images/favicon.png"))),
     path("iterlink", views.iterLink, name="iterLink"),
+    path("log", views.Log, name="log"),
     path("", views.index, name="index"),
 ]

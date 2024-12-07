@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -19,3 +22,16 @@ def iterLink(request):
     ]
     context: dict = {"colorMode": request.COOKIES.get("colorMode", "dark"), "linkList": linkList}
     return render(request, "landing/iterLink.html", context)
+
+
+def Log(request):
+    extendLogPath = sorted(list(Path(r".\Logging").glob("*Extended.log")))[-1]
+    userLogPath = sorted(list(Path(r".\Logging").glob("*UserLogger.log")))[-1]
+
+    r = (
+        extendLogPath.read_text(newline="\n")
+        if request.GET.get("full", "False") == "True"
+        else userLogPath.read_text(newline="\n")
+    )
+
+    return HttpResponse(r, content_type="text/plain")
