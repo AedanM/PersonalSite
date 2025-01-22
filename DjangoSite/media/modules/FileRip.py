@@ -107,10 +107,10 @@ def RipWDrive(mediaType: str, showProgress: bool):
         else:
             tv = GetTV(ms, showProgress)
             LOGGER.info("TV scrape took %f seconds", time.time() - start)
-        summaryFile = Path(__file__).parent.parent.parent / r"static\files\MediaServerSummary.json"
+        summaryFile = Path(r"C:\Sync\WebsiteShare") / "MediaServerSummary.json"
         currentFile = json.loads(summaryFile.read_text())
         with open(
-            Path(__file__).parent.parent.parent / r"static\files\MediaServerSummary.json",
+            Path(r"C:\Sync\WebsiteShare") / "MediaServerSummary.json",
             mode="w",
             encoding="ascii",
         ) as fp:

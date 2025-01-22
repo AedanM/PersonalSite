@@ -24,15 +24,13 @@ LOGIN_REDIRECT_URL = "/"  # new
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get(
-    "DJANGO_SECRET_KEY", "9@g*i-m&yhutyk3t_s=l0%mkxh=+e+d3e0kk0mt6mim+y(&_6$"
-)
+SECRET_KEY = os.environ.get("DjangoKey", "9@g*i-m&yhutyk3t_s=l0%mkxh=+e+d3e2kk0mt6mim+y(&_6$")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DJANGO_DEBUG", "") == "True"
 logging.getLogger("django").info("DEBUG %s", "Enabled" if DEBUG else "Disabled")
 # cspell:disable-next-line
-ALLOWED_HOSTS: list = ["aedanmchale.duckdns.org", "aedanmchale.uk.to", "127.0.0.1", "*"]
+ALLOWED_HOSTS: list = ["127.0.0.1", "aedanm.uk", "*"]
 
 # SESSION_COOKIE_SECURE = not DEBUG
 # CSRF_COOKIE_SECURE = not DEBUG

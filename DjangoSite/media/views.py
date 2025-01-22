@@ -1,24 +1,29 @@
 # pylint: disable=C0103
 import logging
+import subprocess
 import time
 
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.http import (HttpRequest, HttpResponse, HttpResponseNotFound,
-                         JsonResponse)
+from django.http import HttpRequest, HttpResponse, HttpResponseNotFound, JsonResponse
 from django.shortcuts import redirect, render
 
 from .models import Movie, TVShow
-from .modules.CheckDetails import (CheckMovies, CheckTV, CopyOverRenderQueue,
-                                   HandleReRenderQueue)
+from .modules.CheckDetails import CheckMovies, CheckTV, CopyOverRenderQueue, HandleReRenderQueue
 from .modules.FileRip import RipWDrive
 from .modules.HardwareFunctions import RebootPC, StartRestartThread
 from .modules.ModelTools import DownloadImage, SortTags
-from .modules.Utils import (MODEL_LIST, DetermineForm, FindID, FormMatch,
-                            GetAllTags, GetContents, GetFormAndClass)
+from .modules.Utils import (
+    MODEL_LIST,
+    DetermineForm,
+    FindID,
+    FormMatch,
+    GetAllTags,
+    GetContents,
+    GetFormAndClass,
+)
 from .modules.WebTools import ScrapeWiki
-from .utils import (ExtractYearRange, FilterTags, FuzzStr, SearchFunction,
-                    SortFunction)
+from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFunction
 
 # Create your views here.
 LOGGER = logging.getLogger("UserLogger")
@@ -144,9 +149,15 @@ def checkFiles(request) -> HttpResponse:
     if request.GET.get("copyList", "False") == "True":
         CopyOverRenderQueue()
         return HttpResponse("Copied Render List")
-
-    if request.GET.get("Scan", "True") == "True":
-        RipWDrive(request.GET.get("type", "Movie"), showProgress=request.GET.get("progress", False))
+    LOGGER.error("HELLO WORLD")
+    if request.GET.get("Scan", "False") == "True":
+        
+        x = subprocess.call(
+            "python C:\PersonalScripts\Projects\PersonalSite\DjangoSite\media\modules\FileRip.py"
+        )
+        LOGGER.info(x)
+        LOGGER.error("HELLO WORLD")
+        # RipWDrive(request.GET.get("type", "Movie"), showProgress=request.GET.get("progress", False))
 
     match request.GET.get("type"):
         case "TVShow":
@@ -246,6 +257,8 @@ def edit(request) -> HttpResponse:
         )
         if request.POST:
             SortTags(contentObj)
+            if contentObj.Rating > 0:
+                contentObj.Watched = True
             LOGGER.info("Edited %s", contentObj.Title)
 
     return response
@@ -290,8 +303,12 @@ def index(request: HttpRequest) -> HttpResponse:
     _formType, objType = GetFormAndClass(request.GET.get("type", "Movie"))
     context = FilterMedia(request=request, objType=objType)
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
-    pageSize: int = int(request.GET.get("pageSize", 36 if "iPhone" not in request.headers.get("User-Agent","") else 12))
-    
+    pageSize: int = int(
+        request.GET.get(
+            "pageSize", 36 if "iPhone" not in request.headers.get("User-Agent", "") else 12
+        )
+    )
+
     pageNumber: int = int(request.GET.get("page", 1))
     paginator = Paginator(context["obj_list"], pageSize)
     context["page_obj"] = paginator.get_page(pageNumber)

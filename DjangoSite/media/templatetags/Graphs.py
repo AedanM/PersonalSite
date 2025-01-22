@@ -17,7 +17,7 @@ from django.conf import settings as django_settings
 from ..utils import MINIMUM_YEAR
 
 DEFINED_TAGS = {}
-with open(Path(django_settings.STATICFILES_DIRS[0]) / "files/Genres.json", encoding="ascii") as fp:
+with open(Path(r"C:\Sync\WebsiteShare") / "Genres.json", encoding="ascii") as fp:
     DEFINED_TAGS = json.load(fp)
     DEFINED_TAGS.pop("_comment", None)
 

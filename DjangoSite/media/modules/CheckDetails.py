@@ -18,7 +18,9 @@ LOGGER = logging.getLogger("UserLogger")
 
 def CheckMovies():
     movies = []
-    with (STATIC_FILES / "MediaServerSummary.json").open(mode="r", encoding="ascii") as fp:
+    with (Path(r"C:\Sync\WebsiteShare") / "MediaServerSummary.json").open(
+        mode="r", encoding="ascii"
+    ) as fp:
         movies = json.load(fp)["Movies"]
 
     ResetAlias(movies)
@@ -58,13 +60,15 @@ def FilterOutMatches(movies, obj: Any = Movie):
                 rerender.append(m["FilePath"])
         else:
             closest = sorted(
-                movieList, key=lambda x, obj=m: thefuzz.fuzz.ratio(obj["Title"], x.Title)
+                movieList, key=lambda x, obj=m: thefuzz.fuzz.ratio(str(obj["Title"]), str(x.Title))
             )
             m["Closest"] = {"Title": closest[-1].Title, "Year": closest[-1].Year}
             unmatched.append(m)
     if rerender:
         with open(
-            file=Path(f"./static/files/rerenderList{obj.__name__}.csv"), mode="w", encoding="ascii"
+            file=Path(f"C:/Sync/WebsiteShare/rerenderList{obj.__name__}.csv"),
+            mode="w",
+            encoding="ascii",
         ) as fp:
             fp.write("\n".join(rerender))
 
@@ -73,7 +77,7 @@ def FilterOutMatches(movies, obj: Any = Movie):
 
 def HandleReRenderQueue():
     renderList = []
-    with open(file=Path("./static/files/rerenderList.csv"), mode="r", encoding="ascii") as fp:
+    with open(file=Path("C:/Sync/WebsiteShare/rerenderList.csv"), mode="r", encoding="ascii") as fp:
         renderList = fp.readlines()
     start = time.time()
     renderOutput = []
@@ -91,14 +95,14 @@ def HandleReRenderQueue():
         except ffmpeg.Error as e:
             LOGGER.error(e.stderr)
             renderOutput.append(file)
-    with open(file=Path("./static/files/rerenderList.csv"), mode="w", encoding="ascii") as fp:
+    with open(file=Path("C:/Sync/WebsiteShare/rerenderList.csv"), mode="w", encoding="ascii") as fp:
         fp.write("\n".join(renderOutput))
     LOGGER.info("Render Log Written in %f", time.time() - start)
 
 
 def CopyOverRenderQueue():
     renderList = []
-    with open(file=Path("./static/files/rerenderList.csv"), mode="r", encoding="ascii") as fp:
+    with open(file=Path("C:/Sync/WebsiteShare/rerenderList.csv"), mode="r", encoding="ascii") as fp:
         renderList = fp.readlines()
     for file in renderList:
         f = Path(file.replace("\n", "").split(",")[0])
@@ -128,7 +132,7 @@ def MatchTitles(t1, t2) -> bool:
 def ResetAlias(files):
     titles = {}
     tags = {}
-    with (STATIC_FILES / "Alias.json").open(mode="r", encoding="ascii") as fp:
+    with (Path(r"C:\Sync\WebsiteShare") / "Alias.json").open(mode="r", encoding="ascii") as fp:
         jsonFile = json.load(fp)
         titles = jsonFile["Titles"]
         tags = jsonFile["Tags"]
@@ -154,7 +158,9 @@ def ResetAlias(files):
 
 def CheckTV():
     shows = []
-    with (STATIC_FILES / "MediaServerSummary.json").open(mode="r", encoding="ascii") as fp:
+    with (Path(r"C:\Sync\WebsiteShare") / "MediaServerSummary.json").open(
+        mode="r", encoding="ascii"
+    ) as fp:
         shows = json.load(fp)["TV Shows"]
 
     ResetAlias(shows)
@@ -194,7 +200,9 @@ def FilterOutTVMatches(files: list):
             m["Closest"] = {"Title": closest[-1].Title, "Year": closest[-1].Year}
             unmatched.append(m)
     if rerender:
-        with open(file=Path("./static/files/rerenderListTV.csv"), mode="w", encoding="ascii") as fp:
+        with open(
+            file=Path("C:/Sync/WebsiteShare/rerenderListTV.csv"), mode="w", encoding="ascii"
+        ) as fp:
             fp.write("\n".join(rerender))
 
     return unmatched, matched
