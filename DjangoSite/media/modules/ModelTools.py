@@ -8,6 +8,7 @@ from django.conf import settings as django_settings
 from PIL import Image, UnidentifiedImageError
 
 from .ImgResize import SingleResize
+from .Utils import MakeStringSystemSafe
 
 LOGGER = logging.getLogger("UserLogger")
 
@@ -32,7 +33,7 @@ def DownloadImage(modelObj):
         if logoIMG:
             try:
                 savePath = (
-                    f"logos/{type(modelObj).__name__.lower()}s/{modelObj.Title.replace(':','')}.png"
+                    f"logos/{type(modelObj).__name__.lower()}s/{MakeStringSystemSafe(modelObj.Title)}.png"
                     if logoIMG != DEFAULT_IMG
                     else DEFAULT_IMG_PATH
                 )

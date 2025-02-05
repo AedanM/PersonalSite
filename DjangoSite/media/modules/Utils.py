@@ -3,7 +3,6 @@ import re
 from pathlib import Path
 from typing import Any
 
-from django.conf import settings as django_settings
 from django.core.exceptions import ObjectDoesNotExist
 
 # pylint: disable=E0402
@@ -14,9 +13,24 @@ DEFINED_TAGS = {}
 FORM_LIST = [MovieForm, TVForm, NovelForm, ComicForm, PodcastForm, YoutubeForm, AlbumForm]
 MODEL_LIST = [Movie, TVShow, Novel, Comic, Podcast, Youtube, Album]
 
-with open(Path(r"C:\Sync\WebsiteShare")/"Genres.json", encoding="ascii") as fp:
+with open(Path(r"C:\Sync\WebsiteShare") / "Genres.json", encoding="ascii") as fp:
     DEFINED_TAGS = json.load(fp)
     DEFINED_TAGS.pop("_comment", None)
+
+
+def MakeStringSystemSafe(
+    inputPath: str | Path,
+    removeSpaces: bool = True,
+) -> str:
+    objPath: Path = Path(inputPath)
+    stringPath = objPath.stem
+    bannedChars = '<>:"/\\|?*'
+    if removeSpaces:
+        bannedChars += " "
+    for bannedChar in bannedChars:
+        stringPath = stringPath.replace(bannedChar, "_")
+
+    return str(objPath.parent / (stringPath + objPath.suffix))
 
 
 def CamelToSentence(text: str) -> str:
