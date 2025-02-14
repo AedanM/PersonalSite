@@ -151,9 +151,9 @@ def checkFiles(request) -> HttpResponse:
         return HttpResponse("Copied Render List")
     LOGGER.error("HELLO WORLD")
     if request.GET.get("Scan", "False") == "True":
-        
+
         x = subprocess.call(
-            "python C:\PersonalScripts\Projects\PersonalSite\DjangoSite\media\modules\FileRip.py"
+            r"python C:\PersonalScripts\Projects\PersonalSite\DjangoSite\media\modules\FileRip.py"
         )
         LOGGER.info(x)
         LOGGER.error("HELLO WORLD")

@@ -60,7 +60,10 @@ def FilterOutMatches(movies, obj: Any = Movie):
                 rerender.append(m["FilePath"])
         else:
             closest = sorted(
-                movieList, key=lambda x, obj=m: thefuzz.fuzz.ratio(str(obj["Title"]), str(x.Title))
+                movieList,
+                key=lambda x, obj=m: thefuzz.fuzz.ratio(  # type:ignore
+                    str(obj["Title"]), str(x.Title)
+                ),
             )
             m["Closest"] = {"Title": closest[-1].Title, "Year": closest[-1].Year}
             unmatched.append(m)
@@ -196,7 +199,10 @@ def FilterOutTVMatches(files: list):
             if m["Match"]["Runtime"] / m["Size"] < 45:
                 rerender.append(m["FilePath"])
         else:
-            closest = sorted(tvList, key=lambda x, obj=m: thefuzz.fuzz.ratio(obj["Title"], x.Title))
+            closest = sorted(
+                tvList,
+                key=lambda x, obj=m: thefuzz.fuzz.ratio(obj["Title"], x.Title),  # type:ignore
+            )
             m["Closest"] = {"Title": closest[-1].Title, "Year": closest[-1].Year}
             unmatched.append(m)
     if rerender:
