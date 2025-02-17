@@ -37,6 +37,22 @@ def FilterTags(tagList, objList, include):
                 if (include and x.Downloaded) or (not include and not x.Downloaded)
             ]
             tagList = tagList.replace("Downloaded", "").strip()
+        if "Ready" in tagList:
+            objList = [
+                x
+                for x in objList
+                if (include and x.Downloaded and not x.Watched)
+                or (not include and (not x.Downloaded or x.Watched))
+            ]
+            tagList = tagList.replace("Downloaded", "").strip()
+        if "New" in tagList:
+            objList = [
+                x
+                for x in objList
+                if (include and not x.Downloaded and not x.Watched)
+                or (not include and (x.Downloaded or x.Watched))
+            ]
+            tagList = tagList.replace("Downloaded", "").strip()
 
         if tagList:
             objList = [
