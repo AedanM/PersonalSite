@@ -27,11 +27,11 @@ LOGIN_REDIRECT_URL = "/"  # new
 SECRET_KEY = os.environ.get("DjangoKey", "9@g*i-m&yhutyk3t_s=l0%mkxh=+e+d3e2kk0mt6mim+y(&_6$")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DJANGO_DEBUG", "") == "True"
+DEBUG = True  # os.environ.get("DJANGO_DEBUG", "") == "True"
 logging.getLogger("django").info("DEBUG %s", "Enabled" if DEBUG else "Disabled")
 # cspell:disable-next-line
-ALLOWED_HOSTS: list = ["127.0.0.1", "aedanm.uk", "*"]
-
+ALLOWED_HOSTS: list = ["127.0.0.1", "aedanm.uk", "192.168.0.44"]
+CSRF_TRUSTED_ORIGINS: list = ["https://127.0.0.1", "https://aedanm.uk", "https://192.168.0.44"]
 # SESSION_COOKIE_SECURE = not DEBUG
 # CSRF_COOKIE_SECURE = not DEBUG
 # Application definition

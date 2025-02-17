@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_protect
 LOGGER = logging.getLogger("UserLogger")
 
 
-@csrf_protect
+# @csrf_protect
 def loginView(request):
     nextPage = request.GET.get("next", "/media")
     context: dict = {"colorMode": request.COOKIES.get("colorMode", "dark")}
@@ -27,7 +27,7 @@ def loginView(request):
     return render(request, "accountPages/login.html", context=context)
 
 
-@csrf_protect
+# @csrf_protect
 def logoutView(request):
     logout(request=request)
     dst = request.GET.get("next", "/")
