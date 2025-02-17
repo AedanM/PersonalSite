@@ -107,13 +107,21 @@ def FindID(contentID: str) -> Any:
 
 def GetAllTags(objType, loggedIn=False) -> dict[str, dict]:
     genres = []
-    _ = [[genres.append(y) for y in x.GenreTagList] for x in objType.objects.all()]
-    freqDir = {}
+    _ = [[genres.append(y) for y in x.GenreTagList] for x in objType.objects.all()]  # type:ignore
+    freqDir: dict = {}
     for title, definedList in DEFINED_TAGS.items():
         freqDir[title] = {}
         for i in definedList:
             if genres.count(i) > 0:
                 freqDir[title][i] = genres.count(i)
+            elif i == "Ready" and loggedIn:
+                freqDir[title][i] = len(
+                    [x for x in objType.objects.all() if x.Downloaded and not x.Watched]
+                )
+            elif i == "New" and loggedIn:
+                freqDir[title][i] = len(
+                    [x for x in objType.objects.all() if not x.Downloaded and not x.Watched]
+                )
             elif i == "Downloaded" and loggedIn and "Downloaded" in dir(objType.objects.all()[0]):
                 freqDir[title][i] = len([x for x in objType.objects.all() if x.Downloaded])
             elif i == "Watched" and "Watched" in dir(objType.objects.all()[0]):
