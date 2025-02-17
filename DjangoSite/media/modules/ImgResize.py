@@ -23,12 +23,12 @@ def ResizeImages(parentDir):
     parentDir = Path(parentDir)
     if parentDir.exists():
         for img in parentDir.glob("*.png"):
-            SingleResize(img)
+            BackgroundResize(img)
     else:
         LOGGER.error("No parent dir %s", parentDir)
 
 
-def SingleResize(img):
+def BackgroundResize(img):
     currentImg = RemoveAlpha(img)
     background = Image.new("RGBA", color=currentImg.getpixel((0, 0)), size=(320, 240))
     background.paste(

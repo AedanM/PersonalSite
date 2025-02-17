@@ -10,7 +10,6 @@ from django.shortcuts import redirect, render
 
 from .models import Movie, TVShow
 from .modules.CheckDetails import CheckMovies, CheckTV, CopyOverRenderQueue, HandleReRenderQueue
-from .modules.FileRip import RipWDrive
 from .modules.HardwareFunctions import RebootPC, StartRestartThread
 from .modules.ModelTools import DownloadImage, SortTags
 from .modules.Utils import (
@@ -47,7 +46,7 @@ def refresh(request):
 
 def fullView(request) -> HttpResponse:
     soloContent = request.GET.get("type", None)
-    masterTags = {}
+    masterTags: dict = {}
     for i in MODEL_LIST:
         for _title, valDict in GetAllTags(i, request.user.is_authenticated).items():
             masterTags |= valDict
@@ -151,9 +150,9 @@ def checkFiles(request) -> HttpResponse:
         return HttpResponse("Copied Render List")
     LOGGER.error("HELLO WORLD")
     if request.GET.get("Scan", "False") == "True":
-        
+
         x = subprocess.call(
-            "python C:\PersonalScripts\Projects\PersonalSite\DjangoSite\media\modules\FileRip.py"
+            r"python C:\PersonalScripts\Projects\PersonalSite\DjangoSite\media\modules\FileRip.py"
         )
         LOGGER.info(x)
         LOGGER.error("HELLO WORLD")

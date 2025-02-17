@@ -61,7 +61,6 @@
 								} else {
 									newVal = oldTags + "," + newVal;
 								}
-								console.log(newVal);
 							}
 							if (newVal.slice(0, 1) == ",") {
 								newVal = newVal.substring(1);
@@ -69,7 +68,6 @@
 							if (newVal.slice(-1) == ",") {
 								newVal = newVal.substring(-1);
 							}
-							console.log(newVal, newVal.slice(0, 1), newVal.slice(-1));
 						}
 						if (newVal != "") {
 							urlParams.set(key[i], newVal);
@@ -91,7 +89,6 @@
 				newMode = "light";
 			}
 			document.cookie = "colorMode=" + newMode;
-			console.log("Toggled?");
 			document.location.reload();
 		}
 		$(function () {
