@@ -9,6 +9,7 @@ from django.core.exceptions import ObjectDoesNotExist
 # pylint: disable=E0402
 from ..forms import AlbumForm, ComicForm, MovieForm, NovelForm, PodcastForm, TVForm, YoutubeForm
 from ..models import Album, Comic, Movie, Novel, Podcast, TVShow, Youtube
+from ..utils import FEATURES, GetTest
 
 DEFINED_TAGS = {}
 FORM_LIST = [MovieForm, TVForm, NovelForm, ComicForm, PodcastForm, YoutubeForm, AlbumForm]
@@ -115,18 +116,15 @@ def GetAllTags(objType, loggedIn=False) -> dict[str, dict]:
         for i in definedList:
             if genres.count(i) > 0:
                 freqDir[title][i] = genres.count(i)
-            elif i == "Ready" and loggedIn:
-                freqDir[title][i] = len(
-                    [x for x in objType.objects.all() if x.Downloaded and not x.Watched]
-                )
-            elif i == "New" and loggedIn:
-                freqDir[title][i] = len(
-                    [x for x in objType.objects.all() if not x.Downloaded and not x.Watched]
-                )
-            elif i == "Downloaded" and loggedIn and "Downloaded" in dir(objType.objects.all()[0]):
-                freqDir[title][i] = len([x for x in objType.objects.all() if x.Downloaded])
-            elif i == "Watched" and "Watched" in dir(objType.objects.all()[0]):
-                freqDir[title][i] = len([x for x in objType.objects.all() if x.Watched])
+            for feature in FEATURES:
+                if i == feature and (loggedIn or i == "Watched"):
+                    freqDir[title][i] = len(
+                        [x for x in objType.objects.all() if GetTest(feature)(x)]
+                    )
+                elif i == "Watched" and i in dir(objType.objects.all()[0]):
+                    freqDir[title][i] = len(
+                        [x for x in objType.objects.all() if GetTest(feature)(x)]
+                    )
         genres = [x for x in genres if x not in definedList and x != "Downloaded"]
     freqDir["ETC"] = {}
     for i in set(genres):

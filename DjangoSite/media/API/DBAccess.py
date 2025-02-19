@@ -1,10 +1,11 @@
 from asgiref.sync import sync_to_async
 
+# pylint: disable = E1101
 NON_API_FIELDS = ["Downloaded", "Logo"]
 
 
 @sync_to_async
-def GetAllMovies():
+def GetAllMovies() -> list[dict]:
     from media.models import Movie
 
     movies = [x.JsonRepr for x in Movie.objects.all()]
@@ -15,7 +16,7 @@ def GetAllMovies():
 
 
 @sync_to_async
-def GetAllTV():
+def GetAllTV() -> list[dict]:
     from media.models import TVShow
 
     movies = [x.JsonRepr for x in TVShow.objects.all()]

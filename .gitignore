@@ -9,6 +9,7 @@ __pycache__/
 */temp.*
 */Temp
 
+*.sqlite3
 
 # Distribution / packaging
 .Python
@@ -163,9 +164,10 @@ cython_debug/
 #.idea/
 
 .vscode/
-/DjangoSite/temp.html
-/DjangoSite/static/temp.png
-/DjangoSite/static/stats/
 /DjangoSite/static/admin/
 /DjangoSite/static/code-stats-embedded/
+/DjangoSite/static/logos/
+/DjangoSite/static/stats/
 /DjangoSite/static/styles/pico/
+/DjangoSite/static/temp.png
+/DjangoSite/temp.html

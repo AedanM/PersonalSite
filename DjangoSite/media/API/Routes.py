@@ -1,21 +1,10 @@
+from pathlib import Path
+
 from fastapi import FastAPI
 from media.API.DBAccess import GetAllMovies, GetAllTV
 
-description = """
-Media API is a demonstration of FastAPI
+description = (Path(__file__).parent / "Description.md").read_text()
 
-## Movies
-
-You can search by:
- - Year Released
- - Genre
- - If I've Watched It
- - Rating
- 
-##
-
-"""
-# Create FastAPI app
 API_APP = FastAPI(
     title="Media API",
     description=description,

@@ -10,7 +10,7 @@ from django.shortcuts import redirect, render
 
 from .models import Movie, TVShow
 from .modules.CheckDetails import CheckMovies, CheckTV, CopyOverRenderQueue, HandleReRenderQueue
-from .modules.HardwareFunctions import RebootPC, StartRestartThread
+from .modules.HardwareFunctions import KillRedirect, RebootPC
 from .modules.ModelTools import DownloadImage, SortTags
 from .modules.Utils import (
     MODEL_LIST,
@@ -43,9 +43,7 @@ def viewMedia(request) -> HttpResponse:
 def refresh(request):
     if request.GET.get("hard", "False") == "True":
         RebootPC()
-
-    StartRestartThread(int(request.GET.get("time", 1)))
-    return redirect("/media")
+    return KillRedirect("/media")
 
 
 def fullView(request) -> HttpResponse:
@@ -122,7 +120,7 @@ def wikiLoad(request) -> HttpResponse:
                     DownloadImage(obj)
                     obj.GetLogo(True)
                     LOGGER.info("Loaded %s from Wikipedia", obj.Title)
-                    StartRestartThread(1)
+                    returnRender = KillRedirect("/media")
                 else:
                     LOGGER.error("Wiki load failed from %s", activeForm.data["InfoPage"])
             else:
