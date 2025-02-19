@@ -8,7 +8,6 @@ from django.conf import settings as django_settings
 from PIL import Image, UnidentifiedImageError
 
 from .ImgResize import BackgroundResize
-from .Utils import MakeStringSystemSafe
 
 LOGGER = logging.getLogger("UserLogger")
 
@@ -17,6 +16,7 @@ DEFAULT_IMG_PATH = "logos/DefaultIMG.png"
 
 
 def DownloadImage(modelObj):
+    from .Utils import MakeStringSystemSafe
 
     logoIMG = None
     reloadLogo = (

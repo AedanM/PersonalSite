@@ -28,6 +28,10 @@ from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFu
 LOGGER = logging.getLogger("UserLogger")
 
 
+def apiRedirect(_request) -> HttpResponse:
+    return redirect("/media/api/docs")
+
+
 def viewMedia(request) -> HttpResponse:
     context = {"object": FindID(request.GET.get("id", -1))}
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")

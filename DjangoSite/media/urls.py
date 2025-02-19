@@ -19,4 +19,5 @@ urlpatterns = [
     path(route="refresh", view=views.refresh, name="Refresh"),
     path(route="backup.json", view=views.backup, name="backup"),
     path(route="adjustTags", view=views.adjustTags, name="adjustTags"),
+    path(route="api", view=views.apiRedirect, name="apiCall"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

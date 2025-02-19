@@ -1,0 +1,52 @@
+from fastapi import FastAPI
+from media.API.DBAccess import GetAllMovies, GetAllTV
+
+description = """
+Media API is a demonstration of FastAPI
+
+## Movies
+
+You can search by:
+ - Year Released
+ - Genre
+ - If I've Watched It
+ - Rating
+ 
+##
+
+"""
+# Create FastAPI app
+API_APP = FastAPI(
+    title="Media API",
+    description=description,
+    summary="Fast API access to media database",
+    version="0.0.1",
+    contact={
+        "name": "Aedan McHale",
+        "url": "https://aedanm.uk/resume",
+        "email": "aedan.mchale@gmail.com",
+    },
+    license_info={
+        "name": "Apache 2.0",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
+    },
+)
+
+
+@API_APP.get("/movies", summary="Full listing of movies")
+async def Movies() -> dict:
+    return dict(enumerate(await GetAllMovies()))
+
+
+@API_APP.get("/tvshows", summary="Full listing of tvshows")
+async def TVShows() -> dict:
+    return dict(enumerate(await GetAllTV()))
+
+
+@API_APP.get("/genres", summary="Full listing of genre tags")
+async def Genres() -> dict:
+    from media.modules.Utils import DEFINED_TAGS
+
+    d = DEFINED_TAGS.copy()
+    d.pop("Features")
+    return d

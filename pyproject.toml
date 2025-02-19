@@ -25,4 +25,7 @@ dependencies = [
     "waitress",
     "wheel",
     "whitenoise",
+    "fastapi[standard]",
+    "starlette",
+    "blacknoise",
 ]

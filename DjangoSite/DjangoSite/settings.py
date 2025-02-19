@@ -35,7 +35,9 @@ CSRF_TRUSTED_ORIGINS: list = ["https://127.0.0.1", "https://aedanm.uk", "https:/
 # SESSION_COOKIE_SECURE = not DEBUG
 # CSRF_COOKIE_SECURE = not DEBUG
 # Application definition
-
+SYNC_PATH = Path(r"C:\Sync\WebsiteShare")
+if not SYNC_PATH.exists():
+    SYNC_PATH = Path(r"C:\Users\mchaae01\Sync\WebsiteShare")
 
 LOGGING = {
     "version": 1,
