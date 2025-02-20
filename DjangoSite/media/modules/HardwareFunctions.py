@@ -3,9 +3,10 @@ import logging
 import os
 import signal
 import subprocess
-import threading
 import time
 from pathlib import Path
+
+from django.http import HttpResponseRedirect
 
 LOGGER = logging.getLogger("UserLogger")
 
@@ -14,14 +15,13 @@ def RebootPC():
     subprocess.call(["shutdown", "-r", "-t", "0"])
 
 
-def StartRestartThread(seconds):
-    threading.Thread(target=RestartIn, args=[seconds]).start()
+class KillRedirect(HttpResponseRedirect):
 
-
-def RestartIn(seconds):
-    time.sleep(seconds)
-    LOGGER.info("Restarting....")
-    os.kill(os.getpid(), signal.SIGTERM)
+    def close(self):
+        super().close()
+        LOGGER.info("Ending Process....")
+        time.sleep(0.25)
+        os.kill(os.getpid(), signal.SIGTERM)
 
 
 def PullRepo():
@@ -33,4 +33,3 @@ def SelfCommit():
     os.chdir(Path(__file__).parent.parent.parent)
     subprocess.call(["git", "add", "--all"])
     subprocess.call(["git", "commit", "-m", f'"Auto-Commit {datetime.date}"'])
-    StartRestartThread(1)

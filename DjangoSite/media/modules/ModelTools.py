@@ -16,6 +16,7 @@ DEFAULT_IMG_PATH = "logos/DefaultIMG.png"
 
 
 def DownloadImage(modelObj):
+    from .Utils import MakeStringSystemSafe
 
     from .Utils import MakeStringSystemSafe
 
