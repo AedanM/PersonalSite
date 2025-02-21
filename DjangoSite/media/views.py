@@ -158,23 +158,36 @@ def checkFiles(request) -> HttpResponse:
         LOGGER.error("HELLO WORLD")
         # RipWDrive(request.GET.get("type", "Movie"), showProgress=request.GET.get("progress", False))
 
-    match request.GET.get("type"):
-        case "TVShow":
-            unmatched, matched = CheckTV()
-        case _others:
-            unmatched, matched = CheckMovies()
+    unmatchedTV, matchedTV = CheckTV()
+    unmatchedMovie, matchedMovie = CheckMovies()
 
-    ids = [x["Match"]["ID"] for x in matched]
     # pylint: disable=E1101
-    objList = Movie.objects.all() if request.GET.get("type") != "TVShow" else TVShow.objects.all()
-    wronglyMarked = [
-        x for x in objList if x.Downloaded and x.id not in ids  # type:ignore
+    wronglyMarkedMovie = [
+        x
+        for x in Movie.objects.all()
+        if x.Downloaded and x.id not in [y["Match"]["ID"] for y in matchedMovie]  # type:ignore
+    ]
+    wronglyMarkedTV = [
+        x
+        for x in TVShow.objects.all()
+        if x.Downloaded and x.id not in [y["Match"]["ID"] for y in matchedTV]  # type:ignore
     ]
 
     return render(
         request=request,
         template_name="media/checkFile.html",
-        context={"matched": matched, "unmatched": unmatched, "wronglyMarked": wronglyMarked},
+        context={
+            "tvshow": {
+                "matched": matchedTV,
+                "unmatched": unmatchedTV,
+                "wronglyMarked": wronglyMarkedTV,
+            },
+            "movie": {
+                "unmatchedMovie": unmatchedMovie,
+                "matchedMovie": matchedMovie,
+                "wronglyMarkedMovie": wronglyMarkedMovie,
+            },
+        },
     )
 
 

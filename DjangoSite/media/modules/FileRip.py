@@ -77,7 +77,9 @@ def GetTV(parent: Path, showProgress: bool):
                             for x in str(folder).replace(str(path), "").split("\\")[:-1]
                             if x != ""
                         ],
-                        "Size": sum(f.stat().st_size for f in subFiles) / (1024 * 1024 * 1024),
+                        "Size": round(
+                            sum(f.stat().st_size for f in subFiles) / (1024 * 1024 * 1024), 2
+                        ),
                     }
                 )
         if showProgress:

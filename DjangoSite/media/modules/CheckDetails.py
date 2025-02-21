@@ -58,6 +58,7 @@ def FilterOutMatches(movies, obj: Any = Movie):
             matched.append(m)
             if matches[0].Duration.seconds // 60 / m["Size"] < 45:
                 rerender.append(m["FilePath"])
+            m = CleanAliasGroups(m)
         else:
             closest = sorted(
                 movieList,
@@ -132,6 +133,19 @@ def MatchTitles(t1, t2) -> bool:
     return t1.lower() == t2.lower()
 
 
+def CleanAliasGroups(obj: dict) -> dict:
+    with (django_settings.SYNC_PATH / "Alias.json").open(mode="r", encoding="ascii") as fp:
+        jsonFile = json.load(fp)
+        groups = jsonFile["Groups"]
+    for diff in obj["Match"]["Tag Diff"]:
+        for g in [x for x in groups if diff in groups]:
+            # [a,b,c]
+            if any(x for x in g if x in obj["Tags"]):
+                obj["Match"]["Tag Diff"].remove(diff)
+                break
+    return obj
+
+
 def ResetAlias(files):
     titles = {}
     tags = {}
@@ -198,6 +212,7 @@ def FilterOutTVMatches(files: list):
             matched.append(m)
             if m["Match"]["Runtime"] / m["Size"] < 45:
                 rerender.append(m["FilePath"])
+            m = CleanAliasGroups(m)
         else:
             closest = sorted(
                 tvList,
