@@ -5,6 +5,7 @@ import sys
 import time
 from pathlib import Path
 
+from django.conf import settings as django_settings
 from progress.bar import Bar
 
 LOGGER = logging.getLogger("UserLogger")
@@ -36,7 +37,7 @@ def GetMovies(parent, showProgress: bool):
                 obj["Size"] = 0.0001
             objList.append(obj)
         if showProgress:
-            progBar.next() # type: ignore
+            progBar.next()  # type: ignore
     if showProgress:
         print()
         print("Movies Complete")
@@ -83,7 +84,7 @@ def GetTV(parent: Path, showProgress: bool):
                     }
                 )
         if showProgress:
-            progBar.next() # type: ignore
+            progBar.next()  # type: ignore
     if showProgress:
         print()
         print("TV Complete")
@@ -109,10 +110,10 @@ def RipWDrive(mediaType: str, showProgress: bool):
         else:
             tv = GetTV(ms, showProgress)
             LOGGER.info("TV scrape took %f seconds", time.time() - start)
-        summaryFile = Path(r"C:\Sync\WebsiteShare") / "MediaServerSummary.json"
+        summaryFile = django_settings.SYNC_PATH / "MediaServerSummary.json"
         currentFile = json.loads(summaryFile.read_text())
         with open(
-            Path(r"C:\Sync\WebsiteShare") / "MediaServerSummary.json",
+            django_settings.SYNC_PATH / "MediaServerSummary.json",
             mode="w",
             encoding="ascii",
         ) as fp:
