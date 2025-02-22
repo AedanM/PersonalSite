@@ -10,7 +10,7 @@ from django.shortcuts import redirect, render
 
 from .models import Movie, TVShow
 from .modules.CheckDetails import CheckMovies, CheckTV, CopyOverRenderQueue, HandleReRenderQueue
-from .modules.HardwareFunctions import RebootPC, StartRestartThread
+from .modules.HardwareFunctions import KillRedirect, RebootPC
 from .modules.ModelTools import DownloadImage, SortTags
 from .modules.Utils import (
     MODEL_LIST,
@@ -28,6 +28,10 @@ from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFu
 LOGGER = logging.getLogger("UserLogger")
 
 
+def apiRedirect(_request) -> HttpResponse:
+    return redirect("/media/api/docs")
+
+
 def viewMedia(request) -> HttpResponse:
     context = {"object": FindID(request.GET.get("id", -1))}
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
@@ -39,9 +43,7 @@ def viewMedia(request) -> HttpResponse:
 def refresh(request):
     if request.GET.get("hard", "False") == "True":
         RebootPC()
-
-    StartRestartThread(int(request.GET.get("time", 1)))
-    return redirect("/media")
+    return KillRedirect("/media")
 
 
 def fullView(request) -> HttpResponse:
@@ -118,7 +120,7 @@ def wikiLoad(request) -> HttpResponse:
                     DownloadImage(obj)
                     obj.GetLogo(True)
                     LOGGER.info("Loaded %s from Wikipedia", obj.Title)
-                    StartRestartThread(1)
+                    returnRender = KillRedirect("/media")
                 else:
                     LOGGER.error("Wiki load failed from %s", activeForm.data["InfoPage"])
             else:
@@ -158,23 +160,36 @@ def checkFiles(request) -> HttpResponse:
         LOGGER.error("HELLO WORLD")
         # RipWDrive(request.GET.get("type", "Movie"), showProgress=request.GET.get("progress", False))
 
-    match request.GET.get("type"):
-        case "TVShow":
-            unmatched, matched = CheckTV()
-        case _others:
-            unmatched, matched = CheckMovies()
+    unmatchedTV, matchedTV = CheckTV()
+    unmatchedMovie, matchedMovie = CheckMovies()
 
-    ids = [x["Match"]["ID"] for x in matched]
     # pylint: disable=E1101
-    objList = Movie.objects.all() if request.GET.get("type") != "TVShow" else TVShow.objects.all()
-    wronglyMarked = [
-        x for x in objList if x.Downloaded and x.id not in ids  # type:ignore
+    wronglyMarkedMovie = [
+        x
+        for x in Movie.objects.all()
+        if x.Downloaded and x.id not in [y["Match"]["ID"] for y in matchedMovie]  # type:ignore
+    ]
+    wronglyMarkedTV = [
+        x
+        for x in TVShow.objects.all()
+        if x.Downloaded and x.id not in [y["Match"]["ID"] for y in matchedTV]  # type:ignore
     ]
 
     return render(
         request=request,
         template_name="media/checkFile.html",
-        context={"matched": matched, "unmatched": unmatched, "wronglyMarked": wronglyMarked},
+        context={
+            "tvshow": {
+                "matched": matchedTV,
+                "unmatched": unmatchedTV,
+                "wronglyMarked": wronglyMarkedTV,
+            },
+            "movie": {
+                "unmatchedMovie": unmatchedMovie,
+                "matchedMovie": matchedMovie,
+                "wronglyMarkedMovie": wronglyMarkedMovie,
+            },
+        },
     )
 
 

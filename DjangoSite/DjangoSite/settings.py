@@ -16,26 +16,24 @@ import os
 from datetime import date
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 LOGIN_REDIRECT_URL = "/"  # new
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("DjangoKey", "9@g*i-m&yhutyk3t_s=l0%mkxh=+e+d3e2kk0mt6mim+y(&_6$")
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  # os.environ.get("DJANGO_DEBUG", "") == "True"
 logging.getLogger("django").info("DEBUG %s", "Enabled" if DEBUG else "Disabled")
-# cspell:disable-next-line
+
 ALLOWED_HOSTS: list = ["127.0.0.1", "aedanm.uk", "192.168.0.44"]
 CSRF_TRUSTED_ORIGINS: list = ["https://127.0.0.1", "https://aedanm.uk", "https://192.168.0.44"]
+
 # SESSION_COOKIE_SECURE = not DEBUG
 # CSRF_COOKIE_SECURE = not DEBUG
-# Application definition
 
+SYNC_PATH = Path(r"C:\Sync\WebsiteShare")
+if not SYNC_PATH.exists():
+    SYNC_PATH = Path(r"C:\Users\mchaae01\Sync\WebsiteShare")
 
 LOGGING = {
     "version": 1,
@@ -123,9 +121,6 @@ TEMPLATES = [
 WSGI_APPLICATION = "DjangoSite.wsgi.application"
 
 
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -133,9 +128,6 @@ DATABASES = {
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -153,9 +145,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.0/topics/i18n/
-
 LANGUAGE_CODE = "en-gb"
 
 TIME_ZONE = "GMT"
@@ -165,9 +154,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
-
 STATIC_ROOT = BASE_DIR / "static"
 STATIC_URL = "static/"
 
@@ -175,9 +161,8 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# TODO : Investigate streaming warning

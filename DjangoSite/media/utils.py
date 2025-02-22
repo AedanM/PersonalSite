@@ -1,10 +1,29 @@
 # pylint: disable=C0103
 import datetime
 import random
+from typing import Callable
 
 from thefuzz import fuzz
 
 MINIMUM_YEAR = 1900
+
+FEATURES = ["Watched", "Downloaded", "New", "Ready"]
+
+
+def GetTest(tagName) -> Callable:
+    # pylint: disable = C3001
+    match (tagName):
+        case "Watched":
+            test = lambda x: x.Watched
+        case "Downloaded":
+            test = lambda x: x.Downloaded
+        case "New":
+            test = lambda x: not x.Downloaded and not x.Watched
+        case "Ready":
+            test = lambda x: x.Downloaded and not x.Watched
+        case _default:
+            test = lambda _x: True
+    return test
 
 
 def FuzzStr(obj, query):
@@ -24,35 +43,13 @@ def ExcludeTags(x, tagList):
 
 def FilterTags(tagList, objList, include):
     if tagList:
-        if "Watched" in tagList:
-            objList = [
-                x for x in objList if (include and x.Watched) or (not include and not x.Watched)
-            ]
-            tagList = tagList.replace("Watched", "").strip()
-
-        if "Downloaded" in tagList:
-            objList = [
-                x
-                for x in objList
-                if (include and x.Downloaded) or (not include and not x.Downloaded)
-            ]
-            tagList = tagList.replace("Downloaded", "").strip()
-        if "Ready" in tagList:
-            objList = [
-                x
-                for x in objList
-                if (include and x.Downloaded and not x.Watched)
-                or (not include and (not x.Downloaded or x.Watched))
-            ]
-            tagList = tagList.replace("Ready", "").strip()
-        if "New" in tagList:
-            objList = [
-                x
-                for x in objList
-                if (include and not x.Downloaded and not x.Watched)
-                or (not include and (x.Downloaded or x.Watched))
-            ]
-            tagList = tagList.replace("New", "").strip()
+        for feature in FEATURES:
+            if feature in tagList:
+                test = GetTest(feature)
+                objList = [
+                    x for x in objList if (test(x) and include) or (not test(x) and not include)
+                ]
+                tagList = tagList.replace(feature, "").strip()
 
         if tagList:
             objList = [
