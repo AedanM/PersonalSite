@@ -20,7 +20,6 @@ class KillRedirect(HttpResponseRedirect):
     def close(self):
         super().close()
         LOGGER.info("Ending Process....")
-        time.sleep(0.25)
         os.kill(os.getpid(), signal.SIGTERM)
 
 
