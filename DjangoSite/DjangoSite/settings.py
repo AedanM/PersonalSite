@@ -21,7 +21,7 @@ EXTERNAL_DIR = Path(r"C:\External")
 
 LOGIN_REDIRECT_URL = "/"  # new
 
-SECRET_KEY = os.environ.get("DjangoKey", "9@g*i-m&yhutyk3t_s=l0%mkxh=+e+d3e2kk0mt6mim+y(&_6$")
+SECRET_KEY = os.environ.get("DjangoKey", (EXTERNAL_DIR / "SecretKey.txt").read_text())
 
 DEBUG = True  # os.environ.get("DJANGO_DEBUG", "") == "True"
 logging.getLogger("django").info("DEBUG %s", "Enabled" if DEBUG else "Disabled")

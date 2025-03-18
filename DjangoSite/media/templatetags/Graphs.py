@@ -67,6 +67,28 @@ def LogTiming(f):
 
 
 @register.filter
+def WatchLen(objList: list, force: bool):
+    outputDiv = ""
+    dstPath = GetDst(objList, "WatchLen")
+    if dstPath.exists() and not force:
+        outputDiv = dstPath.read_text(encoding="utf-8")
+    else:
+        for i in objList:
+            i["Watch Status"] = (
+                "Watched" if i.Watched else "Downloaded" if i.Downloaded else "Neither"
+            )
+        fig = px.histogram(
+            data_frame=objList,
+            x="Duration",
+            color="Watch Status",
+            nbins=len({x["Duration"] for x in objList}),
+        )
+        outputDiv = GetHTML(fig)
+        dstPath.write_text(outputDiv, encoding="utf-8")
+    return outputDiv
+
+
+@register.filter
 def RatingOverTime(objList: list, force: bool) -> str:
     outputDiv = ""
     df = None
