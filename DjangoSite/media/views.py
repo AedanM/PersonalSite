@@ -5,22 +5,14 @@ import time
 
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.http import HttpRequest, HttpResponse, HttpResponseNotFound, JsonResponse
+from django.http import HttpRequest, HttpResponse, HttpResponseNotFound
 from django.shortcuts import redirect, render
 
 from .models import Movie, TVShow
 from .modules.CheckDetails import CheckMovies, CheckTV, CopyOverRenderQueue, HandleReRenderQueue
 from .modules.HardwareFunctions import KillRedirect, RebootPC
 from .modules.ModelTools import DownloadImage, SortTags
-from .modules.Utils import (
-    MODEL_LIST,
-    DetermineForm,
-    FindID,
-    FormMatch,
-    GetAllTags,
-    GetContents,
-    GetFormAndClass,
-)
+from .modules.Utils import MODEL_LIST, DetermineForm, FindID, FormMatch, GetAllTags, GetFormAndClass
 from .modules.WebTools import ScrapeWiki
 from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFunction
 
@@ -44,27 +36,6 @@ def refresh(request):
     if request.GET.get("hard", "False") == "True":
         RebootPC()
     return KillRedirect("/media")
-
-
-def fullView(request) -> HttpResponse:
-    soloContent = request.GET.get("type", None)
-    masterTags: dict = {}
-    for i in MODEL_LIST:
-        for _title, valDict in GetAllTags(i, request.user.is_authenticated).items():
-            masterTags |= valDict
-
-    context = {
-        "MediaTypes": (
-            GetContents(request=request)
-            if soloContent is None
-            else GetContents(request=request)[soloContent]
-        ),
-        "Graphs": "noGraphs" in request.GET,
-        "Tags": masterTags if "genre" not in request.GET else {},
-    }
-    context["colorMode"] = request.COOKIES.get("colorMode", "dark")
-
-    return render(request, "media/index.html", context)
 
 
 @login_required
@@ -131,15 +102,13 @@ def wikiLoad(request) -> HttpResponse:
     return returnRender
 
 
-def adjustTags(_request):
-    adjustDict = {
-        "Gangster": "Mafia",
-    }
+def adjustTags(_request, fromTag: str, toTag: str):
+
     # pylint: disable=E1101
-    for m in Movie.objects.all():
-        for tag, replacement in adjustDict.items():
-            m.Genre_Tags = m.Genre_Tags.replace(tag, replacement)
-        m.save()
+    for media in MODEL_LIST:
+        for m in media.objects.all():
+            m.Genre_Tags = m.Genre_Tags.replace(fromTag, toTag)
+            m.save()
     return redirect("/media")
 
 
@@ -191,15 +160,6 @@ def checkFiles(request) -> HttpResponse:
             },
         },
     )
-
-
-@login_required
-def backup(_request) -> HttpResponse:
-    backupDict = {}
-    for model in MODEL_LIST:
-        # pylint: disable=E1101
-        backupDict[model.__name__] = [x.JsonRepr for x in model.objects.all()]
-    return JsonResponse(data=backupDict)
 
 
 def stats(request) -> HttpResponse:
@@ -313,8 +273,13 @@ def SetBool(request) -> HttpResponse:
     return response
 
 
-def index(request: HttpRequest) -> HttpResponse:
-    _formType, objType = GetFormAndClass(request.GET.get("type", "Movie"))
+def index(request: HttpRequest, media="Movie") -> HttpResponse:
+    media = media.lower()
+    if media[-1] == "s":
+        media = media[:-1]
+    if media not in [x.__name__.lower() for x in MODEL_LIST]:
+        return redirect("/media")
+    _formType, objType = GetFormAndClass(media)
     context = FilterMedia(request=request, objType=objType)
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
     pageSize: int = int(
@@ -366,7 +331,7 @@ def FilterMedia(request, objType) -> dict:
             objList, key=lambda x: SortFunction(obj=x, key=sortKey), reverse=reverseSort
         )
     return {
-        "type": request.GET.get("type", "Movie"),
+        "type": objType.__name__,
         "sort": sortKey,
         "reverse": reverseSort,
         "obj_list": objList,

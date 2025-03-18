@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from fastapi import FastAPI
-from media.API.DBAccess import GetAllMovies, GetAllTV
+from media.API.DBAccess import GetAll, GetAllMovies, GetAllTV
 
 description = (Path(__file__).parent / "Description.md").read_text()
 
@@ -39,3 +39,8 @@ async def Genres() -> dict:
     d = DEFINED_TAGS.copy()
     d.pop("Features")
     return d
+
+
+@API_APP.get(path="/backup", summary="Full fat backup of DB")
+async def Backup() -> dict:
+    return dict(await GetAll())
