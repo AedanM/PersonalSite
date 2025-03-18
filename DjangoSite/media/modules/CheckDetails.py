@@ -144,7 +144,7 @@ def MatchTitles(t1, t2) -> bool:
 def CleanAliasGroups(obj: dict) -> dict:
     with (django_settings.SYNC_PATH / "Alias.json").open(mode="r", encoding="ascii") as fp:
         jsonFile = json.load(fp)
-        groups = jsonFile["Groups"]
+        groups = jsonFile["Pools"]
     for diff in obj["Match"]["Tag Diff"]:
         for g in [x for x in groups if diff in groups]:
             # [a,b,c]

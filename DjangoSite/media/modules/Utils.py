@@ -1,4 +1,5 @@
 import json
+import logging
 import re
 from pathlib import Path
 from typing import Any
@@ -18,6 +19,7 @@ MODEL_LIST = [Movie, TVShow, Novel, Comic, Podcast, Youtube, Album]
 with open(django_settings.SYNC_PATH / "Genres.json", encoding="ascii") as fp:
     DEFINED_TAGS = json.load(fp)
     DEFINED_TAGS.pop("_comment", None)
+LOGGER = logging.getLogger("UserLogger")
 
 
 def MakeStringSystemSafe(
@@ -69,30 +71,9 @@ def DetermineForm(request):
 
 
 def GetFormAndClass(formType) -> tuple:
-    obj = [x for x in MODEL_LIST if formType.replace(" ", "") in x.__name__][0]
+    obj = [x for x in MODEL_LIST if formType.replace(" ", "").lower() in x.__name__.lower()][0]
     cls = FormMatch(obj())
     return cls, obj
-
-
-def ContentFilter(getParams: dict, contentList) -> list:
-    """Full View (semi Deprecated)"""
-    returnList = contentList
-    if "genre" in getParams:
-        returnList = [x for x in returnList if getParams["genre"] in x.GenreTagList]
-    return sorted(returnList)
-
-
-def GetContents(request) -> dict[str, dict]:
-    """Full View (semi Deprecated)"""
-    # pylint: disable=E1101
-    loadLogo = "updateLogos" in request.GET
-    outDict = {}
-    for model in MODEL_LIST:
-        modelList = ContentFilter(request.GET, model.objects.all())
-        outDict[ModelDisplayName(model)] = dict(
-            zip(modelList, [x.GetLogo(loadLogo) for x in modelList])
-        )
-    return outDict
 
 
 def FindID(contentID: str) -> Any:
@@ -118,13 +99,17 @@ def GetAllTags(objType, loggedIn=False) -> dict[str, dict]:
                 freqDir[title][i] = genres.count(i)
             for feature in FEATURES:
                 if i == feature and (loggedIn or i == "Watched"):
-                    freqDir[title][i] = len(
-                        [x for x in objType.objects.all() if GetTest(feature)(x)]
-                    )
+                    try:
+                        freqDir[title][i] = len(
+                            [x for x in objType.objects.all() if GetTest(feature)(x)]
+                        )
+                    except AttributeError:
+                        LOGGER.error("%s not found in %s", feature, objType.__name__)
                 elif i == "Watched" and i in dir(objType.objects.all()[0]):
                     freqDir[title][i] = len(
                         [x for x in objType.objects.all() if GetTest(feature)(x)]
                     )
+
         genres = [x for x in genres if x not in definedList and x != "Downloaded"]
     freqDir["ETC"] = {}
     for i in set(genres):

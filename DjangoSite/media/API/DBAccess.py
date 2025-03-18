@@ -24,3 +24,14 @@ def GetAllTV() -> list[dict]:
         for field in NON_API_FIELDS:
             m.pop(field)
     return movies
+
+
+@sync_to_async
+def GetAll() -> dict:
+    from media.modules.Utils import MODEL_LIST
+
+    backupDict = {}
+    for model in MODEL_LIST:
+        # pylint: disable=E1101
+        backupDict[model.__name__] = [x.JsonRepr for x in model.objects.all()]
+    return backupDict

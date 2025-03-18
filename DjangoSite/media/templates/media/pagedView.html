@@ -124,7 +124,11 @@
 				<nav>
 					<ul>
 						<li>
-							<a class="clean-link" href="/media/check"><strong>Media Server</strong></a>
+							<a
+								class="clean-link"
+								href="/media/check"
+								><strong>Media Server</strong></a
+							>
 						</li>
 					</ul>
 					<ul>
@@ -148,7 +152,7 @@
 			<div class="d-flex justify-content-center">
 				<a
 					class="clean-link me-3"
-					href="/media?type={{type}}">
+					href="/media/{{type|lower}}s">
 					<i class="bi bi-house-fill"></i
 				></a>
 				<a
@@ -163,51 +167,51 @@
 				></a>
 				<p class="flex-grow-1"></p>
 				<div class="flex-grow-1 linkIcon">
-					<button
-						class="clean-button"
-						onclick="SetUrlParam(['type', 'page'], ['Movie',''])">
+					<a
+						class="clean-link"
+						href="/media/movies">
 						<i class="mx-3 bi bi-film"></i>
-					</button>
-					<button
-						class="clean-button"
-						onclick="SetUrlParam(['type', 'page'], ['TV Show',''])">
+					</a>
+					<a
+						class="clean-link"
+						href="/media/tvshows">
 						<i class="mx-3 bi bi-tv"></i>
-					</button>
-					<button
-						class="clean-button"
-						onclick="SetUrlParam(['type','page'], ['Comic',''])">
+					</a>
+					<a
+						class="clean-link"
+						href="/media/comics">
 						<i class="mx-3 bi bi-book"></i>
-					</button>
-					<button
-						class="clean-button"
-						onclick="SetUrlParam(['type', 'page'], ['Novel',''])">
+					</a>
+					<a
+						class="clean-link"
+						href="/media/novels">
 						<i class="mx-3 bi bi-journal-bookmark"></i>
-					</button>
-					<button
-						class="clean-button"
-						onclick="SetUrlParam(['type', 'page'], ['Album',''])">
+					</a>
+					<a
+						class="clean-link"
+						href="/media/albums">
 						<i class="mx-3 bi bi-vinyl"></i>
-					</button>
-					<button
-						class="clean-button"
-						onclick="SetUrlParam(['type', 'page'], ['Podcast',''])">
+					</a>
+					<a
+						class="clean-link"
+						href="/media/podcasts">
 						<i class="mx-3 bi bi-mic"></i>
-					</button>
-					<button
-						class="clean-button"
-						onclick="SetUrlParam(['type', 'page'], ['Youtube',''])">
+					</a>
+					<a
+						class="clean-link"
+						href="/media/youtube">
 						<i class="mx-3 bi bi-youtube"></i>
-					</button>
+					</a>
 				</div>
-				<button
-					class="clean-button"
-					onclick="CopyLink()">
-					<i class="bi bi-link-45deg"></i>
-				</button>
 				<button
 					class="clean-button"
 					onclick="document.location = '/media/wiki'">
 					<i class="mx-3 bi bi-wikipedia"></i>
+				</button>
+				<button
+					class="clean-button"
+					onclick="document.location = '/media/check'">
+					<i class="bi bi-check-square"></i>
 				</button>
 				<button
 					class="btn"

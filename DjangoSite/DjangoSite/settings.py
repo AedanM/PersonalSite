@@ -17,6 +17,7 @@ from datetime import date
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+EXTERNAL_DIR = Path(r"C:\External")
 
 LOGIN_REDIRECT_URL = "/"  # new
 
@@ -124,7 +125,7 @@ WSGI_APPLICATION = "DjangoSite.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": EXTERNAL_DIR / "db.sqlite3",
     }
 }
 
@@ -154,11 +155,11 @@ USE_I18N = True
 USE_TZ = True
 
 
-STATIC_ROOT = BASE_DIR / "static"
+STATIC_ROOT = EXTERNAL_DIR / "static"
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    EXTERNAL_DIR / "static",
 ]
 
 
