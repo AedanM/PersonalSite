@@ -179,15 +179,15 @@ def checkFiles(request) -> HttpResponse:
         request=request,
         template_name="media/checkFile.html",
         context={
-            "tvshow": {
+            "tvshows": {
                 "matched": matchedTV,
                 "unmatched": unmatchedTV,
                 "wronglyMarked": wronglyMarkedTV,
             },
-            "movie": {
-                "unmatchedMovie": unmatchedMovie,
-                "matchedMovie": matchedMovie,
-                "wronglyMarkedMovie": wronglyMarkedMovie,
+            "movies": {
+                "unmatched": unmatchedMovie,
+                "matched": matchedMovie,
+                "wronglyMarked": wronglyMarkedMovie,
             },
         },
     )
