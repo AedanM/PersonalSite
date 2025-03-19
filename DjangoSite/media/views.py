@@ -9,15 +9,11 @@ from django.http import HttpRequest, HttpResponse, HttpResponseNotFound
 from django.shortcuts import redirect, render
 
 from .models import Movie, TVShow
-from .modules.CheckDetails import (CheckMovies, CheckTV, CopyOverRenderQueue,
-                                   HandleReRenderQueue)
-from .modules.HardwareFunctions import KillRedirect, PullRepo, RebootPC
+from .modules.CheckDetails import CheckMovies, CheckTV, CopyOverRenderQueue, HandleReRenderQueue
 from .modules.ModelTools import DownloadImage, SortTags
-from .modules.Utils import (MODEL_LIST, DetermineForm, FindID, FormMatch,
-                            GetAllTags, GetFormAndClass)
+from .modules.Utils import MODEL_LIST, DetermineForm, FindID, FormMatch, GetAllTags, GetFormAndClass
 from .modules.WebTools import ScrapeWiki
-from .utils import (ExtractYearRange, FilterTags, FuzzStr, SearchFunction,
-                    SortFunction)
+from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFunction
 
 # Create your views here.
 LOGGER = logging.getLogger("UserLogger")
@@ -32,15 +28,6 @@ def viewMedia(request) -> HttpResponse:
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
 
     return render(request, "media/mediaPage.html", context)
-
-
-@login_required
-def refresh(request):
-    if request.GET.get("hard", "False") == "True":
-        RebootPC()
-    if request.GET.get("pull", "False") == "True":
-        PullRepo()
-    return KillRedirect("/media")
 
 
 @login_required
@@ -96,14 +83,12 @@ def wikiLoad(request) -> HttpResponse:
                     DownloadImage(obj)
                     obj.GetLogo(True)
                     LOGGER.info("Loaded %s from Wikipedia", obj.Title)
-                    returnRender = KillRedirect("/media")
+                    returnRender = redirect("/media")
                 else:
                     LOGGER.error("Wiki load failed from %s", activeForm.data["InfoPage"])
             else:
                 LOGGER.warning("Matching Object Found for %s, Not Added", activeForm.data["Title"])
-            returnRender = redirect(
-                f"/media/{model.__name__}s/?sort=Date+Added"
-            )
+            returnRender = redirect(f"/media/{model.__name__}s/?sort=Date+Added")
     return returnRender
 
 
@@ -182,7 +167,10 @@ def stats(request) -> HttpResponse:
 
 @login_required
 def new(request) -> HttpResponse:
-    response: HttpResponse = redirect(request.META.get("HTTP_REFERER", "/media"))
+    context = {}
+    context["colorMode"] = request.COOKIES.get("colorMode", "dark")
+    response: HttpResponse = render(request, "media/mediaChoice.html", context)
+
     if request.GET.get("type", None):
         cls, obj = GetFormAndClass(request.GET.get("type", "Movie"))
 
@@ -203,9 +191,8 @@ def new(request) -> HttpResponse:
             matchingObjs = ["this"]
         if form.is_valid() and len(matchingObjs) == 1:
             form.save()
-        context = {}
         context["form"] = form
-        context["colorMode"] = request.COOKIES.get("colorMode", "dark")
+
         response = (
             render(request, "media/form.html", context)
             if request.method == "GET"

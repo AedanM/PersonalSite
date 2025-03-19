@@ -1,8 +1,9 @@
-import json
 from pathlib import Path
 
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
+from landing.modules.HardwareFunctions import KillRedirect, PullRepo, RebootPC
 
 
 # Create your views here.
@@ -35,3 +36,21 @@ def Log(request):
     )
 
     return HttpResponse(r, content_type="text/plain")
+
+
+@login_required
+def refresh(request):
+    if request.GET.get("hard", "False") == "True":
+        RebootPC()
+    if request.GET.get("pull", "False") == "True":
+        PullRepo()
+    return KillRedirect(request.META.get("HTTP_REFERER", "/media"))
+
+
+@login_required
+def tools(request):
+    return render(
+        request,
+        "landing/tools.html",
+        context={"colorMode": request.COOKIES.get("colorMode", "dark")},
+    )

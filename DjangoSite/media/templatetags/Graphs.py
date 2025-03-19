@@ -411,8 +411,6 @@ def TimeLine(objList: list, force: bool) -> str:
                     "Idx": yLevel,
                 }
             )
-            if "Scott" in data[-1]["Title"]:
-                print(data[-1])
         df = pd.DataFrame(data)
         fig = px.timeline(
             data_frame=df,

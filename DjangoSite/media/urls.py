@@ -12,7 +12,6 @@ urlpatterns = [
     path(route="delete", view=views.delete, name="delete"),
     path(route="edit", view=views.edit, name="edit"),
     path(route="new", view=views.new, name="new"),
-    path(route="refresh", view=views.refresh, name="Refresh"),
     path(route="setBool", view=views.SetBool, name="setBool"),
     path(route="stats", view=views.stats, name="Stats"),
     path(route="view", view=views.viewMedia, name="view"),
