@@ -73,15 +73,17 @@ def WatchLen(objList: list, force: bool):
     if dstPath.exists() and not force:
         outputDiv = dstPath.read_text(encoding="utf-8")
     else:
+        objList = [x.JsonRepr for x in objList]
         for i in objList:
             i["Watch Status"] = (
-                "Watched" if i.Watched else "Downloaded" if i.Downloaded else "Neither"
+                "Watched" if i["Watched"] else "Downloaded" if i["Downloaded"] else "Neither"
             )
         fig = px.histogram(
             data_frame=objList,
             x="Duration",
             color="Watch Status",
             nbins=len({x["Duration"] for x in objList}),
+            color_discrete_map=WATCH_COLOR_MAP,
         )
         outputDiv = GetHTML(fig)
         dstPath.write_text(outputDiv, encoding="utf-8")
@@ -391,6 +393,10 @@ def TimeLine(objList: list, force: bool) -> str:
         data = []
         freeList: list[int] = []
         for obj in objList:
+            if obj.Series_Start == obj.Series_End:
+                obj.Series_End = datetime.date(
+                    year=obj.Series_End.year, month=obj.Series_End.month, day=obj.Series_End.day + 1
+                )
             yLevel = CalcIdx(obj, freeList)
             data.append(
                 {
@@ -405,6 +411,8 @@ def TimeLine(objList: list, force: bool) -> str:
                     "Idx": yLevel,
                 }
             )
+            if "Scott" in data[-1]["Title"]:
+                print(data[-1])
         df = pd.DataFrame(data)
         fig = px.timeline(
             data_frame=df,

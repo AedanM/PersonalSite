@@ -3,7 +3,6 @@ import logging
 import os
 import signal
 import subprocess
-import time
 from pathlib import Path
 
 from django.http import HttpResponseRedirect
@@ -25,7 +24,8 @@ class KillRedirect(HttpResponseRedirect):
 
 def PullRepo():
     os.chdir(Path(__file__).parent.parent.parent)
-    subprocess.call(["git", "pull", "origin"])
+    subprocess.call(["git", "pull", "origin", "main"])
+    LOGGER.info("Pulled from Git")
 
 
 def SelfCommit():
