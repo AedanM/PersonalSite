@@ -9,12 +9,15 @@ from django.http import HttpRequest, HttpResponse, HttpResponseNotFound
 from django.shortcuts import redirect, render
 
 from .models import Movie, TVShow
-from .modules.CheckDetails import CheckMovies, CheckTV, CopyOverRenderQueue, HandleReRenderQueue
-from .modules.HardwareFunctions import KillRedirect, RebootPC
+from .modules.CheckDetails import (CheckMovies, CheckTV, CopyOverRenderQueue,
+                                   HandleReRenderQueue)
+from .modules.HardwareFunctions import KillRedirect, PullRepo, RebootPC
 from .modules.ModelTools import DownloadImage, SortTags
-from .modules.Utils import MODEL_LIST, DetermineForm, FindID, FormMatch, GetAllTags, GetFormAndClass
+from .modules.Utils import (MODEL_LIST, DetermineForm, FindID, FormMatch,
+                            GetAllTags, GetFormAndClass)
 from .modules.WebTools import ScrapeWiki
-from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFunction
+from .utils import (ExtractYearRange, FilterTags, FuzzStr, SearchFunction,
+                    SortFunction)
 
 # Create your views here.
 LOGGER = logging.getLogger("UserLogger")
@@ -35,6 +38,8 @@ def viewMedia(request) -> HttpResponse:
 def refresh(request):
     if request.GET.get("hard", "False") == "True":
         RebootPC()
+    if request.GET.get("pull", "False") == "True":
+        PullRepo()
     return KillRedirect("/media")
 
 
@@ -97,7 +102,7 @@ def wikiLoad(request) -> HttpResponse:
             else:
                 LOGGER.warning("Matching Object Found for %s, Not Added", activeForm.data["Title"])
             returnRender = redirect(
-                f"/media?sort=Date+Added&type={request.GET.get('type', 'Movie')}"
+                f"/media/{model.__name__}s/?sort=Date+Added"
             )
     return returnRender
 
@@ -274,11 +279,11 @@ def SetBool(request) -> HttpResponse:
 
 
 def index(request: HttpRequest, media="Movie") -> HttpResponse:
-    media = media.lower()
-    if media[-1] == "s":
+    if media[-1].lower() == "s":
         media = media[:-1]
-    if media not in [x.__name__.lower() for x in MODEL_LIST]:
-        return redirect("/media")
+    if media.lower() not in [x.__name__.lower() for x in MODEL_LIST]:
+        return HttpResponseNotFound()
+
     _formType, objType = GetFormAndClass(media)
     context = FilterMedia(request=request, objType=objType)
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
@@ -289,8 +294,7 @@ def index(request: HttpRequest, media="Movie") -> HttpResponse:
     )
 
     pageNumber: int = int(request.GET.get("page", 1))
-    paginator = Paginator(context["obj_list"], pageSize)
-    context["page_obj"] = paginator.get_page(pageNumber)
+    context["page_obj"] = Paginator(context["obj_list"], pageSize).get_page(pageNumber)
     context["loggedIn"] = request.user.is_authenticated
     return render(
         request,
@@ -323,7 +327,7 @@ def FilterMedia(request, objType) -> dict:
         objList = sorted(objList, key=lambda x: FuzzStr(x, query), reverse=True)
         sortKey = f"Search {query}"
     else:
-        if sortKey in ["Rating", "Genre Tags", "Date Added"]:
+        if sortKey in ["Rating", "Genre Tags", "Date Added"] and "reverse" not in request.GET:
             reverseSort = not reverseSort
             if sortKey == "Rating":
                 objList = [x for x in objList if x.Rating > 0]
