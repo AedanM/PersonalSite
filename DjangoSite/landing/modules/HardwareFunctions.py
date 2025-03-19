@@ -3,6 +3,7 @@ import logging
 import os
 import signal
 import subprocess
+import time
 from pathlib import Path
 
 from django.http import HttpResponseRedirect
@@ -11,7 +12,7 @@ LOGGER = logging.getLogger("UserLogger")
 
 
 def RebootPC():
-    subprocess.call(["shutdown", "-r", "-t", "0"])
+    pass  # subprocess.call(["shutdown", "-r", "-t", "0"])
 
 
 class KillRedirect(HttpResponseRedirect):
@@ -19,13 +20,14 @@ class KillRedirect(HttpResponseRedirect):
     def close(self):
         super().close()
         LOGGER.info("Ending Process....")
+        time.sleep(0.5)
         os.kill(os.getpid(), signal.SIGTERM)
 
 
 def PullRepo():
     os.chdir(Path(__file__).parent.parent.parent)
-    subprocess.call(["git", "pull", "origin", "main"])
-    LOGGER.info("Pulled from Git")
+    results = subprocess.check_output(["git", "pull", "origin", "main"])
+    LOGGER.info("Pulled from Git: %s", str(results))
 
 
 def SelfCommit():

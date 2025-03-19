@@ -23,7 +23,7 @@ LOGIN_REDIRECT_URL = "/"  # new
 
 SECRET_KEY = os.environ.get("DjangoKey", (EXTERNAL_DIR / "SecretKey.txt").read_text())
 
-DEBUG = os.environ.get("DJANGO_DEBUG", "") == "True"
+DEBUG = True  # os.environ.get("DJANGO_DEBUG", "") == "True"
 logging.getLogger("django").info("DEBUG %s", "Enabled" if DEBUG else "Disabled")
 
 ALLOWED_HOSTS: list = ["127.0.0.1", "aedanm.uk", "192.168.1.99"]

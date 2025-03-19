@@ -133,17 +133,17 @@
 					</ul>
 					<ul>
 						<li>
-							<a href="/resume">About</a>
+							<a href="/">Home</a>
+						</li>
+						<li>
+							<a href="/tools">Tools</a>
 						</li>
 						<li>
 							{% if not loggedIn %}
 							<a href="/accounts/login/?next=/media">Log In</a>
 							{% else %}
-							<a href="/accounts/logout?next=/media">Log Out</a>
-							{%endif%}
-						</li>
-						<li>
 							<a href="/admin">Admin</a>
+							{%endif%}
 						</li>
 					</ul>
 				</nav>
@@ -157,7 +157,7 @@
 				></a>
 				<a
 					class="clean-link me-3"
-					href="/media/refresh">
+					href="/refresh">
 					<i class="bi bi-arrow-clockwise"></i
 				></a>
 				<a
