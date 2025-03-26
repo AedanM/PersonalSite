@@ -88,7 +88,7 @@ def wikiLoad(request) -> HttpResponse:
                     LOGGER.error("Wiki load failed from %s", activeForm.data["InfoPage"])
             else:
                 LOGGER.warning("Matching Object Found for %s, Not Added", activeForm.data["Title"])
-            returnRender = redirect(f"/media/{model.__name__}s/?sort=Date+Added")
+            returnRender = redirect(f"/media/{model.__name__}s?sort=Date+Added")
     return returnRender
 
 
