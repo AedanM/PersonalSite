@@ -1,234 +1,218 @@
 {% load static %} {% load DictTags %}
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
+<html data-bs-theme="{{ colorMode }}" data-theme="{{ colorMode }}">
+  <head>
+    <meta charset="utf-8" />
 
-		<meta
-			http-equiv="X-UA-Compatible"
-			content="IE=edge" />
-		<title>Media Server Description</title>
-		<meta
-			name="description"
-			content="" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1" />
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.css" />
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-		<link
-			rel="stylesheet"
-			href="{% static 'styles/MasterStyle.css' %}" />
-		<link
-			rel="stylesheet"
-			href="{% static 'styles/MediaStyle.css' %}" />
-		<script src="{% static 'scripts/sorttable.js' %}"></script>
-	</head>
-	<body>
-		<main class="container">
-			<header class="pico">
-				<nav>
-					<ul>
-						<li>
-							<strong>Aedan's Media Server</strong>
-						</li>
-					</ul>
-					<ul>
-						<li>
-							<a href="/">Home</a>
-						</li>
-						<li>
-							<a href="/media">Media</a>
-						</li>
-						<li>
-							<a href="/admin">Admin</a>
-						</li>
-					</ul>
-				</nav>
-			</header>
-			<h2>Current Files</h2>
-			<span id="DescriptionSpan">
-				<details open>
-					<summary>Movies</summary>
-					<div id="contentDiv">
-						{% if movies|Get:"unmatched"|length > 0 %}
-						<details open>
-							<summary>Unmatched ({{movies|Get:"unmatched"|length}})</summary>
-							<table class="striped sortable">
-								<thead>
-									<tr>
-										<th>Title</th>
-										<th>Year</th>
-										<th>Size</th>
-										<th>Closest</th>
-									</tr>
-								</thead>
-								{% for show in movies|Get:"unmatched" %}
-								<tr>
-									<td>{{show|Get:"Title"}}</td>
-									<td>{{show|Get:"Year"}}</td>
-									<td>{{show|Get:"Size"}}</td>
-									<td>{{show|Get:"Closest"|Get:"Title"}} {{show|Get:"Closest"|Get:"Year"}}</td>
-								</tr>
-
-								{% endfor %}
-							</table>
-						</details>
-						{%endif%} {% if movies|Get:"wronglyMarked"|length > 0 %}
-						<details open>
-							<summary>Wrongly Marked ({{movies|Get:"wronglyMarked"|length}})</summary>
-							<table class="striped sortable">
-								<thead>
-									<tr>
-										<th>Title</th>
-										<th>Year</th>
-									</tr>
-								</thead>
-								{% for show in movies|Get:"wronglyMarked" %}
-								<tr>
-									<td>
-										<a
-											class="clean-link"
-											href="edit?id={{show.id}}"
-											>{{show.Title}}
-										</a>
-									</td>
-									<td>{{show.Year}}</td>
-								</tr>
-
-								{% endfor %}
-							</table>
-						</details>
-						{%endif%} {% if movies|Get:"matched"|length > 0 %}
-						<details open>
-							<summary>Matched ({{movies|Get:"matched"|length}})</summary>
-							<table class="striped sortable">
-								<thead>
-									<tr>
-										<th>Title</th>
-										<th>Year</th>
-										<th>Size</th>
-										<th>Runtime</th>
-										<th>Min/GB</th>
-										<th>Missing Tags</th>
-										<th>Marked Download?</th>
-									</tr>
-								</thead>
-								<tbody>
-									{% for show in movies|Get:"matched" %}
-									<tr>
-										<td><a class="clean-link" href="edit?id={{show|Get:"Match"|Get:"ID"}}"/>{{show|Get:"Title"}}</td>
-										<td>{{show|Get:"Year"}}</td>
-										<td>{{show|Get:"Size"|stringformat:"0.2f"}}</td>
-										<td>{{show|Get:"Match"|Get:"Runtime"}}</td>
-										<td>{{show|Ratio}}</td>
-										{%with tags=show|Get:"Match"|Get:"Tag Diff"%}
-										<td>{%for tag in tags%} {{tag}} {%endfor%}</td>
-										{%endwith%}
-										<td>{{show|Get:"Match"|Get:"Marked"}}</td>
-									</tr>
-
-									{% endfor %}
-								</tbody>
-							</table>
-						</details>
-						{%endif%}
-					</div>
-				</details>
-				<details open>
-					<summary>TV Shows</summary>
-					<div id="contentDiv">
-						{% if tvshows|Get:"unmatched"|length > 0 %}
-						<details open>
-							<summary>Unmatched ({{tvshows|Get:"unmatched"|length}})</summary>
-							<table class="striped sortable">
-								<thead>
-									<tr>
-										<th>Title</th>
-										<th>Year</th>
-										<th>Size</th>
-										<th>Closest</th>
-									</tr>
-								</thead>
-								{% for show in tvshows|Get:"unmatched" %}
-								<tr>
-									<td>{{show|Get:"Title"}}</td>
-									<td>{{show|Get:"Year"}}</td>
-									<td>{{show|Get:"Size"}}</td>
-									<td>{{show|Get:"Closest"|Get:"Title"}} {{show|Get:"Closest"|Get:"Year"}}</td>
-								</tr>
-
-								{% endfor %}
-							</table>
-						</details>
-						{%endif%} {% if tvshows|Get:"wronglyMarked"|length > 0 %}
-						<details open>
-							<summary>Wrongly Marked ({{tvshows|Get:"wronglyMarked"|length}})</summary>
-							<table class="striped sortable">
-								<thead>
-									<tr>
-										<th>Title</th>
-										<th>Year</th>
-									</tr>
-								</thead>
-								{% for show in tvshows|Get:"wronglyMarked" %}
-								<tr>
-									<td>
-										<a
-											class="clean-link"
-											href="edit?id={{show.id}}"
-											>{{show.Title}}
-										</a>
-									</td>
-									<td>{{show.Year}}</td>
-								</tr>
-
-								{% endfor %}
-							</table>
-						</details>
-						{%endif%} {% if tvshows|Get:"matched"|length > 0 %}
-						<details open>
-							<summary>Matched ({{tvshows|Get:"matched"|length}})</summary>
-							<table class="striped sortable">
-								<thead>
-									<tr>
-										<th>Title</th>
-										<th>Count</th>
-										<th>Files Missing</th>
-										<th>Size</th>
-										<th>Runtime</th>
-										<th>Min/GB</th>
-										<th>Missing Tags</th>
-										<th>Marked Download?</th>
-									</tr>
-								</thead>
-								<tbody>
-									{% for show in tvshows|Get:"matched" %}
-									<tr>
-										<td><a class="clean-link" href="edit?id={{show|Get:"Match"|Get:"ID"}}"/>{{show|Get:"Title"}}</td>
-										<td>{{show|Get:"Count"}}</td>
-										<th>{{show|Get:"CountDiff"}}</th>
-										<td>{{show|Get:"Size"|stringformat:"0.2f"}}</td>
-										<td>{{show|Get:"Match"|Get:"Runtime"}}</td>
-										<td>{{show|Ratio}}</td>
-										{%with tags=show|Get:"Match"|Get:"Tag Diff"%}
-										<td>{%for tag in tags%} {{tag}} {%endfor%}</td>
-										{%endwith%}
-										<td>{{show|Get:"Match"|Get:"Marked"}}</td>
-									</tr>
-
-									{% endfor %}
-								</tbody>
-							</table>
-						</details>
-						{%endif%}
-					</div>
-				</details>
-			</span>
-		</main>
-	</body>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Media Server Description</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="{% static 'styles/MasterStyle.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/MediaStyle.css' %}" />
+    <script src="{% static 'scripts/sorttable.js' %}"></script>
+  </head>
+  <body>
+    <main class="container">
+      <header class="pico">
+        <nav>
+          <ul>
+            <li>
+              <strong>Aedan's Media Server</strong>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/media">Media</a>
+            </li>
+            <li>
+              <a href="/admin">Admin</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <h2>Current Files</h2>
+      <span id="DescriptionSpan">
+        <details open>
+          <summary>Movies</summary>
+          <div id="contentDiv">
+            {% if movies|Get:'unmatched'|length > 0 %}
+              <details open>
+                <summary>Unmatched ({{ movies|Get:'unmatched'|length }})</summary>
+                <table class="striped sortable">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Year</th>
+                      <th>Size</th>
+                      <th>Closest</th>
+                    </tr>
+                  </thead>
+                  {% for show in movies|Get:'unmatched' %}
+                    <tr>
+                      <td>{{ show|Get:'Title' }}</td>
+                      <td>{{ show|Get:'Year' }}</td>
+                      <td>{{ show|Get:'Size' }}</td>
+                      <td>{{ show|Get:'Closest'|Get:'Title' }} {{ show|Get:'Closest'|Get:'Year' }}</td>
+                    </tr>
+                  {% endfor %}
+                </table>
+              </details>
+            {% endif %} {% if movies|Get:'wronglyMarked'|length > 0 %}
+              <details open>
+                <summary>Wrongly Marked ({{ movies|Get:'wronglyMarked'|length }})</summary>
+                <table class="striped sortable">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Year</th>
+                    </tr>
+                  </thead>
+                  {% for show in movies|Get:'wronglyMarked' %}
+                    <tr>
+                      <td>
+                        <a class="clean-link" href="edit?id={{ show.id }}">{{ show.Title }}</a>
+                      </td>
+                      <td>{{ show.Year }}</td>
+                    </tr>
+                  {% endfor %}
+                </table>
+              </details>
+            {% endif %} {% if movies|Get:'matched'|length > 0 %}
+              <details open>
+                <summary>Matched ({{ movies|Get:'matched'|length }})</summary>
+                <table class="striped sortable">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Year</th>
+                      <th>Size</th>
+                      <th>Runtime</th>
+                      <th>Min/GB</th>
+                      <th>Missing Tags</th>
+                      <th>Marked Download?</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for show in movies|Get:'matched' %}
+                      <tr>
+                        <td>
+                          <a class="clean-link" href="edit?id={{ show|Get:'Match'|Get:'ID' }}" />{{ show|Get:'Title' }}
+                        </td>
+                        <td>{{ show|Get:'Year' }}</td>
+                        <td>{{ show|Get:'Size'|stringformat:'0.2f' }}</td>
+                        <td>{{ show|Get:'Match'|Get:'Runtime' }}</td>
+                        <td>{{ show|Ratio }}</td>
+                        {% with tags=show|Get:'Match'|Get:'Tag Diff' %}
+                          <td>
+                            {% for tag in tags %}
+                              {{ tag }}
+                            {% endfor %}
+                          </td>
+                        {% endwith %}
+                        <td>{{ show|Get:'Match'|Get:'Marked' }}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </details>
+            {% endif %}
+          </div>
+        </details>
+        <details open>
+          <summary>TV Shows</summary>
+          <div id="contentDiv">
+            {% if tvshows|Get:'unmatched'|length > 0 %}
+              <details open>
+                <summary>Unmatched ({{ tvshows|Get:'unmatched'|length }})</summary>
+                <table class="striped sortable">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Year</th>
+                      <th>Size</th>
+                      <th>Closest</th>
+                    </tr>
+                  </thead>
+                  {% for show in tvshows|Get:'unmatched' %}
+                    <tr>
+                      <td>{{ show|Get:'Title' }}</td>
+                      <td>{{ show|Get:'Year' }}</td>
+                      <td>{{ show|Get:'Size' }}</td>
+                      <td>{{ show|Get:'Closest'|Get:'Title' }} {{ show|Get:'Closest'|Get:'Year' }}</td>
+                    </tr>
+                  {% endfor %}
+                </table>
+              </details>
+            {% endif %} {% if tvshows|Get:'wronglyMarked'|length > 0 %}
+              <details open>
+                <summary>Wrongly Marked ({{ tvshows|Get:'wronglyMarked'|length }})</summary>
+                <table class="striped sortable">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Year</th>
+                    </tr>
+                  </thead>
+                  {% for show in tvshows|Get:'wronglyMarked' %}
+                    <tr>
+                      <td>
+                        <a class="clean-link" href="edit?id={{ show.id }}">{{ show.Title }}</a>
+                      </td>
+                      <td>{{ show.Year }}</td>
+                    </tr>
+                  {% endfor %}
+                </table>
+              </details>
+            {% endif %} {% if tvshows|Get:'matched'|length > 0 %}
+              <details open>
+                <summary>Matched ({{ tvshows|Get:'matched'|length }})</summary>
+                <table class="striped sortable">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Count</th>
+                      <th>Files Missing</th>
+                      <th>Size</th>
+                      <th>Runtime</th>
+                      <th>Min/GB</th>
+                      <th>Missing Tags</th>
+                      <th>Marked Download?</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for show in tvshows|Get:'matched' %}
+                      <tr>
+                        <td>
+                          <a class="clean-link" href="edit?id={{ show|Get:'Match'|Get:'ID' }}" />{{ show|Get:'Title' }}
+                        </td>
+                        <td>{{ show|Get:'Count' }}</td>
+                        <th>{{ show|Get:'CountDiff' }}</th>
+                        <td>{{ show|Get:'Size'|stringformat:'0.2f' }}</td>
+                        <td>{{ show|Get:'Match'|Get:'Runtime' }}</td>
+                        <td>{{ show|Ratio }}</td>
+                        {% with tags=show|Get:'Match'|Get:'Tag Diff' %}
+                          <td>
+                            {% for tag in tags %}
+                              {{ tag }}
+                            {% endfor %}
+                          </td>
+                        {% endwith %}
+                        <td>{{ show|Get:'Match'|Get:'Marked' }}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </details>
+            {% endif %}
+          </div>
+        </details>
+      </span>
+    </main>
+  </body>
 </html>

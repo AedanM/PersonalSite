@@ -1,114 +1,84 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html
-	data-bs-theme="{{colorMode}}"
-	data-theme="{{colorMode}}">
-	<head>
-		<meta charset="utf-8" />
-		<meta
-			http-equiv="X-UA-Compatible"
-			content="IE=edge" />
-		<title>Developer Tools</title>
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1" />
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-			rel="stylesheet" />
-		<meta
-			name="color-scheme"
-			content="light dark" />
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.css" />
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-		<link
-			rel="stylesheet"
-			href="{% static 'styles/MasterStyle.css' %}" />
-	</head>
-	<body>
-		<main class="container">
-			<header style="height: 5vh">
-				<nav>
-					<ul>
-						<li>
-							<strong>Developer Tools</strong>
-						</li>
-					</ul>
-					<ul>
-						<li>
-							<a href="/">Home</a>
-						</li>
-						<li>
-							<a href="/media">Media DB</a>
-						</li>
-						<li>
-							<a href="/admin">Admin</a>
-						</li>
-					</ul>
-				</nav>
-			</header>
-			<div
-				class="d-flex flex-column justify-content-center align-items-center gap-3"
-				style="height: 90vh">
-				<div class="d-flex flex-row justify-content-center align-items-center gap-3">
-					<button
-						class="btn btn-primary g-col-6"
-						style="min-width: 20vw"
-						onclick="document.location = '/refresh'">
-						<p><strong>Refresh</strong></p>
-						<i class="bi bi-arrow-clockwise"></i>
-					</button>
-					<button
-						class="btn btn-primary g-col-6"
-						style="min-width: 20vw"
-						onclick="document.location = '/media/api'">
-						<p><strong>Media API</strong></p>
-						<i class="bi bi-gear-wide-connected"></i>
-					</button>
-				</div>
-				<div class="d-flex flex-row justify-content-center align-items-center gap-3">
-					<button
-						class="btn btn-danger g-col-6"
-						style="min-width: 20vw"
-						onclick="document.location = '/refresh?pull=True'">
-						<p><strong>Git Pull</strong></p>
-						<i class="bi bi-git"></i>
-					</button>
-					<button
-						class="btn btn-danger g-col-6"
-						style="min-width: 20vw"
-						onclick="document.location = '/refresh?reboot=True'">
-						<p><strong>Reboot</strong></p>
-						<i class="bi bi-bootstrap-reboot"></i>
-					</button>
-				</div>
-				<div class="d-flex flex-row justify-content-center align-items-center gap-3">
-					<button
-						class="btn btn-success g-col-6"
-						style="min-width: 20vw"
-						onclick="document.location = '/log'">
-						<p><strong>Log</strong></p>
-						<i class="bi bi-card-text"></i>
-					</button>
-					<button
-						class="btn btn-success g-col-6"
-						style="min-width: 20vw"
-						onclick="document.location = '/log?full=True'">
-						<p><strong>Full Log</strong></p>
-						<i class="bi bi-body-text"></i>
-					</button>
-				</div>
-			</div>
-		</main>
-	</body>
+<html data-bs-theme="{{ colorMode }}" data-theme="{{ colorMode }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Developer Tools</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="{% static 'styles/MasterStyle.css' %}" />
+  </head>
+  <body>
+    <main class="container">
+      <header style="height: 5vh">
+        <nav>
+          <ul>
+            <li>
+              <strong>Developer Tools</strong>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/media">Media DB</a>
+            </li>
+            <li>
+              <a href="/admin">Admin</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <div class="d-flex flex-column justify-content-center align-items-center gap-3" style="height: 90vh">
+        <div class="d-flex flex-row justify-content-center align-items-center gap-3">
+          <button class="btn btn-primary g-col-6" style="min-width: 20vw" onclick="document.location = '/refresh'">
+            <p>
+              <strong>Refresh</strong>
+            </p>
+            <i class="bi bi-arrow-clockwise"></i>
+          </button>
+          <button class="btn btn-primary g-col-6" style="min-width: 20vw" onclick="document.location = '/media/wiki'">
+            <p>
+              <strong>Load Wikimedia</strong>
+            </p>
+            <i class="bi bi-wikipedia"></i>
+          </button>
+        </div>
+        <div class="d-flex flex-row justify-content-center align-items-center gap-3">
+          <button class="btn btn-danger g-col-6" style="min-width: 20vw" onclick="document.location = '/refresh?pull=True'">
+            <p>
+              <strong>Git Pull</strong>
+            </p>
+            <i class="bi bi-git"></i>
+          </button>
+          <button class="btn btn-danger g-col-6" style="min-width: 20vw" onclick="document.location = '/refresh?reboot=True'">
+            <p>
+              <strong>Reboot</strong>
+            </p>
+            <i class="bi bi-bootstrap-reboot"></i>
+          </button>
+        </div>
+        <div class="d-flex flex-row justify-content-center align-items-center gap-3">
+          <button class="btn btn-success g-col-6" style="min-width: 20vw" onclick="document.location = '/log'">
+            <p>
+              <strong>Log</strong>
+            </p>
+            <i class="bi bi-card-text"></i>
+          </button>
+          <button class="btn btn-success g-col-6" style="min-width: 20vw" onclick="document.location = '/log?full=True'">
+            <p>
+              <strong>Full Log</strong>
+            </p>
+            <i class="bi bi-body-text"></i>
+          </button>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>

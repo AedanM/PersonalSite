@@ -1,66 +1,46 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<meta
-			http-equiv="X-UA-Compatible"
-			content="IE=edge" />
-		<title></title>
-		<meta
-			name="description"
-			content="" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1" />
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.css" />
-		<link
-			rel="stylesheet"
-			href="{% static 'styles/MasterStyle.css' %}" />
-	</head>
-	<script>
-		function CopyLink() {
-			var copyText = window.location.href + "?link=";
-			navigator.clipboard.writeText(copyText);
-
-			alert("Copied the Link!");
-		}
-	</script>
-	<body>
-		<h1>Load Content from Wikipedia</h1>
-		<main class="contentDiv">
-			<form
-				method="post"
-				action="{% url 'wikiLoad' %}">
-				{% csrf_token %} {% if link%}
-				<input
-					type="text"
-					name="Wiki Link"
-					value="{{link}}" />
-				{%else%}
-				<input
-					type="text"
-					name="Wiki Link"
-					placeholder="Enter something..." />
-				{%endif%}
-				<select
-					class="form-select"
-					name="Type">
-					<option>Movie</option>
-					<option>TV Show</option>
-					<option>Novel</option>
-					<option>Comic</option>
-					<option>Podcast</option>
-					<option>Youtube</option>
-					<option>Album</option>
-				</select>
-				<button type="submit">Load Details</button>
-			</form>
-		</main>
-		<section>
-			<button onclick="CopyLink()">Copy Link Prefix</button>
-		</section>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.css" />
+    <link rel="stylesheet" href="{% static 'styles/MasterStyle.css' %}" />
+  </head>
+  <script>
+    function CopyLink() {
+      var copyText = window.location.href + '?link='
+      navigator.clipboard.writeText(copyText)
+    
+      alert('Copied the Link!')
+    }
+  </script>
+  <body>
+    <h1>Load Content from Wikipedia</h1>
+    <main class="contentDiv">
+      <form method="post" action="{% url 'wikiLoad' %}">
+        {% csrf_token %} {% if link %}
+          <input type="text" name="Wiki Link" value="{{ link }}" />
+        {% else %}
+          <input type="text" name="Wiki Link" placeholder="Enter something..." />
+        {% endif %}
+        <select class="form-select" name="Type">
+          <option>Movie</option>
+          <option>TV Show</option>
+          <option>Novel</option>
+          <option>Comic</option>
+          <option>Podcast</option>
+          <option>Youtube</option>
+          <option>Album</option>
+        </select>
+        <button type="submit">Load Details</button>
+      </form>
+    </main>
+    <section>
+      <button onclick="CopyLink()">Copy Link Prefix</button>
+    </section>
+  </body>
 </html>
