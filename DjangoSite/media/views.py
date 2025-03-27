@@ -11,9 +11,15 @@ from django.shortcuts import redirect, render
 from .models import Movie, TVShow
 from .modules.CheckDetails import CheckMovies, CheckTV, CopyOverRenderQueue, HandleReRenderQueue
 from .modules.ModelTools import DownloadImage, SortTags
-from .modules.Utils import MODEL_LIST, DetermineForm, FindID, FormMatch, GetAllTags, GetFormAndClass
+from .modules.Utils import (
+    MODEL_LIST,
+    DetermineForm,
+    FilterMedia,
+    FindID,
+    FormMatch,
+    GetFormAndClass,
+)
 from .modules.WebTools import ScrapeWiki
-from .utils import ExtractYearRange, FilterTags, FuzzStr, SearchFunction, SortFunction
 
 # Create your views here.
 LOGGER = logging.getLogger("UserLogger")
@@ -62,6 +68,13 @@ def wikiLoad(request) -> HttpResponse:
         if input_value:
             contentDetails = ScrapeWiki(wikiLink=input_value)
             context["form"] = form(initial=contentDetails)
+            for key in context["form"].fields:
+                if (
+                    key not in ["Downloaded", "Rating", "Genre_Tags", "Watched"]
+                    and key not in contentDetails
+                ):
+                    context["wikiLink"] = input_value
+                    break
             context["colorMode"] = request.COOKIES.get("colorMode", "dark")
             returnRender = render(request, "media/form.html", context=context)
         else:
@@ -148,6 +161,7 @@ def checkFiles(request) -> HttpResponse:
                 "matched": matchedMovie,
                 "wronglyMarked": wronglyMarkedMovie,
             },
+            "colorMode": request.COOKIES.get("colorMode", "dark"),
         },
     )
 
@@ -288,49 +302,3 @@ def index(request: HttpRequest, media="Movie") -> HttpResponse:
         "media/pagedView.html",
         context,
     )
-
-
-def FilterMedia(request, objType) -> dict:
-    # pylint: disable=E1101
-
-    sortKey: str = request.GET.get("sort", "Title")
-    reverseSort: bool = request.GET.get("reverse", "false") == "true"
-    objList = list(objType.objects.all())
-    yearRange, objList = ExtractYearRange(request, objList)
-
-    genre, objList = FilterTags(
-        request.GET.get("genre", ""),
-        objList,
-        include=True,
-    )
-    exclude, objList = FilterTags(
-        request.GET.get("exclude", ""),
-        objList,
-        include=False,
-    )
-
-    if query := request.GET.get("query", None):
-        objList = [x for x in objList if SearchFunction(subStr=x, tagStr=query)]
-        objList = sorted(objList, key=lambda x: FuzzStr(x, query), reverse=True)
-        sortKey = f"Search {query}"
-    else:
-        if sortKey in ["Rating", "Genre Tags", "Date Added"] and "reverse" not in request.GET:
-            reverseSort = not reverseSort
-            if sortKey == "Rating":
-                objList = [x for x in objList if x.Rating > 0]
-        objList = sorted(
-            objList, key=lambda x: SortFunction(obj=x, key=sortKey), reverse=reverseSort
-        )
-    return {
-        "type": objType.__name__,
-        "sort": sortKey,
-        "reverse": reverseSort,
-        "obj_list": objList,
-        "Tags": GetAllTags(objType=objType, loggedIn=request.user.is_authenticated),
-        "filters": {
-            "include": genre,
-            "exclude": exclude,
-            "minYear": yearRange.start,
-            "maxYear": yearRange.stop,
-        },
-    }

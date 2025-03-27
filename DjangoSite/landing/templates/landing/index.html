@@ -1,115 +1,96 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<meta
-			http-equiv="X-UA-Compatible"
-			content="IE=edge" />
-		<title>Aedan's Page</title>
-		<meta
-			name="description"
-			content="" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1" />
-		<meta
-			name="color-scheme"
-			content="light dark" />
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.conditional.css" />
-		<link
-			rel="stylesheet"
-			href="{% static 'code-stats-embedded/dist/codestatsembedded.min.css' %}" />
-		<link
-			rel="stylesheet"
-			href="{% static 'styles/MasterStyle.css' %}" />
-	</head>
+<html data-bs-theme="{{ colorMode }}" data-theme="{{ colorMode }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Aedan's Page</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.conditional.css" />
+    <link rel="stylesheet" href="{% static 'code-stats-embedded/dist/codestatsembedded.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/MasterStyle.css' %}" />
+  </head>
 
-	<body>
-		<main
-			class="container"
-			height-min="0.75uh">
-			<header class="pico">
-				<nav>
-					<ul>
-						<li>
-							<strong>Aedan's Work</strong>
-						</li>
-					</ul>
-					<ul>
-						<li>
-							<a href="/resume">About</a>
-						</li>
-						<li>
-							<a href="/media">Media DB</a>
-						</li>
-						<li>
-							<a href="/admin">Admin</a>
-						</li>
-					</ul>
-				</nav>
-			</header>
+  <body>
+    <main class="container" style="height: 100vh;">
+      <header class="pico">
+        <nav>
+          <ul>
+            <li>
+              <strong>Home</strong>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a href="/resume">About</a>
+            </li>
+            <li>
+              <a href="/media">Media DB</a>
+            </li>
+            <li>
+              <a href="/admin">Admin</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <div class="VertAlign Centered">
+        <img id="headshot" src="{% static 'images/headshot.png' %}" alt="Headshot" />
+        <h1>Aedan McHale's Homepage</h1>
+      </div>
 
-			<details open>
-				<summary>Programming Experience</summary>
-				<div class="pico"></div>
-				<p>
-					CodeStats is an free tracking service for programmers which logs experience programming in different
-					languages. I started my logging in October of 2023. It works by associating each keypress in code editors
-					with the language of the file. While not a perfect representation of ability, it does show experience and
-					usage trends for my developing, both professional and personal.
-				</p>
-				<div id="CS"></div>
-				<p>
-					Using a library from <a href="https://byjokese.com/">@byjokese</a> my experience gained in the last 12
-					months is shown as a monthly breakdown with my historic top 6 languages by experience. The status bars
-					represent the progress towards the next "level" in the language.
-				</p>
-			</details>
+      <details class="pico" open>
+        <summary>
+          <strong>About Me</strong>
+        </summary>
+        <p>Hello! If you found this website on your own, you're probably severely lost, but if you're here on purpose, welcome!</p>
+        <p>In my work I specialize in embedded systems and python tools so modern web aesthetics are not my forte (sorry to your eyes). This site was built using the python Django framework and is mostly full of weird hacky bits I made for personal use, but maybe you still want to learn about me.</p>
+        <p>
+          For more detailed information, head over to my resume page <a href="/resume" class="clean-link"><em>here</em></a> or access the pdf <a href="/resume/pdf" class="clean-link"><em>here</em></a>. If you want to complain about my weird stylistic choices, reluctance to use most major JavaScript libraries, or generally rant; my details are at the bottom of the page.
+        </p>
+      </details>
 
-			<details class="pico">
-				<summary>Media Server Controls</summary>
-				<div role="group">
-					<button onclick="document.location='/media/update'">Update Database</button>
-					<button class="secondary">Get Random Movie</button>
-					<button>Get Random Show</button>
-				</div>
-			</details>
-			<script src="{% static 'code-stats-embedded/dist/codestatsembedded.min.js' %}"></script>
+      <details>
+        <summary class="pico">
+          <strong>Programming Experience</strong>
+        </summary>
+        <p class="pico">CodeStats is an free tracking service for programmers which logs experience programming in different languages. I started my logging in October of 2023. It works by associating each keypress in code editors with the language of the file. While not a perfect representation of ability, it does show experience and usage trends for my developing, both professional and personal.</p>
+        <div id="CS"></div>
+        <p class="pico">
+          Using a library from <a href="https://byjokese.com/">@byjokese</a> my experience gained in the last 12 months is shown as a monthly breakdown with my historic top 6 languages by experience. The status bars represent the progress towards the next "level" in the language.
+        </p>
+      </details>
 
-			<script
-				src="https://code.jquery.com/jquery-3.4.1.min.js"
-				integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-				crossorigin="anonymous"></script>
+      <details class="pico">
+        <summary>
+          <strong>Media Database</strong>
+        </summary>
+        <p>Attached to this website is a database which contains over 1400 different pieces of media across 7 categories (Movies, TV Shows, Novels, Comics, Albums, Podcasts and Youtube Series). Originally intended as a resource for me to note my movie watchlist, this expanded to a point where I can track trends for my watching habits and expand my knowledge of both film and wider media.</p>
+        <div class="Centered">
+          <button class="primary" onclick="document.location = &quot;/media/movies\&quot;" style="margin:5px;">Database Homepage</button>
+          <button class="secondary" onclick="document.location = &quot;/media/stats&quot;" style="margin:5px;">Statistics Breakdown</button>
+          <button class="primary" onclick="document.location = &quot;/media/api/docs&quot;" style="margin:5px;">API Access</button>
+        </div>
+      </details>
 
-			<script>
-				CodeStatsEmbed("#CS", "AedanM");
-			</script>
+      <script src="{% static 'code-stats-embedded/dist/codestatsembedded.min.js' %}"></script>
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-			<footer
-				class="pico"
-				id="footerDiv">
-				<section>
-					<h2>Contact Me</h2>
-					<a href="mailto:aedan.mchale@gmail.com"
-						><img id="footerImg" src={%static "images/gmail.png" %} alt="Gmail" /></a
-					>
-					<a href="https://codestats.net/users/AedanM"
-						><img id="footerImg" src={%static "images/codestats.svg" %} alt="CodeStats" /></a
-					>
-					<a href="https://bsky.app/profile/aedanm.bsky.social"
-						><img id="footerImg" src={%static "images/bluesky.png" %} alt="Bluesky" /></a
-					>
-					<a href="https://github.com/AedanM"
-						><img id="footerImg" src={%static "images/github.png" %} alt="GitHub" /></a
-					>
-					<a href="https://www.linkedin.com/in/AedanMcHale"
-						><img id="footerImg" src={%static "images/linkedin.png" %} alt="LinkedIn" /></a
-					>
-				</section>
-			</footer>
-		</main>
-	</body>
+      <script>
+        CodeStatsEmbed('#CS', 'AedanM')
+      </script>
+
+      <footer class="pico" id="footerDiv" style="padding-top: 5vh;">
+        <section>
+          <h2>Contact Me</h2>
+          <a href="mailto:aedan.mchale@gmail.com"><img id="footerImg" src="{% static 'images/gmail.png' %}" alt="Gmail" /></a>
+          <a href="https://codestats.net/users/AedanM"><img id="footerImg" src="{% static 'images/codestats.svg' %}" alt="CodeStats" /></a>
+          <a href="https://bsky.app/profile/aedanm.bsky.social"><img id="footerImg" src="{% static 'images/bluesky.png' %}" alt="Bluesky" /></a>
+          <a href="https://github.com/AedanM"><img id="footerImg" src="{% static 'images/github.png' %}" alt="GitHub" /></a>
+          <a href="https://www.linkedin.com/in/AedanMcHale"><img id="footerImg" src="{% static 'images/linkedin.png' %}" alt="LinkedIn" /></a>
+        </section>
+      </footer>
+    </main>
+  </body>
 </html>

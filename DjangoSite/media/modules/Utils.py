@@ -10,7 +10,15 @@ from django.core.exceptions import ObjectDoesNotExist
 # pylint: disable=E0402
 from ..forms import AlbumForm, ComicForm, MovieForm, NovelForm, PodcastForm, TVForm, YoutubeForm
 from ..models import Album, Comic, Movie, Novel, Podcast, TVShow, Youtube
-from ..utils import FEATURES, GetTest
+from ..utils import (
+    FEATURES,
+    ExtractYearRange,
+    FilterTags,
+    FuzzStr,
+    GetTest,
+    SearchFunction,
+    SortFunction,
+)
 
 DEFINED_TAGS = {}
 FORM_LIST = [MovieForm, TVForm, NovelForm, ComicForm, PodcastForm, YoutubeForm, AlbumForm]
@@ -119,3 +127,54 @@ def GetAllTags(objType, loggedIn=False) -> dict[str, dict]:
     for title, freqList in freqDir.items():
         outputDir[title] = dict(sorted(freqList.items(), key=lambda x: x[1], reverse=True))
     return outputDir
+
+
+def FilterMedia(request, objType) -> dict:
+
+    # pylint: disable=E1101
+    sortKey: str = request.GET.get("sort", "Title")
+    reverseSort: bool = request.GET.get("reverse", "false") == "true"
+    objList = list(objType.objects.all())
+    yearRange, objList = ExtractYearRange(request, objList)
+
+    genre, objList = FilterTags(
+        request.GET.get("genre", ""),
+        objList,
+        include=True,
+    )
+    exclude, objList = FilterTags(
+        request.GET.get("exclude", ""),
+        objList,
+        include=False,
+    )
+
+    if query := request.GET.get("query", None):
+        objList = [x for x in objList if SearchFunction(subStr=x, tagStr=query)]
+        objList = sorted(objList, key=lambda x: FuzzStr(x, query), reverse=True)
+        sortKey = f"Search {query}"
+    else:
+        if sortKey == "Rating":
+            objList = [x for x in objList if x.Rating > 0]
+        objList = sorted(objList, key=lambda x: SortFunction(obj=x, key=sortKey))
+        if sortKey in ["Rating", "Genre Tags", "Date Added"]:
+            objList = list(reversed(objList))
+        if reverseSort:
+            objList = list(reversed(objList))
+    return {
+        "type": objType.__name__,
+        "sort": sortKey,
+        "reverse": reverseSort,
+        "obj_list": objList,
+        "Tags": GetAllTags(objType=objType, loggedIn=request.user.is_authenticated),
+        "filters": {
+            "include": genre,
+            "exclude": exclude,
+            "minYear": yearRange.start,
+            "maxYear": yearRange.stop,
+        },
+        "params": (
+            ("?" + "".join(request.get_full_path().split("?")[1:]))
+            if request.get_full_path().split("?")[1:]
+            else ""
+        ),
+    }
