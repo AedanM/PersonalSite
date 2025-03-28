@@ -1,5 +1,6 @@
 import json
 import logging
+import os
 import re
 from pathlib import Path
 from typing import Any
@@ -8,26 +9,26 @@ from django.conf import settings as django_settings
 from django.core.exceptions import ObjectDoesNotExist
 
 # pylint: disable=E0402
-from ..forms import AlbumForm, ComicForm, MovieForm, NovelForm, PodcastForm, TVForm, YoutubeForm
+from ..forms import (AlbumForm, ComicForm, MovieForm, NovelForm, PodcastForm,
+                     TVForm, YoutubeForm)
 from ..models import Album, Comic, Movie, Novel, Podcast, TVShow, Youtube
-from ..utils import (
-    FEATURES,
-    ExtractYearRange,
-    FilterTags,
-    FuzzStr,
-    GetTest,
-    SearchFunction,
-    SortFunction,
-)
+from ..utils import (FEATURES, ExtractYearRange, FilterTags, FuzzStr, GetTest,
+                     SearchFunction, SortFunction)
 
-DEFINED_TAGS = {}
+DEFINED_TAGS: dict = {}
+DEFINED_TAGS_TIME = 0.0
 FORM_LIST = [MovieForm, TVForm, NovelForm, ComicForm, PodcastForm, YoutubeForm, AlbumForm]
 MODEL_LIST = [Movie, TVShow, Novel, Comic, Podcast, Youtube, Album]
 
-with open(django_settings.SYNC_PATH / "Genres.json", encoding="ascii") as fp:
-    DEFINED_TAGS = json.load(fp)
-    DEFINED_TAGS.pop("_comment", None)
 LOGGER = logging.getLogger("UserLogger")
+
+
+def LoadDefinedTags():
+    global DEFINED_TAGS_TIME, DEFINED_TAGS #type:ignore
+    DEFINED_TAGS_TIME = os.path.getmtime(django_settings.SYNC_PATH / "Genres.json")
+    with open(django_settings.SYNC_PATH / "Genres.json", encoding="ascii") as fp:
+        DEFINED_TAGS = json.load(fp)
+        DEFINED_TAGS.pop("_comment", None)
 
 
 def MakeStringSystemSafe(
@@ -97,6 +98,8 @@ def FindID(contentID: str) -> Any:
 
 
 def GetAllTags(objType, loggedIn=False) -> dict[str, dict]:
+    if os.path.getmtime(django_settings.SYNC_PATH / "Genres.json") > DEFINED_TAGS_TIME:
+        LoadDefinedTags()
     genres = []
     _ = [[genres.append(y) for y in x.GenreTagList] for x in objType.objects.all()]  # type:ignore
     freqDir: dict = {}

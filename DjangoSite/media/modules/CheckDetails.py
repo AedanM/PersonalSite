@@ -146,7 +146,7 @@ def CleanAliasGroups(obj: dict) -> dict:
         jsonFile = json.load(fp)
         groups = jsonFile["Pools"]
     for diff in obj["Match"]["Tag Diff"]:
-        for g in [x for x in groups if diff in groups]:
+        for g in [x for x in groups if diff in x]:
             # [a,b,c]
             if any(x for x in g if x in obj["Tags"]):
                 obj["Match"]["Tag Diff"].remove(diff)
@@ -161,24 +161,19 @@ def ResetAlias(files):
         jsonFile = json.load(fp)
         titles = jsonFile["Titles"]
         tags = jsonFile["Tags"]
-    if isinstance(files, list):
-        for f in files:
-            if f["Title"] in titles:
-                f["Title"] = titles[f["Title"]]
-            fileStr = ",".join(f["Tags"])
-            for tag in f["Tags"]:
-                if tag in tags:
-                    fileStr = fileStr.replace(tag, tags[tag])
-            f["Tags"] = fileStr.split(",")
-    else:
-        for _title, f in files.items():
-            if f["Title"] in titles:
-                f["Title"] = titles[f["Title"]]
-            fileStr = ",".join(f["Tags"])
-            for tag in f["Tags"]:
-                if tag in tags:
-                    fileStr = fileStr.replace(tag, tags[tag])
-            f["Tags"] = fileStr.split(",")
+    if isinstance(files, dict):
+        files = list(files.values())
+
+    for f in files:
+        if f["Title"] in titles:
+            f["Title"] = titles[f["Title"]]
+        fileTags = []
+        for tag in f["Tags"]:
+            if tag in tags:
+                fileTags.append(tags[tag])
+            else:
+                fileTags.append(tag)
+        f["Tags"] = fileTags
 
 
 def CheckTV():
