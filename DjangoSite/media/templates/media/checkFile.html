@@ -38,11 +38,13 @@
       </header>
       <h2>Current Files</h2>
       <span id="DescriptionSpan">
-        <details open>
-          <summary>Movies</summary>
+        <details>
+          <summary>
+            <strong>Movies</strong>
+          </summary>
           <div id="contentDiv">
             {% if movies|Get:'unmatched'|length > 0 %}
-              <details open>
+              <details>
                 <summary>Unmatched ({{ movies|Get:'unmatched'|length }})</summary>
                 <table class="striped sortable">
                   <thead>
@@ -64,7 +66,7 @@
                 </table>
               </details>
             {% endif %} {% if movies|Get:'wronglyMarked'|length > 0 %}
-              <details open>
+              <details>
                 <summary>Wrongly Marked ({{ movies|Get:'wronglyMarked'|length }})</summary>
                 <table class="striped sortable">
                   <thead>
@@ -84,7 +86,7 @@
                 </table>
               </details>
             {% endif %} {% if movies|Get:'matched'|length > 0 %}
-              <details open>
+              <details>
                 <summary>Matched ({{ movies|Get:'matched'|length }})</summary>
                 <table class="striped sortable">
                   <thead>
@@ -124,11 +126,13 @@
             {% endif %}
           </div>
         </details>
-        <details open>
-          <summary>TV Shows</summary>
+        <details>
+          <summary>
+            <strong>TV Shows</strong>
+          </summary>
           <div id="contentDiv">
             {% if tvshows|Get:'unmatched'|length > 0 %}
-              <details open>
+              <details>
                 <summary>Unmatched ({{ tvshows|Get:'unmatched'|length }})</summary>
                 <table class="striped sortable">
                   <thead>
@@ -150,7 +154,7 @@
                 </table>
               </details>
             {% endif %} {% if tvshows|Get:'wronglyMarked'|length > 0 %}
-              <details open>
+              <details>
                 <summary>Wrongly Marked ({{ tvshows|Get:'wronglyMarked'|length }})</summary>
                 <table class="striped sortable">
                   <thead>
@@ -170,7 +174,7 @@
                 </table>
               </details>
             {% endif %} {% if tvshows|Get:'matched'|length > 0 %}
-              <details open>
+              <details>
                 <summary>Matched ({{ tvshows|Get:'matched'|length }})</summary>
                 <table class="striped sortable">
                   <thead>
