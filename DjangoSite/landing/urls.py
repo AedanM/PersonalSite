@@ -10,5 +10,7 @@ urlpatterns = [
     path(route="refresh", view=views.refresh, name="Refresh"),
     path("tools", views.tools, name="tools"),
     path("log", views.Log, name="log"),
+    path(route="blog", view=views.blogHome, name="blogHome"),
+    path(route="blog/<str:path>", view=views.blogPages, name="blog"),
     path("", views.index, name="index"),
 ]
