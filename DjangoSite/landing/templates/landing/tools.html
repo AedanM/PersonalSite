@@ -50,18 +50,22 @@
             <i class="bi bi-wikipedia"></i>
           </button>
         </div>
-        <div class="d-flex flex-row justify-content-center align-items-center gap-3">
-          <button class="btn btn-danger g-col-6" style="min-width: 20vw" onclick="document.location = '/refresh?pull=True'">
+        <div class="d-flex flex-column justify-content-center align-items-center gap-1">
+          <button class="btn btn-primary" style="width:41vw;" onclick="iterClick()">
             <p>
-              <strong>Git Pull</strong>
+              <strong>Iterate Link <i class="bi bi-link-45deg"></i></strong>
             </p>
-            <i class="bi bi-git"></i>
-          </button>
-          <button class="btn btn-danger g-col-6" style="min-width: 20vw" onclick="document.location = '/refresh?reboot=True'">
-            <p>
-              <strong>Reboot</strong>
-            </p>
-            <i class="bi bi-bootstrap-reboot"></i>
+            <form id="iterForm" class="d-flex flex-row gap-3 justify-content-center align-items-center" onclick="stopEvent(event)">
+              <p>Link</p>
+              <input type="url" id="link" name="link" required style="height:2vh; width: 10vw;" />
+              <p>Range</p>
+              <div class="d-flex flex-row" style="width: 10vw;">
+                <input type="number" id="startRange" name="startRange" value="0" style="height:1vh" />
+                <input type="number" id="endRange" name="endRange" value="100" style="height:1vh" />
+              </div>
+              <p onclick="stopEvent(event)">Pad</p>
+              <input type="number" id="paddingSize" name="paddingSize" value="0" style="height:1vh; width: 5vw;" />
+            </form>
           </button>
         </div>
         <div class="d-flex flex-row justify-content-center align-items-center gap-3">
@@ -78,7 +82,62 @@
             <i class="bi bi-body-text"></i>
           </button>
         </div>
+        <div class="d-flex flex-row justify-content-center align-items-center gap-3">
+          <button class="btn btn-danger g-col-6" style="min-width: 20vw" onclick="document.location = '/refresh?pull=True'">
+            <p>
+              <strong>Git Pull</strong>
+            </p>
+            <i class="bi bi-git"></i>
+          </button>
+          <button class="btn btn-danger g-col-6" style="min-width: 20vw" onclick="document.location = '/refresh?reboot=True'">
+            <p>
+              <strong>Reboot</strong>
+            </p>
+            <i class="bi bi-bootstrap-reboot"></i>
+          </button>
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-center gap-1">
+          <button class="btn btn-danger" style="width:41vw;" onclick="alterClick()">
+            <p>
+              <strong>Alter Tags <i class="bi bi-arrow-left-right"></i></strong>
+            </p>
+            <form id="alterForm" class="d-flex flex-row gap-3 justify-content-center align-items-center" onclick="stopEvent(event)">
+              <p>From</p>
+              <input type="text" id="from" name="from" required style="height:2vh; width: 10vw;" />
+              <p>To</p>
+              <input type="text" id="to" name="to" required style="height:2vh; width: 10vw;" />
+            </form>
+          </button>
+        </div>
       </div>
     </main>
+    <script>
+      function iterClick() {
+        const form = document.getElementById('iterForm')
+        const link = form.link.value
+        const start = form.startRange.value
+        const end = form.endRange.value
+        const pad = form.paddingSize.value
+        if (link == '') {
+          alert('Enter Link to Iterate')
+        } else {
+          document.location = `/iterlink?start=${start}&end=${end}&pad=${pad}&link=${link}`
+        }
+      }
+      
+      function alterClick() {
+        const form = document.getElementById('alterForm')
+        const from = form.from.value
+        const to = form.to.value
+        if (from == '' || to == '') {
+          alert('Enter Both Arguments')
+        } else {
+          document.location = `/media/adjustTags/${from}/${to}`
+        }
+      }
+      function stopEvent(event) {
+        event.stopPropagation()
+      }
+    </script>
   </body>
 </html>
