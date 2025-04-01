@@ -17,7 +17,7 @@ from django.conf import settings as django_settings
 from ..utils import MINIMUM_YEAR
 
 DEFINED_TAGS = {}
-with open(django_settings.SYNC_PATH / "Genres.json", encoding="ascii") as fp:
+with open(django_settings.SYNC_PATH / "config" / "Genres.json", encoding="ascii") as fp:
     DEFINED_TAGS = json.load(fp)
     DEFINED_TAGS.pop("_comment", None)
 
