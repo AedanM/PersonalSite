@@ -1,0 +1,17 @@
+name: Get Request
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  get_request:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Perform GET request
+      run: curl -X GET https://example.com
