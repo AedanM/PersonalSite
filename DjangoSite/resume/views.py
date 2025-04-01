@@ -31,8 +31,8 @@ from .models import Education, Employment, Proficiency, SkillsAndTools
 
 
 def pdf(_request) -> FileResponse:
-    return FileResponse((settings.SYNC_PATH / "resume.pdf").open(mode="rb"))
+    return FileResponse((settings.SYNC_PATH / "resume" / "resume.pdf").open(mode="rb"))
 
 
 def resume(_request) -> HttpResponse:
-    return HttpResponse((settings.SYNC_PATH / "resume.html").open(mode="rb"))
+    return HttpResponse((settings.SYNC_PATH / "resume" / "resume.html").open(mode="rb"))

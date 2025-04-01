@@ -110,10 +110,10 @@ def RipWDrive(mediaType: str, showProgress: bool):
         else:
             tv = GetTV(ms, showProgress)
             LOGGER.info("TV scrape took %f seconds", time.time() - start)
-        summaryFile = django_settings.SYNC_PATH / "MediaServerSummary.json"
+        summaryFile = django_settings.SYNC_PATH / "config" / "MediaServerSummary.json"
         currentFile = json.loads(summaryFile.read_text())
         with open(
-            django_settings.SYNC_PATH / "MediaServerSummary.json",
+            django_settings.SYNC_PATH / "config" / "MediaServerSummary.json",
             mode="w",
             encoding="ascii",
         ) as fp:

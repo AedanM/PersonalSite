@@ -25,8 +25,8 @@ LOGGER = logging.getLogger("UserLogger")
 
 def LoadDefinedTags():
     global DEFINED_TAGS_TIME, DEFINED_TAGS #type:ignore
-    DEFINED_TAGS_TIME = os.path.getmtime(django_settings.SYNC_PATH / "Genres.json")
-    with open(django_settings.SYNC_PATH / "Genres.json", encoding="ascii") as fp:
+    DEFINED_TAGS_TIME = os.path.getmtime(django_settings.SYNC_PATH / "config" / "Genres.json")
+    with open(django_settings.SYNC_PATH / "config" / "Genres.json", encoding="ascii") as fp:
         DEFINED_TAGS = json.load(fp)
         DEFINED_TAGS.pop("_comment", None)
 
@@ -98,7 +98,7 @@ def FindID(contentID: str) -> Any:
 
 
 def GetAllTags(objType, loggedIn=False) -> dict[str, dict]:
-    if os.path.getmtime(django_settings.SYNC_PATH / "Genres.json") > DEFINED_TAGS_TIME:
+    if os.path.getmtime(django_settings.SYNC_PATH / "config" / "Genres.json") > DEFINED_TAGS_TIME:
         LoadDefinedTags()
     genres = []
     _ = [[genres.append(y) for y in x.GenreTagList] for x in objType.objects.all()]  # type:ignore

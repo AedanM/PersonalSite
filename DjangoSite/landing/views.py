@@ -67,7 +67,7 @@ def BlogHome(request) -> HttpResponse:
         frontmatter.load(str(x)).to_dict()
         for x in (django_settings.SYNC_PATH / "blog").glob("*.md")
     ]
-    context["posts"] = sorted(context["posts"], key=lambda x: str(x["last_update"]))
+    context["posts"] = sorted(context["posts"], key=lambda x: str(x["creation_date"]), reverse=True)
     if request.GET.get("tag", None):
         context["posts"] = [x for x in context["posts"] if request.GET["tag"] in x["tags"]]
     if not request.user.is_authenticated:

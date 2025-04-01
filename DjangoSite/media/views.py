@@ -105,6 +105,7 @@ def wikiLoad(request) -> HttpResponse:
     return returnRender
 
 
+@login_required
 def adjustTags(_request, fromTag: str, toTag: str):
 
     # pylint: disable=E1101
@@ -115,6 +116,7 @@ def adjustTags(_request, fromTag: str, toTag: str):
     return redirect("/media")
 
 
+@login_required
 def checkFiles(request) -> HttpResponse:
     if request.GET.get("renderList", "False") == "True":
         HandleReRenderQueue()

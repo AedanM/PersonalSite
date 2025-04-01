@@ -18,7 +18,7 @@ LOGGER = logging.getLogger("UserLogger")
 
 def CheckMovies():
     movies = []
-    with (django_settings.SYNC_PATH / "MediaServerSummary.json").open(
+    with (django_settings.SYNC_PATH / "config" / "MediaServerSummary.json").open(
         mode="r", encoding="ascii"
     ) as fp:
         movies = json.load(fp)["Movies"]
@@ -70,7 +70,7 @@ def FilterOutMatches(movies, obj: Any = Movie):
             unmatched.append(m)
     if rerender:
         with open(
-            file=django_settings.SYNC_PATH / f"rerenderList{obj.__name__}.csv",
+            file=django_settings.SYNC_PATH / "config" / f"rerenderList{obj.__name__}.csv",
             mode="w",
             encoding="ascii",
         ) as fp:
@@ -82,7 +82,7 @@ def FilterOutMatches(movies, obj: Any = Movie):
 def HandleReRenderQueue():
     renderList = []
     with open(
-        file=django_settings.SYNC_PATH / "rerenderList.csv", mode="r", encoding="ascii"
+        file=django_settings.SYNC_PATH / "config" / "rerenderList.csv", mode="r", encoding="ascii"
     ) as fp:
         renderList = fp.readlines()
     start = time.time()
@@ -102,7 +102,7 @@ def HandleReRenderQueue():
             LOGGER.error(e.stderr)
             renderOutput.append(file)
     with open(
-        file=django_settings.SYNC_PATH / "rerenderList.csv", mode="w", encoding="ascii"
+        file=django_settings.SYNC_PATH / "config" / "rerenderList.csv", mode="w", encoding="ascii"
     ) as fp:
         fp.write("\n".join(renderOutput))
     LOGGER.info("Render Log Written in %f", time.time() - start)
@@ -111,7 +111,7 @@ def HandleReRenderQueue():
 def CopyOverRenderQueue():
     renderList = []
     with open(
-        file=django_settings.SYNC_PATH / "rerenderList.csv",
+        file=django_settings.SYNC_PATH / "config" / "rerenderList.csv",
         mode="r",
         encoding="ascii",
     ) as fp:
@@ -142,7 +142,9 @@ def MatchTitles(t1, t2) -> bool:
 
 
 def CleanAliasGroups(obj: dict) -> dict:
-    with (django_settings.SYNC_PATH / "Alias.json").open(mode="r", encoding="ascii") as fp:
+    with (django_settings.SYNC_PATH / "config" / "Alias.json").open(
+        mode="r", encoding="ascii"
+    ) as fp:
         jsonFile = json.load(fp)
         groups = jsonFile["Pools"]
     for diff in obj["Match"]["Tag Diff"]:
@@ -157,7 +159,9 @@ def CleanAliasGroups(obj: dict) -> dict:
 def ResetAlias(files):
     titles = {}
     tags = {}
-    with (django_settings.SYNC_PATH / "Alias.json").open(mode="r", encoding="ascii") as fp:
+    with (django_settings.SYNC_PATH / "config" / "Alias.json").open(
+        mode="r", encoding="ascii"
+    ) as fp:
         jsonFile = json.load(fp)
         titles = jsonFile["Titles"]
         tags = jsonFile["Tags"]
@@ -178,7 +182,7 @@ def ResetAlias(files):
 
 def CheckTV():
     shows = []
-    with (django_settings.SYNC_PATH / "MediaServerSummary.json").open(
+    with (django_settings.SYNC_PATH / "config" / "MediaServerSummary.json").open(
         mode="r", encoding="ascii"
     ) as fp:
         shows = json.load(fp)["TV Shows"]
@@ -225,7 +229,9 @@ def FilterOutTVMatches(files: list):
             unmatched.append(m)
     if rerender:
         with open(
-            file=django_settings.SYNC_PATH / "rerenderListTV.csv", mode="w", encoding="ascii"
+            file=django_settings.SYNC_PATH / "config" / "rerenderListTV.csv",
+            mode="w",
+            encoding="ascii",
         ) as fp:
             fp.write("\n".join(rerender))
 
