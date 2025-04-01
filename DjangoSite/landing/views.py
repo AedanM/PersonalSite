@@ -43,7 +43,6 @@ def Log(request):
     return HttpResponse(r, content_type="text/plain")
 
 
-@login_required
 def Refresh(request) -> KillRedirect:
     if request.GET.get("hard", "False") == "True":
         RebootPC()
