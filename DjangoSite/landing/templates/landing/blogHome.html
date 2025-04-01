@@ -16,12 +16,12 @@
   </head>
 
   <body>
-    <main class="container" style="height: 100vh;">
-      <header class="pico">
+    <main class="container pico" style="height: 100vh;">
+      <header>
         <nav>
           <ul>
             <li>
-              <strong>Home</strong>
+              <a href="/blog" class="clean-link"><strong>Thoughts and Rants</strong></a>
             </li>
           </ul>
           <ul>
@@ -32,20 +32,20 @@
               <a href="/media">Media DB</a>
             </li>
             <li>
-              <a href="/admin">Admin</a>
+              <a href="/">Home</a>
             </li>
           </ul>
         </nav>
       </header>
-      <div class="d-flex flex-column gap-3">
+      <div class="d-flex flex-column gap-3 pico">
         {% for post in posts %}
           <details open>
             <summary>
               <a class="clean-link" href="/blog/{{ post|Get:'url' }}"><strong>{{ post|Get:'title' }}</strong></a>
             </summary>
-            <div class="d-flex flex-row">
-              <div class="mr-auto p-2">{{ post|Get:'summary' }}</div>
-              <div class="p-2">
+            <div class="d-flex align-items-center">
+              <div class="flex-grow-1">{{ post|Get:'summary' }}</div>
+              <div class="text-end">
                 {{ post|Get:'last_update' }}<br />
                 <em>
                   {% for tag in post|Get:'tags' %}
