@@ -63,8 +63,10 @@
                 <input type="number" id="startRange" name="startRange" value="0" style="height:1vh" />
                 <input type="number" id="endRange" name="endRange" value="100" style="height:1vh" />
               </div>
-              <p onclick="stopEvent(event)">Pad</p>
+              <p>Pad</p>
               <input type="number" id="paddingSize" name="paddingSize" value="0" style="height:1vh; width: 5vw;" />
+              <p>Step</p>
+              <input type="number" id="stepSize" name="stepSize" value="1" style="height:1vh; width: 5vw;" />
             </form>
           </button>
         </div>
@@ -118,10 +120,11 @@
         const start = form.startRange.value
         const end = form.endRange.value
         const pad = form.paddingSize.value
+        const step = form.stepSize.value
         if (link == '') {
           alert('Enter Link to Iterate')
         } else {
-          document.location = `/iterlink?start=${start}&end=${end}&pad=${pad}&link=${link}`
+          document.location = `/iterlink?start=${start}&end=${end}&pad=${pad}&link=${link}&step=${step}`
         }
       }
       
