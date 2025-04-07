@@ -19,7 +19,7 @@ from .modules.Utils import (
     FormMatch,
     GetFormAndClass,
 )
-from .modules.WebTools import ScrapeWiki
+from .modules.WikiParse import ScrapeWiki
 
 # Create your views here.
 LOGGER = logging.getLogger("UserLogger")
