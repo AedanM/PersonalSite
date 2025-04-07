@@ -48,7 +48,8 @@ def ScrapeWiki(wikiLink) -> dict:
         s = BeautifulSoup(r.content, features="html.parser")
         infoTables = s.find_all("table")
         if len(infoTables) > 1:
-            infoTables = [x for x in infoTables if "Infobox" in x.text]
+            infoTables = [x for x in infoTables if "infobox" in str(x)]
+
         if infoTables:
             infoBox = infoTables[0]
 
@@ -63,7 +64,8 @@ def ScrapeWiki(wikiLink) -> dict:
                 out["Logo"] = None
 
             out["Duration"] = GetByHeader(infoBox, "Running time", r"\d+")
-
+            if out["Duration"]:
+                out["Duration"] = out["Duration"] + ":00"
             out["Year"] = GetByHeader(infoBox, "Release date", r"\d{4}")
 
             out["Length"] = GetByHeader(infoBox, "of episodes", r"\d+")
@@ -82,7 +84,7 @@ def ScrapeWiki(wikiLink) -> dict:
                 ]
             if dates:
                 dates = sorted(dates)  # type: ignore
-                out["Series_Start"] = dates[0].strftime(r"%d/%m/%y")
-                out["Series_End"] = dates[-1].strftime(r"%d/%m/%y")
+                out["Series_Start"] = dates[0].strftime(r"%d/%m/%Y")
+                out["Series_End"] = dates[-1].strftime(r"%d/%m/%Y")
 
     return out
