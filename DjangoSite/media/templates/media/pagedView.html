@@ -292,7 +292,7 @@
 						<summary>Exclude</summary>
 						<table>
 							<!-- prettier-ignore -->
-							{%with activeList=filters|Get:"include"%} {% for title in "tag"|TagOrder %} {% with genre=Tags|Get:title%}
+							{%with activeList=filters|Get:"exclude"%} {% for title in "tag"|TagOrder %} {% with genre=Tags|Get:title%}
 							{% if genre|length > 0%}
 							<tr>
 								<td>

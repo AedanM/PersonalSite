@@ -60,7 +60,7 @@ def ScrapeWiki(wikiLink) -> dict:
                 imageLink = infoBox.find("img")["srcset"]
                 imageLink = r"https:" + bytes(imageLink, "utf-8").decode("unicode_escape")
                 out["Logo"] = imageLink.replace('"', "")
-            except (AttributeError, TypeError):
+            except (KeyError, TypeError):
                 out["Logo"] = None
 
             out["Duration"] = GetByHeader(infoBox, "Running time", r"\d+")
