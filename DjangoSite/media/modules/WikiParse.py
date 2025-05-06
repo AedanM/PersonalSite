@@ -66,13 +66,12 @@ def ScrapeWiki(wikiLink) -> dict:
             out["Duration"] = GetByHeader(infoBox, "Running time", r"\d+")
             if out["Duration"]:
                 out["Duration"] = out["Duration"] + ":00"
-            out["Year"] = GetByHeader(infoBox, "Release date", r"\d{4}")
 
+            out["Year"] = GetByHeader(infoBox, "Release date", r"\d{4}")
             out["Length"] = GetByHeader(infoBox, "of episodes", r"\d+")
 
             genres = GetByHeader(infoBox, "Genre", r".+")
             if genres:
-                print(genres)
                 out["Genre_Tags"] = ", ".join([x for x in genres.split(r"\n") if x])
 
             datesElement = [x for x in infoBox.find_all("tr") if "Release" in x.text]
