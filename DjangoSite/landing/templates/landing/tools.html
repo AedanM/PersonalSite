@@ -55,18 +55,22 @@
             <p>
               <strong>Iterate Link <i class="bi bi-link-45deg"></i></strong>
             </p>
-            <form id="iterForm" class="d-flex flex-row gap-3 justify-content-center align-items-center" onclick="stopEvent(event)">
-              <p>Link</p>
-              <input type="url" id="link" name="link" required style="height:2vh; width: 10vw;" />
-              <p>Range</p>
-              <div class="d-flex flex-row" style="width: 10vw;">
-                <input type="number" id="startRange" name="startRange" value="0" style="height:1vh" />
-                <input type="number" id="endRange" name="endRange" value="100" style="height:1vh" />
+            <form id="iterForm" class="d-flex flex-column justify-content-center align-items-center" onclick="stopEvent(event)">
+              <div class="d-flex flex-row gap-3 justify-content-center align-items-center">
+                <p>Link</p>
+                <input type="url" id="link" name="link" required style="height:2vh;" />
+                <p>Step</p>
+                <input type="number" id="stepSize" name="stepSize" value="1" style="height:1vh; width: 4vw;" />
               </div>
-              <p>Pad</p>
-              <input type="number" id="paddingSize" name="paddingSize" value="0" style="height:1vh; width: 5vw;" />
-              <p>Step</p>
-              <input type="number" id="stepSize" name="stepSize" value="1" style="height:1vh; width: 5vw;" />
+              <div class="d-flex flex-row gap-3 justify-content-center align-items-center">
+                <p>Range</p>
+                <div class="d-flex flex-row" style="width: 10vw;">
+                  <input type="number" id="startRange" name="startRange" value="0" style="height:1vh" />
+                  <input type="number" id="endRange" name="endRange" value="100" style="height:1vh" />
+                </div>
+                <p>Pad</p>
+                <input type="number" id="paddingSize" name="paddingSize" value="0" style="height:1vh; width: 5vw;" />
+              </div>
             </form>
           </button>
         </div>
