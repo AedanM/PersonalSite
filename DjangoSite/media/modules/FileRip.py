@@ -5,7 +5,12 @@ import sys
 import time
 from pathlib import Path
 
-from django.conf import settings as django_settings
+try:
+	from django.conf import settings as django_settings
+	SYNC = django_settings.SYNC_PATH
+except ModuleNotFoundError:
+	SYNC = Path(sys.argv[1])
+
 from progress.bar import Bar
 
 LOGGER = logging.getLogger("UserLogger")
@@ -110,10 +115,10 @@ def RipWDrive(mediaType: str, showProgress: bool):
         else:
             tv = GetTV(ms, showProgress)
             LOGGER.info("TV scrape took %f seconds", time.time() - start)
-        summaryFile = django_settings.SYNC_PATH / "config" / "MediaServerSummary.json"
+        summaryFile = SYNC / "config" / "MediaServerSummary.json"
         currentFile = json.loads(summaryFile.read_text())
         with open(
-            django_settings.SYNC_PATH / "config" / "MediaServerSummary.json",
+            SYNC / "config" / "MediaServerSummary.json",
             mode="w",
             encoding="ascii",
         ) as fp:
