@@ -50,8 +50,8 @@
             </summary>
             <div style="display: flex; flex: auto; flex-direction: row; align-items: center">
               <div style="flex-grow: 1">{{ post|Get:'summary' }}</div>
-              <div class="text-end">
-                {{ post|Get:'last_update' }}<br />
+              <div class="text-end" style="text-align:right">
+                {{ post|Get:'creation_date' }}<br />
                 <em>
                   {% for tag in post|Get:'tags' %}
                     <a class="clean-link" href="/blog?tag={{ tag }}">{{ tag }}</a>
