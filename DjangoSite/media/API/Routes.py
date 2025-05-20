@@ -24,12 +24,12 @@ API_APP = FastAPI(
 
 @API_APP.get("/movies", summary="Full listing of movies")
 async def Movies() -> dict:
-    return dict(enumerate(await GetAllMovies()))
+    return dict(enumerate(GetAllMovies()))
 
 
 @API_APP.get("/tvshows", summary="Full listing of tvshows")
 async def TVShows() -> dict:
-    return dict(enumerate(await GetAllTV()))
+    return dict(enumerate(GetAllTV()))
 
 
 @API_APP.get("/genres", summary="Full listing of genre tags")
@@ -43,4 +43,4 @@ async def Genres() -> dict:
 
 @API_APP.get(path="/backup", summary="Full fat backup of DB")
 async def Backup() -> dict:
-    return dict(await GetAll())
+    return dict(GetAll())

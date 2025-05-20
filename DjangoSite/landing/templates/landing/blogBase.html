@@ -28,7 +28,7 @@
               <a href="/resume">About</a>
             </li>
             <li>
-              <a href="/media">Media DB</a>
+              <a href="/blog">Blog</a>
             </li>
             <li>
               <a href="/">Home</a>
@@ -48,9 +48,11 @@
           <p style="font-size: small; line-height: 40%;">
             Created : <em>{{ creation_date }}</em>
           </p>
-          <p style="font-size: small; line-height: 40%;">
-            Updated : <em>{{ last_update }}</em>
-          </p>
+          {% if last_update != creation_date %}
+            <p style="font-size: small; line-height: 40%;">
+              Updated : <em>{{ last_update }}</em>
+            </p>
+          {% endif %}
         </section>
         <section>
           <h4>Contact Me</h4>
