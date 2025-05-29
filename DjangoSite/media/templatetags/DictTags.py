@@ -1,22 +1,19 @@
 import datetime
+import json
 import typing
 
 from django import template
+from django.conf import settings as django_settings
 from django.core.paginator import Paginator
 
 from ..models import Movie, TVShow
 from ..utils import MINIMUM_YEAR
 
 register = template.Library()
-TAG_SECTIONS = {
-    "Features": "success",
-    "Genres": "primary",
-    "Directors": "info",
-    "Series": "warning",
-    "Styles": "light",
-    "Content": "secondary",
-    "ETC": "danger",
-}
+
+TAG_SECTIONS = {}
+with open(django_settings.SYNC_PATH / "config" / "Genres.json", encoding="ascii") as fp:
+    TAG_SECTIONS = json.load(fp)["Tag Sections"]
 
 
 @register.filter()
