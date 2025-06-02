@@ -1,6 +1,7 @@
 import logging
 
 from asgiref.sync import sync_to_async
+from fastapi import HTTPException
 
 # pylint: disable = E1101
 NON_API_FIELDS = ["Downloaded", "Logo"]
@@ -52,7 +53,9 @@ def AddTags(lookupData: dict):
         if len(matching) == 1:
             matchObj = matching[0]
             break
-        if "Year" in matching[0].__dir__:
+        elif len(matching) == 0:
+            break
+        if "Year" in dir(matching[0]):
             matching = [x for x in matching if x.Year == lookupData["Year"]]
         if len(matching) == 1:
             matchObj = matching[0]
@@ -70,4 +73,4 @@ def AddTags(lookupData: dict):
             ",".join(lookupData["newTags"]),
         )
         return {"id": matchObj.id, "tags": matchObj.Genre_Tags, "Title": matchObj.Title}
-    return {"Error": "Not Found"}
+    raise HTTPException(status_code=404, detail="Item not found")
