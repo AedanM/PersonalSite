@@ -1,7 +1,12 @@
+import logging
+
 from asgiref.sync import sync_to_async
 
 # pylint: disable = E1101
 NON_API_FIELDS = ["Downloaded", "Logo"]
+
+
+LOGGER = logging.getLogger("UserLogger")
 
 
 @sync_to_async
@@ -35,3 +40,34 @@ def GetAll() -> dict:
         # pylint: disable=E1101
         backupDict[model.__name__] = [x.JsonRepr for x in model.objects.all()]
     return backupDict
+
+
+@sync_to_async
+def AddTags(lookupData: dict):
+    from media.modules.Utils import MODEL_LIST
+
+    matchObj = None
+    for model in MODEL_LIST:
+        matching = [x for x in model.objects.all() if x.Title == lookupData["Title"]]
+        if len(matching) == 1:
+            matchObj = matching[0]
+            break
+        if "Year" in matching[0].__dir__:
+            matching = [x for x in matching if x.Year == lookupData["Year"]]
+        if len(matching) == 1:
+            matchObj = matching[0]
+            break
+    if matchObj is not None:
+        matchObj.Genre_Tags = ",".join(
+            sorted(list(set(matchObj.Genre_Tags.split(",") + lookupData["newTags"])))
+        )
+        matchObj.save()
+        LOGGER.info(
+            "%s (%d) added %d tags -> %s",
+            matchObj.Title,
+            matchObj.id,
+            len(lookupData["newTags"]),
+            ",".join(lookupData["newTags"]),
+        )
+        return {"id": matchObj.id, "tags": matchObj.Genre_Tags, "Title": matchObj.Title}
+    return {"Error": "Not Found"}
