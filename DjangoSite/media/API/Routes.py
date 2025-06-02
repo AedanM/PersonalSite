@@ -1,7 +1,9 @@
 from pathlib import Path
 
 from fastapi import FastAPI
-from media.API.DBAccess import GetAll, GetAllMovies, GetAllTV
+from media.API.DBAccess import AddTags, GetAll, GetAllMovies, GetAllTV
+from pydantic import BaseModel
+
 
 description = (Path(__file__).parent / "Description.md").read_text()
 
@@ -44,3 +46,14 @@ async def Genres() -> dict:
 @API_APP.get(path="/backup", summary="Full fat backup of DB")
 async def Backup() -> dict:
     return dict(await GetAll())  # type: ignore
+
+
+class TagInfo(BaseModel):
+    Title: str
+    Year: int
+    newTags: list
+
+
+@API_APP.post(path="/addTags", summary="Append Tags to Tag List")
+async def AppendTags(info: TagInfo):
+    return dict(await AddTags(info.__dict__)) # type: ignore
