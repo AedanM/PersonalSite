@@ -63,8 +63,9 @@ def AddTags(lookupData: dict):
         )
         matchObj.save()
         LOGGER.info(
-            "%s added %d tags -> %s",
+            "%s (%d) added %d tags -> %s",
             matchObj.Title,
+            matchObj.id,
             len(lookupData["newTags"]),
             ",".join(lookupData["newTags"]),
         )
