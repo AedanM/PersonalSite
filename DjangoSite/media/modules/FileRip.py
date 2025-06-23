@@ -1,15 +1,17 @@
 import json
 import logging
-import os.path
 import sys
 import time
 from pathlib import Path
 
+import win32com.client as com  # pip install pywin32
+
 try:
-	from django.conf import settings as django_settings
-	SYNC = django_settings.SYNC_PATH
+    from django.conf import settings as django_settings
+
+    SYNC = django_settings.SYNC_PATH
 except ModuleNotFoundError:
-	SYNC = Path(sys.argv[1])
+    SYNC = Path(sys.argv[1])
 
 from progress.bar import Bar
 
@@ -28,7 +30,7 @@ def GetMovies(parent, showProgress: bool):
     for file in path.glob("**/*.*"):
         if file.is_file() and file.suffix not in [".ico", ".json"]:
             title = " ".join(file.stem.split(" ")[:-1])
-            size = os.stat(file).st_size / (1024 * 1024 * 1024)
+            size = file.stat().st_size / (1024 * 1024 * 1024)
             year = file.stem.split(" ")[-1][1:-1]
             tags = [x for x in str(file.parent).replace(str(path), "").split("\\") if x != ""]
             obj = {
@@ -57,44 +59,40 @@ BANNED_COMPONENTS = ["season", "_", "special"]
 def GetTV(parent: Path, showProgress: bool):
     path = parent / "TV Shows"
     folderObjs = []
+    fso = com.Dispatch("Scripting.FileSystemObject")
+    contents = list(path.glob("**/*"))
+    if showProgress:
+        print(f"TV Contents Loaded ({len(contents)})")
+    folders = [x for x in contents if "." not in x.name and not FolderBanned(x)]
+    subFiles = [x for x in contents if "." in x.name]
     if showProgress:
         progBar = Bar(
             "Loading Shows...",
-            max=len(list(path.glob("**/*/"))),
+            max=len(folders),
             suffix=r"%(index)d/%(max)d - %(eta)ds",
         )
-    for folder in path.glob("**/*/"):
-        subFolders = [str(x).lower() for x in folder.glob("**/*/")]
-        useFolder = True
-        if not FolderBanned(folder):
-            for subF in subFolders:
-                if not FolderBanned(subF):  # All subFolders must be banned
-                    useFolder = False
-                    break
-            if useFolder:
-                subFiles = list(folder.glob("**/*.*"))
-                folderObjs.append(
-                    {
-                        "Title": folder.stem,
-                        "FilePath": str(folder),
-                        "Count": len(subFiles),
-                        "Tags": [
-                            x
-                            for x in str(folder).replace(str(path), "").split("\\")[:-1]
-                            if x != ""
-                        ],
-                        "Size": round(
-                            sum(f.stat().st_size for f in subFiles) / (1024 * 1024 * 1024), 2
-                        ),
-                    }
-                )
+    for folder in folders:
+        parents = [x for x in folders if str(x) + "\\" in str(folder) and x != folder]
+        children = [x for x in folders if str(folder) + "\\" in str(x) and x != folder]
+        if len(children) == 0:
+            eps = [x for x in subFiles if str(folder) in str(x)]
+            winF = fso.GetFolder(folder)
+            folderObjs.append(
+                {
+                    "Title": folder.stem,
+                    "FilePath": str(folder),
+                    "Count": len(eps),
+                    "Tags": [x.stem for x in parents],
+                    "Size": round(winF.Size / (1024 * 1024 * 1024), 2),
+                }
+            )
         if showProgress:
             progBar.next()  # type: ignore
     if showProgress:
         print()
         print("TV Complete")
     if folderObjs:
-        with (path / "Summary.json").open("w", encoding="utf-8") as fp:
+        with Path(path / "Summary.json").open("w", encoding="utf-8") as fp:
             json.dump(folderObjs, fp)
     return folderObjs
 
