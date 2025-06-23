@@ -124,7 +124,6 @@ def checkFiles(request) -> HttpResponse:
     if request.GET.get("copyList", "False") == "True":
         CopyOverRenderQueue()
         return HttpResponse("Copied Render List")
-    LOGGER.error("HELLO WORLD")
     if request.GET.get("Scan", "False") == "True":
 
         x = subprocess.call(
