@@ -25,12 +25,30 @@ register = template.Library()
 
 LOGGER = logging.getLogger("UserLogger")
 
-WATCH_COLOR_MAP = {
-    "Watched": "blue",
-    "Downloaded": "lightgreen",
-    "Neither": "red",
-    "Watched On MS": "#1111FF",
-    "Watched Streaming": "purple",
+
+CONFIG = {
+    "WATCH_COLOR_MAP": {
+        "Watched": "blue",
+        "Downloaded": "lightgreen",
+        "Neither": "red",
+        "Watched On MS": "#1111FF",
+        "Watched Streaming": "purple",
+    },
+    "DECADE_MAP": {
+        "1900s": "rgb(51,255,201)",
+        "1910s": "rgb(247,167,153)",
+        "1920s": "rgb(198,202,253)",
+        "1930s": "rgb(254,203,82)",
+        "1940s": "rgb(255,151,255)",
+        "1950s": "rgb(182,232,128)",
+        "1960s": "rgb(255,102,146)",
+        "1970s": "rgb(25,211,243)",
+        "1980s": "rgb(255,161,90)",
+        "1990s": "rgb(171,99,250)",
+        "2000s": "rgb(0,204,150)",
+        "2010s": "rgb(239,85,59)",
+        "2020s": "rgb(99,110,250)",
+    },
 }
 
 
@@ -83,7 +101,7 @@ def WatchLen(objList: list, force: bool):
             x="Duration",
             color="Watch Status",
             nbins=len({x["Duration"] for x in objList}),
-            color_discrete_map=WATCH_COLOR_MAP,
+            color_discrete_map=CONFIG["WATCH_COLOR_MAP"],
         )
         outputDiv = GetHTML(fig)
         dstPath.write_text(outputDiv, encoding="utf-8")
@@ -167,7 +185,7 @@ def DurationOverTime(objList: list, force: bool) -> str:
                 x="Year",
                 y="Duration",
                 color="Watched",
-                color_discrete_map=WATCH_COLOR_MAP,
+                color_discrete_map=CONFIG["WATCH_COLOR_MAP"],
                 labels={"x": "Release Year", "y": "Duration (minutes)"},
                 title="Duration Over Time",
                 hover_name="Title",
@@ -221,6 +239,78 @@ def DecadeBreakdown(objList: list, force: bool) -> str:
                 names=labels,
                 title="Release Decade by Year",
                 values=values,
+                color=labels,
+                color_discrete_map=CONFIG["DECADE_MAP"],
+            )
+            outputDiv = GetHTML(fig, True)
+            dstPath.write_text(outputDiv, encoding="utf-8")
+    return outputDiv
+
+
+@register.filter
+def WatchedDecades(objList: list, force: bool) -> str:
+    outputDiv = ""
+    labels = []
+    values = []
+    dstPath = GetDst(objList, "WatchedDecades")
+    objList = [x for x in objList if x.Watched]
+    if dstPath.exists() and not force:
+        outputDiv = dstPath.read_text(encoding="utf-8")
+    else:
+        if getattr(objList[0], "Year", None):
+            startDecade = (min(x.Year for x in objList) // 10) * 10
+            for year in range(startDecade, 2030, 10):
+                labels.append(f"{year}s")
+                values.append(len([x for x in objList if x.Year >= year and x.Year < year + 10]))
+        elif getattr(objList[0], "Series_Start", None):
+            startDecade = (min(x.Series_Start for x in objList).year // 10) * 10
+            for year in range(startDecade, 2030, 10):
+                labels.append(f"{year}s")
+                values.append(len([x for x in objList if year <= x.Series_Start.year < year + 10]))
+        if labels and values:
+            fig = px.pie(
+                category_orders={"names": labels},
+                hole=0.25,
+                names=labels,
+                title="Watched by Decade",
+                values=values,
+                color=labels,
+                color_discrete_map=CONFIG["DECADE_MAP"],
+            )
+            outputDiv = GetHTML(fig, True)
+            dstPath.write_text(outputDiv, encoding="utf-8")
+    return outputDiv
+
+
+@register.filter
+def DownloadedDecades(objList: list, force: bool) -> str:
+    outputDiv = ""
+    labels = []
+    values = []
+    dstPath = GetDst(objList, "DownloadedDecades")
+    objList = [x for x in objList if x.Downloaded]
+    if dstPath.exists() and not force:
+        outputDiv = dstPath.read_text(encoding="utf-8")
+    else:
+        if getattr(objList[0], "Year", None):
+            startDecade = (min(x.Year for x in objList) // 10) * 10
+            for year in range(startDecade, 2030, 10):
+                labels.append(f"{year}s")
+                values.append(len([x for x in objList if x.Year >= year and x.Year < year + 10]))
+        elif getattr(objList[0], "Series_Start", None):
+            startDecade = (min(x.Series_Start for x in objList).year // 10) * 10
+            for year in range(startDecade, 2030, 10):
+                labels.append(f"{year}s")
+                values.append(len([x for x in objList if year <= x.Series_Start.year < year + 10]))
+        if labels and values:
+            fig = px.pie(
+                category_orders={"names": labels},
+                hole=0.25,
+                names=labels,
+                title="Downloaded by Decade",
+                values=values,
+                color=labels,
+                color_discrete_map=CONFIG["DECADE_MAP"],
             )
             outputDiv = GetHTML(fig, True)
             dstPath.write_text(outputDiv, encoding="utf-8")
@@ -239,7 +329,7 @@ def RuntimeBreakdown(objList: list, force: bool) -> str:
         if getattr(objList[0], "Series_Start", None):
             startDecade = (min(x.Series_Start.year for x in objList) // 10) * 10
             for year in range(startDecade, 2030, 10):
-                labels.append(f"{year}")
+                labels.append(f"{year}s")
                 values.append(
                     sum(
                         ceil(
@@ -266,8 +356,9 @@ def RuntimeBreakdown(objList: list, force: bool) -> str:
                 names=labels,
                 title="Runtime Breakdown by Year",
                 values=values,
+                color=labels,
+                color_discrete_map=CONFIG["DECADE_MAP"],
             )
-
             outputDiv = GetHTML(fig, True)
             dstPath.write_text(outputDiv, encoding="utf-8")
     return outputDiv
@@ -362,7 +453,7 @@ def ValuesOverYears(objList: list, force: bool) -> str:
                 y="Media Counts",
                 color="Watch Status",
                 hover_name="Titles",
-                color_discrete_map=WATCH_COLOR_MAP,
+                color_discrete_map=CONFIG["WATCH_COLOR_MAP"],
             )
 
             fig.update_layout(
@@ -418,7 +509,7 @@ def TimeLine(objList: list, force: bool) -> str:
             x_end="Series_End",
             y="Idx",
             color="Watched",
-            color_discrete_map=WATCH_COLOR_MAP,
+            color_discrete_map=CONFIG["WATCH_COLOR_MAP"],
             hover_name="Title",
             title="Watching Trends over Time",
         )
@@ -499,7 +590,7 @@ def GenreSearch(objList: list, force: bool):
                 y="Watch %",
                 color="Watch Status",
                 hover_name="Number",
-                color_discrete_map=WATCH_COLOR_MAP,
+                color_discrete_map=CONFIG["WATCH_COLOR_MAP"],
             )
 
             fig.update_layout(
@@ -611,7 +702,7 @@ def DurationVsRating(objList: list, force: bool) -> str:
                 "Ratings": [x.Rating for x in trimmedList],
                 "Duration": duration,
                 "Title": [x.Title for x in trimmedList],
-                "Decade": [str(x.Year // 10 * 10) for x in trimmedList],
+                "Decade": [f"{x.Year // 10 * 10}s" for x in trimmedList],
             }
         )
         fig = px.scatter(
@@ -623,6 +714,7 @@ def DurationVsRating(objList: list, force: bool) -> str:
             log_x=useTotal,
             labels={"Duration": "Media Length", "Ratings": "Star Ratings"},
             hover_name="Title",
+            color_discrete_map=CONFIG["DECADE_MAP"],
         )
         rollingTrend = sm.nonparametric.lowess(df["Ratings"], df["Duration"], frac=0.3)
         fig.add_scatter(x=rollingTrend[:, 0], y=rollingTrend[:, 1], mode="lines", name="Average")
@@ -682,7 +774,7 @@ def CompletionPercentageRuntime(objList: list, force: bool) -> str:
             hole=0.25,
             names="label",
             color="label",
-            color_discrete_map=WATCH_COLOR_MAP,
+            color_discrete_map=CONFIG["WATCH_COLOR_MAP"],
             category_orders={"label": cats},
             title="Watch Status by Duration",
             values="values",
@@ -724,7 +816,7 @@ def CompletionPercentage(objList: list, force: bool) -> str:
             names="label",
             category_orders={"label": cats},
             color="label",
-            color_discrete_map=WATCH_COLOR_MAP,
+            color_discrete_map=CONFIG["WATCH_COLOR_MAP"],
             title="Watch Status by Count",
             values="values",
         )
