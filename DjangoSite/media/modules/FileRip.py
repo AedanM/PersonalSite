@@ -61,8 +61,6 @@ def GetTV(parent: Path, showProgress: bool):
     folderObjs = []
     fso = com.Dispatch("Scripting.FileSystemObject")
     contents = list(path.glob("**/*"))
-    if showProgress:
-        print(f"TV Contents Loaded ({len(contents)})")
     folders = [x for x in contents if "." not in x.name and not FolderBanned(x)]
     subFiles = [x for x in contents if "." in x.name]
     if showProgress:
