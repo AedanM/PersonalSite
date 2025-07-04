@@ -270,6 +270,17 @@ def index(request: HttpRequest, media="Movie") -> HttpResponse:
         return HttpResponseNotFound()
 
     _formType, objType = GetFormAndClass(media)
+
+    if sortKey := request.GET.get("sort", None):
+        if sortKey not in dir(objType.objects.first()):
+            redirectLink = f"/media/{media.lower()}s"
+            for key, value in request.GET.items():
+                if "?" not in redirectLink:
+                    redirectLink += "?"
+                if key != "sort":
+                    redirectLink += f"{key}={value}&"
+            return redirect(redirectLink)
+
     context = FilterMedia(request=request, objType=objType)
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
     pageSize: int = int(
