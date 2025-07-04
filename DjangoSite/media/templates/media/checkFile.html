@@ -91,6 +91,7 @@
                 <table class="striped sortable">
                   <thead>
                     <tr>
+                      <th></th>
                       <th>Title</th>
                       <th>Year</th>
                       <th>Size</th>
@@ -103,6 +104,13 @@
                   <tbody>
                     {% for show in movies|Get:'matched' %}
                       <tr>
+                        <td>
+                          {% if show|Get:'Match'|Get:'Watched' %}
+                            ☑
+                          {% else %}
+                            ☐
+                          {% endif %}
+                        </td>
                         <td>
                           <a class="clean-link" href="edit?id={{ show|Get:'Match'|Get:'ID' }}" />{{ show|Get:'Title' }}
                         </td>
@@ -117,6 +125,7 @@
                             {% endfor %}
                           </td>
                         {% endwith %}
+                        <td>{{ show|Get:'Match'|Get:'Watched' }}</td>
                         <td>{{ show|Get:'Match'|Get:'Marked' }}</td>
                       </tr>
                     {% endfor %}
@@ -179,6 +188,7 @@
                 <table class="striped sortable">
                   <thead>
                     <tr>
+                      <th></th>
                       <th>Title</th>
                       <th>Count</th>
                       <th>Files Missing</th>
@@ -192,6 +202,14 @@
                   <tbody>
                     {% for show in tvshows|Get:'matched' %}
                       <tr>
+                        <td>
+                          <a class="clean-link" href="setBool?field=Watched&contentId={{ show|Get:'Match'|Get:'ID' }}" />
+                          {% if show|Get:'Match'|Get:'Watched' %}
+                            ☑
+                          {% else %}
+                            ☐
+                          {% endif %}
+                        </td>
                         <td>
                           <a class="clean-link" href="edit?id={{ show|Get:'Match'|Get:'ID' }}" />{{ show|Get:'Title' }}
                         </td>

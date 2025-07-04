@@ -1,6 +1,5 @@
 # pylint: disable=C0103
 import logging
-import subprocess
 import time
 
 from django.contrib.auth.decorators import login_required
@@ -9,7 +8,7 @@ from django.http import HttpRequest, HttpResponse, HttpResponseNotFound
 from django.shortcuts import redirect, render
 
 from .models import Movie, TVShow
-from .modules.CheckDetails import CheckMovies, CheckTV, CopyOverRenderQueue, HandleReRenderQueue
+from .modules.CheckDetails import CheckMovies, CheckTV
 from .modules.ModelTools import DownloadImage, SortTags
 from .modules.Utils import (
     MODEL_LIST,
@@ -118,21 +117,6 @@ def adjustTags(_request, fromTag: str, toTag: str):
 
 @login_required
 def checkFiles(request) -> HttpResponse:
-    if request.GET.get("renderList", "False") == "True":
-        HandleReRenderQueue()
-        return HttpResponse("Rendered to File")
-    if request.GET.get("copyList", "False") == "True":
-        CopyOverRenderQueue()
-        return HttpResponse("Copied Render List")
-    if request.GET.get("Scan", "False") == "True":
-
-        x = subprocess.call(
-            r"python C:\PersonalScripts\Projects\PersonalSite\DjangoSite\media\modules\FileRip.py"
-        )
-        LOGGER.info(x)
-        LOGGER.error("HELLO WORLD")
-        # RipWDrive(request.GET.get("type", "Movie"), showProgress=request.GET.get("progress", False))
-
     unmatchedTV, matchedTV = CheckTV()
     unmatchedMovie, matchedMovie = CheckMovies()
 
@@ -147,7 +131,6 @@ def checkFiles(request) -> HttpResponse:
         for x in TVShow.objects.all()
         if x.Downloaded and x.id not in [y["Match"]["ID"] for y in matchedTV]  # type:ignore
     ]
-
     return render(
         request=request,
         template_name="media/checkFile.html",
@@ -287,6 +270,17 @@ def index(request: HttpRequest, media="Movie") -> HttpResponse:
         return HttpResponseNotFound()
 
     _formType, objType = GetFormAndClass(media)
+
+    if sortKey := request.GET.get("sort", None):
+        if sortKey not in dir(objType.objects.first()):
+            redirectLink = f"/media/{media.lower()}s"
+            for key, value in request.GET.items():
+                if "?" not in redirectLink:
+                    redirectLink += "?"
+                if key != "sort":
+                    redirectLink += f"{key}={value}&"
+            return redirect(redirectLink)
+
     context = FilterMedia(request=request, objType=objType)
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
     pageSize: int = int(

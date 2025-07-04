@@ -53,6 +53,7 @@ def FilterOutMatches(movies, obj: Any = Movie):
                 "Year": matches[0].Year,
                 "Tag Diff": [x for x in m["Tags"] if x not in matches[0].GenreTagList],
                 "Marked": matches[0].Downloaded,
+                "Watched": matches[0].Watched,
             }
             m["Title"] = m["Match"]["Title"]
             matched.append(m)
@@ -213,6 +214,7 @@ def FilterOutTVMatches(files: list):
                 "Tag Diff": [x for x in m["Tags"] if x not in matches[0].GenreTagList],
                 "Marked": matches[0].Downloaded,
                 "Count": matches[0].Length,
+                "Watched": matches[0].Watched,
             }
             m["Title"] = matches[0].Title
             m["CountDiff"] = matches[0].Length - m["Count"]
@@ -223,7 +225,9 @@ def FilterOutTVMatches(files: list):
         else:
             closest = sorted(
                 tvList,
-                key=lambda x, obj=m: thefuzz.fuzz.ratio(obj["Title"], x.Title),  # type:ignore
+                key=lambda x, obj=m: thefuzz.fuzz.ratio(
+                    str(obj["Title"]), str(x.Title)
+                ),  # type:ignore
             )
             m["Closest"] = {"Title": closest[-1].Title, "Year": closest[-1].Year}
             unmatched.append(m)
