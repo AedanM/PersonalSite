@@ -272,7 +272,7 @@ def index(request: HttpRequest, media="Movie") -> HttpResponse:
     _formType, objType = GetFormAndClass(media)
 
     if sortKey := request.GET.get("sort", None):
-        if sortKey not in dir(objType.objects.first()):
+        if sortKey not in dir(objType.objects.first()) + ["Random", "Date Added"]:
             redirectLink = f"/media/{media.lower()}s"
             for key, value in request.GET.items():
                 if "?" not in redirectLink:
