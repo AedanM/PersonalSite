@@ -22,6 +22,7 @@ from .modules.WikiParse import ScrapeWiki
 
 # Create your views here.
 LOGGER = logging.getLogger("UserLogger")
+DEFAULT_SORT_TERMS: list[str] = ["Random", "Date Added"]
 
 
 def apiRedirect(_request) -> HttpResponse:
@@ -272,7 +273,7 @@ def index(request: HttpRequest, media="Movie") -> HttpResponse:
     _formType, objType = GetFormAndClass(media)
 
     if sortKey := request.GET.get("sort", None):
-        if sortKey not in dir(objType.objects.first()) + ["Random", "Date Added"]:
+        if sortKey not in dir(objType.objects.first()) + DEFAULT_SORT_TERMS:
             redirectLink = f"/media/{media.lower()}s"
             for key, value in request.GET.items():
                 if "?" not in redirectLink:
