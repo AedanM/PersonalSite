@@ -3,17 +3,24 @@ import logging
 import os
 import re
 from pathlib import Path
+from pprint import pp
 from typing import Any
 
 from django.conf import settings as django_settings
 from django.core.exceptions import ObjectDoesNotExist
 
 # pylint: disable=E0402
-from ..forms import (AlbumForm, ComicForm, MovieForm, NovelForm, PodcastForm,
-                     TVForm, YoutubeForm)
+from ..forms import AlbumForm, ComicForm, MovieForm, NovelForm, PodcastForm, TVForm, YoutubeForm
 from ..models import Album, Comic, Movie, Novel, Podcast, TVShow, Youtube
-from ..utils import (FEATURES, ExtractYearRange, FilterTags, FuzzStr, GetTest,
-                     SearchFunction, SortFunction)
+from ..utils import (
+    FEATURES,
+    ExtractYearRange,
+    FilterTags,
+    FuzzStr,
+    GetTest,
+    SearchFunction,
+    SortFunction,
+)
 
 DEFINED_TAGS: dict = {}
 DEFINED_TAGS_TIME = 0.0
@@ -24,7 +31,7 @@ LOGGER = logging.getLogger("UserLogger")
 
 
 def LoadDefinedTags():
-    global DEFINED_TAGS_TIME, DEFINED_TAGS #type:ignore
+    global DEFINED_TAGS_TIME, DEFINED_TAGS  # type:ignore
     DEFINED_TAGS_TIME = os.path.getmtime(django_settings.SYNC_PATH / "config" / "Genres.json")
     with open(django_settings.SYNC_PATH / "config" / "Genres.json", encoding="ascii") as fp:
         DEFINED_TAGS = json.load(fp)
@@ -181,3 +188,20 @@ def FilterMedia(request, objType) -> dict:
             else ""
         ),
     }
+
+
+def GenerateReport(obj, objCount):
+    output = {}
+    objects = obj.objects.all()
+    used = []
+    for genre in DEFINED_TAGS["Genres"]:
+        output[genre] = sorted(
+            [x for x in objects if genre in x.Genre_Tags and x not in used and x.Rating > 0],
+            key=lambda x: x.Rating,
+            reverse=True,
+        )[:objCount]
+        used += output[genre]
+    return output if len(used) > 0 else {}
+
+
+LoadDefinedTags()
