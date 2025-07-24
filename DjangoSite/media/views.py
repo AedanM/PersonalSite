@@ -61,9 +61,10 @@ def delete(request) -> HttpResponse:
 def report(request) -> HttpResponse:
     context = {"colorMode": request.COOKIES.get("colorMode", "dark"), "Media": {}}
     mediaCount = request.GET.get("mediaCount", 5)
+    tag = request.GET.get("tag", "Genres")
 
     for obj in MODEL_LIST:
-        context["Media"][obj.__name__] = GenerateReport(obj, mediaCount)
+        context["Media"][obj.__name__] = GenerateReport(obj, mediaCount, tag)
     return render(request, "media/report.html", context)
 
 
