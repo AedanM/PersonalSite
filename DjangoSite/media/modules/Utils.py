@@ -190,13 +190,17 @@ def FilterMedia(request, objType) -> dict:
     }
 
 
-def GenerateReport(obj, objCount, tag):
+def GenerateReport(obj, objCount: int, tag: str, repeats: bool) -> dict:
     output = {}
     objects = obj.objects.all()
     used = []
     for genre in DEFINED_TAGS[tag]:
         output[genre] = sorted(
-            [x for x in objects if genre in x.Genre_Tags and x not in used and x.Rating > 0],
+            [
+                x
+                for x in objects
+                if genre in x.Genre_Tags and (x not in used or repeats) and x.Rating > 0
+            ],
             key=lambda x: x.Rating,
             reverse=True,
         )[:objCount]
