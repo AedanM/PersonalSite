@@ -125,6 +125,7 @@
                             {% endfor %}
                           </td>
                         {% endwith %}
+                        <td>{{ show|Get:'Match'|Get:'Watched' }}</td>
                         <td>{{ show|Get:'Match'|Get:'Marked' }}</td>
                       </tr>
                     {% endfor %}
