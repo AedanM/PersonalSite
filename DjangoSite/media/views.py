@@ -16,6 +16,7 @@ from .modules.Utils import (
     FilterMedia,
     FindID,
     FormMatch,
+    GenerateReport,
     GetFormAndClass,
 )
 from .modules.WikiParse import ScrapeWiki
@@ -55,6 +56,15 @@ def delete(request) -> HttpResponse:
     else:
         return HttpResponseNotFound("No Matching ID Found")
     return redirect("/media")
+
+
+def report(request) -> HttpResponse:
+    context = {"colorMode": request.COOKIES.get("colorMode", "dark"), "Media": {}}
+    mediaCount = request.GET.get("mediaCount", 5)
+
+    for obj in MODEL_LIST:
+        context["Media"][obj.__name__] = GenerateReport(obj, mediaCount)
+    return render(request, "media/report.html", context)
 
 
 @login_required

@@ -16,6 +16,7 @@ urlpatterns = [
     path(route="stats", view=views.stats, name="Stats"),
     path(route="view", view=views.viewMedia, name="view"),
     path(route="wiki", view=views.wikiLoad, name="wikiLoad"),
+    path(route="report", view=views.report, name="report"),
     path(route="", view=views.index, name="index"),
     path(route="<str:media>", view=views.index, name="index"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
