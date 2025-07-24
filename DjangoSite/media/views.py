@@ -62,9 +62,10 @@ def report(request) -> HttpResponse:
     context = {"colorMode": request.COOKIES.get("colorMode", "dark"), "Media": {}}
     mediaCount = request.GET.get("mediaCount", 5)
     tag = request.GET.get("tag", "Genres")
+    repeats = request.GET.get("repeats", "true").lower() == "true"
 
     for obj in MODEL_LIST:
-        context["Media"][obj.__name__] = GenerateReport(obj, mediaCount, tag)
+        context["Media"][obj.__name__] = GenerateReport(obj, mediaCount, tag, repeats)
     return render(request, "media/report.html", context)
 
 
