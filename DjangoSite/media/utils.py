@@ -7,22 +7,33 @@ from thefuzz import fuzz
 
 MINIMUM_YEAR = 1900
 
-FEATURES = ["Watched", "Downloaded", "New", "Ready"]
+FEATURES = ["Watched", "Downloaded", "New", "Ready", "Read"]
 
 
-def GetTest(tagName) -> Callable:
+def GetTest(tagName, objSample) -> Callable:
     # pylint: disable = C3001
+    required = []
     match (tagName):
+        case "Read":
+            test = lambda x: x.Read
+            required = ["Read"]
         case "Watched":
             test = lambda x: x.Watched
+            required = ["Watched"]
         case "Downloaded":
             test = lambda x: x.Downloaded
+            required = ["Downloaded"]
         case "New":
             test = lambda x: not x.Downloaded and not x.Watched
+            required = ["Downloaded", "Watched"]
         case "Ready":
             test = lambda x: x.Downloaded and not x.Watched
+            required = ["Downloaded", "Watched"]
         case _default:
             test = lambda _x: True
+    for r in required:
+        if r not in dir(objSample):
+            return lambda x: False
     return test
 
 
@@ -45,7 +56,7 @@ def FilterTags(tagList, objList, include):
     if tagList:
         for feature in FEATURES:
             if feature in tagList:
-                test = GetTest(feature)
+                test = GetTest(feature, objList[0])
                 objList = [
                     x for x in objList if (test(x) and include) or (not test(x) and not include)
                 ]

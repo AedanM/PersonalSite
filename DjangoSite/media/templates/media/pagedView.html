@@ -277,11 +277,13 @@
 
 									{% for item, freq in genre.items %}
 									{% with active=item|InList:activeList%}
+									{%if freq > 0%}
 									<button
 										onclick="SetUrlParam(['genre', 'page'],['{{item}}', ''], true)"
 										class="{{ title|TagStyle:active }}">
 										{{item}} ({{freq}})
 									</button>
+									{%endif%}
 									{% endwith %} {% endfor %}
 								</td>
 							</tr>

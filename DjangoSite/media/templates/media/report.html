@@ -52,7 +52,7 @@
                 {% if media %}
                   <details open>
                     <summary>
-                      <h4>{{ tag }}</h4>
+                      <h4>{{ tag }} ({{ freq|Get:mediaName|Get:tag }})</h4>
                     </summary>
                     <div class="d-flex flex-row justify-content-center">
                       {% for m in media %}
