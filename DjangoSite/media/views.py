@@ -23,7 +23,7 @@ from .modules.WikiParse import ScrapeWiki
 
 # Create your views here.
 LOGGER = logging.getLogger("UserLogger")
-DEFAULT_SORT_TERMS: list[str] = ["Random", "Date Added"]
+DEFAULT_SORT_TERMS: list[str] = ["Random", "Date Added", "Genre Tags"]
 
 
 def apiRedirect(_request) -> HttpResponse:
@@ -301,7 +301,6 @@ def index(request: HttpRequest, media="Movie") -> HttpResponse:
             "pageSize", 36 if "iPhone" not in request.headers.get("User-Agent", "") else 12
         )
     )
-
     pageNumber: int = int(request.GET.get("page", 1))
     context["page_obj"] = Paginator(context["obj_list"], pageSize).get_page(pageNumber)
     context["loggedIn"] = request.user.is_authenticated

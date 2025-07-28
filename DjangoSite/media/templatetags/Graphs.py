@@ -1,6 +1,5 @@
 import datetime
 import hashlib
-import json
 import logging
 import shutil
 from functools import wraps
@@ -13,13 +12,13 @@ import plotly.express as px  # type:ignore
 import statsmodels.api as sm  # type:ignore
 from django import template
 from django.conf import settings as django_settings
+from yaml import Loader, load
 
 from ..utils import MINIMUM_YEAR
 
 DEFINED_TAGS = {}
-with open(django_settings.SYNC_PATH / "config" / "Genres.json", encoding="ascii") as fp:
-    DEFINED_TAGS = json.load(fp)
-    DEFINED_TAGS.pop("_comment", None)
+with open(django_settings.SYNC_PATH / "config" / "Genres.yml", encoding="ascii") as fp:
+    DEFINED_TAGS = load(fp, Loader)
 
 register = template.Library()
 

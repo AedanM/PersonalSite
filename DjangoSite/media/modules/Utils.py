@@ -1,4 +1,3 @@
-import json
 import logging
 import os
 import re
@@ -8,6 +7,7 @@ from typing import Any
 
 from django.conf import settings as django_settings
 from django.core.exceptions import ObjectDoesNotExist
+from yaml import Loader, load
 
 # pylint: disable=E0402
 from ..forms import AlbumForm, ComicForm, MovieForm, NovelForm, PodcastForm, TVForm, YoutubeForm
@@ -32,9 +32,9 @@ LOGGER = logging.getLogger("UserLogger")
 
 def LoadDefinedTags():
     global DEFINED_TAGS_TIME, DEFINED_TAGS  # type:ignore
-    DEFINED_TAGS_TIME = os.path.getmtime(django_settings.SYNC_PATH / "config" / "Genres.json")
-    with open(django_settings.SYNC_PATH / "config" / "Genres.json", encoding="ascii") as fp:
-        DEFINED_TAGS = json.load(fp)
+    DEFINED_TAGS_TIME = os.path.getmtime(django_settings.SYNC_PATH / "config" / "Genres.yml")
+    with open(django_settings.SYNC_PATH / "config" / "Genres.yml", encoding="ascii") as fp:
+        DEFINED_TAGS = load(fp, Loader)
         DEFINED_TAGS.pop("_comment", None)
 
 
@@ -105,7 +105,7 @@ def FindID(contentID: str) -> Any:
 
 
 def GetAllTags(objType, loggedIn=False) -> dict[str, dict]:
-    if os.path.getmtime(django_settings.SYNC_PATH / "config" / "Genres.json") > DEFINED_TAGS_TIME:
+    if os.path.getmtime(django_settings.SYNC_PATH / "config" / "Genres.yml") > DEFINED_TAGS_TIME:
         LoadDefinedTags()
     genres = []
     _ = [[genres.append(y) for y in x.GenreTagList] for x in objType.objects.all()]  # type:ignore
@@ -134,8 +134,8 @@ def GetAllTags(objType, loggedIn=False) -> dict[str, dict]:
         freqDir["ETC"][i] = genres.count(i)
 
     outputDir = {}
-    for title, freqList in freqDir.items():
-        outputDir[title] = dict(sorted(freqList.items(), key=lambda x: x[1], reverse=True))
+    for title in DEFINED_TAGS["Tag Order"]:
+        outputDir[title] = dict(sorted(freqDir[title].items(), key=lambda x: x[1], reverse=True))
     return outputDir
 
 
