@@ -119,13 +119,13 @@ def GetAllTags(objType, loggedIn=False) -> dict[str, dict]:
                 if i == feature and (loggedIn or i == "Watched"):
                     try:
                         freqDir[title][i] = len(
-                            [x for x in objType.objects.all() if GetTest(feature)(x)]
+                            [x for x in objType.objects.all() if GetTest(feature, x)(x)]
                         )
                     except AttributeError:
                         LOGGER.error("%s not found in %s", feature, objType.__name__)
                 elif i == "Watched" and i in dir(objType.objects.all()[0]):
                     freqDir[title][i] = len(
-                        [x for x in objType.objects.all() if GetTest(feature)(x)]
+                        [x for x in objType.objects.all() if GetTest(feature, x)(x)]
                     )
 
         genres = [x for x in genres if x not in definedList and x != "Downloaded"]
@@ -190,12 +190,13 @@ def FilterMedia(request, objType) -> dict:
     }
 
 
-def GenerateReport(obj, objCount: int, tag: str, repeats: bool) -> dict:
-    output = {}
+def GenerateReport(obj, objCount: int, tag: str, repeats: bool) -> tuple[dict, dict]:
+    hold = {}
+    freq = {}
     objects = obj.objects.all()
     used = []
     for genre in DEFINED_TAGS[tag]:
-        output[genre] = sorted(
+        media = sorted(
             [
                 x
                 for x in objects
@@ -203,9 +204,14 @@ def GenerateReport(obj, objCount: int, tag: str, repeats: bool) -> dict:
             ],
             key=lambda x: x.Rating,
             reverse=True,
-        )[:objCount]
-        used += output[genre]
-    return output if len(used) > 0 else {}
+        )
+        freq[genre] = len(media)
+        hold[genre] = media[:objCount]
+        used += hold[genre]
+    output = {}
+    for genre in sorted(DEFINED_TAGS[tag]):
+        output[genre] = hold[genre]
+    return output if len(used) > 0 else {}, freq
 
 
 LoadDefinedTags()
