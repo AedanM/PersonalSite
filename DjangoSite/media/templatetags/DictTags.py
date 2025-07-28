@@ -1,19 +1,22 @@
 import datetime
-import json
 import typing
 
 from django import template
 from django.conf import settings as django_settings
 from django.core.paginator import Paginator
+from yaml import Loader, load
 
 from ..models import Movie, TVShow
 from ..utils import MINIMUM_YEAR
 
 register = template.Library()
 
+TAG_ORDER = {}
 TAG_SECTIONS = {}
-with open(django_settings.SYNC_PATH / "config" / "Genres.json", encoding="ascii") as fp:
-    TAG_SECTIONS = json.load(fp)["Tag Sections"]
+with open(django_settings.SYNC_PATH / "config" / "Genres.yml", encoding="ascii") as fp:
+    YAML_FILE = load(fp, Loader)
+    TAG_SECTIONS = YAML_FILE["Tag Sections"]
+    TAG_ORDER = YAML_FILE["Tag Order"]
 
 
 @register.filter()
@@ -35,7 +38,7 @@ def HasAttr(iterDict, attrName) -> bool:
 
 @register.filter
 def TagOrder(_tag):
-    yield from TAG_SECTIONS
+    yield from TAG_ORDER
 
 
 @register.filter

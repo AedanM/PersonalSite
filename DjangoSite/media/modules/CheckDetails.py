@@ -1,4 +1,3 @@
-import json
 import logging
 import shutil
 import time
@@ -8,6 +7,7 @@ from typing import Any
 import ffmpeg  # type: ignore
 import thefuzz.fuzz
 from django.conf import settings as django_settings
+from yaml import Loader, load
 
 from ..models import Movie, TVShow
 
@@ -18,10 +18,10 @@ LOGGER = logging.getLogger("UserLogger")
 
 def CheckMovies():
     movies = []
-    with (django_settings.SYNC_PATH / "config" / "MediaServerSummary.json").open(
+    with (django_settings.SYNC_PATH / "config" / "MediaServerSummary.yml").open(
         mode="r", encoding="ascii"
     ) as fp:
-        movies = json.load(fp)["Movies"]
+        movies = load(fp,Loader)["Movies"]
 
     ResetAlias(movies)
     unmatched, matched = FilterOutMatches(movies)
@@ -143,10 +143,10 @@ def MatchTitles(t1, t2) -> bool:
 
 
 def CleanAliasGroups(obj: dict) -> dict:
-    with (django_settings.SYNC_PATH / "config" / "Alias.json").open(
+    with (django_settings.SYNC_PATH / "config" / "Alias.yml").open(
         mode="r", encoding="ascii"
     ) as fp:
-        jsonFile = json.load(fp)
+        jsonFile = load(fp, Loader)
         groups = jsonFile["Pools"]
     for diff in obj["Match"]["Tag Diff"]:
         for g in [x for x in groups if diff in x]:
@@ -160,10 +160,10 @@ def CleanAliasGroups(obj: dict) -> dict:
 def ResetAlias(files):
     titles = {}
     tags = {}
-    with (django_settings.SYNC_PATH / "config" / "Alias.json").open(
+    with (django_settings.SYNC_PATH / "config" / "Alias.yml").open(
         mode="r", encoding="ascii"
     ) as fp:
-        jsonFile = json.load(fp)
+        jsonFile = load(fp,Loader)
         titles = jsonFile["Titles"]
         tags = jsonFile["Tags"]
     if isinstance(files, dict):
@@ -183,10 +183,10 @@ def ResetAlias(files):
 
 def CheckTV():
     shows = []
-    with (django_settings.SYNC_PATH / "config" / "MediaServerSummary.json").open(
+    with (django_settings.SYNC_PATH / "config" / "MediaServerSummary.yml").open(
         mode="r", encoding="ascii"
     ) as fp:
-        shows = json.load(fp)["TV Shows"]
+        shows = load(fp,Loader)["TV Shows"]
 
     ResetAlias(shows)
     unmatched, matched = FilterOutTVMatches(shows)

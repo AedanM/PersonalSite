@@ -1,4 +1,3 @@
-import json
 import logging
 import sys
 import time
@@ -14,6 +13,7 @@ except ModuleNotFoundError:
     SYNC = Path(sys.argv[1])
 
 from progress.bar import Bar
+from yaml import Dumper, Loader, dump, load
 
 LOGGER = logging.getLogger("UserLogger")
 
@@ -28,7 +28,7 @@ def GetMovies(parent, showProgress: bool):
             suffix=r"%(index)d/%(max)d - %(eta)ds",
         )
     for file in path.glob("**/*.*"):
-        if file.is_file() and file.suffix not in [".ico", ".json"]:
+        if file.is_file() and file.suffix not in [".ico", ".json", ".yml", ".srt"]:
             title = " ".join(file.stem.split(" ")[:-1])
             size = file.stat().st_size / (1024 * 1024 * 1024)
             year = file.stem.split(" ")[-1][1:-1]
@@ -48,8 +48,8 @@ def GetMovies(parent, showProgress: bool):
     if showProgress:
         print()
         print("Movies Complete")
-    with open(path / "Summary.json", encoding="ascii", mode="w") as fp:
-        json.dump({"Movies": objList}, fp)
+    with open(path / "Summary.yml", encoding="ascii", mode="w") as fp:
+        dump({"Movies": objList}, fp, Dumper)
     return objList
 
 
@@ -90,8 +90,8 @@ def GetTV(parent: Path, showProgress: bool):
         print()
         print("TV Complete")
     if folderObjs:
-        with Path(path / "Summary.json").open("w", encoding="utf-8") as fp:
-            json.dump(folderObjs, fp)
+        with Path(path / "Summary.yml").open("w", encoding="utf-8") as fp:
+            dump(folderObjs, fp, Dumper)
     return folderObjs
 
 
@@ -111,19 +111,22 @@ def RipWDrive(mediaType: str, showProgress: bool):
         else:
             tv = GetTV(ms, showProgress)
             LOGGER.info("TV scrape took %f seconds", time.time() - start)
-        summaryFile = SYNC / "config" / "MediaServerSummary.json"
-        currentFile = json.loads(summaryFile.read_text())
+        summaryFile = SYNC / "config" / "MediaServerSummary.yml"
+        currentFile = {}
+        with summaryFile.open(encoding="utf-8") as fp:
+            currentFile = load(fp, Loader)
         with open(
-            SYNC / "config" / "MediaServerSummary.json",
+            SYNC / "config" / "MediaServerSummary.yml",
             mode="w",
-            encoding="ascii",
+            encoding="utf-8",
         ) as fp:
-            json.dump(
+            dump(
                 {
                     "Movies": movies if mediaType == "Movie" and movies else currentFile["Movies"],
                     "TV Shows": tv if mediaType != "Movie" and tv else currentFile["TV Shows"],
                 },
                 fp,
+                Dumper,
             )
     except FileNotFoundError as e:
         print(f"Drive not found {e}")
