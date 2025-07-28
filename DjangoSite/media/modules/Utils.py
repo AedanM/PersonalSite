@@ -10,17 +10,11 @@ from django.core.exceptions import ObjectDoesNotExist
 from yaml import Loader, load
 
 # pylint: disable=E0402
-from ..forms import AlbumForm, ComicForm, MovieForm, NovelForm, PodcastForm, TVForm, YoutubeForm
+from ..forms import (AlbumForm, ComicForm, MovieForm, NovelForm, PodcastForm,
+                     TVForm, YoutubeForm)
 from ..models import Album, Comic, Movie, Novel, Podcast, TVShow, Youtube
-from ..utils import (
-    FEATURES,
-    ExtractYearRange,
-    FilterTags,
-    FuzzStr,
-    GetTest,
-    SearchFunction,
-    SortFunction,
-)
+from ..utils import (FEATURES, ExtractYearRange, FilterTags, FuzzStr, GetTest,
+                     SearchFunction, SortFunction)
 
 DEFINED_TAGS: dict = {}
 DEFINED_TAGS_TIME = 0.0
@@ -115,19 +109,11 @@ def GetAllTags(objType, loggedIn=False) -> dict[str, dict]:
         for i in definedList:
             if genres.count(i) > 0:
                 freqDir[title][i] = genres.count(i)
-            for feature in FEATURES:
-                if i == feature and (loggedIn or i == "Watched"):
-                    try:
-                        freqDir[title][i] = len(
-                            [x for x in objType.objects.all() if GetTest(feature, x)(x)]
-                        )
-                    except AttributeError:
-                        LOGGER.error("%s not found in %s", feature, objType.__name__)
-                elif i == "Watched" and i in dir(objType.objects.all()[0]):
-                    freqDir[title][i] = len(
-                        [x for x in objType.objects.all() if GetTest(feature, x)(x)]
-                    )
-
+            if i in FEATURES and (loggedIn or i in ["Watched", "Read"]):
+                try:
+                    freqDir[title][i] = len([x for x in objType.objects.all() if GetTest(i, x)(x)])
+                except AttributeError:
+                    LOGGER.error("%s not found in %s", i, objType.__name__)
         genres = [x for x in genres if x not in definedList and x != "Downloaded"]
     freqDir["ETC"] = {}
     for i in set(genres):
