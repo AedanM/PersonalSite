@@ -10,11 +10,17 @@ from django.core.exceptions import ObjectDoesNotExist
 from yaml import Loader, load
 
 # pylint: disable=E0402
-from ..forms import (AlbumForm, ComicForm, MovieForm, NovelForm, PodcastForm,
-                     TVForm, YoutubeForm)
+from ..forms import AlbumForm, ComicForm, MovieForm, NovelForm, PodcastForm, TVForm, YoutubeForm
 from ..models import Album, Comic, Movie, Novel, Podcast, TVShow, Youtube
-from ..utils import (FEATURES, ExtractYearRange, FilterTags, FuzzStr, GetTest,
-                     SearchFunction, SortFunction)
+from ..utils import (
+    FEATURES,
+    ExtractYearRange,
+    FilterTags,
+    FuzzStr,
+    GetTest,
+    SearchFunction,
+    SortFunction,
+)
 
 DEFINED_TAGS: dict = {}
 DEFINED_TAGS_TIME = 0.0
@@ -176,28 +182,27 @@ def FilterMedia(request, objType) -> dict:
     }
 
 
-def GenerateReport(obj, objCount: int, tag: str, repeats: bool) -> tuple[dict, dict]:
+def GenerateReport(obj, objCount: int, tag: str, repeats: bool) -> tuple[dict, dict, dict]:
     hold = {}
     freq = {}
+    total = {}
     objects = obj.objects.all()
     used = []
     for genre in DEFINED_TAGS[tag]:
         media = sorted(
-            [
-                x
-                for x in objects
-                if genre in x.Genre_Tags and (x not in used or repeats) and x.Rating > 0
-            ],
+            [x for x in objects if genre in x.Genre_Tags and (x not in used or repeats)],
             key=lambda x: x.Rating,
             reverse=True,
         )
+        total[genre] = len(media)
+        media = [x for x in media if x.Rating > 0]
         freq[genre] = len(media)
         hold[genre] = media[:objCount]
         used += hold[genre]
     output = {}
     for genre in sorted(DEFINED_TAGS[tag]):
         output[genre] = hold[genre]
-    return output if len(used) > 0 else {}, freq
+    return output if len(used) > 0 else {}, freq, total
 
 
 LoadDefinedTags()

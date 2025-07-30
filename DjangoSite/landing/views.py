@@ -64,9 +64,13 @@ def ToolsPage(request) -> HttpResponse:
 def BlogHome(request) -> HttpResponse:
     context: dict = {"colorMode": request.COOKIES.get("colorMode", "dark")}
     context["posts"] = [
-        frontmatter.load(str(x)).to_dict()
-        for x in (django_settings.SYNC_PATH / "blog").glob("*.md")
+        frontmatter.load(str(x)).to_dict() | {"path": x}
+        for x in (django_settings.SYNC_PATH / "blog").glob("**/*.md")
+        if x.parent.name[0] != "_"
     ]
+    for p in context["posts"]:
+        if p["path"].parent != (django_settings.SYNC_PATH / "blog"):
+            p["tags"].append(p["path"].parent.name)
     context["posts"] = sorted(context["posts"], key=lambda x: str(x["creation_date"]), reverse=True)
     if request.GET.get("tag", None):
         context["posts"] = [x for x in context["posts"] if request.GET["tag"] in x["tags"]]
@@ -75,11 +79,10 @@ def BlogHome(request) -> HttpResponse:
     return render(request, "landing/blogHome.html", context=context)
 
 
-def BlogPages(request, path) -> HttpResponse:
+def BlogPages(request, path, parent=None) -> HttpResponse:
     context: dict = {"colorMode": request.COOKIES.get("colorMode", "dark")}
     response = redirect("/blog")
-
-    expectedName = f"{path}.md"
+    expectedName = f"{path}.md" if parent == None else f"{parent}/{path}.md"
     syncFile = (django_settings.SYNC_PATH / "blog") / expectedName
     localFile = (django_settings.STATIC_ROOT / "blog") / expectedName
 
@@ -89,8 +92,8 @@ def BlogPages(request, path) -> HttpResponse:
             (localFile.parent / "attachments").mkdir(exist_ok=True)
             shutil.copy(syncFile, localFile)
             shutil.copytree(
-                syncFile.parent / "attachments",
-                localFile.parent / "attachments",
+                django_settings.SYNC_PATH / "blog" / "attachments",
+                django_settings.STATIC_ROOT / "blog" / "attachments",
                 dirs_exist_ok=True,
             )
 
@@ -99,5 +102,8 @@ def BlogPages(request, path) -> HttpResponse:
             fMatterObj.content, extensions=["tables", "fenced_code"]
         )
         context |= fMatterObj.to_dict()
+        if parent:
+            context["tags"].append(parent)
+        context["tags"] = sorted(context["tags"])
         response = render(request, "landing/blogBase.html", context=context)
     return response
