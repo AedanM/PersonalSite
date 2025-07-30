@@ -63,14 +63,16 @@ def ToolsPage(request) -> HttpResponse:
 
 def BlogHome(request) -> HttpResponse:
     context: dict = {"colorMode": request.COOKIES.get("colorMode", "dark")}
+    postParent = django_settings.SYNC_PATH / "blog" / "posts"
     context["posts"] = [
         frontmatter.load(str(x)).to_dict() | {"path": x}
-        for x in (django_settings.SYNC_PATH / "blog").glob("**/*.md")
-        if x.parent.name[0] != "_"
+        for x in postParent.glob("**/*.md")
+        if x.parent.name[0] not in ["_", "."]
     ]
     for p in context["posts"]:
-        if p["path"].parent != (django_settings.SYNC_PATH / "blog"):
+        if p["path"].parent != postParent and isinstance(p.get("tags", None), list):
             p["tags"].append(p["path"].parent.name)
+
     context["posts"] = sorted(context["posts"], key=lambda x: str(x["creation_date"]), reverse=True)
     if request.GET.get("tag", None):
         context["posts"] = [x for x in context["posts"] if request.GET["tag"] in x["tags"]]
@@ -83,8 +85,8 @@ def BlogPages(request, path, parent=None) -> HttpResponse:
     context: dict = {"colorMode": request.COOKIES.get("colorMode", "dark")}
     response = redirect("/blog")
     expectedName = f"{path}.md" if parent == None else f"{parent}/{path}.md"
-    syncFile = (django_settings.SYNC_PATH / "blog") / expectedName
-    localFile = (django_settings.STATIC_ROOT / "blog") / expectedName
+    syncFile = (django_settings.SYNC_PATH / "blog" / "posts") / expectedName
+    localFile = (django_settings.STATIC_ROOT / "blog" / "posts") / expectedName
 
     if syncFile.exists():
         if not localFile.exists() or os.path.getmtime(localFile) < os.path.getmtime(syncFile):
