@@ -1,3 +1,10 @@
+# /// script
+# dependencies = [
+#     "pywin32",
+#     "progress"
+# ]
+# ///
+
 import logging
 import sys
 import time
