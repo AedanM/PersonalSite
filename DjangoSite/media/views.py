@@ -10,9 +10,16 @@ from django.shortcuts import redirect, render
 from .models import Movie, TVShow
 from .modules.CheckDetails import CheckMovies, CheckTV
 from .modules.ModelTools import DownloadImage, SortTags
-from .modules.Utils import (MODEL_LIST, DetermineForm, FilterMedia, FindID,
-                            FormMatch, GenerateReport, GetAllTags,
-                            GetFormAndClass)
+from .modules.Utils import (
+    MODEL_LIST,
+    DetermineForm,
+    FilterMedia,
+    FindID,
+    FormMatch,
+    GenerateReport,
+    GetAllTags,
+    GetFormAndClass,
+)
 from .modules.WikiParse import ScrapeWiki
 
 # Create your views here.
@@ -53,15 +60,21 @@ def delete(request) -> HttpResponse:
 
 
 def report(request) -> HttpResponse:
-    context = {"colorMode": request.COOKIES.get("colorMode", "dark"), "Media": {}, "freq": {}}
+    context = {
+        "colorMode": request.COOKIES.get("colorMode", "dark"),
+        "Media": {},
+        "freq": {},
+        "total": {},
+    }
     mediaCount = request.GET.get("mediaCount", 5)
     tag = request.GET.get("tag", "Genres")
     repeats = request.GET.get("repeats", "true").lower() == "true"
 
     for obj in MODEL_LIST:
-        media, freq = GenerateReport(obj, mediaCount, tag, repeats)
+        media, freq, total = GenerateReport(obj, mediaCount, tag, repeats)
         context["Media"][obj.__name__] = media
         context["freq"][obj.__name__] = freq
+        context["total"][obj.__name__] = total
     return render(request, "media/report.html", context)
 
 
