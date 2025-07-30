@@ -84,7 +84,7 @@ def BlogHome(request) -> HttpResponse:
 def BlogPages(request, path, parent=None) -> HttpResponse:
     context: dict = {"colorMode": request.COOKIES.get("colorMode", "dark")}
     response = redirect("/blog")
-    expectedName = f"{path}.md" if parent == None else f"{parent}/{path}.md"
+    expectedName = f"{path}.md" if parent is None else f"{parent}/{path}.md"
     syncFile = (django_settings.SYNC_PATH / "blog" / "posts") / expectedName
     localFile = (django_settings.STATIC_ROOT / "blog" / "posts") / expectedName
 
