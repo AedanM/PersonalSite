@@ -41,6 +41,23 @@
           </ul>
         </nav>
       </header>
+      <div class="d-flex flex-row justify-content-center">
+        <div>
+          <a class="clean-link mx-2 grow" href="/media/report">Genres</a>
+        </div>
+        <div>
+          <a class="clean-link mx-2 grow" href="/media/report?tag=Content">Content</a>
+        </div>
+        <div>
+          <a class="clean-link mx-2 grow" href="/media/report?tag=Styles">Styles</a>
+        </div>
+        <div>
+          <a class="clean-link mx-2 grow" href="/media/report?tag=Directors">Directors</a>
+        </div>
+        <div>
+          <a class="clean-link mx-2 grow" href="/media/report?tag=Actors">Actors</a>
+        </div>
+      </div>
       {% for mediaName, mediaData in Media.items %}
         {% if mediaData %}
           <details open>
