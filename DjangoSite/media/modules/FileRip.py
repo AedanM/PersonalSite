@@ -1,7 +1,8 @@
 # /// script
 # dependencies = [
 #     "pywin32",
-#     "progress"
+#     "progress",
+#     "pyYaml"
 # ]
 # ///
 
