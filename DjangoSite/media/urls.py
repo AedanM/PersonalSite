@@ -1,4 +1,3 @@
-# pylint: disable=C0103
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
@@ -12,11 +11,12 @@ urlpatterns = [
     path(route="delete", view=views.delete, name="delete"),
     path(route="edit", view=views.edit, name="edit"),
     path(route="new", view=views.new, name="new"),
+    path(route="report", view=views.report, name="report"),
     path(route="setBool", view=views.SetBool, name="setBool"),
     path(route="stats", view=views.stats, name="Stats"),
     path(route="view", view=views.viewMedia, name="view"),
     path(route="wiki", view=views.wikiLoad, name="wikiLoad"),
-    path(route="report", view=views.report, name="report"),
     path(route="", view=views.index, name="index"),
     path(route="<str:media>", view=views.index, name="index"),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    *static(settings.STATIC_URL, document_root=settings.STATIC_ROOT),
+]

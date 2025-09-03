@@ -12,6 +12,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="media",
             name="Rating",
-            field=models.DecimalField(decimal_places=1, default=0, max_digits=3), # type: ignore
+            field=models.DecimalField(decimal_places=1, default=0, max_digits=3),  # pyright: ignore[reportArgumentType]
         ),
     ]

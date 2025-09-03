@@ -1,13 +1,15 @@
+"""Check the details of Media server vs website."""
+
 import logging
 import shutil
 import time
 from pathlib import Path
 from typing import Any
 
-import ffmpeg  # type: ignore
+import ffmpeg
 import thefuzz.fuzz
 from django.conf import settings as django_settings
-from yaml import Loader, load
+from yaml import safe_load as load
 
 from ..models import Movie, TVShow
 
@@ -16,12 +18,13 @@ STATIC_FILES = Path(django_settings.STATICFILES_DIRS[0]) / "Files"
 LOGGER = logging.getLogger("UserLogger")
 
 
-def CheckMovies():
+def CheckMovies() -> tuple[list, list]:
     movies = []
     with (django_settings.SYNC_PATH / "config" / "MediaServerSummary.yml").open(
-        mode="r", encoding="ascii"
+        mode="r",
+        encoding="ascii",
     ) as fp:
-        movies = load(fp,Loader)["Movies"]
+        movies = load(fp)["Movies"]
 
     ResetAlias(movies)
     unmatched, matched = FilterOutMatches(movies)
@@ -29,8 +32,7 @@ def CheckMovies():
     return unmatched, matched
 
 
-def FilterOutMatches(movies, obj: Any = Movie):
-    # pylint: disable=E1101
+def FilterOutMatches(movies: list[dict], obj: Any = Movie) -> tuple[list, list]:
     movieList = obj.objects.all()
     matched = []
     unmatched = []
@@ -43,11 +45,11 @@ def FilterOutMatches(movies, obj: Any = Movie):
                 if MatchTitles(x.Title, m["Title"]) and abs(x.Year - int(m["Year"])) == 0
             ]
             if isinstance(m["Title"], str)
-            else [x for x in movieList if x.id == m["Title"]]  # type: ignore
+            else [x for x in movieList if x.id == m["Title"]]
         )
         if matches:
             m["Match"] = {
-                "ID": matches[0].id,  # type:ignore
+                "ID": matches[0].id,
                 "Runtime": matches[0].Duration.seconds // 60,
                 "Title": matches[0].Title,
                 "Year": matches[0].Year,
@@ -63,34 +65,32 @@ def FilterOutMatches(movies, obj: Any = Movie):
         else:
             closest = sorted(
                 movieList,
-                key=lambda x, obj=m: thefuzz.fuzz.ratio(  # type:ignore
-                    str(obj["Title"]), str(x.Title)
+                key=lambda x, obj=m: thefuzz.fuzz.ratio(
+                    str(obj["Title"]),
+                    str(x.Title),
                 ),
             )
             m["Closest"] = {"Title": closest[-1].Title, "Year": closest[-1].Year}
             unmatched.append(m)
     if rerender:
-        with open(
-            file=django_settings.SYNC_PATH / "config" / f"rerenderList{obj.__name__}.csv",
-            mode="w",
-            encoding="ascii",
-        ) as fp:
-            fp.write("\n".join(rerender))
+        Path(django_settings.SYNC_PATH / "config" / f"rerenderList{obj.__name__}.csv").write_text(
+            data="\n".join(rerender),
+            encoding="utf-8",
+        )
 
     return unmatched, matched
 
 
-def HandleReRenderQueue():
-    renderList = []
-    with open(
-        file=django_settings.SYNC_PATH / "config" / "rerenderList.csv", mode="r", encoding="ascii"
-    ) as fp:
-        renderList = fp.readlines()
+def HandleReRenderQueue() -> None:
+    renderList: list[str] = (
+        Path(django_settings.SYNC_PATH / "config" / "rerenderList.csv")
+        .read_text(encoding="utf-8")
+        .splitlines()
+    )
     start = time.time()
-    renderOutput = []
+    renderOutput: list[str] = []
     if not renderList:
         raise FileNotFoundError
-    # pylint:disable=E1101
     for file in renderList:
         f = Path(file.replace("\n", ""))
         try:
@@ -102,28 +102,26 @@ def HandleReRenderQueue():
         except ffmpeg.Error as e:
             LOGGER.error(e.stderr)
             renderOutput.append(file)
-    with open(
-        file=django_settings.SYNC_PATH / "config" / "rerenderList.csv", mode="w", encoding="ascii"
-    ) as fp:
-        fp.write("\n".join(renderOutput))
+    Path(django_settings.SYNC_PATH / "config" / "rerenderList.csv").write_text(
+        data="\n".join(renderOutput),
+        encoding="utf-8",
+    )
     LOGGER.info("Render Log Written in %f", time.time() - start)
 
 
-def CopyOverRenderQueue():
-    renderList = []
-    with open(
-        file=django_settings.SYNC_PATH / "config" / "rerenderList.csv",
-        mode="r",
-        encoding="ascii",
-    ) as fp:
-        renderList = fp.readlines()
+def CopyOverRenderQueue() -> None:
+    renderList: list[str] = (
+        Path(django_settings.SYNC_PATH / "config" / "rerenderList.csv")
+        .read_text(encoding="utf-8")
+        .splitlines()
+    )
     for file in renderList:
         f = Path(file.replace("\n", "").split(",")[0])
         w = int(file.replace("\n", "").split(",")[1])
         h = int(file.replace("\n", "").split(",")[2])
-        parentDir = Path(r"H:\DownloadBuffer\RenderQueue")
-        subFolder = "SD" if w * h <= (1280 * 720) else "4k" if w * h > (1920 * 1080) else "HD"
-        dst = parentDir / subFolder / f.name
+        parentDir: Path = Path(r"H:\DownloadBuffer\RenderQueue")
+        subFolder: str = "SD" if w * h <= (1280 * 720) else "4k" if w * h > (1920 * 1080) else "HD"
+        dst: Path = parentDir / subFolder / f.name
         if not f.exists():
             raise FileNotFoundError(f)
         if not dst.exists():
@@ -131,8 +129,7 @@ def CopyOverRenderQueue():
         LOGGER.info("%s Copied to %s", f.name, subFolder)
 
 
-def MatchTitles(t1, t2) -> bool:
-    # return thefuzz.fuzz.ratio(t1.lower(), t2.lower()) > 93
+def MatchTitles(t1: str, t2: str) -> bool:
     badChars = [".", ",", ":", "!", "'", "?", '"', "-", " ", "The ", "A "]
     t1 = t1.replace("&", "and")
     t2 = t2.replace("&", "and")
@@ -143,29 +140,20 @@ def MatchTitles(t1, t2) -> bool:
 
 
 def CleanAliasGroups(obj: dict) -> dict:
-    with (django_settings.SYNC_PATH / "config" / "Alias.yml").open(
-        mode="r", encoding="ascii"
-    ) as fp:
-        jsonFile = load(fp, Loader)
-        groups = jsonFile["Pools"]
+    ymlFile = load(Path(django_settings.SYNC_PATH / "config" / "Alias.yml").read_text())
+    groups = ymlFile["Pools"]
     for diff in obj["Match"]["Tag Diff"]:
         for g in [x for x in groups if diff in x]:
-            # [a,b,c]
             if any(x for x in g if x in obj["Tags"]):
                 obj["Match"]["Tag Diff"].remove(diff)
                 break
     return obj
 
 
-def ResetAlias(files):
-    titles = {}
-    tags = {}
-    with (django_settings.SYNC_PATH / "config" / "Alias.yml").open(
-        mode="r", encoding="ascii"
-    ) as fp:
-        jsonFile = load(fp,Loader)
-        titles = jsonFile["Titles"]
-        tags = jsonFile["Tags"]
+def ResetAlias(files: dict | list[dict]) -> None:
+    ymlFile = load(Path(django_settings.SYNC_PATH / "config" / "Alias.yml").read_text())
+    titles = ymlFile["Titles"]
+    tags = ymlFile["Tags"]
     if isinstance(files, dict):
         files = list(files.values())
 
@@ -181,12 +169,10 @@ def ResetAlias(files):
         f["Tags"] = fileTags
 
 
-def CheckTV():
-    shows = []
-    with (django_settings.SYNC_PATH / "config" / "MediaServerSummary.yml").open(
-        mode="r", encoding="ascii"
-    ) as fp:
-        shows = load(fp,Loader)["TV Shows"]
+def CheckTV() -> tuple[list, list]:
+    shows = load(Path(django_settings.SYNC_PATH / "config" / "MediaServerSummary.yml").read_text())[
+        "TV Shows"
+    ]
 
     ResetAlias(shows)
     unmatched, matched = FilterOutTVMatches(shows)
@@ -194,8 +180,7 @@ def CheckTV():
     return unmatched, matched
 
 
-def FilterOutTVMatches(files: list):
-    # pylint: disable=E1101
+def FilterOutTVMatches(files: list) -> tuple[list, list]:
     tvList = TVShow.objects.all()
     matched = []
     unmatched = []
@@ -204,11 +189,11 @@ def FilterOutTVMatches(files: list):
         matches = (
             [x for x in tvList if MatchTitles(x.Title, m["Title"])]
             if isinstance(m["Title"], str)
-            else [x for x in tvList if x.id == m["Title"]]  # type: ignore
+            else [x for x in tvList if x.id == m["Title"]]  # pyright: ignore[reportAttributeAccessIssue]
         )
         if matches:
             m["Match"] = {
-                "ID": matches[0].id,  # type:ignore
+                "ID": matches[0].id,  # # pyright: ignore[reportAttributeAccessIssue]
                 "Runtime": (matches[0].Duration.seconds // 60) * m["Count"],
                 "Year": matches[0].Year,
                 "Tag Diff": [x for x in m["Tags"] if x not in matches[0].GenreTagList],
@@ -225,18 +210,12 @@ def FilterOutTVMatches(files: list):
         else:
             closest = sorted(
                 tvList,
-                key=lambda x, obj=m: thefuzz.fuzz.ratio(
-                    str(obj["Title"]), str(x.Title)
-                ),  # type:ignore
+                key=lambda x, obj=m: thefuzz.fuzz.ratio(str(obj["Title"]), str(x.Title)),
             )
             m["Closest"] = {"Title": closest[-1].Title, "Year": closest[-1].Year}
             unmatched.append(m)
     if rerender:
-        with open(
-            file=django_settings.SYNC_PATH / "config" / "rerenderListTV.csv",
-            mode="w",
-            encoding="ascii",
-        ) as fp:
-            fp.write("\n".join(rerender))
-
+        Path(django_settings.SYNC_PATH / "config" / "rerenderListTV.csv").write_text(
+            "\n".join(rerender),
+        )
     return unmatched, matched

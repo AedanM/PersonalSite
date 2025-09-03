@@ -7,7 +7,7 @@ from PIL import Image
 LOGGER = logging.getLogger("UserLogger")
 
 
-def RemoveAlpha(path: Path):
+def RemoveAlpha(path: Path) -> Image.Image:
     png = Image.open(path)
     try:
         background = Image.new("RGBA", png.size, (0, 0, 0))
@@ -19,7 +19,7 @@ def RemoveAlpha(path: Path):
         return png
 
 
-def ResizeImages(parentDir):
+def ResizeImages(parentDir: str | Path) -> None:
     parentDir = Path(parentDir)
     if parentDir.exists():
         for img in parentDir.glob("*.png"):
@@ -28,7 +28,7 @@ def ResizeImages(parentDir):
         LOGGER.error("No parent dir %s", parentDir)
 
 
-def BackgroundResize(img):
+def BackgroundResize(img: Path) -> None:
     currentImg = RemoveAlpha(img)
     background = Image.new("RGBA", color=currentImg.getpixel((0, 0)), size=(320, 240))
     background.paste(

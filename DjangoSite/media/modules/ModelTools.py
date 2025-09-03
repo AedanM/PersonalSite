@@ -1,13 +1,14 @@
 import logging
 import random
-import urllib.parse
-import urllib.request
 from pathlib import Path
+from typing import Any
 
+import requests
 from django.conf import settings as django_settings
 from PIL import Image, UnidentifiedImageError
 
 from .ImgResize import BackgroundResize
+from .WikiParse import UA
 
 LOGGER = logging.getLogger("UserLogger")
 
@@ -15,20 +16,16 @@ DEFAULT_IMG = r"https://upload.wikimedia.org/wikipedia/commons/c/c9/Icon_Video.p
 DEFAULT_IMG_PATH = "logos/DefaultIMG.png"
 
 
-def DownloadImage(modelObj):
-    from .Utils import MakeStringSystemSafe
-
+def DownloadImage(modelObj: Any) -> bool:
     from .Utils import MakeStringSystemSafe
 
     logoIMG = None
-    reloadLogo = (
+    if (
         not modelObj.Logo
         or "http" in modelObj.Logo
         or not (Path(django_settings.STATIC_ROOT) / modelObj.Logo).exists()
         or "DefaultIMG.png" in modelObj.Logo
-    )
-
-    if reloadLogo:
+    ):
         LOGGER.info("Downloading new logo for %s", modelObj.Title)
         logoIMG = modelObj.Logo
         if logoIMG:
@@ -54,42 +51,31 @@ def DownloadImage(modelObj):
     return modelObj.Logo != DEFAULT_IMG
 
 
-def GetImageFromLink(savePath, requestImg):
-
-    tempPath = Path(django_settings.STATICFILES_DIRS[0]) / f"temp-{random.randint(0,10000)}.png"
-    try:
-        urllib.request.urlretrieve(
-            requestImg,
-            str(tempPath),
-        )
-    except ValueError:
-        try:
-            urllib.request.urlretrieve(
-                urllib.parse.quote(requestImg).replace("%3A", ":"),
-                str(tempPath),
-            )
-        except ValueError:
-            return
-    try:
-        img = Image.open(str(tempPath))
-        imScale = 320 / img.size[0]
-        newSize = round(img.size[0] * imScale), round(img.size[1] * imScale)
-        img = img.resize(newSize)
-        localPath = Path(django_settings.STATICFILES_DIRS[0]) / savePath
-        img.save(localPath)
-        if "tvshows" in str(localPath):
-            BackgroundResize(img=localPath)  #
-        LOGGER.info("New IMG saved to %s", savePath)
-    except UnidentifiedImageError:
-        if tempPath.exists():
-            LOGGER.error("Resize Failed @ %s", savePath)
-        else:
-            LOGGER.error("IMG Failed @ %s", requestImg)
+def GetImageFromLink(savePath: str, requestImg: str) -> None:
+    tempPath = Path(django_settings.STATICFILES_DIRS[0]) / f"temp-{random.randint(0, 10000)}.png"
+    r = requests.get(requestImg, headers=UA, timeout=1000)
+    if r.status_code == 200:
+        tempPath.write_bytes(r.content)
     if tempPath.exists():
+        try:
+            img = Image.open(str(tempPath))
+            imScale = 320 / img.size[0]
+            newSize = round(img.size[0] * imScale), round(img.size[1] * imScale)
+            img = img.resize(newSize)
+            localPath = Path(django_settings.STATICFILES_DIRS[0]) / savePath
+            img.save(localPath)
+            if "tvshows" in str(localPath):
+                BackgroundResize(img=localPath)  #
+            LOGGER.info("New IMG saved to %s", savePath)
+        except UnidentifiedImageError:
+            if tempPath.exists():
+                LOGGER.error("Resize Failed @ %s", savePath)
+            else:
+                LOGGER.error("IMG Failed @ %s", requestImg)
         tempPath.unlink()
 
 
-def SortTags(obj):
+def SortTags(obj: Any) -> None:
     tagList = [x.strip() for x in obj.Genre_Tags.split(",")]
     obj.Genre_Tags = ",".join(sorted(tagList))
     obj.save()

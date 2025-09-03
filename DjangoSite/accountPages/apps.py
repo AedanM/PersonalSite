@@ -1,3 +1,5 @@
+"""Apps for logins."""
+
 from django.apps import AppConfig
 
 

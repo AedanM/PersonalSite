@@ -5,8 +5,7 @@ version = "0.1.0"
 description = "Personal Django Site served in Waitress"
 readme = "README.md"
 requires-python = ">=3.13"
-# Update Reqs with 
-# uv pip compile pyproject.toml --all-extras -o .\requirements.txt
+
 dependencies = [
     "Django",
     "Pillow",
@@ -31,3 +30,70 @@ dependencies = [
     "wheel",
     "whitenoise",
 ]
+
+
+[tool.ty.rules]
+unresolved-import = "ignore"
+division-by-zero = "warn"
+possibly-unresolved-reference = "warn"
+unused-ignore-comment = "warn"
+
+[tool.ruff.lint]
+select = [
+    "ANN",
+    "ARG",
+    "B",
+    "B",
+    "C4",
+    "C901",
+    "COM",
+    "D",
+    "E",
+    "ERA",
+    "F",
+    "F",
+    "FIX",
+    "I",
+    "ISC",
+    "N",
+    "NPY",
+    "PERF",
+    "PGH",
+    "PIE",
+    "PTH",
+    "Q",
+    "RUF",
+    "S",
+    "SIM",
+    "UP",
+    "W",
+    "W",
+    "YTT",
+]
+fixable = ["D400"]
+ignore = [
+    "ANN401", # any-type type hint
+    "N802",   # snake_case method names
+    "S311",   # cryptography warning
+    "RUF015", # next vs [0]
+    "UP037",  # Allow quotes for class methods
+    "D100",   # docstrings
+    "D101",   # docstrings
+    "D102",   # docstrings
+    "D103",   # docstrings
+    "D104",   # docstrings
+    "D105",   # docstrings
+    "D106",   # docstrings
+]
+
+[tool.ruff]
+target-version = "py314"
+exclude = ["**/migrations/**"]
+
+line-length = 100
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.pep8-naming]
+ignore-names = ["*"]

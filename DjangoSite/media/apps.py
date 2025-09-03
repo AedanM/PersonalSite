@@ -1,4 +1,4 @@
-# pylint: disable=C0103
+"""Apps for media."""
 from django.apps import AppConfig
 
 

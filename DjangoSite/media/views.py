@@ -17,7 +17,6 @@ from .modules.Utils import (
     FindID,
     FormMatch,
     GenerateReport,
-    GetAllTags,
     GetFormAndClass,
 )
 from .modules.WikiParse import ScrapeWiki
@@ -27,21 +26,21 @@ LOGGER = logging.getLogger("UserLogger")
 DEFAULT_SORT_TERMS: list[str] = ["Random", "Date Added", "Genre Tags"]
 
 
-def apiRedirect(_request) -> HttpResponse:
+def apiRedirect(_request: HttpRequest) -> HttpResponse:
     return redirect("/media/api/docs")
 
 
-def viewMedia(request) -> HttpResponse:
-    context = {"object": FindID(request.GET.get("id", -1))}
+def viewMedia(request: HttpRequest) -> HttpResponse:
+    context = {"object": FindID(request.GET.get("id", ""))}
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
 
     return render(request, "media/mediaPage.html", context)
 
 
 @login_required
-def delete(request) -> HttpResponse:
+def delete(request: HttpRequest) -> HttpResponse:
     confirm = request.GET.get("confirm", "False")
-    if contentObj := FindID(request.GET.get("id", -1)):
+    if contentObj := FindID(request.GET.get("id", "")):
         if confirm == "True":
             contentObj.delete()
         else:
@@ -59,14 +58,14 @@ def delete(request) -> HttpResponse:
     return redirect("/media")
 
 
-def report(request) -> HttpResponse:
+def report(request: HttpRequest) -> HttpResponse:
     context = {
         "colorMode": request.COOKIES.get("colorMode", "dark"),
         "Media": {},
         "freq": {},
         "total": {},
     }
-    mediaCount = request.GET.get("mediaCount", 5)
+    mediaCount = int(request.GET.get("mediaCount", 5))
     tag = request.GET.get("tag", "Genres")
     repeats = request.GET.get("repeats", "true").lower() == "true"
 
@@ -79,7 +78,7 @@ def report(request) -> HttpResponse:
 
 
 @login_required
-def wikiLoad(request) -> HttpResponse:
+def wikiLoad(request: HttpRequest) -> HttpResponse:
     context = {}
     context["link"] = request.GET.get("link", None)
     returnRender = render(request, "media/wikiLoad.html", context=context)
@@ -88,7 +87,7 @@ def wikiLoad(request) -> HttpResponse:
         input_value = request.POST.get("Wiki Link", None)
         if input_value:
             contentDetails = ScrapeWiki(wikiLink=input_value)
-            context["form"] = form(initial=contentDetails)
+            context["form"] = form(initial=contentDetails)  # pyright: ignore[reportCallIssue]
             for key in context["form"].fields:
                 if (
                     key not in ["Downloaded", "Rating", "Genre_Tags", "Watched"]
@@ -108,7 +107,6 @@ def wikiLoad(request) -> HttpResponse:
                 if x.InfoPage == activeForm.data["InfoPage"] and x.Title == activeForm.data["Title"]
             ]
             if activeForm.is_valid() and len(matchingObjs) == 0:
-
                 activeForm.save()
                 # pylint: disable=E1101
                 obj = model.objects.filter(Title=request.POST.get("Title")).first()
@@ -127,9 +125,7 @@ def wikiLoad(request) -> HttpResponse:
 
 
 @login_required
-def adjustTags(_request, fromTag: str, toTag: str):
-
-    # pylint: disable=E1101
+def adjustTags(_request: HttpRequest, fromTag: str, toTag: str) -> HttpResponse:
     for media in MODEL_LIST:
         for m in media.objects.all():
             m.Genre_Tags = m.Genre_Tags.replace(fromTag, toTag)
@@ -138,7 +134,7 @@ def adjustTags(_request, fromTag: str, toTag: str):
 
 
 @login_required
-def checkFiles(request) -> HttpResponse:
+def checkFiles(request: HttpRequest) -> HttpResponse:
     unmatchedTV, matchedTV = CheckTV()
     unmatchedMovie, matchedMovie = CheckMovies()
 
@@ -146,12 +142,12 @@ def checkFiles(request) -> HttpResponse:
     wronglyMarkedMovie = [
         x
         for x in Movie.objects.all()
-        if x.Downloaded and x.id not in [y["Match"]["ID"] for y in matchedMovie]  # type:ignore
+        if x.Downloaded and x.id not in [y["Match"]["ID"] for y in matchedMovie]  # pyright: ignore[reportAttributeAccessIssue]
     ]
     wronglyMarkedTV = [
         x
         for x in TVShow.objects.all()
-        if x.Downloaded and x.id not in [y["Match"]["ID"] for y in matchedTV]  # type:ignore
+        if x.Downloaded and x.id not in [y["Match"]["ID"] for y in matchedTV]  # pyright: ignore[reportAttributeAccessIssue]
     ]
     return render(
         request=request,
@@ -172,7 +168,7 @@ def checkFiles(request) -> HttpResponse:
     )
 
 
-def stats(request) -> HttpResponse:
+def stats(request: HttpRequest) -> HttpResponse:
     start = time.time()
     context = {}
     for media in MODEL_LIST:
@@ -186,7 +182,7 @@ def stats(request) -> HttpResponse:
 
 
 @login_required
-def new(request) -> HttpResponse:
+def new(request: HttpRequest) -> HttpResponse:
     context = {}
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
     response: HttpResponse = render(request, "media/mediaChoice.html", context)
@@ -200,7 +196,7 @@ def new(request) -> HttpResponse:
         form = cls(
             request.POST or None,
             instance=inst,
-        )
+        )  # pyright: ignore[reportCallIssue]
         if "InfoPage" in dir(form):
             matchingObjs = [
                 x
@@ -222,12 +218,12 @@ def new(request) -> HttpResponse:
 
 
 @login_required
-def edit(request) -> HttpResponse:
+def edit(request: HttpRequest) -> HttpResponse:
     response: HttpResponse = redirect(request.META.get("HTTP_REFERER", "/media"))
-    if contentObj := FindID(request.GET.get("id", -1)):
+    if contentObj := FindID(request.GET.get("id", "")):
         cls = FormMatch(contentObj)
 
-        form = cls(request.POST or None, instance=contentObj)
+        form = cls(request.POST or None, instance=contentObj)  # pyright: ignore[reportCallIssue]
         if form.is_valid():
             form.save()
         context = {}
@@ -251,17 +247,16 @@ def edit(request) -> HttpResponse:
 
 
 @login_required
-def SetBool(request) -> HttpResponse:
+def SetBool(request: HttpRequest) -> HttpResponse:
     response: HttpResponse = redirect(request.META.get("HTTP_REFERER", "/media"))
-    if contentObj := FindID(request.GET.get("contentId", -1)):
+    if contentObj := FindID(request.GET.get("contentId", "")):
         if request.POST.get("rating", None):
             contentObj.Rating = float(request.POST.get("rating", contentObj.Rating))
             contentObj.Genre_Tags = request.POST.get("Genre_Tags", contentObj.Genre_Tags)
             contentObj.Watched = True
             contentObj.save()
             response = redirect("/media")
-        elif request.GET.get("field", None):
-            field = request.GET.get("field")
+        elif field := request.GET.get("field", None):
             newValue = (
                 request.GET.get("value", "False") == "True"
                 if "value" in request.GET
@@ -285,7 +280,7 @@ def SetBool(request) -> HttpResponse:
     return response
 
 
-def index(request: HttpRequest, media="Movie") -> HttpResponse:
+def index(request: HttpRequest, media: str = "Movie") -> HttpResponse:
     if media[-1].lower() == "s":
         media = media[:-1]
     if media.lower() not in [x.__name__.lower() for x in MODEL_LIST]:
@@ -293,7 +288,7 @@ def index(request: HttpRequest, media="Movie") -> HttpResponse:
 
     _formType, objType = GetFormAndClass(media)
 
-    if sortKey := request.GET.get("sort", None):
+    if sortKey := request.GET.get("sort", None):  # noqa: SIM102
         if sortKey not in dir(objType.objects.first()) + DEFAULT_SORT_TERMS:
             redirectLink = f"/media/{media.lower()}s"
             for key, value in request.GET.items():
@@ -307,8 +302,9 @@ def index(request: HttpRequest, media="Movie") -> HttpResponse:
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
     pageSize: int = int(
         request.GET.get(
-            "pageSize", 36 if "iPhone" not in request.headers.get("User-Agent", "") else 12
-        )
+            "pageSize",
+            36 if "iPhone" not in request.headers.get("User-Agent", "") else 12,
+        ),
     )
     pageNumber: int = int(request.GET.get("page", 1))
     context["page_obj"] = Paginator(context["obj_list"], pageSize).get_page(pageNumber)

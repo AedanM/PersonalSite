@@ -4,6 +4,7 @@ import logging
 import re
 import urllib.error
 from pathlib import Path
+from typing import Any
 
 from django.conf import settings as django_settings
 from django.db import models
@@ -21,15 +22,15 @@ class Media(models.Model):
     InfoPage: models.CharField = models.CharField(max_length=200)
     Downloaded: models.BooleanField = models.BooleanField(default=False)
     Rating: models.DecimalField = models.DecimalField(
-        default=0,  # type: ignore
+        default=0,  # pyright: ignore[reportArgumentType]
         decimal_places=1,
         max_digits=3,
-    )  # type: ignore
+    )
 
-    def __lt__(self, cmpObj) -> bool:
+    def __lt__(self, cmpObj: Any) -> bool:
         return self.SortTitle < cmpObj.SortTitle
 
-    def delete(self, using=None, keep_parents=None):
+    def delete(self, using: Any = None, keep_parents: bool = False) -> tuple[int, dict[str, int]]:
         LOGGER.info("Deleting %s", self.Logo)
         logoDst = Path(django_settings.STATICFILES_DIRS[0]) / self.Logo
         if logoDst.exists():
@@ -37,7 +38,7 @@ class Media(models.Model):
         return super().delete(using, keep_parents)
 
     @property
-    def SortTitle(self):
+    def SortTitle(self) -> str:
         return str(self.Title).replace("The ", "").replace("A ", "").strip()
 
     def __str__(self) -> str:
@@ -47,7 +48,7 @@ class Media(models.Model):
     def GenreTagList(self) -> list:
         return sorted([x.strip() for x in str(self.Genre_Tags).split(",")])
 
-    def GetLogo(self, loadLogo) -> str:
+    def GetLogo(self, loadLogo: bool) -> str:
         returnVal = DEFAULT_IMG_PATH
         if self.Logo == "None Found":
             self.Logo = returnVal
@@ -63,7 +64,7 @@ class Media(models.Model):
         return returnVal
 
     @property
-    def JsonRepr(self):
+    def JsonRepr(self) -> dict[str, Any]:
         outDict = {}
         for key, item in self.__dict__.items():
             if str(key[0]).isupper():
@@ -108,17 +109,14 @@ class TVShow(WatchableMedia):
     Series_End: models.DateField = models.DateField()
 
     @property
-    def Year(self):
-        # pylint: disable=E1101
+    def Year(self) -> int:
         return self.Series_Start.year
 
     @property
-    def Total_Length(self):
-        # pylint: disable=E1101
+    def Total_Length(self) -> int:
         return (self.Duration.seconds * self.Length) / 3600
 
     def __str__(self) -> str:
-        # pylint: disable=E1101
         end_year = self.Series_End.year if self.Series_End else MINIMUM_YEAR
         endValue = end_year if end_year > MINIMUM_YEAR else "now"
         startValue = self.Series_Start.year if self.Series_Start else -1

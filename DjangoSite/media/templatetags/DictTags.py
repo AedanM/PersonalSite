@@ -1,30 +1,31 @@
 import datetime
-import typing
+from collections.abc import Generator, Iterable
+from typing import Any
 
 from django import template
 from django.conf import settings as django_settings
 from django.core.paginator import Paginator
-from yaml import Loader, load
+from yaml import safe_load as load
 
 from ..models import Movie, TVShow
 from ..utils import MINIMUM_YEAR
 
 register = template.Library()
 
-TAG_ORDER = {}
+TAG_ORDER: dict[str, list] = {}
 TAG_SECTIONS = {}
-with open(django_settings.SYNC_PATH / "config" / "Genres.yml", encoding="ascii") as fp:
-    YAML_FILE = load(fp, Loader)
+with (django_settings.SYNC_PATH / "config" / "Genres.yml").open() as fp:
+    YAML_FILE = load(fp)
     TAG_SECTIONS = YAML_FILE["Tag Sections"]
     TAG_ORDER = YAML_FILE["Tag Order"]
 
 
 @register.filter()
-def Ratio(obj):
-    return f"{((obj["Match"]["Runtime"]) / obj["Size"]):0.2f}"
+def Ratio(obj: dict) -> str:
+    return f"{((obj['Match']['Runtime']) / obj['Size']):0.2f}"
 
 
-def ObjFromDict(d) -> typing.Any:
+def ObjFromDict(d: dict) -> Any:
     obj = d
     if isinstance(d, dict) and d:
         obj = ObjFromDict(list(d.keys())[0])
@@ -32,34 +33,33 @@ def ObjFromDict(d) -> typing.Any:
 
 
 @register.filter
-def HasAttr(iterDict, attrName) -> bool:
+def HasAttr(iterDict: dict, attrName: str) -> bool:
     return hasattr(ObjFromDict(iterDict), attrName)
 
 
 @register.filter
-def TagOrder(_tag):
+def TagOrder(_tag: str) -> Generator[str]:
     yield from TAG_ORDER
 
 
 @register.filter
-def TagStyle(group: str, active: bool):
-
-    return f"btn btn-{"" if active else 'outline-'}{TAG_SECTIONS[group]} m-1"
+def TagStyle(group: str, active: bool) -> str:
+    return f"btn btn-{'' if active else 'outline-'}{TAG_SECTIONS[group]} m-1"
 
 
 @register.filter
-def Get(dictionary, key):
+def Get(dictionary: dict[str, Any], key: str) -> Any:
     return dictionary.get(key)
 
 
 @register.filter
-def ModelType(obj) -> str:
+def ModelType(obj: Any) -> str:
     return type(obj).__name__
 
 
 @register.filter(name="rating")
-def Rating(number):
-    number = int(round(number))
+def Rating(number: int | float) -> str:
+    number = round(number)
     outStr = "\u200c" * number
     for _ in range(number // 2):
         outStr += "★"
@@ -71,15 +71,13 @@ def Rating(number):
 
 
 @register.simple_tag
-def DottedPageRange(p, number, eachSide=1, onEnds=1):
+def DottedPageRange(p: Paginator, number: int, eachSide: int = 1, onEnds: int = 1) -> Any:
     paginator = Paginator(p.object_list, p.per_page)
-    return paginator.get_elided_page_range(  # type: ignore
-        number=number, on_each_side=eachSide, on_ends=onEnds
-    )
+    return paginator.get_elided_page_range(number=number, on_each_side=eachSide, on_ends=onEnds)  # pyright: ignore[reportAttributeAccessIssue]
 
 
 @register.filter
-def GetAttrs(obj):
+def GetAttrs(obj: Any) -> list[str]:
     excludeList = [
         "Downloaded",
         "InfoPage",
@@ -99,22 +97,22 @@ def GetAttrs(obj):
 
 
 @register.filter(name="times")
-def Times(number):
+def Times(number: int) -> range:
     return range(number)
 
 
 @register.filter(name="StarRating")
-def StarRatings(number):
-    return f"{number//2} {'1/2 ' if number % 2 != 0 else ''}stars"
+def StarRatings(number: int) -> str:
+    return f"{number // 2} {'1/2 ' if number % 2 != 0 else ''}stars"
 
 
 @register.filter(name="IsHalf")
-def IsHalf(number):
+def IsHalf(number: int) -> str:
     return "half" if number % 2 != 0 else "full"
 
 
 @register.filter
-def MinYear(objList):
+def MinYear(objList: list) -> int:
     minVal = MINIMUM_YEAR
     if objList:
         if isinstance(objList[0], Movie):
@@ -126,12 +124,12 @@ def MinYear(objList):
 
 
 @register.filter
-def InList(val: typing.Any, valList: typing.Iterable):
+def InList(val: Any, valList: Iterable) -> bool:
     return val in valList
 
 
 @register.filter
-def MaxYear(objList):
+def MaxYear(objList: list) -> int:
     maxVal = datetime.datetime.now().year
     if objList:
         if isinstance(objList[0], Movie):

@@ -1,9 +1,11 @@
+"""API Routes."""
+
 from pathlib import Path
+from typing import Any
 
 from fastapi import FastAPI
 from media.API.DBAccess import AddTags, GetAll, GetAllMovies, GetAllTV
 from pydantic import BaseModel
-
 
 description = (Path(__file__).parent / "Description.md").read_text()
 
@@ -26,16 +28,19 @@ API_APP = FastAPI(
 
 @API_APP.get("/movies", summary="Full listing of movies")
 async def Movies() -> dict:
-    return dict(enumerate(await GetAllMovies()))  # type: ignore
+    """Get Movie Data."""
+    return dict(enumerate(await GetAllMovies()))  # pyright: ignore[reportGeneralTypeIssues]
 
 
 @API_APP.get("/tvshows", summary="Full listing of tvshows")
 async def TVShows() -> dict:
-    return dict(enumerate(await GetAllTV()))  # type: ignore
+    """Get TV Data."""
+    return dict(enumerate(await GetAllTV()))  # pyright: ignore[reportGeneralTypeIssues]
 
 
 @API_APP.get("/genres", summary="Full listing of genre tags")
 async def Genres() -> dict:
+    """Get genres listing."""
     from media.modules.Utils import DEFINED_TAGS
 
     d = DEFINED_TAGS.copy()
@@ -45,15 +50,19 @@ async def Genres() -> dict:
 
 @API_APP.get(path="/backup", summary="Full fat backup of DB")
 async def Backup() -> dict:
-    return dict(await GetAll())  # type: ignore
+    """Get full backup of DB."""
+    return dict(await GetAll())  # pyright: ignore[reportGeneralTypeIssues]
 
 
 class TagInfo(BaseModel):
+    """Information struct for tags."""
+
     Title: str
     Year: int
     newTags: list
 
 
 @API_APP.post(path="/addTags", summary="Append Tags to Tag List")
-async def AppendTags(info: TagInfo):
-    return dict(await AddTags(info.__dict__)) # type: ignore
+async def AppendTags(info: TagInfo) -> dict[str, Any]:
+    """Append tags to media."""
+    return dict(await AddTags(info.__dict__))  # pyright: ignore[reportGeneralTypeIssues]

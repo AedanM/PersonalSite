@@ -1,3 +1,5 @@
+"""Apps for landing."""
+
 from django.apps import AppConfig
 
 
