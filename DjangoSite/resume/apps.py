@@ -1,3 +1,5 @@
+"""Apps for resume."""
+
 from django.apps import AppConfig
 
 

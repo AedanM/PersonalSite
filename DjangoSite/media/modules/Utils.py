@@ -1,15 +1,13 @@
 import logging
-import os
 import re
 from pathlib import Path
-from pprint import pp
 from typing import Any
 
 from django.conf import settings as django_settings
 from django.core.exceptions import ObjectDoesNotExist
-from yaml import Loader, load
+from django.http import HttpRequest
+from yaml import safe_load as load
 
-# pylint: disable=E0402
 from ..forms import AlbumForm, ComicForm, MovieForm, NovelForm, PodcastForm, TVForm, YoutubeForm
 from ..models import Album, Comic, Movie, Novel, Podcast, TVShow, Youtube
 from ..utils import (
@@ -30,11 +28,11 @@ MODEL_LIST = [Movie, TVShow, Novel, Comic, Podcast, Youtube, Album]
 LOGGER = logging.getLogger("UserLogger")
 
 
-def LoadDefinedTags():
-    global DEFINED_TAGS_TIME, DEFINED_TAGS  # type:ignore
-    DEFINED_TAGS_TIME = os.path.getmtime(django_settings.SYNC_PATH / "config" / "Genres.yml")
-    with open(django_settings.SYNC_PATH / "config" / "Genres.yml", encoding="ascii") as fp:
-        DEFINED_TAGS = load(fp, Loader)
+def LoadDefinedTags() -> None:
+    global DEFINED_TAGS_TIME, DEFINED_TAGS
+    DEFINED_TAGS_TIME = Path(django_settings.SYNC_PATH / "config" / "Genres.yml").stat().st_mtime
+    with Path(django_settings.SYNC_PATH / "config" / "Genres.yml").open() as fp:
+        DEFINED_TAGS = load(fp)
         DEFINED_TAGS.pop("_comment", None)
 
 
@@ -58,25 +56,24 @@ def CamelToSentence(text: str) -> str:
     return " ".join([m.group(0) for m in matches])
 
 
-def ModelDisplayName(model):
+def ModelDisplayName(model: Movie | TVShow | Novel | Comic | Podcast | Youtube | Album) -> str:
     return CamelToSentence(model.__name__ + "s")
 
 
-def FormMatch(obj):
+def FormMatch(
+    obj: Movie | TVShow | Novel | Comic | Podcast | Youtube | Album,
+) -> MovieForm | TVForm | NovelForm | ComicForm | PodcastForm | YoutubeForm | AlbumForm:
     return [x for x in FORM_LIST if isinstance(obj, x.Meta.model)][0]
 
 
-def DetermineForm(request):
-    contentType = "Movie"
+def DetermineForm(request: HttpRequest) -> tuple:
+    contentType: str = "Movie"
     if "Year" in request.POST:
         contentType = "Movie"
     elif "Length" in request.POST:
         contentType = "TV"
     elif "Creator" in request.POST:
-        if "Link" in request.POST:
-            contentType = "Youtube"
-        else:
-            contentType = "Podcast"
+        contentType = "Youtube" if "Link" in request.POST else "Podcast"
     elif "Author" in request.POST:
         contentType = "Book"
     elif "Character" in request.POST:
@@ -86,7 +83,12 @@ def DetermineForm(request):
     return GetFormAndClass(contentType)
 
 
-def GetFormAndClass(formType) -> tuple:
+def GetFormAndClass(
+    formType: str,
+) -> tuple[
+    MovieForm | TVForm | NovelForm | ComicForm | PodcastForm | YoutubeForm | AlbumForm,
+    Movie | TVShow | Novel | Comic | Podcast | Youtube | Album,
+]:
     obj = [x for x in MODEL_LIST if formType.replace(" ", "").lower() in x.__name__.lower()][0]
     cls = FormMatch(obj())
     return cls, obj
@@ -104,11 +106,17 @@ def FindID(contentID: str) -> Any:
     return None
 
 
-def GetAllTags(objType, loggedIn=False) -> dict[str, dict]:
-    if os.path.getmtime(django_settings.SYNC_PATH / "config" / "Genres.yml") > DEFINED_TAGS_TIME:
+def GetAllTags(
+    objType: Movie | TVShow | Novel | Comic | Podcast | Youtube | Album,
+    loggedIn: bool = False,
+) -> dict[str, dict]:
+    if (
+        Path(django_settings.SYNC_PATH / "config" / "Genres.yml").stat().st_mtime
+        > DEFINED_TAGS_TIME
+    ):
         LoadDefinedTags()
     genres = []
-    _ = [[genres.append(y) for y in x.GenreTagList] for x in objType.objects.all()]  # type:ignore
+    _ = [[genres.append(y) for y in x.GenreTagList] for x in objType.objects.all()]
     freqDir: dict = {}
     for title, definedList in DEFINED_TAGS.items():
         freqDir[title] = {}
@@ -131,9 +139,10 @@ def GetAllTags(objType, loggedIn=False) -> dict[str, dict]:
     return outputDir
 
 
-def FilterMedia(request, objType) -> dict:
-
-    # pylint: disable=E1101
+def FilterMedia(
+    request: HttpRequest,
+    objType: Movie | TVShow | Novel | Comic | Podcast | Youtube | Album,
+) -> dict:
     sortKey: str = request.GET.get("sort", "Title")
     reverseSort: bool = request.GET.get("reverse", "false") == "true"
     objList = list(objType.objects.all())
@@ -142,16 +151,16 @@ def FilterMedia(request, objType) -> dict:
     genre, objList = FilterTags(
         request.GET.get("genre", ""),
         objList,
-        include=True,
+        True,
     )
     exclude, objList = FilterTags(
         request.GET.get("exclude", ""),
         objList,
-        include=False,
+        False,
     )
 
     if query := request.GET.get("query", None):
-        objList = [x for x in objList if SearchFunction(subStr=x, tagStr=query)]
+        objList = [x for x in objList if SearchFunction(sub=x, tag=query)]
         objList = sorted(objList, key=lambda x: FuzzStr(x, query), reverse=True)
         sortKey = f"Search {query}"
     else:
@@ -182,7 +191,12 @@ def FilterMedia(request, objType) -> dict:
     }
 
 
-def GenerateReport(obj, objCount: int, tag: str, repeats: bool) -> tuple[dict, dict, dict]:
+def GenerateReport(
+    obj: Movie | TVShow | Novel | Comic | Podcast | Youtube | Album,
+    objCount: int,
+    tag: str,
+    repeats: bool,
+) -> tuple[dict, dict, dict]:
     hold = {}
     freq = {}
     total = {}

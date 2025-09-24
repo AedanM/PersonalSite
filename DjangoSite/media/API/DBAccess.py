@@ -1,4 +1,7 @@
+"""Tools to pull from database."""
+
 import logging
+from typing import Any
 
 from asgiref.sync import sync_to_async
 from fastapi import HTTPException
@@ -44,7 +47,7 @@ def GetAll() -> dict:
 
 
 @sync_to_async
-def AddTags(lookupData: dict):
+def AddTags(lookupData: dict) -> dict[str, Any]:
     from media.modules.Utils import MODEL_LIST
 
     matchObj = None
@@ -62,7 +65,7 @@ def AddTags(lookupData: dict):
             break
     if matchObj is not None:
         matchObj.Genre_Tags = ",".join(
-            sorted(list(set(matchObj.Genre_Tags.split(",") + lookupData["newTags"])))
+            sorted(set(matchObj.Genre_Tags.split(",") + lookupData["newTags"])),
         )
         matchObj.save()
         LOGGER.info(

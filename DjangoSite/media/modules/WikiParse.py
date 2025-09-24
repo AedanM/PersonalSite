@@ -8,18 +8,18 @@ API_ENDPOINT = r"https://en.wikipedia.org/w/api.php"
 UA = {"User-Agent": "Aedan McHale (aedan.mchale@gmail.com)"}
 
 
-def GetByHeader(table, header, regex) -> str | None:
+def GetByHeader(table: BeautifulSoup, header: str, regex: str) -> str | None:
     element: list[Tag] = [x for x in table.find_all("tr") if header in x.text]
     if element:
         tag = element[0].find("td")
         if tag:
             matches = re.findall(regex, tag.text)
             if matches:
-                return matches[0]  # type: ignore
+                return matches[0]
     return None
 
 
-def ScrapeWiki(wikiLink) -> dict:
+def ScrapeWiki(wikiLink: str) -> dict:
     title = wikiLink.split("/wiki/")[-1]
     if "http" not in wikiLink:
         wikiLink = r"https://en.wikipedia.org/wiki/" + title
@@ -43,7 +43,7 @@ def ScrapeWiki(wikiLink) -> dict:
         "format": "json",
     }
 
-    r = requests.get(API_ENDPOINT, params, headers=UA, timeout=1000)  # type: ignore
+    r = requests.get(API_ENDPOINT, params, headers=UA, timeout=1000)
     if r.status_code == 200:
         s = BeautifulSoup(r.content, features="html.parser")
         infoTables = s.find_all("table")
@@ -56,12 +56,7 @@ def ScrapeWiki(wikiLink) -> dict:
             if infoBox.find("tr"):
                 out["Title"] = infoBox.find("tr").text
 
-            try:
-                imageLink = infoBox.find("img")["srcset"]
-                imageLink = r"https:" + bytes(imageLink, "utf-8").decode("unicode_escape")
-                out["Logo"] = imageLink.replace('"', "")
-            except (KeyError, TypeError):
-                out["Logo"] = None
+            GetLogo(out, infoBox)
 
             out["Duration"] = GetByHeader(infoBox, "Running time", r"\d+")
             if out["Duration"]:
@@ -74,16 +69,29 @@ def ScrapeWiki(wikiLink) -> dict:
             if genres:
                 out["Genre_Tags"] = ", ".join([x for x in genres.split(r"\n") if x])
 
-            datesElement = [x for x in infoBox.find_all("tr") if "Release" in x.text]
-            dates = []
-            for d in datesElement:
-                dates += [
-                    datetime.strptime(x, "%Y-%m-%d")
-                    for x in re.findall(r"\d{4}-\d{1,2}-\d{1,2}", d.text)
-                ]
-            if dates:
-                dates = sorted(dates)  # type: ignore
-                out["Series_Start"] = dates[0].strftime(r"%d/%m/%Y")
-                out["Series_End"] = dates[-1].strftime(r"%d/%m/%Y")
+            GetDates(out, infoBox)
 
     return out
+
+
+def GetLogo(out: dict, infoBox: BeautifulSoup) -> None:
+    try:
+        # todo: check function
+        imageLink = str(infoBox.find("img")["srcset"])  # pyright: ignore[reportOptionalSubscript, reportArgumentType]
+        imageLink = r"https:" + bytes(imageLink, "utf-8").decode("unicode_escape")
+        out["Logo"] = imageLink.replace('"', "")
+    except (KeyError, TypeError):
+        out["Logo"] = None
+
+
+def GetDates(out: dict, infoBox: BeautifulSoup) -> None:
+    datesElement = [x for x in infoBox.find_all("tr") if "Release" in x.text]
+    dates = []
+    for d in datesElement:
+        dates += [
+            datetime.strptime(x, "%Y-%m-%d") for x in re.findall(r"\d{4}-\d{1,2}-\d{1,2}", d.text)
+        ]
+    if dates:
+        dates = sorted(dates)
+        out["Series_Start"] = dates[0].strftime(r"%d/%m/%Y")
+        out["Series_End"] = dates[-1].strftime(r"%d/%m/%Y")

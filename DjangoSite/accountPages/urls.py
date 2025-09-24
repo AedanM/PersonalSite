@@ -1,3 +1,5 @@
+"""Url Patterns for logins."""
+
 from django.urls import path
 
 from . import views

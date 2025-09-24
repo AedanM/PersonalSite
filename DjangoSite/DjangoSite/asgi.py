@@ -1,12 +1,4 @@
-# pylint:disable=C0103
-"""
-ASGI config for DjangoSite project.
-
-It exposes the ASGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/5.0/howto/deployment/asgi/
-"""
+"""ASGI config for DjangoSite project."""
 
 import os
 from pathlib import Path
@@ -27,7 +19,7 @@ base_application = Starlette(
     routes=[
         Mount("/media/api", app=API_APP),
         Mount("/", app=django_app),
-    ]
+    ],
 )
 
 application = BlackNoise(base_application)

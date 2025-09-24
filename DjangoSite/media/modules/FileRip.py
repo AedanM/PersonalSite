@@ -11,7 +11,7 @@ import sys
 import time
 from pathlib import Path
 
-import win32com.client as com  # pip install pywin32
+import win32com.client as com
 
 try:
     from django.conf import settings as django_settings
@@ -21,12 +21,13 @@ except ModuleNotFoundError:
     SYNC = Path(sys.argv[1])
 
 from progress.bar import Bar
-from yaml import Dumper, Loader, dump, load
+from yaml import Dumper, dump
+from yaml import safe_load as load
 
 LOGGER = logging.getLogger("UserLogger")
 
 
-def GetMovies(parent, showProgress: bool):
+def GetMovies(parent: Path, showProgress: bool) -> list[dict]:
     path = parent / "Movies"
     objList = []
     if showProgress:
@@ -52,11 +53,11 @@ def GetMovies(parent, showProgress: bool):
                 obj["Size"] = 0.0001
             objList.append(obj)
         if showProgress:
-            progBar.next()  # type: ignore
+            progBar.next()  # ty: ignore[possibly-unresolved-reference]
     if showProgress:
         print()
         print("Movies Complete")
-    with open(path / "Summary.yml", encoding="ascii", mode="w") as fp:
+    with (path / "Summary.yml").open() as fp:
         dump({"Movies": objList}, fp, Dumper)
     return objList
 
@@ -64,7 +65,7 @@ def GetMovies(parent, showProgress: bool):
 BANNED_COMPONENTS = ["season", "_", "special"]
 
 
-def GetTV(parent: Path, showProgress: bool):
+def GetTV(parent: Path, showProgress: bool) -> list[dict]:
     path = parent / "TV Shows"
     folderObjs = []
     fso = com.Dispatch("Scripting.FileSystemObject")
@@ -90,10 +91,10 @@ def GetTV(parent: Path, showProgress: bool):
                     "Count": len(eps),
                     "Tags": [x.stem for x in parents],
                     "Size": round(winF.Size / (1024 * 1024 * 1024), 2),
-                }
+                },
             )
         if showProgress:
-            progBar.next()  # type: ignore
+            progBar.next()  # ty: ignore[possibly-unresolved-reference]
     if showProgress:
         print()
         print("TV Complete")
@@ -103,11 +104,11 @@ def GetTV(parent: Path, showProgress: bool):
     return folderObjs
 
 
-def FolderBanned(pathObj):
+def FolderBanned(pathObj: Path) -> bool:
     return any(x.lower() in str(pathObj).lower() for x in BANNED_COMPONENTS)
 
 
-def RipWDrive(mediaType: str, showProgress: bool):
+def RipWDrive(mediaType: str, showProgress: bool) -> None:
     try:
         ms = Path(r"\\192.168.0.100") if not Path("Z:\\").exists() else Path("Z:\\")
         start = time.time()
@@ -122,12 +123,8 @@ def RipWDrive(mediaType: str, showProgress: bool):
         summaryFile = SYNC / "config" / "MediaServerSummary.yml"
         currentFile = {}
         with summaryFile.open(encoding="utf-8") as fp:
-            currentFile = load(fp, Loader)
-        with open(
-            SYNC / "config" / "MediaServerSummary.yml",
-            mode="w",
-            encoding="utf-8",
-        ) as fp:
+            currentFile = load(fp)
+        with Path(SYNC / "config" / "MediaServerSummary.yml").open() as fp:
             dump(
                 {
                     "Movies": movies if mediaType == "Movie" and movies else currentFile["Movies"],

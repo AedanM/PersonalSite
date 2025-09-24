@@ -1,6 +1,7 @@
 import logging
 import random
 from pathlib import Path
+from typing import Any
 
 import requests
 from django.conf import settings as django_settings
@@ -15,18 +16,17 @@ DEFAULT_IMG = r"https://upload.wikimedia.org/wikipedia/commons/c/c9/Icon_Video.p
 DEFAULT_IMG_PATH = "logos/DefaultIMG.png"
 
 
-def DownloadImage(modelObj):
+
+def DownloadImage(modelObj: Any) -> bool:
     from .Utils import MakeStringSystemSafe
 
     logoIMG = None
-    reloadLogo = (
+    if (
         not modelObj.Logo
         or "http" in modelObj.Logo
         or not (Path(django_settings.STATIC_ROOT) / modelObj.Logo).exists()
         or "DefaultIMG.png" in modelObj.Logo
-    )
-
-    if reloadLogo:
+    ):
         LOGGER.info("Downloading new logo for %s", modelObj.Title)
         logoIMG = modelObj.Logo
         if logoIMG:
@@ -52,7 +52,8 @@ def DownloadImage(modelObj):
     return modelObj.Logo != DEFAULT_IMG
 
 
-def GetImageFromLink(savePath, requestImg):
+
+def GetImageFromLink(savePath: str, requestImg: str) -> None:
     tempPath = Path(django_settings.STATICFILES_DIRS[0]) / f"temp-{random.randint(0, 10000)}.png"
     r = requests.get(requestImg, headers=UA, timeout=1000)
     if r.status_code == 200:
@@ -76,7 +77,7 @@ def GetImageFromLink(savePath, requestImg):
         tempPath.unlink()
 
 
-def SortTags(obj):
+def SortTags(obj: Any) -> None:
     tagList = [x.strip() for x in obj.Genre_Tags.split(",")]
     obj.Genre_Tags = ",".join(sorted(tagList))
     obj.save()

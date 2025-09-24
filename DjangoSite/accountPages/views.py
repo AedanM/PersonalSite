@@ -1,20 +1,25 @@
 import logging
 
 from django.contrib.auth import authenticate, login, logout
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_protect
 
 LOGGER = logging.getLogger("UserLogger")
 
 
-# @csrf_protect
-def loginView(request):
-    nextPage = request.GET.get("next", "/media")
-    context: dict = {"colorMode": request.COOKIES.get("colorMode", "dark")}
+@csrf_protect
+def loginView(request: HttpRequest) -> HttpResponse:
+    context: dict = {
+        "colorMode": request.COOKIES.get("colorMode", "dark"),
+        "next": request.GET.get("next", "/media"),
+    }
     loggedIn = False
     if request.method == "POST":
         user = authenticate(
-            request, username=request.POST["username"], password=request.POST["password"]
+            request,
+            username=request.POST["username"],
+            password=request.POST["password"],
         )
         if user:
             login(request, user)
@@ -22,13 +27,13 @@ def loginView(request):
             loggedIn = True
 
     if loggedIn or request.user.is_authenticated:
-        return redirect(nextPage)
+        return redirect(request.POST.get("next", "/media"))
     LOGGER.error("USER NOT AUTH")
     return render(request, "accountPages/login.html", context=context)
 
 
-# @csrf_protect
-def logoutView(request):
+@csrf_protect
+def logoutView(request: HttpRequest) -> HttpResponse:
     logout(request=request)
     dst = request.GET.get("next", "/")
     return redirect(dst)

@@ -1,8 +1,10 @@
 # pylint: disable=C0103
 import datetime
 import random
-from typing import Callable
+from collections.abc import Callable
+from typing import Any
 
+from django.http import HttpRequest
 from thefuzz import fuzz
 
 MINIMUM_YEAR = 1900
@@ -10,49 +12,49 @@ MINIMUM_YEAR = 1900
 FEATURES = ["Watched", "Downloaded", "New", "Ready", "Read"]
 
 
-def GetTest(tagName, objSample) -> Callable:
-    # pylint: disable = C3001
+def GetTest(tagName: str, objSample: Any) -> Callable:
     required = []
-    match (tagName):
+    test: Callable
+    match tagName:
         case "Read":
-            test = lambda x: x.Read
+            test = lambda x: x.Read  # noqa: E731
             required = ["Read"]
         case "Watched":
-            test = lambda x: x.Watched
+            test = lambda x: x.Watched  # noqa: E731
             required = ["Watched"]
         case "Downloaded":
-            test = lambda x: x.Downloaded
+            test = lambda x: x.Downloaded  # noqa: E731
             required = ["Downloaded"]
         case "New":
-            test = lambda x: not x.Downloaded and not x.Watched
+            test = lambda x: not x.Downloaded and not x.Watched  # noqa: E731
             required = ["Downloaded", "Watched"]
         case "Ready":
-            test = lambda x: x.Downloaded and not x.Watched
+            test = lambda x: x.Downloaded and not x.Watched  # noqa: E731
             required = ["Downloaded", "Watched"]
         case _default:
-            test = lambda _x: True
+            test = lambda _x: True  # noqa: E731
     for r in required:
         if r not in dir(objSample):
-            return lambda x: False
+            return lambda _x: False
     return test
 
 
-def FuzzStr(obj, query):
+def FuzzStr(obj: Any, query: str) -> float:
     titleFuzz = fuzz.partial_ratio(query.lower(), obj.Title.lower())
     tagFuzz = max(fuzz.partial_ratio(query.lower(), tag.lower()) for tag in obj.GenreTagList)
     titleFuzz = titleFuzz * 1.5 if titleFuzz > 75 else titleFuzz
     return max(titleFuzz, tagFuzz)
 
 
-def CheckTags(x, tagList):
+def CheckTags(x: Any, tagList: str) -> bool:
     return all(tag in x.GenreTagList for tag in tagList.split(",") if tag)
 
 
-def ExcludeTags(x, tagList):
+def ExcludeTags(x: Any, tagList: str) -> bool:
     return any(tag in x.GenreTagList for tag in tagList.split(",") if tag)
 
 
-def FilterTags(tagList, objList, include):
+def FilterTags(tagList: str, objList: list, include: bool) -> tuple[str, list]:
     if tagList:
         for feature in FEATURES:
             if feature in tagList:
@@ -73,14 +75,14 @@ def FilterTags(tagList, objList, include):
     return tagList, objList
 
 
-def SearchFunction(subStr, tagStr):
-    return all(FuzzStr(subStr, tag) > 75 for tag in tagStr.split(","))
+def SearchFunction(sub: str, tag: str) -> bool:
+    return all(FuzzStr(sub, tag) > 75 for tag in tag.split(","))
 
 
-def SortFunction(obj, key: str):
+def SortFunction(obj: Any, key: str) -> int | float | str:
     outObj = None
     key = key.replace(" ", "_")
-    match (key):
+    match key:
         case "Title":
             outObj = obj.SortTitle
         case "None":
@@ -96,7 +98,7 @@ def SortFunction(obj, key: str):
     return outObj
 
 
-def ExtractYearRange(request, objList):
+def ExtractYearRange(request: HttpRequest, objList: list) -> tuple[range, list]:
     minYear = min(x.Year for x in objList) if "Year" in dir(objList[0]) else MINIMUM_YEAR
     yearRange = range(
         int(request.GET.get("minYear", minYear)),

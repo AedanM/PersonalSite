@@ -5,23 +5,24 @@ from datetime import datetime
 from pathlib import Path
 
 import uvicorn
-from waitress import serve  # type:ignore
+from waitress import serve
 
 os.chdir(Path(__file__).parent)
 
-# pylint: disable=C0413
-from DjangoSite.asgi import application as asgi_app
-from DjangoSite.wsgi import application as wsgi_app
+from DjangoSite.asgi import application as asgi_app  # noqa: E402
+from DjangoSite.wsgi import application as wsgi_app  # noqa: E402
 
 
-def RunASGI():
+def RunASGI() -> int:
+    """Run async tool."""
     application = asgi_app
     print(f"Uvicorn Serving Django App\n{datetime.now()}\nhttp://127.0.0.1:8080")
     uvicorn.run(application, host="0.0.0.0", port=8080, log_config=None)
     return 0
 
 
-def RunWSGI():
+def RunWSGI() -> int:
+    """Run wsgi tool."""
     application = wsgi_app
     logging.getLogger("waitress").setLevel(logging.WARNING)
     print(f"Waitress Serving Django App\n{datetime.now()}\nhttp://127.0.0.1:8080")

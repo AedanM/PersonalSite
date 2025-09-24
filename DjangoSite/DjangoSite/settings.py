@@ -1,5 +1,3 @@
-# pylint:disable=C0103
-
 import json
 from datetime import date
 from pathlib import Path
@@ -18,9 +16,6 @@ DEBUG = DJANGO_CONFIG_DICT["Debug"]
 
 ALLOWED_HOSTS: list = ["127.0.0.1", "aedanm.uk", "192.168.1.99"]
 CSRF_TRUSTED_ORIGINS: list = ["https://127.0.0.1", "https://aedanm.uk", "https://192.168.0.44"]
-
-# SESSION_COOKIE_SECURE = not DEBUG
-# CSRF_COOKIE_SECURE = not DEBUG
 
 SYNC_PATH = Path()
 for path in DJANGO_CONFIG_DICT["SyncPaths"]:
@@ -118,7 +113,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": EXTERNAL_DIR / "db.sqlite3",
-    }
+    },
 }
 
 

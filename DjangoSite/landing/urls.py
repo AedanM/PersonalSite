@@ -12,6 +12,5 @@ urlpatterns = [
     path("log", views.Log, name="log"),
     path(route="blog", view=views.BlogHome, name="blogHome"),
     path(route="blog/<str:path>", view=views.BlogPages, name="blog"),
-    path(route="blog/<str:parent>/<str:path>", view=views.BlogPages, name="blog"),
     path("", views.Index, name="index"),
 ]

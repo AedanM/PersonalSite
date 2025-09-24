@@ -2,23 +2,25 @@ import datetime
 import hashlib
 import logging
 import shutil
+from collections.abc import Callable, Iterable
 from functools import wraps
 from math import ceil
 from pathlib import Path
 from time import time
+from typing import Any
 
 import pandas as pd
-import plotly.express as px  # type:ignore
-import statsmodels.api as sm  # type:ignore
+import plotly.express as px
+import statsmodels.api as sm
 from django import template
 from django.conf import settings as django_settings
-from yaml import Loader, load
+from yaml import safe_load as load
 
 from ..utils import MINIMUM_YEAR
 
 DEFINED_TAGS = {}
-with open(django_settings.SYNC_PATH / "config" / "Genres.yml", encoding="ascii") as fp:
-    DEFINED_TAGS = load(fp, Loader)
+with (django_settings.SYNC_PATH / "config" / "Genres.yml").open(encoding="ascii") as fp:
+    DEFINED_TAGS = load(fp)
 
 register = template.Library()
 
@@ -51,8 +53,8 @@ CONFIG = {
 }
 
 
-def DatabaseMD5():
-    hashMD5 = hashlib.md5()
+def DatabaseHash() -> str:
+    hashMD5 = hashlib.sha3_256()
     path = Path(django_settings.DATABASES["default"]["NAME"])
     with path.open("rb") as f:
         for chunk in iter(lambda: f.read(4096), b""):
@@ -60,9 +62,9 @@ def DatabaseMD5():
     return hashMD5.hexdigest()
 
 
-def GetDst(objList, plotName):
+def GetDst(objList: list, plotName: str) -> Path:
     mediaType = objList[0].__class__.__name__
-    dstFolder = Path(django_settings.STATICFILES_DIRS[0]) / f"stats/{DatabaseMD5()}"
+    dstFolder = Path(django_settings.STATICFILES_DIRS[0]) / f"stats/{DatabaseHash()}"
     if not dstFolder.exists():
         for f in dstFolder.parent.glob("**/*/"):
             shutil.rmtree(f)
@@ -71,20 +73,20 @@ def GetDst(objList, plotName):
     return dstFile
 
 
-def LogTiming(f):
+def LogTiming(f: Callable) -> Callable:
     @wraps(f)
-    def Wrap(*args, **kw):
+    def Wrap(*args: Any, **kw: Any) -> Any:
         ts = time()
         result = f(*args, **kw)
         te = time()
-        LOGGER.debug("func:%r took: %2.4f sec", f.__name__, te - ts)
+        LOGGER.debug("func:%r took: %2.4f sec", f.__name__, te - ts)  # ty:ignore[unresolved-attribute]
         return result
 
     return Wrap
 
 
 @register.filter
-def WatchLen(objList: list, force: bool):
+def WatchLen(objList: list, force: bool) -> str:
     outputDiv = ""
     dstPath = GetDst(objList, "WatchLen")
     if dstPath.exists() and not force:
@@ -122,7 +124,7 @@ def RatingOverTime(objList: list, force: bool) -> str:
                     "Release Year": [x.Year for x in objList if x.Watched],
                     "Rating": [x.Rating for x in objList if x.Watched],
                     "Duration": [x.Duration.seconds // 60 for x in objList if x.Watched],
-                }
+                },
             )
         elif getattr(objList[0], "Series_Start", None):
             df = pd.DataFrame(
@@ -130,7 +132,7 @@ def RatingOverTime(objList: list, force: bool) -> str:
                     "Title": [x.Title for x in objList if x.Watched],
                     "Release Year": [x.Series_Start.year for x in objList if x.Watched],
                     "Rating": [x.Rating for x in objList if x.Watched],
-                }
+                },
             )
         if df is not None:
             fig = px.scatter(
@@ -176,7 +178,7 @@ def DurationOverTime(objList: list, force: bool) -> str:
                     "Watched" if x.Watched else "Downloaded" if x.Downloaded else "Neither"
                     for x in objList
                 ],
-            }
+            },
         )
         if df is not None:
             fig = px.scatter(
@@ -199,13 +201,13 @@ def DurationOverTime(objList: list, force: bool) -> str:
                 name="Average",
             )
             fig.update_layout(
-                legend=dict(
-                    orientation="h",
-                    yanchor="top",
-                    y=1.2,
-                    xanchor="center",
-                    x=0.5,
-                )
+                legend={
+                    "orientation": "h",
+                    "yanchor": "top",
+                    "y": 1.2,
+                    "xanchor": "center",
+                    "x": 0.5,
+                },
             )
             outputDiv = GetHTML(fig)
             dstPath.write_text(outputDiv, encoding="utf-8")
@@ -335,18 +337,18 @@ def RuntimeBreakdown(objList: list, force: bool) -> str:
                             (x.Duration.seconds / 60)
                             * x.Length
                             * len([y for y in YearRange(x) if y in range(year, year + 11)])
-                            / len(YearRange(x))
+                            / len(YearRange(x)),
                         )
                         for x in objList
                         if set(range(year, year + 10)).intersection(set(YearRange(x)))
-                    )
+                    ),
                 )
         elif getattr(objList[0], "Year", None):
             startDecade = (min(x.Year for x in objList) // 10) * 10
             for year in range(startDecade, 2030, 10):
                 labels.append(f"{year}s")
                 values.append(
-                    sum(x.Duration.seconds / 60 for x in objList if year <= x.Year < year + 10)
+                    sum(x.Duration.seconds / 60 for x in objList if year <= x.Year < year + 10),
                 )
         if labels and values:
             fig = px.pie(
@@ -366,16 +368,16 @@ def RuntimeBreakdown(objList: list, force: bool) -> str:
 @register.simple_tag
 def GenreBreakdown(objList: list, useCount: bool, force: bool) -> str:
     outputDiv = ""
-    dstPath = GetDst(objList, f"GenreBreakdown{"-Count" if useCount else''}")
+    dstPath = GetDst(objList, f"GenreBreakdown{'-Count' if useCount else ''}")
     if dstPath.exists() and not force:
         outputDiv = dstPath.read_text(encoding="utf-8")
     else:
         results = {}
         gList = [y for y in DEFINED_TAGS["Genres"] if [x for x in objList if y in x.Genre_Tags]]
         colors = px.colors.qualitative.Plotly + px.colors.qualitative.Light24
-        colorMap = dict(
-            (DEFINED_TAGS["Genres"][idx], colors[idx]) for idx in range(len(DEFINED_TAGS["Genres"]))
-        )
+        colorMap = {
+            DEFINED_TAGS["Genres"][idx]: colors[idx] for idx in range(len(DEFINED_TAGS["Genres"]))
+        }
 
         genreSorted = sorted(
             gList,
@@ -396,7 +398,7 @@ def GenreBreakdown(objList: list, useCount: bool, force: bool) -> str:
                 color=list(results.keys()),
                 color_discrete_map=colorMap,
                 names=list(results.keys()),
-                title=f"{"Runtime" if not useCount else "Count"} by Genre",
+                title=f"{'Runtime' if not useCount else 'Count'} by Genre",
                 values=list(results.values()),
             )
 
@@ -443,7 +445,7 @@ def ValuesOverYears(objList: list, force: bool) -> str:
                 "Media Counts": mediaCount,
                 "Watch Status": watchStatus,
                 "Titles": titles,
-            }
+            },
         )
         if not df.empty:
             fig = px.bar(
@@ -458,13 +460,13 @@ def ValuesOverYears(objList: list, force: bool) -> str:
             fig.update_layout(
                 barmode="stack",
                 title="Watch Trends Over Time",
-                legend=dict(
-                    orientation="h",
-                    yanchor="top",
-                    y=1.1,
-                    xanchor="center",
-                    x=0.5,
-                ),
+                legend={
+                    "orientation": "h",
+                    "yanchor": "top",
+                    "y": 1.2,
+                    "xanchor": "center",
+                    "x": 0.5,
+                },
             )
             fig.update_xaxes(dtick=5)
             outputDiv = GetHTML(fig)
@@ -479,13 +481,15 @@ def TimeLine(objList: list, force: bool) -> str:
     if dstPath.exists() and not force:
         outputDiv = dstPath.read_text(encoding="utf-8")
     else:
-        objList = sorted(list(objList), key=lambda x: (x.Series_Start))
+        objList = sorted(objList, key=lambda x: (x.Series_Start))
         data = []
         freeList: list[int] = []
         for obj in objList:
             if obj.Series_Start == obj.Series_End:
                 obj.Series_End = datetime.date(
-                    year=obj.Series_End.year, month=obj.Series_End.month, day=obj.Series_End.day + 1
+                    year=obj.Series_End.year,
+                    month=obj.Series_End.month,
+                    day=obj.Series_End.day + 1,
                 )
             yLevel = CalcIdx(obj, freeList)
             data.append(
@@ -493,13 +497,13 @@ def TimeLine(objList: list, force: bool) -> str:
                     "Title": obj.Title,
                     "Series_Start": str(f"{obj.Series_Start}"),
                     "Series_End": str(
-                        f"{obj.Series_End if obj.Series_End.year > MINIMUM_YEAR else 'now'}"
+                        f"{obj.Series_End if obj.Series_End.year > MINIMUM_YEAR else 'now'}",
                     ),
                     "Watched": (
                         "Watched" if obj.Watched else "Downloaded" if obj.Downloaded else "Neither"
                     ),
                     "Idx": yLevel,
-                }
+                },
             )
         df = pd.DataFrame(data)
         fig = px.timeline(
@@ -518,13 +522,13 @@ def TimeLine(objList: list, force: bool) -> str:
     return outputDiv
 
 
-def YearPercentage(date):
+def YearPercentage(date: datetime.date) -> float:
     date = datetime.date.today() if date.year <= MINIMUM_YEAR else date
     # 04/06/2019
     return date.year + (date.month / 12) + (date.day / (31 * 12))
 
 
-def Get3Types(objList):
+def Get3Types(objList: Any) -> tuple[list, list, list]:
     watched = [x for x in objList if x.Watched]
     downloaded = [x for x in objList if x.Downloaded and not x.Watched]
     neither = [x for x in objList if not x.Downloaded and not x.Watched]
@@ -532,7 +536,7 @@ def Get3Types(objList):
 
 
 @register.filter
-def GenreSearch(objList: list, force: bool):
+def GenreSearch(objList: list, force: bool) -> str:
     outputDiv = ""
     dstPath = GetDst(objList, "GenreSearch")
     if dstPath.exists() and not force:
@@ -544,14 +548,15 @@ def GenreSearch(objList: list, force: bool):
         counts = []
         typeStr = objList[0].__class__.__name__
 
-        def GenreSort(g, objList) -> float:
+        def GenreSort(g: str, objList: Any) -> float:
             subList = [x for x in objList if g in x.Genre_Tags]
             types = Get3Types(subList)
             return len(types[0]) / len(subList) if subList else 0
 
         genreDict = {}
         for genre in sorted(
-            DEFINED_TAGS["Genres"], key=lambda y: len([x for x in objList if y in x.Genre_Tags])
+            DEFINED_TAGS["Genres"],
+            key=lambda y: len([x for x in objList if y in x.Genre_Tags]),
         ):
             genreDict[genre] = [x for x in objList if genre in x.Genre_Tags]
             objList = [x for x in objList if x not in genreDict[genre]]
@@ -580,7 +585,7 @@ def GenreSearch(objList: list, force: bool):
                 "Watch %": mediaCount,
                 "Watch Status": watchStatus,
                 "Number": counts,
-            }
+            },
         )
         if not df.empty:
             fig = px.bar(
@@ -595,13 +600,13 @@ def GenreSearch(objList: list, force: bool):
             fig.update_layout(
                 barmode="stack",
                 title="Watch Trends Across Genres",
-                legend=dict(
-                    orientation="h",
-                    yanchor="top",
-                    y=1.1,
-                    xanchor="center",
-                    x=0.5,
-                ),
+                legend={
+                    "orientation": "h",
+                    "yanchor": "top",
+                    "y": 1.2,
+                    "xanchor": "center",
+                    "x": 0.5,
+                },
             )
             outputDiv = GetHTML(fig)
             dstPath.write_text(outputDiv, encoding="utf-8")
@@ -637,7 +642,7 @@ def FancyRatings(objList: list, force: bool) -> str:
                 "Year": soloYears,
                 "Title": titles,
                 "Genre": genres,
-            }
+            },
         )
 
         fig = px.line(
@@ -663,7 +668,7 @@ def FancyRatings(objList: list, force: bool) -> str:
     return outputDiv
 
 
-def YearRange(obj):
+def YearRange(obj: Any) -> range:
     endYear = (
         obj.Series_End.year + 1
         if obj.Series_End.year > MINIMUM_YEAR
@@ -672,7 +677,7 @@ def YearRange(obj):
     return range(obj.Series_Start.year, endYear)
 
 
-def ExtractRollingTrendRatings(startDecade, trimmedObj):
+def ExtractRollingTrendRatings(startDecade: int, trimmedObj: Iterable) -> Any:
     ratings = []
     years = []
     for i in list(range(startDecade, datetime.datetime.now().year + 1)):
@@ -702,7 +707,7 @@ def DurationVsRating(objList: list, force: bool) -> str:
                 "Duration": duration,
                 "Title": [x.Title for x in trimmedList],
                 "Decade": [f"{x.Year // 10 * 10}s" for x in trimmedList],
-            }
+            },
         )
         fig = px.scatter(
             df,
@@ -766,7 +771,7 @@ def CompletionPercentageRuntime(objList: list, force: bool) -> str:
                         sum(x.Total_Length for x in objList if not x.Watched and not x.Downloaded),
                     ]
                 ),
-            }
+            },
         )
         fig = px.pie(
             df,
@@ -807,7 +812,7 @@ def CompletionPercentage(objList: list, force: bool) -> str:
                         len([x for x in objList if not x.Watched and not x.Downloaded]),
                     ]
                 ),
-            }
+            },
         )
         fig = px.pie(
             df,
@@ -826,8 +831,7 @@ def CompletionPercentage(objList: list, force: bool) -> str:
     return outputDiv
 
 
-def GetHTML(figure, isPie=False) -> str:
-
+def GetHTML(figure: Any, isPie: bool = False) -> str:
     figure.update_layout(
         paper_bgcolor="rgb(33, 37, 41)",
         plot_bgcolor="rgb(33, 37, 41)",
@@ -838,7 +842,7 @@ def GetHTML(figure, isPie=False) -> str:
     return figure.to_html(full_html=False)
 
 
-def CalcIdx(obj, yLevels: list) -> int:
+def CalcIdx(obj: Any, yLevels: list) -> int:
     rangeObj = range(
         GetDateVal(obj.Series_Start),
         GetDateVal(obj.Series_End if obj.Series_End.year > MINIMUM_YEAR else datetime.date.today())
@@ -857,5 +861,5 @@ def CalcIdx(obj, yLevels: list) -> int:
     return len(yLevels) - 1
 
 
-def GetDateVal(date: datetime.date):
+def GetDateVal(date: datetime.date) -> int:
     return date.year * 365 + date.month * 30 + date.day

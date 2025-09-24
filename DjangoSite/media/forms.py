@@ -1,4 +1,3 @@
-# pylint: disable=C0103
 from django import forms
 
 from .models import Album, Comic, Movie, Novel, Podcast, TVShow, Youtube

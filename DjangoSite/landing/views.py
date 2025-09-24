@@ -1,24 +1,28 @@
-import os
+"""Landing views."""
+
 import shutil
 from pathlib import Path
 
 import frontmatter
-import markdown  # type:ignore
+import markdown
 from django.conf import settings as django_settings
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
-from landing.modules.HardwareFunctions import KillRedirect, PullRepo, RebootPC
+
+from landing.modules.HardwareFunctions import KillRedirect, PullRepo
 
 
 # Create your views here.
-def Index(request) -> HttpResponse:
+def Index(request: HttpRequest) -> HttpResponse:
+    """Index of landing."""
     context: dict = {"colorMode": request.COOKIES.get("colorMode", "dark")}
     return render(request, "landing/index.html", context)
 
 
-def IterLink(request) -> HttpResponse:
-    link = request.GET.get("link")
+def IterLink(request: HttpRequest) -> HttpResponse:
+    """Automatically iterate a link with {idx}."""
+    link = request.GET.get("link", "")
     start = int(request.GET.get("start", 0))
     pad = int(request.GET.get("pad", 0))
     end = int(request.GET.get("end", 10)) + 1
@@ -31,9 +35,10 @@ def IterLink(request) -> HttpResponse:
     return render(request, "landing/iterLink.html", context)
 
 
-def Log(request):
-    extendLogPath = sorted(list(Path(r".\Logging").glob("*Extended.log")))[-1]
-    userLogPath = sorted(list(Path(r".\Logging").glob("*UserLogger.log")))[-1]
+def Log(request: HttpRequest) -> HttpResponse:
+    """Return current log file."""
+    extendLogPath = sorted(Path(r".\Logging").glob("*Extended.log"))[-1]
+    userLogPath = sorted(Path(r".\Logging").glob("*UserLogger.log"))[-1]
 
     r = (
         extendLogPath.read_text(newline="\n")
@@ -44,16 +49,16 @@ def Log(request):
     return HttpResponse(r, content_type="text/plain")
 
 
-def Refresh(request) -> KillRedirect:
-    if request.GET.get("hard", "False") == "True":
-        RebootPC()
+def Refresh(request: HttpRequest) -> KillRedirect:
+    """Refresh process."""
     if request.GET.get("pull", "False") == "True":
         PullRepo()
     return KillRedirect(request.META.get("HTTP_REFERER", "/media"))
 
 
 @login_required
-def ToolsPage(request) -> HttpResponse:
+def ToolsPage(request: HttpRequest) -> HttpResponse:
+    """Load page of useful tools."""
     return render(
         request,
         "landing/tools.html",
@@ -61,7 +66,8 @@ def ToolsPage(request) -> HttpResponse:
     )
 
 
-def BlogHome(request) -> HttpResponse:
+def BlogHome(request: HttpRequest) -> HttpResponse:
+    """Load blog home page."""
     context: dict = {"colorMode": request.COOKIES.get("colorMode", "dark")}
     postParent = django_settings.SYNC_PATH / "blog" / "posts"
     context["posts"] = [
@@ -77,11 +83,12 @@ def BlogHome(request) -> HttpResponse:
     if request.GET.get("tag", None):
         context["posts"] = [x for x in context["posts"] if request.GET["tag"] in x["tags"]]
     if not request.user.is_authenticated:
-        context["posts"] = [x for x in context["posts"] if "internal" not in x["tags"]]  # type: ignore
+        context["posts"] = [x for x in context["posts"] if "internal" not in x["tags"]]
     return render(request, "landing/blogHome.html", context=context)
 
 
-def BlogPages(request, path, parent=None) -> HttpResponse:
+def BlogPages(request: HttpRequest, path: str, parent: str | None = None) -> HttpResponse:
+    """Load individual blog pages."""
     context: dict = {"colorMode": request.COOKIES.get("colorMode", "dark")}
     response = redirect("/blog")
     expectedName = f"{path}.md" if parent is None else f"{parent}/{path}.md"
@@ -89,7 +96,10 @@ def BlogPages(request, path, parent=None) -> HttpResponse:
     localFile = (django_settings.STATIC_ROOT / "blog" / "posts") / expectedName
 
     if syncFile.exists():
-        if not localFile.exists() or os.path.getmtime(localFile) < os.path.getmtime(syncFile):
+        if (
+            not localFile.exists()
+            or Path(localFile).stat().st_mtime < Path(syncFile).stat().st_mtime
+        ):
             localFile.parent.mkdir(exist_ok=True)
             (localFile.parent / "attachments").mkdir(exist_ok=True)
             shutil.copy(syncFile, localFile)
@@ -101,7 +111,8 @@ def BlogPages(request, path, parent=None) -> HttpResponse:
 
         fMatterObj = frontmatter.load(str(localFile))
         context["rendered"] = markdown.markdown(
-            fMatterObj.content, extensions=["tables", "fenced_code"]
+            fMatterObj.content,
+            extensions=["tables", "fenced_code"],
         )
         context |= fMatterObj.to_dict()
         if parent:
