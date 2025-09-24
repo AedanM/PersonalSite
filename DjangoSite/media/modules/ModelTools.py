@@ -16,6 +16,7 @@ DEFAULT_IMG = r"https://upload.wikimedia.org/wikipedia/commons/c/c9/Icon_Video.p
 DEFAULT_IMG_PATH = "logos/DefaultIMG.png"
 
 
+
 def DownloadImage(modelObj: Any) -> bool:
     from .Utils import MakeStringSystemSafe
 
@@ -49,6 +50,7 @@ def DownloadImage(modelObj: Any) -> bool:
             modelObj.Logo = DEFAULT_IMG
             modelObj.save()
     return modelObj.Logo != DEFAULT_IMG
+
 
 
 def GetImageFromLink(savePath: str, requestImg: str) -> None:
