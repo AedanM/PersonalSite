@@ -30,6 +30,7 @@ LOGGER = logging.getLogger("UserLogger")
 def GetMovies(parent: Path, showProgress: bool) -> list[dict]:
     path = parent / "Movies"
     objList = []
+    progBar = None
     if showProgress:
         progBar = Bar(
             "Loading Movies...",
@@ -52,8 +53,8 @@ def GetMovies(parent: Path, showProgress: bool) -> list[dict]:
             if obj["Size"] == 0:
                 obj["Size"] = 0.0001
             objList.append(obj)
-        if showProgress:
-            progBar.next()  # ty: ignore[possibly-unresolved-reference]
+        if showProgress and isinstance(progBar, Bar):
+            progBar.next()
     if showProgress:
         print()
         print("Movies Complete")
@@ -72,6 +73,7 @@ def GetTV(parent: Path, showProgress: bool) -> list[dict]:
     contents = list(path.glob("**/*"))
     folders = [x for x in contents if "." not in x.name and not FolderBanned(x)]
     subFiles = [x for x in contents if "." in x.name]
+    progBar = None
     if showProgress:
         progBar = Bar(
             "Loading Shows...",
@@ -93,7 +95,7 @@ def GetTV(parent: Path, showProgress: bool) -> list[dict]:
                     "Size": round(winF.Size / (1024 * 1024 * 1024), 2),
                 },
             )
-        if showProgress:
+        if showProgress and isinstance(progBar, Bar):
             progBar.next()  # ty: ignore[possibly-unresolved-reference]
     if showProgress:
         print()
