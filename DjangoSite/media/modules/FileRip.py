@@ -58,7 +58,10 @@ def GetMovies(parent: Path, showProgress: bool) -> list[dict]:
     if showProgress:
         print()
         print("Movies Complete")
-    with (path / "Summary.yml").open() as fp:
+    with (path / "Summary.yml").open(
+        mode="w",
+        encoding="utf-8",
+    ) as fp:
         dump({"Movies": objList}, fp, Dumper)
     return objList
 
@@ -126,7 +129,10 @@ def RipWDrive(mediaType: str, showProgress: bool) -> None:
         currentFile = {}
         with summaryFile.open(encoding="utf-8") as fp:
             currentFile = load(fp)
-        with Path(SYNC / "config" / "MediaServerSummary.yml").open() as fp:
+        with Path(SYNC / "config" / "MediaServerSummary.yml").open(
+            mode="w",
+            encoding="utf-8",
+        ) as fp:
             dump(
                 {
                     "Movies": movies if mediaType == "Movie" and movies else currentFile["Movies"],
