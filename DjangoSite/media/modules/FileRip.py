@@ -30,6 +30,7 @@ LOGGER = logging.getLogger("UserLogger")
 def GetMovies(parent: Path, showProgress: bool) -> list[dict]:
     path = parent / "Movies"
     objList = []
+    progBar = None
     if showProgress:
         progBar = Bar(
             "Loading Movies...",
@@ -52,12 +53,15 @@ def GetMovies(parent: Path, showProgress: bool) -> list[dict]:
             if obj["Size"] == 0:
                 obj["Size"] = 0.0001
             objList.append(obj)
-        if showProgress:
-            progBar.next()  # ty: ignore[possibly-unresolved-reference]
+        if showProgress and isinstance(progBar, Bar):
+            progBar.next()
     if showProgress:
         print()
         print("Movies Complete")
-    with (path / "Summary.yml").open() as fp:
+    with (path / "Summary.yml").open(
+        mode="w",
+        encoding="utf-8",
+    ) as fp:
         dump({"Movies": objList}, fp, Dumper)
     return objList
 
@@ -72,6 +76,7 @@ def GetTV(parent: Path, showProgress: bool) -> list[dict]:
     contents = list(path.glob("**/*"))
     folders = [x for x in contents if "." not in x.name and not FolderBanned(x)]
     subFiles = [x for x in contents if "." in x.name]
+    progBar = None
     if showProgress:
         progBar = Bar(
             "Loading Shows...",
@@ -93,7 +98,7 @@ def GetTV(parent: Path, showProgress: bool) -> list[dict]:
                     "Size": round(winF.Size / (1024 * 1024 * 1024), 2),
                 },
             )
-        if showProgress:
+        if showProgress and isinstance(progBar, Bar):
             progBar.next()  # ty: ignore[possibly-unresolved-reference]
     if showProgress:
         print()
@@ -124,7 +129,10 @@ def RipWDrive(mediaType: str, showProgress: bool) -> None:
         currentFile = {}
         with summaryFile.open(encoding="utf-8") as fp:
             currentFile = load(fp)
-        with Path(SYNC / "config" / "MediaServerSummary.yml").open() as fp:
+        with Path(SYNC / "config" / "MediaServerSummary.yml").open(
+            mode="w",
+            encoding="utf-8",
+        ) as fp:
             dump(
                 {
                     "Movies": movies if mediaType == "Movie" and movies else currentFile["Movies"],

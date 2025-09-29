@@ -12,8 +12,8 @@ from .WikiParse import UA
 
 LOGGER = logging.getLogger("UserLogger")
 
-DEFAULT_IMG = r"https://upload.wikimedia.org/wikipedia/commons/c/c9/Icon_Video.png"
-DEFAULT_IMG_PATH = "logos/DefaultIMG.png"
+DEFAULT_IMG: str = r"https://upload.wikimedia.org/wikipedia/commons/c/c9/Icon_Video.png"
+DEFAULT_IMG_PATH: str = "logos/DefaultIMG.png"
 
 
 
