@@ -233,7 +233,7 @@ def edit(request: HttpRequest) -> HttpResponse:
         contentObj.GetLogo("www." in contentObj.Logo or "://" in contentObj.Logo)
 
         response = (
-            render(request, "media/editForm.html", context)
+                render(request, "media/editform.html", context)
             if request.method == "GET"
             else redirect("/media")
         )

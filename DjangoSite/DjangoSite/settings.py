@@ -4,7 +4,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-EXTERNAL_DIR = Path(r"C:\External")
+EXTERNAL_DIR = Path(r"/home/aedan/External")
 
 LOGIN_REDIRECT_URL = "/"  # new
 DJANGO_CONFIG_DICT = json.loads((EXTERNAL_DIR / "config.json").read_text(encoding="utf-8"))
@@ -36,13 +36,13 @@ LOGGING = {
         "UserLoggerHandle": {
             "level": "INFO",
             "class": "logging.FileHandler",
-            "filename": f"Logging\\{date.today()} UserLogger.log",
+            "filename": f"Logging/{date.today()} UserLogger.log",
             "formatter": "base",
         },
         "ExtendedHandle": {
             "level": "INFO",
             "class": "logging.FileHandler",
-            "filename": f"Logging\\{date.today()} Extended.log",
+            "filename": f"Logging/{date.today()} Extended.log",
             "formatter": "base",
         },
     },

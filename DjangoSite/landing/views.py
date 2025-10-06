@@ -37,8 +37,8 @@ def IterLink(request: HttpRequest) -> HttpResponse:
 
 def Log(request: HttpRequest) -> HttpResponse:
     """Return current log file."""
-    extendLogPath = sorted(Path(r".\Logging").glob("*Extended.log"))[-1]
-    userLogPath = sorted(Path(r".\Logging").glob("*UserLogger.log"))[-1]
+    extendLogPath = sorted(Path(r"./Logging").glob("*Extended.log"))[-1]
+    userLogPath = sorted(Path(r"./Logging").glob("*UserLogger.log"))[-1]
 
     r = (
         extendLogPath.read_text(newline="\n")
