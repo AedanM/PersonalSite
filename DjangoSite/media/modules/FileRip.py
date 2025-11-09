@@ -31,12 +31,11 @@ def GetMovies(parent: Path, showProgress: bool) -> list[dict]:
     path = parent / "Movies"
     objList = []
     progBar = None
-    if showProgress:
-        progBar = Bar(
-            "Loading Movies...",
-            max=len(list(path.glob("**/*.*"))),
-            suffix=r"%(index)d/%(max)d - %(eta)ds",
-        )
+    progBar = Bar(
+        "Loading Movies...",
+        max=len(list(path.glob("**/*.*"))),
+        suffix=r"%(index)d/%(max)d - %(eta)ds",
+    )
     for file in path.glob("**/*.*"):
         if file.is_file() and file.suffix not in [".ico", ".json", ".yml", ".srt"]:
             title = " ".join(file.stem.split(" ")[:-1])
@@ -77,12 +76,11 @@ def GetTV(parent: Path, showProgress: bool) -> list[dict]:
     folders = [x for x in contents if "." not in x.name and not FolderBanned(x)]
     subFiles = [x for x in contents if "." in x.name]
     progBar = None
-    if showProgress:
-        progBar = Bar(
-            "Loading Shows...",
-            max=len(folders),
-            suffix=r"%(index)d/%(max)d - %(eta)ds",
-        )
+    progBar = Bar(
+        "Loading Shows...",
+        max=len(folders),
+        suffix=r"%(index)d/%(max)d - %(eta)ds",
+    )
     for folder in folders:
         parents = [x for x in folders if str(x) + "\\" in str(folder) and x != folder]
         children = [x for x in folders if str(folder) + "\\" in str(x) and x != folder]
@@ -99,7 +97,7 @@ def GetTV(parent: Path, showProgress: bool) -> list[dict]:
                 },
             )
         if showProgress and isinstance(progBar, Bar):
-            progBar.next()  # ty: ignore[possibly-unresolved-reference]
+            progBar.next()
     if showProgress:
         print()
         print("TV Complete")
