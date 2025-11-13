@@ -7,6 +7,7 @@
 # ///
 
 import logging
+import re
 import sys
 import time
 from pathlib import Path
@@ -38,9 +39,12 @@ def GetMovies(parent: Path, showProgress: bool) -> list[dict]:
     )
     for file in path.glob("**/*.*"):
         if file.is_file() and file.suffix not in [".ico", ".json", ".yml", ".srt"]:
-            title = " ".join(file.stem.split(" ")[:-1])
+            fileTitle = file.stem
+            if re.match(r"^.+\(\d+\) - .+$", file.stem):
+                fileTitle = file.stem.rsplit(" - ", maxsplit=1)[0]
+            title = " ".join(fileTitle.split(" ")[:-1])
             size = file.stat().st_size / (1024 * 1024 * 1024)
-            year = file.stem.split(" ")[-1][1:-1]
+            year = fileTitle.split(" ")[-1][1:-1]
             tags = [x for x in str(file.parent).replace(str(path), "").split("\\") if x != ""]
             obj = {
                 "Title": title,
