@@ -7,6 +7,7 @@
 # ///
 
 import logging
+import re
 import sys
 import time
 from pathlib import Path
@@ -31,17 +32,19 @@ def GetMovies(parent: Path, showProgress: bool) -> list[dict]:
     path = parent / "Movies"
     objList = []
     progBar = None
-    if showProgress:
-        progBar = Bar(
-            "Loading Movies...",
-            max=len(list(path.glob("**/*.*"))),
-            suffix=r"%(index)d/%(max)d - %(eta)ds",
-        )
+    progBar = Bar(
+        "Loading Movies...",
+        max=len(list(path.glob("**/*.*"))),
+        suffix=r"%(index)d/%(max)d - %(eta)ds",
+    )
     for file in path.glob("**/*.*"):
         if file.is_file() and file.suffix not in [".ico", ".json", ".yml", ".srt"]:
-            title = " ".join(file.stem.split(" ")[:-1])
+            fileTitle = file.stem
+            if re.match(r"^.+\(\d+\) - .+$", file.stem):
+                fileTitle = file.stem.rsplit(" - ", maxsplit=1)[0]
+            title = " ".join(fileTitle.split(" ")[:-1])
             size = file.stat().st_size / (1024 * 1024 * 1024)
-            year = file.stem.split(" ")[-1][1:-1]
+            year = fileTitle.split(" ")[-1][1:-1]
             tags = [x for x in str(file.parent).replace(str(path), "").split("\\") if x != ""]
             obj = {
                 "Title": title,
@@ -77,12 +80,11 @@ def GetTV(parent: Path, showProgress: bool) -> list[dict]:
     folders = [x for x in contents if "." not in x.name and not FolderBanned(x)]
     subFiles = [x for x in contents if "." in x.name]
     progBar = None
-    if showProgress:
-        progBar = Bar(
-            "Loading Shows...",
-            max=len(folders),
-            suffix=r"%(index)d/%(max)d - %(eta)ds",
-        )
+    progBar = Bar(
+        "Loading Shows...",
+        max=len(folders),
+        suffix=r"%(index)d/%(max)d - %(eta)ds",
+    )
     for folder in folders:
         parents = [x for x in folders if str(x) + "\\" in str(folder) and x != folder]
         children = [x for x in folders if str(folder) + "\\" in str(x) and x != folder]
@@ -99,7 +101,7 @@ def GetTV(parent: Path, showProgress: bool) -> list[dict]:
                 },
             )
         if showProgress and isinstance(progBar, Bar):
-            progBar.next()  # ty: ignore[possibly-unresolved-reference]
+            progBar.next()
     if showProgress:
         print()
         print("TV Complete")
