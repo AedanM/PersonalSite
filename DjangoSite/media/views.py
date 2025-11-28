@@ -100,7 +100,6 @@ def wikiLoad(request: HttpRequest) -> HttpResponse:
         else:
             form, model = DetermineForm(request)
             activeForm = form(request.POST)
-            # pylint: disable=E1101
             matchingObjs = [
                 x
                 for x in model.objects.all()
@@ -108,7 +107,6 @@ def wikiLoad(request: HttpRequest) -> HttpResponse:
             ]
             if activeForm.is_valid() and len(matchingObjs) == 0:
                 activeForm.save()
-                # pylint: disable=E1101
                 obj = model.objects.filter(Title=request.POST.get("Title")).first()
                 if obj:
                     SortTags(obj)
@@ -138,7 +136,6 @@ def checkFiles(request: HttpRequest) -> HttpResponse:
     unmatchedTV, matchedTV = CheckTV()
     unmatchedMovie, matchedMovie = CheckMovies()
 
-    # pylint: disable=E1101
     wronglyMarkedMovie = [
         x
         for x in Movie.objects.all()
@@ -172,7 +169,6 @@ def stats(request: HttpRequest) -> HttpResponse:
     start = time.time()
     context = {}
     for media in MODEL_LIST:
-        # pylint: disable=E1101
         context[media.__name__] = media.objects.all()
     context["colorMode"] = request.COOKIES.get("colorMode", "dark")
     context["force"] = request.GET.get("force", "False") == "True"
@@ -190,7 +186,6 @@ def new(request: HttpRequest) -> HttpResponse:
     if request.GET.get("type", None):
         cls, obj = GetFormAndClass(request.GET.get("type", "Movie"))
 
-        # pylint: disable=E1101
         inst = obj.objects.get(id=request.GET["instance"]) if "instance" in request.GET else None
 
         form = cls(
@@ -230,10 +225,9 @@ def edit(request: HttpRequest) -> HttpResponse:
         context["form"] = form
         context["inst"] = contentObj
         context["colorMode"] = request.COOKIES.get("colorMode", "dark")
-        contentObj.GetLogo("www." in contentObj.Logo or "://" in contentObj.Logo)
 
         response = (
-                render(request, "media/editform.html", context)
+            render(request, "media/editform.html", context)
             if request.method == "GET"
             else redirect("/media")
         )
@@ -242,6 +236,7 @@ def edit(request: HttpRequest) -> HttpResponse:
             if contentObj.Rating > 0:
                 contentObj.Watched = True
             LOGGER.info("Edited %s", contentObj.Title)
+            contentObj.GetLogo("www." in contentObj.Logo or "://" in contentObj.Logo)
 
     return response
 

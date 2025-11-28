@@ -10,5 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Perform GET request
-      run: curl -X GET https://aedanm.uk/refresh?pull=True
+      - name: Perform GET request
+        run: curl -X GET https://aedanm.uk/refresh?pull=True
+      - name: Wait for refresh and pull
+        run: sleep 2
+      - name: Do first request to speed up first request
+        run: curl -X GET https://aedanm.uk

@@ -41,7 +41,6 @@ def GetAll() -> dict:
 
     backupDict = {}
     for model in MODEL_LIST:
-        # pylint: disable=E1101
         backupDict[model.__name__] = [x.JsonRepr for x in model.objects.all()]
     return backupDict
 
