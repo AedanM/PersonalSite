@@ -126,7 +126,7 @@
                           </td>
                         {% endwith %}
                         <td>
-                          <a class="clean-link" href="setBool?field=Downloaded&contentId=4044{{ show|Get:'Match'|Get:'ID' }}" />{{ show|Get:'Match'|Get:'Marked' }}
+                          <a class="clean-link" href="setBool?field=Downloaded&contentId={{ show|Get:'Match'|Get:'ID' }}" />{{ show|Get:'Match'|Get:'Marked' }}
                         </td>
                       </tr>
                     {% endfor %}
@@ -226,7 +226,7 @@
                             {% endfor %}
                           </td>
                         {% endwith %}
-                        <a class="clean-link" href="setBool?field=Downloaded&contentId=4044{{ show|Get:'Match'|Get:'ID' }}" />{{ show|Get:'Match'|Get:'Marked' }}
+                        <a class="clean-link" href="setBool?field=Downloaded&contentId={{ show|Get:'Match'|Get:'ID' }}" />{{ show|Get:'Match'|Get:'Marked' }}
                       </tr>
                     {% endfor %}
                   </tbody>
