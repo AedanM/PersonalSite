@@ -22,8 +22,8 @@ from ..utils import (
 
 DEFINED_TAGS: dict = {}
 DEFINED_TAGS_TIME = 0.0
-FORM_LIST = [MovieForm, TVForm, NovelForm, ComicForm, PodcastForm, YoutubeForm, AlbumForm]
-MODEL_LIST = [Movie, TVShow, Novel, Comic, Podcast, Youtube, Album]
+FORM_LIST: list = [MovieForm, TVForm, NovelForm, ComicForm, PodcastForm, YoutubeForm, AlbumForm]
+MODEL_LIST: list = [Movie, TVShow, Novel, Comic, Podcast, Youtube, Album]
 
 LOGGER = logging.getLogger("UserLogger")
 
@@ -97,7 +97,6 @@ def GetFormAndClass(
 def FindID(contentID: str) -> Any:
     for model in MODEL_LIST:
         try:
-            # pylint: disable=E1101
             obj = model.objects.get(pk=contentID)
         except ObjectDoesNotExist:
             obj = None
