@@ -120,3 +120,10 @@ def BlogPages(request: HttpRequest, path: str, parent: str | None = None) -> Htt
         context["tags"] = sorted(context["tags"])
         response = render(request, "landing/blogBase.html", context=context)
     return response
+
+
+def Robots(_request: HttpRequest) -> HttpResponse:
+    return HttpResponse("""
+User-Agent: *
+Disallow: /
+""")

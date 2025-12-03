@@ -10,6 +10,7 @@ urlpatterns = [
     path(route="refresh", view=views.Refresh, name="Refresh"),
     path("tools", views.ToolsPage, name="tools"),
     path("log", views.Log, name="log"),
+    path("robots.txt", views.Robots, name="Robots"),
     path(route="blog", view=views.BlogHome, name="blogHome"),
     path(route="blog/<str:path>", view=views.BlogPages, name="blog"),
     path(route="blog/<str:parent>/<str:path>", view=views.BlogPages, name="blog"),
