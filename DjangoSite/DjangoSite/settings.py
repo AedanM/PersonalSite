@@ -147,6 +147,7 @@ STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
     EXTERNAL_DIR / "static",
+    SYNC_PATH / "blog" / "static",
 ]
 
 
