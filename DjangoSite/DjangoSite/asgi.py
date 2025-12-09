@@ -24,3 +24,4 @@ base_application = Starlette(
 
 application = BlackNoise(base_application)
 application.add(django_settings.EXTERNAL_DIR / "static", "/static")
+application.add(django_settings.SYNC_PATH / "blog" / "attachments", "/attachments")
