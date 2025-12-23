@@ -38,14 +38,19 @@ def GetMovies(parent: Path, showProgress: bool) -> list[dict]:
         suffix=r"%(index)d/%(max)d - %(eta)ds",
     )
     for file in path.glob("**/*.*"):
-        if file.is_file() and file.suffix not in [".ico", ".json", ".yml", ".srt"]:
+        if file.is_file() and file.suffix not in [".ico", ".json", ".yml", ".srt", ".nfo"]:
             fileTitle = file.stem
             if re.match(r"^.+\(\d+\) - .+$", file.stem):
                 fileTitle = file.stem.rsplit(" - ", maxsplit=1)[0]
             title = " ".join(fileTitle.split(" ")[:-1])
             size = file.stat().st_size / (1024 * 1024 * 1024)
             year = fileTitle.split(" ")[-1][1:-1]
-            tags = [x for x in str(file.parent).replace(str(path), "").split("\\") if x != ""]
+            tags = [
+                x
+                for x in str(file.parent).replace(str(path), "").split("\\")
+                if x != "" and not re.search(r" \(\d{4}\)$", x)
+            ]
+
             obj = {
                 "Title": title,
                 "Year": year,
@@ -89,7 +94,9 @@ def GetTV(parent: Path, showProgress: bool) -> list[dict]:
         parents = [x for x in folders if str(x) + "\\" in str(folder) and x != folder]
         children = [x for x in folders if str(folder) + "\\" in str(x) and x != folder]
         if len(children) == 0:
-            eps = [x for x in subFiles if str(folder) in str(x)]
+            eps = [
+                x for x in subFiles if str(folder) in str(x) and x.suffix not in [".srt", ".nfo"]
+            ]
             winF = fso.GetFolder(folder)
             folderObjs.append(
                 {
